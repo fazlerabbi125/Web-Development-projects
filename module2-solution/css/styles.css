@@ -4,12 +4,20 @@
 
 h1 {
   font-family: Brushstroke, fantasy;
-  color: #000000;
+  color: black;
   text-align: center;
 }
 
 body {
+  width: 100%;
+  height: 400px;
   background-image: url("https://previews.123rf.com/images/alexandragl/alexandragl1602/alexandragl160200022/53176181-vector-seamless-pattern-of-line-iconic-illustration-of-restaurant-and-fast-food-like-coffee-pizza-wa.jpg");
+  background-size: 100%;
+}
+img.alldevices{
+  margin: auto;
+  height: auto;
+  max-width: 100%;
 }
 
 p {
