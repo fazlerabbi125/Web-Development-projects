@@ -14,13 +14,6 @@ body {
   background-image: url("https://previews.123rf.com/images/alexandragl/alexandragl1602/alexandragl160200022/53176181-vector-seamless-pattern-of-line-iconic-illustration-of-restaurant-and-fast-food-like-coffee-pizza-wa.jpg");
   background-size: 100%;
 }
-img.alldevices{
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    width: fill;
-}
-
 p {
   padding: 10px;
   margin: 0;
@@ -66,7 +59,7 @@ section {
   border: 1px solid black;
   text-align: center;
   width: fit-content;
-  margin-left:55%;
+  margin-left:58%;
   position: relative;
   font-family: Georgia,sans-serif;
   font-weight: bold;
