@@ -31,7 +31,7 @@ p {
 section {
   border: 1px solid black;
   background-color: sandybrown;
-  min-width: 98.7%;
+  min-width: 300px;
   max-height: 165px;
   font-family: "Times New Roman";
   font-size: 102%;
