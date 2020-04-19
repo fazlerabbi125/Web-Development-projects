@@ -32,7 +32,7 @@ section {
   border: 1px solid black;
   background-color: sandybrown;
   max-width: 98.7%;
-  min-height: 165px;
+  height: 200px;
   resize: both;
   font-family: "Times New Roman";
   font-size: 102%;
