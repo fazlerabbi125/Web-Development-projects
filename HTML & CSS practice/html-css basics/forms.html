@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML Forms</title>
+        <style>
+            h1{
+                color:blueviolet;
+                text-align:center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Registration form example</h1>
+        <!-- form has action attribute which specifies the file to run when the form is submitted-->
+        <!-- form has method attribute to select if data will be passed using a GET request or a POST request
+        using the values "get" and "post" respectively.The default HTTP method when submitting form data is GET.-->
+        <!-- form has target attribute which specifies where to display the response that is received after submitting the form.
+        The target attribute can have one of the following values:
+
+Value	    Description
+_blank	    The response is displayed in a new window or tab
+_self	    The response is displayed in the current window
+_parent	    The response is displayed in the parent frame
+_top	    The response is displayed in the full body of the window
+framename	The response is displayed in a named iframe
+
+The default value is _self which means that the response will open in the current window.-->
+        <!-- form has autocomplete attribute which specifies whether a form 
+            should be automatically completed or not values based on values that the user has entered before
+            using the values "on" or "off" respectively
+        -->
+
+        <form>
+            <!-- for attribute in label tag=id attribute in input tag-->
+            <!-- name attribute in input tag specifies keys for accessing data sent through GET/POST requests.
+            This attribute is also in grouping different input fields-->
+            <label for="name">Name:</label>
+            <!--required attribute makes it mandatory for the user to give input in some of the fields-->
+            <input type="text" id="name" name="Name" required><br>
+            <label for="pno">Phone Number:</label>
+            <!--Placeholder for adding default content to a field.This disappears when user clicks the box and starts typing-->
+            <input type="tel" id="pno" name="contact" placeholder="Don't include country code" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="mail" required><br>
+            <div>Gender:</div>
+            <input type="radio" name="gender" id="msex" value="male">
+            <label for="msex">Male</label>
+            <input type="radio" name="gender" id="fsex" value="female">
+            <label for="fsex">Female</label>
+            <input type="radio" name="gender" id="osex" value="other">
+            <label for="osex">Other</label>
+            <input type="radio" name="gender2" id="dsex" value="dk">
+            <label for="dsex">IDK</label><br>
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob" required><br>
+            <label for="exp">Years of experience:</label>
+            <input type="number" name="exp" placeholder="0"><br>
+            <!--We can only select one of the radio inputs if they share the same
+                value for the name attribute. Since last the radio input, we can select
+            it and only one of the other inputs -->
+            <!--The value attribute is used to pass the value assigned to it in
+            a GET/POST request once the form has been submitted.Do not use it for
+            input types where user needs to type the input, otherwise the value specified
+            in the value attribute will only be passed instead of the value typed
+            by the user-->
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="passcode" required><br>
+            <label for="ask">Security question</label>
+            <!--For a dropdown box of options/values, use select tag instead of input tag-->
+            <select name="question" id="ask">
+                <!--option tag used within here provide options to select from dropdown-->
+                <option value="q1">What are your hobbies?</option>
+                <option value="q2">What is your favorite memory?</option>
+                <option value="q3">What is your favorite food?</option>
+            </select>
+            <br>
+            <label for="answer">Security question answer:</label><br>
+            <textarea name="answer" id="answer" cols="35" rows="15" 
+            placeholder="Write your answer here"></textarea>
+            <br>
+            <!--Here value attribute is used to show the value inside the submit button-->
+            <input type="submit" value="Submit form">
+        </form>
+    </body>
+</html>    

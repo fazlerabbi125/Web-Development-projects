@@ -1,0 +1,360 @@
+*{ /*Universal selector: selects and applies css to all HTML elements on the page. */
+
+  /*Use the shorthand property "background" to specify all the background properties in one single property.
+    When using the shorthand property the order of the property values is:
+1)background-color: Set background-color.
+2)background-image:Set the background image of an element. By default, the image is repeated so it covers the entire element.
+  Syntax: url("filename.type/url")
+3)background-repeat: Used if some background images should be repeated only horizontally or vertically so that 
+they don't look strange. It has 3 values:
+    i)  repeat-x : To repeat an image horizonally
+    ii) repeat-y : To repeat an image vertically 
+    iii)no-repeat: To repeat an image only once
+4)background-attachment: It specifies whether the background image should scroll or be fixed (will not scroll with the rest of the page)
+  and hence has 2 values:
+    i)  fixed : background image should be fixed
+    ii) scroll: background image should scroll with the rest of the page
+5)background-position: It is used to specify the position of the background image. It has the values: top, bottom, right,
+  and left. It takes at most two values which are the horizontal and vertical direction in any order. Example: right, top,
+  left bottom, top right.
+  
+It does not matter if one of the property values is missing, as long as the other ones are in this order.*/
+    background: white url("img_tree.png") no-repeat right top;
+}
+p{ /*Element selector: applies css to selected HTML elements based on the element name */
+    text-align: left;
+    line-height: 20%;/*Vertical line spacing*/
+    /*text color*/
+    color: red; /*color using text values */
+    
+/* The border property is a shorthand property for the following individual border properties:
+1)border-width
+2)border-style (required)
+3)border-color
+The border-style property specifies what kind of border to display and can have the following values:
+1)dotted - Defines a dotted border
+2)dashed - Defines a dashed border
+3)solid - Defines a solid border
+4)double - Defines a double border
+5)groove - Defines a 3D grooved border. The effect depends on the border-color value
+6)ridge - Defines a 3D ridged border. The effect depends on the border-color value
+7)inset - Defines a 3D inset border. The effect depends on the border-color value
+8)outset - Defines a 3D outset border. The effect depends on the border-color value
+9)none - Defines no border
+10)hidden - Defines a hidden border
+    */
+    border: 5px solid red; /*border: border-width border-style border-color*/
+    /*You can also specify all the individual border properties for just one side using:
+border-left,border-bottom,border-top,border-right */
+    border-radius: 5px; /*Has to be specified separately.The border-radius property is used to add rounded borders to an element*/
+    
+/*The CSS margin properties are used to create space around elements, outside of any defined borders.
+  All the margin property can have the following values:
+1)auto - You can set the margin property to auto to horizontally center the element within its container.
+The browser calculates the margin due to which the element will then take up the specified width, 
+and the remaining space will be split equally between the left and right margins.
+2)length - specifies a margin in px, pt, cm, etc.
+3)% - specifies a margin in % of the width of the containing element
+4)inherit - specifies that the margin should be inherited from the parent element
+Tip: Negative values are allowed.
+
+You can specifiy margin for a particular side using the following properties:
+*/
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+
+/*You can also use the margin shorthand property to specifiy margin-top, margin-right, margin-bottom, margin-left*/
+  margin: 25px 50px 75px 100px;/*margin: margin-top margin-right margin-bottom margin-left*/
+  margin: 25px 50px 75px;/*margin: margin-top margin-right=margin-left margin-bottom
+  the top margin has 25px, the right and left margins have 50px, and the bottom margin has 75px*/
+  margin: 25px 50px;/*margin: margin-top=margin-bottom margin-right=margin-left
+  Here, the top and bottom margins have 25px and the right and left margins have 50px*/
+  margin: 25px;/*margin: margin-top=margin-right=margin-bottom=margin-left
+  Here, all margins have the same value*/
+  /*Top and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the 
+  two margins. This does not happen on left and right margins! Only top and bottom margins!*/
+
+  /*The CSS padding properties are used to generate space around an element's content, inside of any defined borders.
+  All the padding properties can have the following values:
+1)length - specifies a padding in px, pt, cm, etc.
+2)% - specifies a padding in % of the width of the containing element
+3)inherit - specifies that the padding should be inherited from the parent element
+Tip: Negative values are allowed.
+
+CSS has properties for specifying the padding for each side of an element:
+*/
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+
+/*You can also use the padding shorthand property to specifiy padding-top, padding-right, padding-bottom, padding-left*/
+  margin: 25px 50px 75px 100px;/*padding: padding-top padding-right padding-bottom padding-left*/
+  margin: 25px 50px 75px;/*padding: padding-toppadding-right=padding-left padding-bottom
+  the top padding has 25px, the right and left paddings have 50px, and the bottom padding has 75px*/
+  margin: 25px 50px;/*padding: padding-top=padding-bottom padding-right=padding-left
+  Here, the top and bottom paddings have 25px and the right and left paddings have 50px*/
+  margin: 25px;/*padding: padding-top=padding-right=padding-bottom=padding-left
+  Here, all paddings have the same value*/
+}
+h1, h2 {/* You can group element selectors together by separating them with a comma.*/
+    text-align: center;
+    color: hsl(9, 100%, 64%); /*color specified using hue, saturation, and lightness (HSL) via the form: 
+    hsl(hue, saturation, lightness)
+    Hue is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, and 240 is blue.
+    Saturation is a percentage value, 0% means a shade of gray, and 100% is the full color.
+    Lightness is also a percentage, 0% is black, 50% is neither light or dark, 100% is white*/
+}
+#para1 {/* Id selector: It uses the id attribute of an HTML element to select a specific element.
+    The id of an element is unique within a page, so the id selector is used to select one unique element.
+    To select an element with a specific id, write a hash (#) character, followed by the id of the element but
+    note that an id name cannot start with a number.
+    */
+    text-align: center;
+    color: red;
+}
+.center {/*Class selector: selects and applies css to HTML elements with a specific class attribute.
+    To select elements with a specific class, write a period (.) character, followed by the class name.
+    You can also refer to multiple classes in the class attribute for an HTML element
+    */
+    text-align: center;
+    color: #ffffff; /*color  a hexadecimal value in the form: #rrggbb
+    where 000000 is the lowest value (black) and ffffff is the highest value (white)*/
+  }
+  .error{
+    color:#00FF00;
+  }
+  p.center {/*You can also specify that only specific HTML elements should be affected by a class.*/
+    color: rgb(27, 158, 175); /*color specified with a RGB values which uses this formula: rgb(red, green, blue) 
+    0 is the lowest value (black) and 255 is the highest value (white) for each parameter*/
+  }
+  .center.error{/*Mutliple classes can also be grouped together like this*/
+    color: aqua;
+  }
+  h1.center.error{/*Mutliple classes can also be grouped together and specified to affect particular HTML elements*/
+    color:beige;
+  }
+  div p {/*The descendant selector matches all elements that are descendants of a specified element.
+This example selects all <p> elements inside <div> elements: */
+    background-color: pink;
+  }
+  div .center{/*Descendant selector with elements with a class of center being descendants under the parent div */
+      color:aliceblue;
+  }
+  div h3 a{/*Descendant selector with <a> being the descendant of h3 which itself is a descendant of div */
+        background-color: pink;
+    }
+  p > span{ /*The child selector (>) selects all elements that are the children of a specified element.
+The following example selects all <a> elements that are children of a <p> element:*/
+    background-color: yellow;
+  }
+  div + p { /*The adjacent sibling (+) selector is used to select an element that is directly after another specific element.
+    Sibling elements must have the same parent element, and "adjacent" means "immediately following".
+    The following example selects the first <p> element that are placed immediately after <div> elements:*/
+    background-color: yellow;
+  }
+  div ~ p { /*The general sibling selector (~) selects all elements that are next siblings of a specified element.
+    The following example selects all <p> elements that are next siblings of <div> elements: */
+    background-color: yellow;
+  }
+  /*A pseudo-class is used to define a special state of an element. The syntax of pseudo-classes:
+        selector:pseudo-class {
+            property: value;
+        }
+  */
+  a:link { /* Style unvisited link */
+    color: #FF0000;
+  }
+  
+  a:visited { /* Style visited link */
+    color: #00FF00;
+  }
+  a:hover { /* Style an element when mouse moves over link */
+    color: #FF00FF;
+  }
+  a:active { /* Style an element when link clicked/selected*/
+    color: #0000FF;
+  }
+  /*
+  
+  */
+  a[target] { /* select and apply css to all <a> elements with a target attribute:*/
+    background-color: yellow;
+  }
+  a[href="w3schools.com"] { /* The [attribute="value"] selector is used to select and apply css to 
+    elements with a specified attribute and value. */
+    background-color: rgba(146, 45, 172, 0.774);
+  }
+  [cite~="flower"] { /* The [attribute~="value"] selector is used to select and apply css to 
+    elements with an attribute value containing a specified word */
+    font-weight: bold;
+  }
+  [class|="top"] { /* The [attribute|="value"] selector is used to select and apply css to 
+    elements with the specified attribute starting with a specified value. The value has to be a whole word, either alone,
+    like class="top", or followed by a hyphen( - ), like class="top-text"!  */
+    background: yellow;
+  }
+  [class^="top"] { /* The [attribute^="value"] selector is used to select and apply css to 
+    elements whose attribute value begins with a specified value*/
+    background: yellow;
+  }
+  [class$="test"] { /* The [attribute$="value"] selector is used to select and apply css to 
+    elements whose attribute value ends with a specified value*/
+    background: yellow;
+  }
+  [class*="te"] {/* The [attribute$="value"] selector is used to select and apply css to 
+    elements whose attribute value contains a specified value*/
+    background: yellow;
+  }
+
+/*Media queries: It is used for responsive web design and uses the @media rule to include a block of CSS properties 
+only if a certain condition is true.*/
+
+  /* Desktop view = If the browser window is 992px or larger */
+@media (min-width: 992px) {
+  /*Many web pages are based on a grid-view, which means that the page is divided into columns.Using a grid-view is very helpful when designing web pages. It makes it easier to place elements on the page.
+A responsive grid-view often has 12 columns, and has a total width of 100%, and will shrink and expand as you resize the browser window.
+We want to use a responsive grid-view with 12 columns, to have more control over the web page.
+First we must calculate the percentage for one column: 100% / 12 columns = 8.33%.
+Then we make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span
+*/
+  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    float: left;/*The CSS float property specifies how an element should float.
+The float property is used for positioning and formatting content e.g. let an image float left to the text in a container.
+The float property can have one of the following values:
+i)left - The element floats to the left of its container
+ii)right - The element floats to the right of its container
+iii)none - The element does not float (will be displayed just where it occurs in the text). This is default
+iv)inherit - The element inherits the float value of its parent*/
+  }
+
+  .col-lg-1 {
+    width: 8.33%;
+  }
+  .col-lg-2 {
+    width: 16.66%;
+  }
+  .col-lg-3 {
+    width: 25%;
+  }
+  .col-lg-4 {
+    width: 33.33%;
+  }
+  .col-lg-5 {
+    width: 41.66%;
+  }
+  .col-lg-6 {
+    width: 50%;
+  }
+  .col-lg-7 {
+    width: 58.33%;
+  }
+  .col-lg-8 {
+    width: 66.66%;
+  }
+  .col-lg-9 {
+    width: 74.99%;
+  }
+  .col-lg-10 {
+    width: 83.33%;
+  }
+  .col-lg-11 {
+    width: 91.66%;
+  }
+  .col-lg-12 {
+    width: 100%;
+  }
+
+}
+
+/* Tablet view = If the browser window is between 768px and 991px */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+  }
+
+  .col-md-1 {
+    width: 8.33%;
+  }
+  .col-md-2 {
+    width: 16.66%;
+  }
+  .col-md-3 {
+    width: 25%;
+  }
+  .col-md-4 {
+    width: 33.33%;
+  }
+  .col-md-5 {
+    width: 41.66%;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-7 {
+    width: 58.33%;
+  }
+  .col-md-8 {
+    width: 66.66%;
+  }
+  .col-md-9 {
+    width: 74.99%;
+  }
+  .col-md-10 {
+    width: 83.33%;
+  }
+  .col-md-11 {
+    width: 91.66%;
+  }
+  .col-md-12 {
+    width: 100%;
+  }
+}
+
+/* Mobile view = If the browser window is 768px or smaller  */
+
+@media (max-width: 768px) {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  float: left;
+  }
+
+  .col-sm-1 {
+    width: 8.33%;
+  }
+  .col-sm-2 {
+    width: 16.66%;
+  }
+  .col-sm-3 {
+    width: 25%;
+  }
+  .col-sm-4 {
+    width: 33.33%;
+  }
+  .col-sm-5 {
+    width: 41.66%;
+  }
+  .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-7 {
+    width: 58.33%;
+  }
+  .col-sm-8 {
+    width: 66.66%;
+  }
+  .col-sm-9 {
+    width: 74.99%;
+  }
+  .col-sm-10 {
+    width: 83.33%;
+  }
+  .col-sm-11 {
+    width: 91.66%;
+  }
+  .col-sm-12 {
+    width: 100%;
+  }
+}
