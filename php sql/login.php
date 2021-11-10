@@ -25,11 +25,12 @@ if(isset($_POST["who"]) && isset($_POST["pass"])){
 	}
 	elseif ($check!=$password) {
 		echo "<p style=\"color: red;\">Incorrect password</p>";
-		//error_log("Login fail ".$_POST["who"]." $check");
+		//error_log("Login fail ".$_POST["who"]." $check"); Logs any errors
 	}
 	else{
 		header("Location: autos.php?name=".urlencode($_POST['who']));
-		//error_log("Login success ".$_POST['who']);
+		/* Make sure that code below does not get executed when we redirect. */
+		exit; //we also use: return
 	}
 }
 ?>
