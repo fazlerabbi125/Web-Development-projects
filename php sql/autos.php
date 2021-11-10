@@ -12,6 +12,8 @@
 			echo "<div class=\"container\"><h1>Tracking Autos for ",htmlentities($_GET['name']),"</h1></div>";
 			if(isset($_POST['logout'])){
 				header('Location: index.php');
+				/* Make sure that code below does not get executed when we redirect. */
+				return; //we also use: exit
 			}
 			elseif(isset($_POST['make']) && isset($_POST['mileage']) && isset($_POST['year'])){
 				if(strlen($_POST['make'])<1) echo "<p class=\"container\" style=\"color: red;\">Make is required</p>";
