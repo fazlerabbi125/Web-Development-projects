@@ -1,0 +1,32 @@
+{% extends './base.html'%}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-3">
+{% if form.error %}
+    {% for err in form.error %}
+    <div class="text-danger text-center">{{ err }}</div>
+    {% endfor %}
+{% elif messages %}
+    {% for message in messages %}
+    <div class="text-danger text-center">{{message}}</div>
+    {% endfor %}
+{% endif %}
+    <div class="col-12 col-md-4 col-sm-6">
+        <form class="shadow p-3 bg-body rounded" method="post">
+            {% csrf_token %}
+            <p class="text-center h3 text-gray-800 mb-3">
+                Log Into Your Account
+            </p>
+            {{form.as_p}}
+            <p class="d-grid">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </p>
+            <p class="text-center">
+                <span>Don't have an account?</span>
+                <a href = "{% url 'accounts:register' %}" class="text-decoration-none">Sign up here</a>
+            </p>
+        </form>
+        
+    </div>
+</div>
+{% endblock %}
