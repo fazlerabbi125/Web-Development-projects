@@ -7,7 +7,6 @@ from accounts.models import Author
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.http import Http404
 from .filters import ArticleFilter
 # Create your views here.
 class ArticleListView(generic.ListView):
@@ -18,7 +17,11 @@ class ArticleListView(generic.ListView):
         context=super().get_context_data(**kwargs)
         article_filter=ArticleFilter()
         context['article_filter']=article_filter
-        print(self.queryset)
+        if self.request.GET:
+            querystring = self.request.GET.copy()
+            if self.request.GET.get('page'):
+                del querystring['page']
+            context['querystring'] = querystring.urlencode()
         return context
     def get_queryset(self):
         article_filter=ArticleFilter(self.request.GET,queryset=super().get_queryset())
