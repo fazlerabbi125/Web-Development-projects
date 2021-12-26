@@ -1,10 +1,10 @@
 {% extends './base.html'%}
 {% block title %}Home{% endblock %}
-
 {% block content %}
-{% if article_list%}
 {% for message in messages %}
+  {% if message.tags == "success" %}
 <div class="text-{{message.tags}}">{{message}}</div>
+  {% endif %}
 {% endfor %}
 <div class="mt-0 p-4">
   <h1 class="text-center">Welcome to my blog site</h1>
@@ -23,7 +23,13 @@
       {{ article_filter.form.end_date }}
       <button type="submit" class="btn btn-dark float-right"><i class="fa fa-search"></i></button>
     </form>
+    {% for message in messages %}
+      {% if message.tags == "info" %}
+      <div class="fs-4">{{message}}</div>
+    {% endif %}
+  {% endfor %}
   </div>
+{% if article_list%}
     <ul class="list-group list-group-flush"></ul>
     {% for article in article_list%}
        <a href="{% url 'articles:post' article.slug %}" style="text-decoration: none ;"> 
@@ -75,6 +81,6 @@
                   </div>
         {% endif %}
 {% else %}
-<p>No article posts</p>
+<p class="card-body">No article posts found</p>
 {% endif %}
 {% endblock %}

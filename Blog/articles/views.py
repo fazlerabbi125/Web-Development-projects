@@ -17,11 +17,12 @@ class ArticleListView(generic.ListView):
         context=super().get_context_data(**kwargs)
         article_filter=ArticleFilter()
         context['article_filter']=article_filter
-        if self.request.GET:
+        if self.request.GET and len(self.request.GET)>0:
             querystring = self.request.GET.copy()
             if self.request.GET.get('page'):
                 del querystring['page']
             context['querystring'] = querystring.urlencode()
+            messages.info(self.request,'Search result:')
         return context
     def get_queryset(self):
         article_filter=ArticleFilter(self.request.GET,queryset=super().get_queryset())
