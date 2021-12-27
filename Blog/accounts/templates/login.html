@@ -4,11 +4,11 @@
 <div class="row justify-content-center mt-3">
 {% if form.error %}
     {% for err in form.error %}
-    <div class="text-danger text-center">{{ err }}</div>
+    <div class="badge bg-danger text-center">{{ err }}</div>
     {% endfor %}
 {% elif messages %}
     {% for message in messages %}
-    <div class="text-danger text-center">{{message}}</div>
+    <div class="badge bg-danger text-center">{{message}}</div>
     {% endfor %}
 {% endif %}
     <div class="col-12 col-md-4 col-sm-6">

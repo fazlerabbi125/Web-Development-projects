@@ -31,14 +31,15 @@
     </div>
     <ul class="navbar-nav justify-content-end">
       {% if user.is_authenticated and user.author %}
-      <li class="nav-item">
-        <span class="nav-link">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <span><img src="{{user.author.photo.url}}" class="rounded-circle justify-content-end d-inline-block" width="24" height="24" alt="Author"></span>
           {{user.username}}
-          </span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'accounts:profile' user.author.id %}">Your Profile</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+        </ul>
       </li>
       {% else %}
         <li class="nav-item">

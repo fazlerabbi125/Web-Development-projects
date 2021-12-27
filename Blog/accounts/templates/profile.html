@@ -1,0 +1,49 @@
+{% extends './base.html'%}
+{% block title %} {{author.user.first_name}} {{author.user.last_name}} {% endblock %}
+{% block content %}
+{% for message in messages %}
+    <div class="badge bg-{{message.tags}}">{{message}}</div>
+{% endfor %}
+<div class="row">
+    <div class="card col-3" style="position:sticky;">
+        <img src="{{author.photo.url}}" class="card-img-top rounded-circle ms-0 mt-2" width="50%" height="35%" alt="Author image">
+        <div class="card-body">
+                <h5 class="card-title mb-4 text-center">{{author.user.first_name}} {{author.user.last_name}}
+                    <span class="d-grid d-md-inline-flex float-end" role="group">
+                        <a class="btn btn-secondary rounded-circle" href="{% url 'accounts:update' author.user.username %}" role="button"> <i class="fa fa-pencil" style="font-size:90%"></i></a>
+                    </span>
+                </h5>
+                <div class="card-text">
+                    <ul class="list-unstyled">
+                        <li><span class="fw-bold">Username:</span> <span>{{author.user.username}}</span> </li>
+                        <li><span class="fw-bold">Email:</span> <span>{{author.user.email}}</span> </li>
+                        <li><span class="fw-bold">Date of birth:</span> <span>{{author.birth_date}}</span> </li>
+                        <li><div class="fw-bold">Bio:</div> <div class="shadow-sm p-3 mb-5 bg-light rounded">{{author.bio}}</div> </li>
+                    </ul>
+                    <div class="d-grid">
+                        <a href="{% url 'accounts:delete' author.user.username %}" class="btn btn-danger">Delete your account</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="ms-2 col-8">
+    {% if profile_posts %}
+    <p class="ms-2 fs-4">Your posts:</p>
+        {% for article in profile_posts %}
+    <ul class="list-group"></ul>
+        <a href="{% url 'articles:post' article.slug %}" style="text-decoration: none ;"> 
+            <li class="list-group-item">
+            <h2>{{article.title}}</h2>
+            <div><small>Category: {{article.category}}</small></div>
+            <div><small>{{article.author}} | {{article.create_date}}</small></div>
+            <p>{{article.snippet}}</p>
+            </li>
+        </a>
+    </ul>
+        {% endfor %}
+    {% else %}
+    <p class="ms-2 fs-4">No posts created</div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

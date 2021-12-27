@@ -22,7 +22,9 @@ class ArticleListView(generic.ListView):
             if self.request.GET.get('page'):
                 del querystring['page']
             context['querystring'] = querystring.urlencode()
-            messages.info(self.request,'Search result:')
+            querystring={k:querystring[k] for k in querystring.keys() if querystring[k]!="" 
+            and querystring[k] is not None}
+            if len(querystring)>0:messages.info(self.request,'Search result:')
         return context
     def get_queryset(self):
         article_filter=ArticleFilter(self.request.GET,queryset=super().get_queryset())
@@ -48,18 +50,14 @@ def createArticle(request):
 @login_required(login_url='/accounts/login/')
 def updateArticle(request,pk):
     a=Article.objects.get(pk=pk)
-    if a.author.user==request.user:
-        form=ArticleForm(instance=a)
-        if request.method == 'POST':
-            form=ArticleForm(request.POST,instance=a)
-            if form.is_valid():
-                form.save()
-                messages.success(request,'Post successfully updated')
-                return redirect('articles:post',slug=a.slug)
-        return render(request, 'article_edit.html', {'form':form})
-    else:
-        messages.error(request,'Access denied. You need to be the owner of this post')
-        return redirect('articles:post',slug=a.slug)
+    form=ArticleForm(instance=a)
+    if request.method == 'POST':
+        form=ArticleForm(request.POST,instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Post successfully updated')
+            return redirect('articles:post',slug=a.slug)
+    return render(request, 'article_edit.html', {'form':form})
 
 
 class ArticleDeleteView(LoginRequiredMixin,generic.DeleteView):
@@ -67,13 +65,4 @@ class ArticleDeleteView(LoginRequiredMixin,generic.DeleteView):
     template_name='article_delete.html'
     login_url = '/accounts/login/'
     success_url = reverse_lazy('articles:home')
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        context = self.get_context_data(object=self.object)
-        if self.object.author.user==self.request.user:
-             return self.render_to_response(context)
-        else:
-            messages.error(request,'Access denied. You need to be either the admin or the owner of this post')
-            return redirect('articles:post',slug=self.object.slug)
 
