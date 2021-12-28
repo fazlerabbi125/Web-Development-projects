@@ -5,7 +5,7 @@
     <div class="badge bg-{{message.tags}}">{{message}}</div>
 {% endfor %}
 <div class="row">
-    <div class="card col-3" style="position:sticky;">
+    <div class="card col-3">
         <img src="{{author.photo.url}}" class="card-img-top rounded-circle ms-0 mt-2" width="50%" height="35%" alt="Author image">
         <div class="card-body">
                 <h5 class="card-title mb-4 text-center">{{author.user.first_name}} {{author.user.last_name}}
@@ -26,7 +26,7 @@
                 </div>
         </div>
     </div>
-    <div class="ms-2 col-8">
+    <div class="ms-2 col-8"style="position:relative;right:1%,left:1%;">
     {% if profile_posts %}
     <p class="ms-2 fs-4">Your posts:</p>
         {% for article in profile_posts %}
