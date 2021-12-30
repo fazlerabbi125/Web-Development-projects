@@ -9,10 +9,10 @@ body{
   position: relative;
 }
 .banner img{
-  /*So that image completely covers browser width
+  display: block;/*So that image completely covers browser width as img by itself is inline and leaves space
+  Instead of this, the img can simply also surrounded by a div or this can be used:
   display: flex;
-    justify-content: start;*/
-  display: block;
+  justify-content: start;*/
   width: 101.2%;
   max-height: 27em;
   margin-bottom: 1%;
