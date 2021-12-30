@@ -9,9 +9,10 @@ body{
   position: relative;
 }
 .banner img{
-  /*So that image completely covers browser width*/
+  /*So that image completely covers browser width
   display: flex;
-  justify-content: start;
+    justify-content: start;*/
+  display: block;
   width: 101.2%;
   max-height: 27em;
   margin-bottom: 1%;
