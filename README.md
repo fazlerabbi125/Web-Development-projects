@@ -4,4 +4,4 @@ This repository contains my web development project and each type of project has
 1) JavaScript projects
 2) Django projects
 3) HTML & CSS projects
-4) PHP projects
+4) PHP & Laravel projects
