@@ -49,21 +49,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if (isset($data['photo'])){
-            return Validator::make($data, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'photo' => 'mimes:jpg,jpeg,png'
-            ]);
-        }
-        else{
-            return Validator::make($data, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-            ]);
-        }
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'photo' => ['nullable','mimes:jpg,jpeg,png']
+        ]);
     }
 
     /**
@@ -74,19 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if (isset($data['photo'])){
-            $path = $data['photo']->store('profiles/uploads','public');
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'photo' => $path,
-            ]);
-        }
-        return User::create([
+        $user= User::make([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        if (isset($data['photo'])){
+            $path = $data['photo']->store('profiles/uploads','public');
+            $user->photo = $path;
+        }
+        $user->save();
+        return $user;
     }
 }
