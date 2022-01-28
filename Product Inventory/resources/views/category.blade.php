@@ -12,14 +12,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{{ route('create-category') }}" method="post">
+          <form action="{{ route('category.store') }}" method="post">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <label class="col-form-label" for="name">Category Name:</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
+                    <input type="text" name="name" id="name" class="form-control">
                 </div>
             </div>
       </div>
@@ -32,8 +32,11 @@
   </div>
 </div>
 @error('name')
-<h4>Example heading <span class="badge bg-danger">{{ $message }}</span></h4>
+<h4><span class="badge bg-danger">{{ $message }}</span></h4>
 @enderror
+@if (session('success'))
+<h4><span class="badge bg-success">{{ session('success') }}</span></h4>
+@endif
 <div class="accordion row justify-content-center" id="accordionPanelsStayOpenExample">
   @forelse ($categories as $category)
       <div class="accordion-item col-md-3 mx-1 mb-2">
@@ -52,8 +55,8 @@
             @endforelse
             </ul>  
             <div class="mx-auto">
-              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editcategorymodal">Edit category</button>
-<div class="modal fade" id="editcategorymodal" tabindex="-1" aria-hidden="true">
+              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editcategorymodal{{ $category->id }}">Edit category</button>
+<div class="modal fade" id="editcategorymodal{{ $category->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -61,15 +64,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{{ route('create-category') }}" method="post">
+          <form action="{{ route('category.update',$category) }}" method="post">
             @csrf
             @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-auto">
-                    <label class="col-form-label" for="name">Category Name:</label>
+                    <label class="col-form-label" for="name">New Category Name:</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
+                    <input type="text" name="name" id="name" class="form-control" value="{{ $category->name }}">
                 </div>
             </div>
       </div>
@@ -81,8 +84,8 @@
     </div>
   </div>
 </div>
-              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletecategorymodal">Delete category</button>
-<div class="modal fade" id="deletecategorymodal" tabindex="-1" aria-hidden="true">
+              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletecategorymodal{{ $category->id }}">Delete category</button>
+<div class="modal fade" id="deletecategorymodal{{ $category->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,7 +93,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{{ route('create-category') }}" method="post">
+          <form action="{{ route('category.delete',$category) }}" method="post">
             @csrf
             @method('DELETE')
             <p>Are you sure you want to delete this category?</p>

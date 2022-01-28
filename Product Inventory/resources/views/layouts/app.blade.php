@@ -44,9 +44,9 @@
                             </li>
                             @endif
 
-                            @if (Route::has('category'))
+                            @if (Route::has('category.index'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('category') }}"> Categories</a>
+                                <a class="nav-link" href="{{ route('category.index') }}"> Categories</a>
                             </li>
                             @endif
                         @endauth

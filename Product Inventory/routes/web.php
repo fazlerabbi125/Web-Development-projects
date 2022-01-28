@@ -34,8 +34,9 @@ Route::get('/dashboard/account-deleted',function(){
     return view('auth.account_deletion');
 })->middleware('guest');
 
-Route::get('/category', [CategoryController::class, 'index'])->name('category');
-Route::post('/category/create', [CategoryController::class, 'create'])->name('create-category');
+Route::resource('category', CategoryController::class)->names([
+    'destroy'=> 'category.delete'
+]);
 
 
 Route::get('/about',function(){
