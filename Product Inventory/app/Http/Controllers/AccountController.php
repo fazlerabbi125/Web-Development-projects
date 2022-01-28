@@ -12,7 +12,10 @@ class AccountController extends Controller
      *
      * @return void
      */
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Show the application dashboard.
      *
@@ -51,8 +54,11 @@ class AccountController extends Controller
     }
     public function delete(Request $request,$id)
     {
-        $user=User::findOrFail($id);
-        $user->delete();
-        return redirect('/dashboard/account-deleted');
+        if ($request->isMethod('delete')) {
+            $user=User::findOrFail($id);
+            $user->delete();
+            return redirect('/dashboard/account-deleted');
+        }
+        return view('auth.account_deletion');
     }
 }
