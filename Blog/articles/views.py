@@ -64,5 +64,7 @@ class ArticleDeleteView(LoginRequiredMixin,generic.DeleteView):
     model = Article
     login_url = '/accounts/login/'
     success_url = reverse_lazy('articles:home')
-    #messages.success(self.request,'Post successfully deleted')
+    def post(self, request, *args, **kwargs):
+        messages.success(request,'Post successfully deleted')
+        return super().post(request, *args, **kwargs)
 
