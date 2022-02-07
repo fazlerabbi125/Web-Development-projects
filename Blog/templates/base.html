@@ -37,7 +37,7 @@
           {{user.username}}
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="{% url 'accounts:profile' user.author.id %}">Your Profile</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:profile' user.username %}">Your Profile</a></li>
           <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
         </ul>
       </li>

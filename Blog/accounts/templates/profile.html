@@ -2,17 +2,17 @@
 {% block title %} {{author.user.first_name}} {{author.user.last_name}} {% endblock %}
 {% block content %}
 {% for message in messages %}
-    <div class="badge bg-{{message.tags}}">{{message}}</div>
+    {% if message.tags == "success" %}
+    <h4 class="badge bg-{{message.tags}}"> <span>{{message}}</span> </h5>
+    {% else %}
+    <h4 class="badge bg-secondary"> <span>{{message}}</span> </h4>
+    {% endif %}
 {% endfor %}
 <div class="row">
-    <div class="card col-3">
+    <div class="card col-12 col-md-3" style="position:relative;right:0.3%;height: 100%;">
         <img src="{{author.photo.url}}" class="card-img-top rounded-circle ms-0 mt-2" width="50%" height="35%" alt="Author image">
         <div class="card-body">
-                <h5 class="card-title mb-4 text-center">{{author.user.first_name}} {{author.user.last_name}}
-                    <span class="d-grid d-md-inline-flex float-end" role="group">
-                        <a class="btn btn-secondary rounded-circle" href="{% url 'accounts:update' author.user.username %}" role="button"> <i class="fa fa-pencil" style="font-size:90%"></i></a>
-                    </span>
-                </h5>
+                <h5 class="card-title mb-4 text-center">{{author.user.first_name}} {{author.user.last_name}}</h5>
                 <div class="card-text">
                     <ul class="list-unstyled">
                         <li><span class="fw-bold">Username:</span> <span>{{author.user.username}}</span> </li>
@@ -21,12 +21,15 @@
                         <li><div class="fw-bold">Bio:</div> <div class="shadow-sm p-3 mb-5 bg-light rounded">{{author.bio}}</div> </li>
                     </ul>
                     <div class="d-grid">
+                        <a class="btn btn-secondary" href="{% url 'accounts:update' author.user.username %}" role="button"> Edit your account info</a>
+                    </div>
+                    <div class="d-grid mt-2">
                         <a href="{% url 'accounts:delete' author.user.username %}" class="btn btn-danger">Delete your account</a>
                     </div>
                 </div>
         </div>
     </div>
-    <div class="ms-2 col-8"style="position:relative;right:1%,left:1%;">
+    <div class="ms-2 col-12 col-md-8">
     {% if profile_posts %}
     <p class="ms-2 fs-4">Your posts:</p>
         {% for article in profile_posts %}

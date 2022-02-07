@@ -2,9 +2,7 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% for message in messages %}
-  {% if message.tags == "success" %}
-<div class="text-{{message.tags}}">{{message}}</div>
-  {% endif %}
+  <div class="text-{{message.tags}} fw-bold ">{{message}}</div>
 {% endfor %}
 <div class="mt-0 p-4">
   <h1 class="text-center">Welcome to my blog site</h1>
@@ -30,7 +28,7 @@
   {% endfor %}
   </div>
 {% if article_list%}
-    <ul class="list-group list-group-flush"></ul>
+    <ul class="list-group list-group-flush">
     {% for article in article_list%}
        <a href="{% url 'articles:post' article.slug %}" style="text-decoration: none ;"> 
         <li class="list-group-item">

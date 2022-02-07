@@ -2,13 +2,13 @@
 {% block title %}{{article.title}}{% endblock %}
 {% block content %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb ms-1">
+    <ol class="breadcrumb ms-1 mt-2">
       <li class="breadcrumb-item"><a href="{% url 'articles:home' %}" class="text-decoration-none">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">{{article.title}}</li>
     </ol>
   </nav>
 {% for message in messages %}
-    <div class="badge bg-{{message.tags}}">{{message}}</div>
+    <p class="badge bg-{{message.tags}}">{{message}}</p>
 {% endfor %}
 <div class="card">
     <div class="card-body">
@@ -16,12 +16,35 @@
             <h2><span>{{article.title}}</span>
                 {% if user.is_authenticated and user.author and user == article.author.user %}
                 <span class="d-grid gap-2 d-md-inline-flex float-end" role="group">
-                    <a class="btn btn-secondary rounded-circle" href="{% url 'articles:edit' article.id %}" role="button"> <i class="fa fa-pencil" style="font-size:100%"></i></a>
-                    <a class="btn btn-secondary rounded-circle" href="{% url 'articles:delete' article.id %}" role="button"> <i class="fa fa-trash" style="font-size:100%"></i></a>
+                    <a class="btn btn-secondary rounded-circle" href="{% url 'articles:edit' article.slug %}" role="button"> <i class="fa fa-pencil" style="font-size:100%"></i></a>
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary rounded-circle" data-bs-toggle="modal" data-bs-target="#articleDelete">
+                        <i class="fa fa-trash" style="font-size:100%"></i>
+                    </button>
                 </span>
                 {% endif %}    
             </h2>
-            
+            <!-- Modal -->
+  <div class="modal fade" id="articleDelete" tabindex="-1" aria-labelledby="articleDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="articleDeleteLabel">Delete article</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+    <form action="{% url 'articles:delete' article.id %}" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ article }}"?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Confirm</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
             <div><small>Category: {{article.category}}</small></div>
             <div><small><img src="{{article.author.photo.url}}" width="24" height="22" class="rounded-circle" alt="Author image"> 
             {{article.author}} | {{article.create_date}}</small></div>

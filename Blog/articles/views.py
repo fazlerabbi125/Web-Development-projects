@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Article
@@ -34,7 +34,7 @@ class ArticleDetailView(generic.DetailView):
     model=Article
     template_name='article_detail.html'
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='accounts:login')
 def createArticle(request):
     if request.method == 'POST':
         form=ArticleForm(request.POST)
@@ -48,8 +48,8 @@ def createArticle(request):
     return render(request, 'article_create.html', {'form':form})
 
 @login_required(login_url='/accounts/login/')
-def updateArticle(request,pk):
-    a=Article.objects.get(pk=pk)
+def updateArticle(request,slug):
+    a=get_object_or_404(Article,slug=slug)
     form=ArticleForm(instance=a)
     if request.method == 'POST':
         form=ArticleForm(request.POST,instance=a)
@@ -62,7 +62,7 @@ def updateArticle(request,pk):
 
 class ArticleDeleteView(LoginRequiredMixin,generic.DeleteView):
     model = Article
-    template_name='article_delete.html'
     login_url = '/accounts/login/'
     success_url = reverse_lazy('articles:home')
+    #messages.success(self.request,'Post successfully deleted')
 
