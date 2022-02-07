@@ -83,6 +83,17 @@ DATABASES = {
     }
 }
 
+"""
+For MySQL:
+'ENGINE': f'django.db.backends.mysql,
+        'NAME': os.getenv('DB_NAME', 'django_test'), 
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '3306')
+
+Paramters retrieved from env file
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
