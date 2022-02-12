@@ -24,11 +24,13 @@ Route::resource('product', ProductController::class)->except(['index'])->names([
 
 Auth::routes();
 
-Route::get('/dashboard', [AccountController::class, 'index'])->name('dashboard');
-Route::get('/profile/{id}/update',[AccountController::class, 'edit'])->name('account-edit');
-Route::put('/profile/{id}/update', [AccountController::class, 'update'])->name('account-update');
-Route::delete('/dashboard/profile/{id}/delete', [AccountController::class, 'delete'])->name('account-delete');
-Route::get('/dashboard/profile/{id}/delete',[AccountController::class, 'delete'])->name('confirm-account-deletion');
+Route::controller(AccountController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/profile/{id}/update','edit')->name('account-edit');
+    Route::put('/profile/{id}/update', 'update')->name('account-update');
+    Route::delete('/dashboard/profile/{id}/delete', 'delete')->name('account-delete');
+    Route::get('/dashboard/profile/{id}/delete', 'delete')->name('confirm-account-deletion');
+});
 
 Route::get('/dashboard/account-deleted',function(){
     return view('auth.account_deletion');
