@@ -25,21 +25,22 @@ export default {
     setup(props){
         const router=useRouter();
 
-        let {task,error,load}= getTask(props.id)
+        const {task,error,load}= getTask(props.id)
         load();
 
         function handleUpdate(title,date,category,isComplete){
-            task = { title, date, category, isComplete };
+            task.value = { title, date, category, isComplete };
             //Insert task into JSON database via POST request
             fetch('http://localhost:3000/tasks/'+props.id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(task)
+            body: JSON.stringify(task.value)
             }).then(() => {
                 console.log('Task successfully updated');
                 router.push({name:'Home'});//for re-direct
             }).catch((err) => {
-            console.error('Error: ', err.message);
+                error.value=err.message;
+                console.error('Error: ', err.message);
             });
         }
         return {task,error,handleUpdate};

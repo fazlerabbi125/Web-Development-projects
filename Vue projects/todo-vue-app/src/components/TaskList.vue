@@ -61,7 +61,8 @@ export default {
             }).then(() => {
                 console.log('State successfully updated');
             }).catch((error) => {
-            console.error('Error: ', error.message);
+              this.error=error.message;
+              console.error('Error: ',this.error);
             });
     }
   },

@@ -46,7 +46,7 @@ export default {
     }
   },
   setup(props,context){
-    let err = ref(null);
+    const err = ref(null);
     const title= ref(props.title);
     const date= ref(props.date);
     const category= ref(props.category);
