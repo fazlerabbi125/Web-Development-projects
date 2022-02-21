@@ -1,0 +1,26 @@
+All npm packages contain a file, usually in the project root, called package.json 
+- this file holds various metadata relevant to the project. This file is used to give 
+information to npm that allows it to identify the project as well as handle the 
+project's dependencies. It can also contain other metadata 
+such as a project description, the version of the project in a particular distribution, 
+license information, even configuration data - all of which can be vital to both npm and to 
+the end users of the package. The package.json file is normally located at the root 
+directory of a Node.js project.
+The package.json is used as what equates to a manifest about applications, modules, 
+packages, and more - it's a tool to that's used to make modern development streamlined, modular, and efficient.
+To create a package.json file you'll need to do the following:
+1)Enter the root folder of your project
+2)Run npm init
+3)Fill out the prompts to create your package.json
+Creating a package.json file is typically the first step in a Node project, and 
+you need one to install dependencies in npm. If you're starting a 
+project from scratch, you create a package.json file to hold important metadata 
+about your project and record your dependencies. When you run npm init to generate 
+a package.json, you can accept the suggested defaults, or fill out your own 
+information. 
+If someone is planning on downloading and using your module in their program, 
+then they probably don't want or need to download and build the external test 
+or documentation framework that you use. In this case, the npm install command can 
+be used from the root directory of the package.json file to install all required 
+packages mentioned in the package.json file, and can be managed like any other 
+npm configuration param. 

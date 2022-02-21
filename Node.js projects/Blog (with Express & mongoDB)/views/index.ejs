@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+    <body>
+        <h1>Welcome to the homepage</h1>        
+        <div class="row">
+            <%- include('./partials/nav.ejs') %>            
+        </div>
+        <div class="row ">
+            <h2>All blogs:</h2>
+            <% if (blogs.length>0) { %> <!-- Control flow with <% %> -->
+                <% blogs.forEach( (blog)=>{ %>
+                    <a href="/blogs/<%= blog._id %>">
+                        <h3><%= blog.title %></h3> </a>
+                        <p class="p" style="text-decoration: none;"><%= blog.snippet %></p>
+                        <% }) %>
+            <% }
+            else { %>
+                <p>No blogs to display...</p>
+            <% } %>
+
+        </div>
+    </body>
+</html>
