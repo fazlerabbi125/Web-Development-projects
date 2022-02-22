@@ -1,7 +1,8 @@
 <template>
 <div>
-<h2 class="title">Add a task</h2>
-<Form @submitForm="handleCreate"/>
+<Form @submitForm="handleCreate">
+Add a task
+</Form>
 </div>
 </template>
 

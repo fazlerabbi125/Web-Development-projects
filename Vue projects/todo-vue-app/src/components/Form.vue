@@ -1,5 +1,6 @@
 <template>
 <form @submit.prevent="handleSubmit" >
+  <h2 class="title"> <slot> Submit Form <!-- fallback content --></slot> </h2>
   <h5 class="title error" v-if="err"> {{err}} </h5>
     <p>
         <label for="title">Title:</label>
