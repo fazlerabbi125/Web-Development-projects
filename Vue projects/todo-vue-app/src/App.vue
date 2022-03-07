@@ -21,16 +21,15 @@
   list-style-type: none;
   margin-top: 1%;
   margin-bottom:2%;
-  margin-left: -0.5rem;
+  margin-left: 0;
   margin-right: 0;
   padding: 0;
   background-color:white;
-  overflow: hidden;
-  width:100vw;
+  width:100%;
 }
 
 #nav li{
-  float:left;
+  display: inline-block;
 }
 
 #nav li a {
@@ -62,5 +61,6 @@
 .banner{
   font-family: cursive;
   font-style: italic;
+  margin-left: 0.25rem;
   }
 </style>

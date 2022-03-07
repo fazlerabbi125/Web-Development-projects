@@ -4,7 +4,9 @@
 
 body{
   background-image: linear-gradient(to right, rgb(45, 245, 150), rgb(15, 245, 250));
-}/*42,242,16,242*/
+  padding:0;
+  margin:0;
+}
 
 .btn {
   display: inline-block;
@@ -53,7 +55,7 @@ body{
 
 .title{
   text-align:center;
-  margin-bottom:0;
+
 }
 
 .title.error{

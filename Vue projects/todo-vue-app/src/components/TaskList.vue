@@ -1,5 +1,7 @@
 <template>
-  <div v-if="tasks.length>0">
+  <h2 class="title" v-if="loading">Loading <i class="fa fa-spinner"></i></h2>
+  <h2 class="title error" v-else-if="error">{{ error }}</h2>
+  <div v-else-if="tasks.length>0">
     <h2 class="title">Tasks</h2>
     <ul class="flex-container" >
       <li class="flex-item" v-for="task in tasks" :key="task.id" >
@@ -26,16 +28,17 @@
       </li>
     </ul>
   </div>
-  <h2 class="title error" v-else-if="error">{{ error }}</h2>
-  <h2  style="text-align:center;" v-else>No tasks added</h2>
+  <h2 class="title" v-else>No tasks added</h2>
 </template>
 
 <script>
 import TaskDelete from './TaskDelete.vue'
+
 export default {
   data(){
     return {
       tasks:[],
+      loading: true,
       showModal:{},
       showDropdown:{},
       error:null
@@ -53,17 +56,18 @@ export default {
     },
     toggleState(task){
       task.isComplete=!task.isComplete;
-      this.toggleDropdown(task.id);
       fetch('http://localhost:3000/tasks/'+task.id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(task)
-            }).then(() => {
+            }).then((res) => {
+                if (!res.ok) throw Error(`Update unsuccessful`);
                 console.log('State successfully updated');
             }).catch((error) => {
               this.error=error.message;
               console.error('Error: ',this.error);
             });
+      this.toggleDropdown(task.id);
     }
   },
   mounted(){
@@ -72,7 +76,10 @@ export default {
           if (!res.ok) throw Error(`Data can't be fetched for that resource`);//Throw error if there are errors coming back from server
           return res.json();//to get data from response object. Converts JSON to JS object
     })
-    .then(data => this.tasks=data)
+    .then(data =>{
+      this.tasks=data;
+      this.loading=false;
+      })
     .catch((error) => {
       console.error(error.message);
       this.error=error.message;

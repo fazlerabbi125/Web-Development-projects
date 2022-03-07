@@ -1,7 +1,6 @@
 <template>
 <form @submit.prevent="handleSubmit" >
-  <h2 class="title"> <slot> Submit Form <!-- fallback content --></slot> </h2>
-  <h5 class="title error" v-if="err"> {{err}} </h5>
+  <h2 class="title"> <slot> Form <!-- fallback content --></slot> </h2>
     <p>
         <label for="title">Title:</label>
         <input type="text" name="title" id="title" class="form-input" v-model="title" required></p>
@@ -47,7 +46,6 @@ export default {
     }
   },
   setup(props,context){
-    const err = ref(null);
     const title= ref(props.title);
     const date= ref(props.date);
     const category= ref(props.category);
@@ -58,11 +56,10 @@ export default {
           context.emit('submitForm',title.value,date.value,category.value,isComplete.value);
       }
       else {
-        err.value='Title should at least have 3 characters';
-        console.warn(err.value);
+        alert('Title should at least have 3 characters');
       }
     };
-    return {title,date,category,options,err,handleSubmit};
+    return {title,date,category,options,handleSubmit};
   }
 }
 </script>
