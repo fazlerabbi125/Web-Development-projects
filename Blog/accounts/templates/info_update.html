@@ -6,55 +6,9 @@
         Update your account info
     </div>
     <div class="card-body">
-        {% if userform.error %}
-    {% for err in form.error %}
-    <p class="text-danger">{{ err }}</p>
-    {% endfor %}
-{% endif %}
-{% if authorform.error %}
-    {% for err in form.error %}
-    <p class="text-danger">{{ err }}</p>
-    {% endfor %}
-{% endif %}
-<form class="mt-2" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p class="input-group">
-        <span class="input-group-text">Name:</span>
-        {{ userform.first_name }}
-        {{ userform.last_name }}
-    </p>
-    <p>
-        <div class="input-group">
-        <span class="input-group-text">{{ userform.username.label_tag }}</span>
-         {{ userform.username }}
+        <div class="card-text">
+            {% include './partials/user_form.html' %}
         </div>
-         <div class="form-text">{{ userform.username.help_text|safe }}</div>
-    </p>
-    <p class="input-group">
-        <span class="input-group-text">{{ userform.email.label_tag }}</span>
-        {{ userform.email }}
-    </p>
-      <div class="input-group">
-        <span class="input-group-text">{{ userform.password1.label_tag }}</span>
-        {{ userform.password1 }}
-        <span class="input-group-text ms-2">{{ userform.password2.label_tag }}</span>
-        {{ userform.password2 }}
-      </div>
-      <p>{{ userform.password1.help_text|safe }}</p>
-      <p class="input-group">
-        <span class="input-group-text">{{ authorform.birth_date.label_tag }}</span>
-        <span class="col-3">{{ authorform.birth_date }}</span>
-    </p>
-    <p>
-        {{ authorform.bio.label_tag }}
-        {{ authorform.bio }}
-    </p>
-    <p>
-        {{ authorform.photo.label_tag }}
-        {{ authorform.photo }}
-    </p>
-    <button type="submit" class="btn btn-dark">Save changes</button>
-</form>
     </div>
   </div>
 {% endblock %}

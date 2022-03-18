@@ -1,0 +1,13 @@
+<form class="card-text" method="post">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-dark">
+    {% if request.resolver_match.url_name == 'edit' %}
+        Save changes
+    {% else %} Submit
+    {% endif %}
+    </button>
+    
+</form> 
