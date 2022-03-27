@@ -1,0 +1,22 @@
+{
+  "orders": [
+    {
+      "title": "Groceries",
+      "delivery": "Inside Dhaka",
+      "weight": "Upto 1kg",
+      "cost": 150,
+      "method": "Cash",
+      "date": "3/21/2022, 9:22:42 PM",
+      "id": 1
+    },
+    {
+      "title": "Books",
+      "delivery": "Outside Dhaka",
+      "weight": "Upto 2.5kg",
+      "cost": 400,
+      "method": "Bkash",
+      "date": "3/26/2022, 2:52:20 PM",
+      "id": 2
+    }
+  ]
+}
