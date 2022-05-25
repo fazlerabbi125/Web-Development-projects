@@ -1,0 +1,202 @@
+The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural version of your model name. For example, if you use
+
+const MyModel = mongoose.model('Ticket', mySchema);
+Then MyModel will use the tickets collection, not the ticket collection.
+
+Mongoose has several built-in validators.
+
+All SchemaTypes have the built-in required validator. The required validator uses the SchemaType's checkRequired() function to determine if the value satisfies the required validator.
+Numbers have min and max validators.
+Strings have enum, match, minLength, and maxLength validators.
+
+You can configure the error message for individual validators in your schema. There are two equivalent ways to set the validator error message:
+
+Array syntax: min: [6, 'Must be at least 6, got {VALUE}']
+Object syntax: enum: { values: ['Coffee', 'Tea'], message: '{VALUE} is not supported' }
+Queries
+
+Model.find():
+Parameters:-
+filter «Object|ObjectId»
+[projection] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+[options] «Object» optional see Query.prototype.setOptions()
+[callback] «Function»
+Returns:- «Query»
+Finds documents.
+
+Mongoose casts the filter to match the model's schema before the command is sent. 
+
+Examples:
+// find all documents
+await MyModel.find({});
+
+// find all documents named john and at least 18
+await MyModel.find({ name: 'john', age: { $gte: 18 } }).exec();
+
+// executes, passing results to callback
+MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
+
+// executes, name LIKE john and only selecting the "name" and "friends" fields
+await MyModel.find({ name: /john/i }, 'name friends').exec();
+
+// passing options
+await MyModel.find({ name: /john/i }, null, { skip: 10 }).exec();
+
+Model.findById():
+Parameters:-
+id «Any» value of _id to query by
+[projection] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+[options] «Object» optional see Query.prototype.setOptions()
+[callback] «Function»
+Returns:-«Query»
+Finds a single document by its _id field. findById(id) is almost* equivalent to findOne({ _id: id }). If you want to query by a document's _id, use findById() instead of findOne().
+
+The id is cast based on the Schema before sending the command.
+
+This function triggers the following middleware:- findOne()
+* Except for how it treats undefined. If you use findOne(), you'll see that findOne(undefined) and findOne({ _id: undefined }) are equivalent to findOne({}) and return arbitrary documents. However, mongoose translates findById(undefined) into findOne({ _id: null }).
+
+Example:-
+// Find the adventure with the given `id`, or `null` if not found
+await Adventure.findById(id).exec();
+
+// using callback
+Adventure.findById(id, function (err, adventure) {});
+
+// select only the adventures name and length
+await Adventure.findById(id, 'name length').exec();
+
+Model.findByIdAndDelete():
+Parameters:-
+id «Object|Number|String» value of _id to query by
+[options] «Object» optional see Query.prototype.setOptions()
+[options.strict] «Boolean|String» overwrites the schema's strict mode option
+[callback] «Function»
+Returns:- «Query»
+Issue a MongoDB findOneAndDelete() command by a document's _id field. In other words, findByIdAndDelete(id) is a shorthand for findOneAndDelete({ _id: id }).
+
+This function triggers the following middleware:-findOneAndDelete()
+
+Model.findByIdAndUpdate():
+Parameters:-
+id «Object|Number|String» value of _id to query by
+[update] «Object»
+[options] «Object» optional-
+-[options.returnDocument='before'] «String» Has two possible values, 'before' and 'after'. By default, it will return the document before the update was applied.
+-[options.lean] «Object» if truthy, mongoose will return the document as a plain JavaScript object rather than a mongoose document. See Query.lean() and the Mongoose lean tutorial.
+-[options.session=null] «ClientSession» The session associated with this query. See transactions docs.
+-[options.strict] «Boolean|String» overwrites the schema's strict mode option
+-[options.timestamps=null] «Boolean» If set to false and schema-level timestamps are enabled, skip timestamps for this update. Note that this allows you to overwrite timestamps. Does nothing if schema-level timestamps are not set.
+-[options.overwrite=false] «Boolean» By default, if you don't include any update operators in update, Mongoose will wrap update in $set for you. This prevents you from accidentally overwriting the document. This option tells Mongoose to skip adding $set. An alternative to this would be using Model.findOneAndReplace({ _id: id }, update, options, callback).
+[callback] «Function»
+Returns:- «Query»
+Issues a mongodb findAndModify update command by a document's _id field. findByIdAndUpdate(id, ...) is equivalent to findOneAndUpdate({ _id: id }, ...).
+Finds a matching document, updates it according to the update arg, passing any options, and returns the found document (if any) to the callback. The query executes if callback is passed.
+
+This function triggers the following middleware:- findOneAndUpdate()
+
+Examples:-
+A.findByIdAndUpdate(id, update, options, callback) // executes
+A.findByIdAndUpdate(id, update, options)  // returns Query
+A.findByIdAndUpdate(id, update, callback) // executes
+A.findByIdAndUpdate(id, update)           // returns Query
+A.findByIdAndUpdate()                     // returns Query
+
+Model.findOne(): Finds one document.
+Parameters:-
+[conditions] «Object»
+[projection] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+[options] «Object» optional see Query.prototype.setOptions()
+[callback] «Function»
+Returns:- «Query»
+Example:-
+// Find one adventure whose `country` is 'Croatia', otherwise `null`
+await Adventure.findOne({ country: 'Croatia' }).exec();
+
+// using callback
+Adventure.findOne({ country: 'Croatia' }, function (err, adventure) {});
+
+// select only the adventures name and length
+await Adventure.findOne({ country: 'Croatia' }, 'name length').exec();
+
+Model.findOneAndDelete():
+Parameters:-
+conditions «Object»
+[options] «Object» optional see Query.prototype.setOptions()
+-[options.strict] «Boolean|String» overwrites the schema's strict mode option
+-[options.projection=null] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+-[options.session=null] «ClientSession» The session associated with this query. See transactions docs.
+[callback] «Function»
+Returns:- «Query»
+Issue a MongoDB findOneAndDelete() command.
+
+Finds a matching document, removes it, and passes the found document (if any) to the callback.
+
+Executes the query if callback is passed.
+Examples:-
+A.findOneAndDelete(conditions, options, callback) // executes
+A.findOneAndDelete(conditions, options)  // return Query
+A.findOneAndDelete(conditions, callback) // executes
+A.findOneAndDelete(conditions) // returns Query
+A.findOneAndDelete()           // returns Query
+
+Model.findOneAndReplace():
+Parameters:-
+filter «Object» Replace the first document that matches this filter
+[replacement] «Object» Replace with this document
+[options] «Object» optional see Query.prototype.setOptions()
+-[options.returnDocument='before'] «String» Has two possible values, 'before' and 'after'. By default, it will return the document before the update was applied.
+-[options.lean] «Object» if truthy, mongoose will return the document as a plain JavaScript object rather than a mongoose document. See Query.lean() and the Mongoose lean tutorial.
+-[options.session=null] «ClientSession» The session associated with this query. See transactions docs.
+-[options.strict] «Boolean|String» overwrites the schema's strict mode option
+-[options.timestamps=null] «Boolean» If set to false and schema-level timestamps are enabled, skip timestamps for this update. Note that this allows you to overwrite timestamps. Does nothing if schema-level timestamps are not set.
+-[options.projection=null] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+[callback] «Function»
+Returns:- «Query»
+Issue a MongoDB findOneAndReplace() command.
+
+Finds a matching document, replaces it with the provided doc, and passes the returned doc to the callback.
+
+Executes the query if callback is passed.
+Examples:-
+A.findOneAndReplace(conditions, options, callback) // executes
+A.findOneAndReplace(conditions, options)  // return Query
+A.findOneAndReplace(conditions, callback) // executes
+A.findOneAndReplace(conditions) // returns Query
+A.findOneAndReplace()           // returns Query
+
+Model.findOneAndUpdate():
+Parameters:-
+[conditions] «Object»
+[update] «Object»
+[options] «Object» optional see Query.prototype.setOptions()
+-[options.returnDocument='before'] «String» Has two possible values, 'before' and 'after'. By default, it will return the document before the update was applied.
+-[options.lean] «Object» if truthy, mongoose will return the document as a plain JavaScript object rather than a mongoose document. See Query.lean() and the Mongoose lean tutorial.
+-[options.session=null] «ClientSession» The session associated with this query. See transactions docs.
+-[options.strict] «Boolean|String» overwrites the schema's strict mode option
+-[options.timestamps=null] «Boolean» If set to false and schema-level timestamps are enabled, skip timestamps for this update. Note that this allows you to overwrite timestamps. Does nothing if schema-level timestamps are not set.
+-[options.overwrite=false] «Boolean» By default, if you don't include any update operators in update, Mongoose will wrap update in $set for you. This prevents you from accidentally overwriting the document. This option tells Mongoose to skip adding $set. An alternative to this would be using Model.findOneAndReplace(conditions, update, options, callback).
+-[options.upsert=false] «Boolean» if true, and no documents found, insert a new document
+-[options.projection=null] «Object|String|Array<String>» optional fields to return, see Query.prototype.select()
+[callback] «Function»
+Returns:-«Query»
+Issues a mongodb findAndModify update command.
+
+Finds a matching document, updates it according to the update arg, passing any options, and returns the found document (if any) to the callback. The query executes if callback is passed else a Query object is returned.
+Examples:-
+A.findOneAndUpdate(conditions, update, options, callback) // executes
+A.findOneAndUpdate(conditions, update, options)  // returns Query
+A.findOneAndUpdate(conditions, update, callback) // executes
+A.findOneAndUpdate(conditions, update)           // returns Query
+A.findOneAndUpdate()                             // returns Query
+
+AND & OR Operation example:
+Test.find({
+      $and: [
+          { $or: [{a: 1}, {b: 1}] },
+          { $or: [{c: 1}, {d: 1}] }
+      ]
+  }, function (err, results) {
+      ...
+  }
+equivalent to:- SELECT * FROM ... WHERE (a = 1 OR b = 1) AND (c=1 OR d=1)

@@ -1,0 +1,47 @@
+body{
+    background : #ffff88;
+    margin : 0;
+}
+h1{
+    margin-top: auto;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    padding: 1%;
+    border: none;
+}
+.row{
+  width: 90%;
+  margin-left: 2%;
+  font-family:'Times New Roman', Times, serif;
+}
+h3{
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: bold;
+    color:white;
+    display:list-item;
+    margin-left: 2%;
+}
+button{
+    margin-left:2% ;
+    background-color: rgb(0, 217, 255);
+    color:black;
+}
+
+a:visited{
+    color: brown;
+}
+a:link{
+    color: brown;
+}
+a:hover{
+    color: rgb(29, 238, 29);
+}
+a:active{
+    color:blueviolet;
+}
+button .del{
+    color: black;
+    text-decoration:none;
+}
