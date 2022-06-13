@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
- 
+import {axInstance} from '../hooks/useAxios';
 
 const Delete = (props) => {
     const navigate = useNavigate();
 
     function handleDelete(event){
         event.preventDefault();
-        fetch('http://localhost:8000/employees/' + props.id, {
-              method: 'DELETE'
-            }).then(() => {
+        axInstance.delete(`${props.id}`)
+        .then(() => {
               navigate("/"); //for re-direct
         });
     }

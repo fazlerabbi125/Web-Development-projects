@@ -19,31 +19,34 @@ const EmployeeForm = (props) => {
       const value = event.target.value;
       setInputs(values => ({...values, [name]: value}))
     }
+
     function submitForm(e){
       e.preventDefault();
       let error="";
-      if (inputs.name.length<2) error+="Name must be at least 2 characters long.";  
-      if(/^(\+88)?\d{10,11}$/.test(inputs.phone)==false){  
-          if (!error)error+="Invalid phone number";
-          else  error+="\nInvalid phone number";
-      }
-      if(inputs.address.length<4){  
-          if (!error) error+="Address must be at least 4 characters long.";
-          else  error+="\nAddress must be at least 4 characters long.";
-      }
-      if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputs.email)===false){ 
-          if (!error) error+="Invalid email address";
-          else  error+="\nInvalid email address";
-      }
-      if(inputs.dept.length<2){  
-        if (!error) error+="Department must be least 2 characters long.";
-        else  error+=error+"\nDepartment must be at least 2 characters long.";
-      }
-      if(inputs.role.length<4){  
-        if (!error) error+="Position must be at least 4 characters long.";
-        else  error+="\nPosition must be at least 4 characters long.";
-        
-      }
+      if (inputs.name.length<2){  
+        error+="Name must be at least 2 characters long.";  
+    }
+    if(/^(\+88)?\d{10,11}$/.test(inputs.phone)===false){  
+        if (!error)error+="Invalid phone number";
+        else  error+="\nInvalid phone number";
+    }
+    if(inputs.address.length<4){  
+        if (!error) error+="Address must be at least 4 characters long.";
+        else  error+="\nAddress must be at least 4 characters long.";
+    }
+    if(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(inputs.email)===false){ 
+        if (!error) error+="Invalid email address";
+        else  error+="\nInvalid email address";
+    }
+    if(inputs.dept.length<2){  
+      if (!error) error+="Department must be least 2 characters long.";
+      else  error+=error+"\nDepartment must be at least 2 characters long.";
+    }
+    if(inputs.role.length<4){  
+      if (!error) error+="Position must be at least 4 characters long.";
+      else  error+="\nPosition must be at least 4 characters long.";
+      
+    }
       if (error) {
         alert(error);
       } else {

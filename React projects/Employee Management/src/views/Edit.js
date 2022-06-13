@@ -1,6 +1,6 @@
 import EmployeeForm from "../components/EmployeeForm";
 import {useLocation} from 'react-router-dom';
-import axInstance from '../useAxios';
+import {axInstance} from '../hooks/useAxios';
 import { useNavigate } from "react-router-dom";
 
 const Edit = () => {

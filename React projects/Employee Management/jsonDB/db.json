@@ -1,15 +1,15 @@
 {
   "employees": [
     {
+      "id": 1,
       "name": "Bastian Grouen",
       "phone": "9308261720",
       "email": "bgrouen0@goo.gl",
+      "gender": "Male",
       "address": "79919 Heath Point",
       "date_of_birth": "2010-09-24",
-      "role": "Developer II",
       "dept": "Sales",
-      "gender": "Male",
-      "id": 1
+      "role": "Developer II"
     },
     {
       "id": 2,
@@ -45,15 +45,15 @@
       "role": "Accountant IV"
     },
     {
-      "id": 5,
       "name": "Lacee Szymanski",
       "phone": "8967057763",
       "email": "lszymanski4@cdc.gov",
-      "gender": "Female",
       "address": "5 Shoshone Pass",
       "date_of_birth": "2018-03-31",
+      "role": "Recruiter",
       "dept": "Human Resources",
-      "role": "Nuclear Power Engineer"
+      "gender": "Female",
+      "id": 5
     },
     {
       "id": 6,

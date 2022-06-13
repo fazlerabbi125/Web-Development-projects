@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+        <title>Sign-up</title>
+    </head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="card w-50 mx-auto">
+        <form method="post" class="card-body text-center">
+            <h2 class="mb-4">Sign up</h2>
+            <p>Name: <input type="text" name="name" placeholder="Enter your full name" required /></p>
+        <p>Email: <input type="email" name="email" id="email" required></p>
+    <p>Date of Birth: <input type="date" name="birth_date" id="birth_date" required></p>
+    <p><label for="gender" >Gender: </label>
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Choose your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select></p>
+        <p>Password: <input type="password" name="password" id="password" required></p>
+        <p>Confirm Password: <input type="password" name="password2" id="password2" required></p>
+        <p><input type="submit" value="Sign Up"></p>
+        </form>
+    </div>
+</body>
+</html>

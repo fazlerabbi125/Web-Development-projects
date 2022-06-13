@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog Details</title>
+        <%- include('./partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+    </head>
+    <body>
+        <div class="row">
+            <%- include('./partials/nav.ejs') %>            
+        </div>
+        <div class="card w-50 mx-auto">
+            <h3 class="card-header text-center">
+                <%= blog.title %>
+            </h3>
+            <div class="card-body">
+              <p class="card-text"><%= blog.body %></p>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-dark" href="#">Edit</a>
+               <a id="del" class="btn btn-danger" data-doc="<%= blog.id %>">Delete</a>
+            </div>
+        </div>
+        <script>
+            const rm=document.querySelector('#del');
+            rm.addEventListener('click',(e)=>{
+                const endpoint=`/blogs/${rm.dataset.doc}`;
+                fetch(endpoint,{method:'DELETE'})
+                .then((response)=>response.json())
+                .then((data)=>window.location.href=data.redirect)
+                .catch((err)=>console.log(err));
+            })
+        </script>
+    </body>
+</html>

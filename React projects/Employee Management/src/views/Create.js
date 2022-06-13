@@ -1,5 +1,5 @@
-import EmployeeForm from '../components/EmployeeForm'
-import axInstance from '../useAxios';
+import EmployeeForm from '../components/EmployeeForm';
+import {axInstance} from '../hooks/useAxios';
 import { useNavigate } from "react-router-dom";
 
 

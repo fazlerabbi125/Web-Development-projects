@@ -1,0 +1,31 @@
+What is JSON Web Token?
+JSON Web Token (JWT) is a standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. The compact size makes the tokens easy to transfer through an URL, POST parameter, or inside an HTTP header. The information in a JWT is digitally signed using a secret or public/private key pair.
+
+JWTs can be signed using a secret or a public/private key pair.
+
+JWTs are mainly used for authentication. After a user signs in to an application, the application then assigns JWT to that user. 
+Subsequent requests by the user will include the assigned JWT. This token tells the server what routes, services, and resources the user 
+is allowed to access.
+
+Structure of a JWT:
+
+A JSON Web Token consists of:
+
+i)Header – Consists of two parts: the type of token (i.e., JWT) and the signing algorithm (i.e., HS512)
+header
+
+ii)Payload – Contains the claims that provide information about a user who has been authenticated along with other information such as token expiration time
+payload
+
+iii)Signature – Final part of a token that wraps in the encoded header and payload, along with the algorithm and a secret signature
+
+
+We use two JWTs in an application:
+1) access token for access user data in payload. It has a short lifespan
+2) refresh token for renewing both tokens when acccess token expires. Has a longer lifespan
+
+Expiration time is in UNIX time in seconds inside a token. Expiration time (exp) formats to use:
+1)expiresIn: "10h" // it will be expired after 10 hours
+2)expiresIn: "20d" // it will be expired after 20 days
+3)expiresIn: 120 // it will be expired after 120ms
+4)expiresIn: "120s" // it will be expired after 120s
