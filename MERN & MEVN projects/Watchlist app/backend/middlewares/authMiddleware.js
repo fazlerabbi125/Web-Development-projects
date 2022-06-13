@@ -32,7 +32,7 @@ const isAdmin = (req, res, next) => {
 }
 
 const guest = (req, res, next) => {
-    if (!req.user||!req.get('authorization')) {
+    if (!req.get('authorization')) {
         next();
     } else {
         return res.status(HTTP_STATUS.FORBIDDEN).send(failure('You are forbidden for that request'));
