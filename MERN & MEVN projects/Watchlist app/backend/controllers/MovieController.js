@@ -16,13 +16,13 @@ class MovieController {
     }
 
     async getMovie(req, res, next) {
-        const eID = req.params.id;
+        const movID = req.params.id;
         try {
-            const movie = await Movie.findById(eID).exec();
+            const movie = await Movie.findById(movID).exec();
             if (movie) {
-                return res.status(HTTP_STATUS.OK).send(success('Employee Found', movie));       
+                return res.status(HTTP_STATUS.OK).send(success('Movie Found', movie));       
             }
-            return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Employee not Found'));
+            return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Movie not Found'));
         } catch (error) {
             next(error);   
         }
@@ -35,21 +35,21 @@ class MovieController {
             if (!errors.isEmpty()) {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
-            const eID = req.body.id.toString();
+            const movID = req.body.id.toString();
         
             const watchList = await WatchList.findOne({userId: req.user._id}).exec();
 
-            // check if any cart exists under the reqested user.
+            // check if any movie in watchList exists under the reqested user.
             if (watchList) {
-                //if exists, then add the movie to that user cart
-                if (!watchList.movies.find(mov=>mov.movie==eID)) await watchList.addToList(eID);
+                //if watchList exists, then add the movie to that watchList
+                if (!watchList.movies.find(mov=>mov.movie==movID)) await watchList.addToList(movID);
                 else return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Movie already exists in list'));
             } else {
                 // if doesn't exists, then create a cart for that user first
                 const newItem = new WatchList({userId: req.user._id, movies: []});
                 await newItem.save();
                 // then add the product to that user cart
-                await newItem.addToList(eID);
+                await newItem.addToList(movID);
             }
             return res.status(HTTP_STATUS.OK).send(success('Movie has been added to list',watchList));
         } catch (error) {
@@ -64,12 +64,12 @@ class MovieController {
             if (!errors.isEmpty()) {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
-            const prodId = req.params.listItemID;
+            const movID = req.params.listItemID;
             const movie = await WatchList.findOne({ userId: req.user._id }).exec();
             // check if any cart exists under the reqested user.
             if (movie) {
                 //if exists, then remove the product from that user cart
-                await movie.removeFromList(prodId);
+                await movie.removeFromList(movID);
             } else {
                 return res.status(HTTP_STATUS.NOT_FOUND).send(failure("Movie doesn't exist!!"));
             }
@@ -87,16 +87,16 @@ class MovieController {
             if (!errors.isEmpty()) {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
-            const prodId = req.params.listItemID;
+            const movID = req.params.listItemID;
             const movie = await WatchList.findOne({ userId: req.user._id }).exec();
             // check if any cart exists under the reqested user.
             if (movie) {
                 //if exists, then remove the product from that user cart
-                await movie.changeStatus(prodId,req.body.status);
+                await movie.changeStatus(movID,req.body.status);
             } else {
                 return res.status(HTTP_STATUS.NOT_FOUND).send(failure("Movie doesn't exist!!"));
             }
-            return res.status(HTTP_STATUS.OK).send(success('Movie has been removed from list'));
+            return res.status(HTTP_STATUS.OK).send(success('Movie status has been changed'));
         } catch (error) {
             console.log(error);
             next(error);
@@ -123,7 +123,7 @@ class MovieController {
             else {
                 userlist.movies=userlist.movies.slice(firstIndex,lastIndex);
             }
-            return res.status(HTTP_STATUS.OK).send(success('movies are fetched from list', {userlist,count}));
+            return res.status(HTTP_STATUS.OK).send(success('Movies have been successfully fetched from userlist', {userlist,count}));
         } catch (error) {
             console.log(error);
             next(error);
