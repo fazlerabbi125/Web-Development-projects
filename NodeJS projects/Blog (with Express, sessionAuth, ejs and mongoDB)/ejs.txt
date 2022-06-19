@@ -1,0 +1,24 @@
+EJS is a simple templating language that lets you generate HTML markup with plain JavaScript.
+
+Use:
+i) Control flow with <% %>
+ii) Escaped output with <%= %> (escape function configurable)
+iii) Unescaped raw output with <%- %>. Example: <%- include('./partials/head.ejs') %>
+iv) Newline-trim mode ('newline slurping') with -%> ending tag
+v) Whitespace-trim mode (slurp all whitespace) for control flow with <%_ _%>
+vi) Custom delimiters (e.g. [? ?] instead of <% %>)
+
+Example:
+<% if (user) { %>
+  <h2><%= user.name %></h2>
+<% } %>
+
+Basic usage
+ejs.render(str, data, options);
+// => Rendered HTML string
+
+ejs.renderFile(filename, data, options, function(err, str){
+    // str => Rendered HTML string
+});
+
+EJS does not specifically support blocks inheritance, but layouts can be implemented by including them blocks via include(file) function

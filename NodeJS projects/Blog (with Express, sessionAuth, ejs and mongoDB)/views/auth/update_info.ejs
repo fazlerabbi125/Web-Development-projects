@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+        <title>Account Info Update</title>
+    </head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="card w-50 mx-auto">
+        <form class="card-body text-center" method="post" enctype="multipart/form-data">
+            <h2 class="mb-4">Update your account info</h2>
+            <div class="mb-3">
+                <div>
+                    Name: <input type="text" name="name" placeholder="Enter your full name" value="<%= user.name %>"/>
+                </div>
+                <% if (errors.name){ %> <div class="text-danger"><%= errors.name?.msg %></div><% } %>
+            </div>
+            <div class="mb-3">
+                <div>Email: <input type="email" name="email" id="email" value="<%= user.email %>"/></div>
+                <% if (errors.email){ %> <div class="text-danger"><%= errors.email?.msg %></div><% } %>
+            </div>
+            <div class="mb-3">
+                <div>
+                    Date of Birth: <input type="date" name="birth_date" id="birth_date" value="<%= user.birth_date.toISOString().slice(0,10) %>"/>
+                </div>
+                <% if (errors.birth_date){ %> <div class="text-danger"><%= errors.birth_date?.msg %></div><% } %>
+            </div>
+            <div class="mb-3">
+                <div>
+                    <label for="gender" >Gender: </label>
+                    <select name="gender" id="gender" >
+                    <option value="" disabled>Choose your gender</option>
+                    <option value="Male" <% if (user.gender==="Male"){ %> 
+                        selected
+                        <% } %>>
+                        Male</option>
+                    <option value="Female" <% if (user.gender==="Female"){ %> 
+                        selected
+                        <% } %>>Female</option>
+                    <option value="Others" <% if (user.gender==="Others"){ %> 
+                        selected
+                        <% } %>>Others</option>
+                    </select>
+                </div>
+                <% if (errors.gender){ %> <div class="text-danger"><%= errors.gender?.msg %></div><% } %>
+            </div>
+            <div class="mb-3">
+                Current Photo: <a href="<%= user.photo %>" target="_blank" rel="noopener noreferrer">image</a>
+                <input type="checkbox" name="photoClear" id="photoClear" value="true"/> Remove
+            </div>
+            <div class="mb-3">
+                <div>New Photo: <input type="file" name="photo" id="photo"/> </div>
+                <% if (errors.photo){ %> <div class="text-danger"><%= errors.photo?.msg %></div><% } %>
+            </div>
+            <p>
+                <a class="btn btn-dark" href="/user/<%= user._id %>" >Go back</a>
+                <input type="submit" class="btn btn-success" value="Save changes">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

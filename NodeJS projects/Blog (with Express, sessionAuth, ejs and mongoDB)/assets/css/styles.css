@@ -1,0 +1,21 @@
+:root {
+    --body-bg-color:#ffff88
+}
+body{
+    background : var(--body-bg-color);
+    margin : 0;
+    position : relative;
+}
+h1{
+    text-align: center;
+    padding: 1%;
+}
+a.list-group-item{
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+}
+a.list-group-item:hover{
+    background-color: gainsboro;
+}

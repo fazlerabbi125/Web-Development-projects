@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+        <title>Login</title>
+    </head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="card w-50 mx-auto">
+        <form method="post" class="card-body text-center">
+            <h2 class="mb-4">Account login</h2>
+        <% if (errors.user){ %> <h4 class="text-center text-danger"><%= errors.user %></h4><% } %>
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <label for="" class="col-form-label col-auto">Email:</label>
+                <div class="col-5">
+                    <input class="form-control" type="email" name="email" id="email" required />
+                </div>
+            </div>
+            <% if (errors.email){ %> <div class="text-center text-danger"><%= errors.email?.msg %></div><% } %>
+        </div>
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <label for="" class="col-form-label col-auto">Password:</label>
+                <div class="col-5">
+                    <input class="form-control" type="password" name="password" id="password" required />
+                </div>
+            </div>
+            <% if (errors.password){ %> <div class="text-center text-danger"><%= errors.password?.msg %></div><% } %>
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Login"></p>
+        </form>
+    </div>
+</body>
+</html>
