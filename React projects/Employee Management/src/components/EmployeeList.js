@@ -47,7 +47,7 @@ const EmployeeList = ({employees,query}) => {
         nextLabel={"Next"}
         pageCount={pageCount}
         onPageChange={handlePageClick}
-        containerClassName={"paginationBttns"}
+        containerClassName={"paginationBtns"}
         previousLinkClassName={"previousBttn"}
         nextLinkClassName={"nextBttn"}
         disabledClassName={"paginationDisabled"}

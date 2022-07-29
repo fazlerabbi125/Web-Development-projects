@@ -70,7 +70,7 @@ const validator = {
         .isEmail().withMessage('Email is invalid')
         .custom(async(value,{req}) => {
             const user = await User.findOne({ email: value }).exec();
-            if (user && user._id.toString()===req.params.id.toString()) {
+            if (user && user._id.toString()!==req.params.id.toString()) {
                 throw new Error("E-mail is already exists!");
             }
             return true;
@@ -85,24 +85,16 @@ const validator = {
     ],
     
     resetPassword: [
-        // body("token").trim()
-        // .notEmpty().withMessage('Token is required')
-        // .isString().withMessage("Token must be string"),
-        body("authorID").trim()
-        .notEmpty().withMessage('author ID is required')
-        .isString().withMessage("author ID is required and must be string"),
         body("password").trim()
-          .notEmpty().withMessage('Password is required')
-          .isLength({ min: 6 }).withMessage("Passowrd must be at least 6 character"),
+        .notEmpty().withMessage('Password is required')
+        .isLength({ min: 6 }).withMessage("Passowrd must be at least 6 character"),
         body("confirmPassword").trim()
         .notEmpty().withMessage('Please confirm your password')
         .custom((value, { req }) => {
-            if (value !== req.body.password) {
-              throw new Error("Passwords don't match!");
-            }
+            if (value !== req.body.password) throw new Error("Passwords don't match!");
             return true;
-          }),
-      ]
+        }),
+    ]
 };
 
 module.exports = validator;

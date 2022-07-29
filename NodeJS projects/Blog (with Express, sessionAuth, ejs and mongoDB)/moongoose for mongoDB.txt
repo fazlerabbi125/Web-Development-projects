@@ -14,8 +14,11 @@ You can configure the error message for individual validators in your schema. Th
 Array syntax: min: [6, 'Must be at least 6, got {VALUE}']
 Object syntax: enum: { values: ['Coffee', 'Tea'], message: '{VALUE} is not supported' }
 
+MongoDB docs: https://www.mongodb.com/docs/manual/crud/
+
 Mongoose docs:
 https://mongoosejs.com/docs/guide.html
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
 
 MongoDB query operators:
 https://www.mongodb.com/docs/manual/reference/operator/query/
@@ -23,3 +26,9 @@ https://www.mongodb.com/docs/manual/reference/operator/query/
 Creating and handling relationships:
 https://mongoosejs.com/docs/populate.html
 https://mongoosejs.com/docs/subdocs.html
+
+Your schemas can define default values for certain paths. If you create a new document without that path set, 
+the default will kick in. Mongoose only applies a default if the value of the path is strictly undefined.
+You can also set the default schema option to a function. Mongoose will execute that function and use the return value as 
+the default.
+

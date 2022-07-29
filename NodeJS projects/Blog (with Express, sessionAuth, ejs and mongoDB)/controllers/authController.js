@@ -1,4 +1,5 @@
 const User=require('../models/user');
+const Blog=require('../models/blog'); //Import mongoDB model
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const HTTP_STATUS = require('../utils/httpStatus');
@@ -40,8 +41,8 @@ class AuthController {
   }
   
   login_get(req, res){
-    res.locals.header="Sign into you account";
-    res.render('auth/login',{errors:{}})
+    res.locals.header="Sign into your account";
+    res.render('auth/login',{errors:{}});
   }
 
   async login_post (req, res,next){
@@ -98,7 +99,8 @@ class AuthController {
   async updateProfileInfo(req, res, next) {
     const errors = validationResult(req);
     try{
-      const user = await User.findById(req.params.id).exec();
+      const user = await User.findById(req.params.id).populate('posts','-updatedAt').exec();
+      if (!user) return res.status(HTTP_STATUS.FORBIDDEN).render('auth/update_info',{errors:{user:"User not found"},header:"Update Your Profile"});
       if (!errors.isEmpty()) {
         if (req.file) {
           await fs.promises.unlink(path.join(__dirname, '..', 'assets', 'uploads',req.file.filename));
@@ -107,53 +109,81 @@ class AuthController {
         return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).render('auth/update_info',{errors:errors.mapped(),user,header:"Update Your Profile"});
       }
       const {name,email,birth_date,gender,photoClear}=req.body;
-      if (!user) return res.status(HTTP_STATUS.BAD_REQUEST).render('auth/update_info',{errors:{user:"User not found"},header:"Update Your Profile"});
-      if ((req.file || photoClear) && user.photo.startsWith('/uploads/')){
-        const filepath=path.join(__dirname, '..', 'assets',user.photo);
-        if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
+      if (req.file || photoClear){
+        if (user.photo && user.photo.startsWith('/uploads/')){
+          const filepath=path.join(__dirname, '..', 'assets',user.photo);
+          if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
+        }
+        user.photo=req.file?'/uploads/'+req.file.filename:'/default-profile.jpg';// default will kick in for save() only for document creation
       }
-      if (req.file) user.photo='/uploads/'+req.file.filename;
       if (name) user.name=name;
       if (email) user.email=email;
       if (birth_date) user.birth_date=birth_date;
       if (gender) user.gender=gender;
-      user.save();
-      res.status(HTTP_STATUS.OK).render('auth/user_profile',{user,header:"Your Profile"})
+      await user.save();
+      req.session.user={id:user._id,name:user.name,photo:user.photo};
+      res.redirect(`/user/${user._id}`);
     }
     catch (err) {
       next(err);
     }
   }
+
+  getResetForm (req, res,next) {
+    res.locals.header="Reset your password";
+    // errors=await req.consumeFlash('errors');
+    // console.log(errors);
+    res.render('auth/password-reset',{errors:{}});
+  }
+  
   async resetPassword(req, res, next) {
       try {
           const errors = validationResult(req);
           if (!errors.isEmpty()) {
-              return res
-                  .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
-                  //.send(failure('Invalid Inputs', errors.array()));
+            console.log(errors.array());
+            //await req.flash('errors', errors.mapped());
+            res.redirect(`/user/${req.session.user.id}/reset-password`);
           }
 
-          const {userId,password}=req.body;
+          const {password}=req.body;
 
-
-          const user = await User.findOne({ _id: userId });
+          const user = await User.findOne({ _id: req.session.user.id });
           if (!user) {
-              return res.status(HTTP_STATUS.FORBIDDEN).send(failure('Invalid Token!'));
+              return res.status(HTTP_STATUS.FORBIDDEN).send('Invalid user!');
           }
 
           user.password = await bcrypt.hash(password, saltRounds);
-          // user.resetPasswordToken = undefined;
-          // user.resetPasswordExpire = undefined;
           await user.save();
 
-          return res.status(HTTP_STATUS.OK).send(success('Reset password is successfull!'));
+          return res.redirect(`/user/${req.session.user.id}`);
 
       } 
       catch (error) {
           next(error);
       }
     }
-}
+
+    async deleteUser(req, res, next) {
+      try {
+        const user= await User.findByIdAndDelete(req.session.user.id).exec();
+        if (!user) return res.status(HTTP_STATUS.FORBIDDEN).send('Invalid user!');
+        if (user.photo.startsWith('/uploads/') && fs.existsSync(path.join(__dirname, '..', 'assets', user.photo))) {
+          console.log('here');
+          await fs.promises.unlink(path.join(__dirname, '..', 'assets', user.photo));
+        }
+        await Blog.deleteMany({ author:req.session.user.id }).exec();
+        req.session.destroy((err)=>{
+          if (err) throw new Error(err);
+          else{
+            console.log("Your account has been deleted successfully");
+            res.send({redirect:'/'});
+          }
+        });
+      } catch (error) {
+        next(error.message);
+      }
+    }
+} 
 
 
 

@@ -2,15 +2,15 @@
 const express=require('express');
 const app=express();
 
-//For session-based authentication
-const session = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(session);
 /*
 MongoDB is a NoSQL database which has a structure where we have collections instead of tables,
 documents instead of rows, and instead of columns, we have properties and their values within a JS object
 */
 const mongoose=require('mongoose');//Import mongoose module. We create schemas and models with Mongoose
 
+//For session-based authentication
+const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const Blog=require('./models/blog');//Import mongoDB model
 const blogRoutes=require('./routes/blogRoutes');// Import router for routes 
@@ -56,14 +56,14 @@ and parsing it to convert them into a JS object available via the request object
 const store = new MongoDBStore({
     uri: dbURI,
     collection: 'mySessions'
-  });
+});
 
-  app.use(session({
+app.use(session({
     secret: '8da825aa143b22493ad1914fdeceab4d9e01e3421b22d27cac0366eaa43c8bcf',//key generated using require('crypto').randomBytes(32).toString('hex')
     resave: false,
     saveUninitialized: false,
     store: store
-  }))
+}))
 
 
 // all express routes can use mupltiple middlewares after the first argument. 
@@ -112,7 +112,7 @@ app.get('/',(req,res,next)=>{
 //Middleware function for Page not found handling
 app.use((req,res)=>{
     res.status(404).send(`<title>Not found</title>
-            <h1>404. Page Not Found</h1>`); //writing back a response to the browser in express
+        <h1>404. Page Not Found</h1>`); //writing back a response to the browser in express
     //send method in express automatically infers and sets header to the infered content type and response status code
 });
 
@@ -124,4 +124,4 @@ except error-handling functions have four arguments instead of three: (err, req,
 app.use((err, req, res, next) => {
     console.error(err.message);
     res.status(500).send('Internal Server Error')
-  })
+})

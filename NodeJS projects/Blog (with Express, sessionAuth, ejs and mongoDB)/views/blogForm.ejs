@@ -34,11 +34,11 @@
                         <% }  %>
                         >
                     </div>
-                  </div>
+                </div>
                 <% if (errors.title){ %> <div class="text-center text-danger"><%= errors.title?.msg %></div>     <% } %>
             </div>
                 <div class="mb-3">
-                    <div>
+                    <div class="w-75 mx-auto">
                         <label class="form-label">Body</label>
                         <textarea class="form-control" name="body" id="body" rows="3" placeholder="Type your post body"><% if (edit){ %><%= blog.body %><% }  %></textarea>
                     </div>

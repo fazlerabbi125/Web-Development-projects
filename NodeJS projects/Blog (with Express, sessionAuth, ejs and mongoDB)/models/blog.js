@@ -28,7 +28,7 @@ automatically generate timestamp properties on our documents
 
 //mongoose hook: pre-save (performs operations before saving to database)
 blogSchema.pre('save', async function(next) { //normal function used instead of arrow functions to refer to model instance using this keyword
-   this.slug= slugify(this.title+"_"+Math.round(Math.random() * 1E7)); 
+   this.slug= slugify(this.title+"_"+this._id); 
    next();//To go to the next process
  });
 

@@ -44,7 +44,10 @@ router.get('/logout',authMiddleware.requireAuth ,authController.logout);
 
 router.get('/user/:id',authMiddleware.requireAuth,authController.getProfile);
 router.get('/user/:id/update',authMiddleware.requireAuth,authController.getProfileUpdateForm);
-router.post('/user/:id/update',authMiddleware.requireAuth,validation.updateProfile,authController.updateProfileInfo);
+router.post('/user/:id/update',authMiddleware.requireAuth,upload.single('photo'),validation.updateProfile,authController.updateProfileInfo);
+router.get('/user/:id/reset-password',authMiddleware.requireAuth,authController.getResetForm);
+router.post('/user/:id/reset-password',authMiddleware.requireAuth,validation.resetPassword,authController.resetPassword);
+router.delete('/user/:id/delete',authMiddleware.requireAuth,authController.deleteUser);
 
 
 module.exports = router;

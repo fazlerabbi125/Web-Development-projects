@@ -15,7 +15,7 @@
                 <h2 class="text-center mb-4">All blogs</h2>
                 <div class="card w-50 mx-auto">
                     <div class="list-group list-group-flush">
-                      <% blogs.forEach( (blog)=>{ %>
+                    <% blogs.forEach( (blog)=>{ %>
                         <a class="list-group-item" href="/blogs/<%= blog.slug %>">
                                 <h3 class="card-title"><%= blog.title %></h3>
                                 <div class="card-subtitle"><span class="fw-bold text-muted">Author: </span><%= blog.author.name %></div>

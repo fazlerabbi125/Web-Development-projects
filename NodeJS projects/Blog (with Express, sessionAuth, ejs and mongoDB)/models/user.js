@@ -1,7 +1,7 @@
 const mongoose= require('mongoose');
 const validator=require('validator');
 const bcrypt= require('bcrypt');
-  
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -35,8 +35,7 @@ const userSchema = new mongoose.Schema({
     },
     photo:{
         type: String,
-        trim:true,
-        default:'http://localhost:8000/default-profile.jpg'
+        default:'/default-profile.jpg'
     },
     posts:[
         {
@@ -45,8 +44,6 @@ const userSchema = new mongoose.Schema({
             ref: 'Blog'
         }
     ],
-    // resetPasswordToken:String,
-    // resetPasswordExpire: Date,
 
 },{timestamps:true});
 
@@ -56,8 +53,8 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.login= async function (email,password) {
     const user= await this.findOne({email});
     if (user){
-       const passMatch = await bcrypt.compare(password,user.password);
-       if (passMatch) return user;
+        const passMatch = await bcrypt.compare(password,user.password);
+        if (passMatch) return user;
     }
     return null;
 }
@@ -68,7 +65,7 @@ userSchema.methods.resetPassword= async function (password){
     this.resetPasswordToken=undefined;
     this.resetPasswordExpire=undefined;
     this.save();
-  };
+};
 
 const User=mongoose.model('User',userSchema)/*creates model based on the schema.Specified model is stored
 in the database with its name lowercased and pluralized*/

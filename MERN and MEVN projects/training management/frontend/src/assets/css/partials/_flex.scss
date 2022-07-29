@@ -1,0 +1,7 @@
+@mixin addFlex ($jc:space-around,$ai:center,$w:nowrap,$direction:row) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $w;
+    flex-direction: $direction;
+}
