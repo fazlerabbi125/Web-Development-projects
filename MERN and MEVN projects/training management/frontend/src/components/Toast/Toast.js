@@ -1,4 +1,3 @@
-//import FlashMessage from 'react-flash-message'
 import { useContext } from "react";
 import MessageContext from "../../contexts/MessageContext";
 import "./Toast.css"
