@@ -9,8 +9,8 @@ const Toast = () => {
     setTimeout(() =>setMessage(''),5000);
     return ( 
         <>
-        {message && (<div className="custom-toast">
-        <div role="alert" >
+        {message && (
+        <div className="custom-toast" role="alert">
           <div className="custom-toast__header">
             <strong className="me-auto">Message</strong>
             <button type="button" className="btn-close" onClick={closeAlert}></button>
@@ -19,7 +19,7 @@ const Toast = () => {
             {message}
           </div>
         </div>
-      </div>)}
+      )}
       </>
     );
 }
