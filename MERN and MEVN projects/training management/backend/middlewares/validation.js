@@ -4,6 +4,7 @@ const validate=require('validator');
 const Course= require('../models/Course');
 
 const validator = {
+    //Course
     createCourse:[
         body('title').trim()
             .notEmpty().withMessage('Title is required')
@@ -28,8 +29,8 @@ const validator = {
             .isString().withMessage('Title must be string!')
             .isLength({min:3}).withMessage('Title Must be at least 3 characters')
             .custom((value, { req }) => {
-                return Course.findOne({title: value}).then(movie => {
-                    if (movie && movie.slug!==req.params.slug) return Promise.reject('Title already in use');
+                return Course.findOne({title: value}).then(course => {
+                    if (course && course.slug!==req.params.slug) return Promise.reject('Title already in use');
                 });
             }),
         body('details').trim()
@@ -39,6 +40,16 @@ const validator = {
             .isString().withMessage('timing must be string!')
             .isIn(['9:00 AM to 10:30 AM','11:00 AM to 12:30 PM','3:30 PM to 5:00 PM']).withMessage('timing must be either 9:00 AM to 10:30 AM , 11:00 AM to 12:30 PM, or 3:30 PM to 5:00 PM'),
     ],
+    lesson:[
+        body('title').trim()
+        .isString().withMessage('Title must be string!')
+        .isLength({min:3}).withMessage('Title Must be at least 3 characters'),
+        body('content').trim()
+        .isString().withMessage('details must be string!')
+        .isLength({min:10}).withMessage('details must be at least 10 characters'),
+    ],
+
+    //Admin
     createBatch:[
         body('name').trim()
         .notEmpty().withMessage('Name is required')
@@ -59,6 +70,14 @@ const validator = {
                 throw new Error("Invalid end date");
             }
             return true;
+        }),
+        body('trainees')
+        .custom(async (value, { req }) => {
+            if (value && value.length > 0) {
+                userCount= await User.find({_id: { $in: value }, role:'trainee'}).count().exec();
+                if (userCount!==value.length) throw new Error('Invalid user found');
+            }
+            return true;
         })
     ],
     editBatch:[
@@ -76,6 +95,14 @@ const validator = {
         .custom((value, { req }) => {
             if (!validate.isDate(value) || ((new Date(value)).getTime()<=(new Date(req.body.startDate)).getTime())) {
                 throw new Error("Invalid end date");
+            }
+            return true;
+        }),
+        body('trainees')
+        .custom(async (value, { req }) => {
+            if (value && value.length > 0) {
+                userCount= await User.find({_id: { $in: value }, role:'trainee'}).count().exec();
+                if (userCount!==value.length) throw new Error('Invalid user found');
             }
             return true;
         })
@@ -119,26 +146,6 @@ const validator = {
             return true;
         }),
     ],
-    updateProfile: [
-        body('name').trim()
-        .isString().withMessage('Name must be string!')
-        .isLength({min:3}).withMessage('Name Must be at least 3 characters'),
-        body('email').trim().isEmail().withMessage('E-mail is invalid').custom(async(value,{req}) => {
-            const user = await User.findOne({ email: value }).exec();
-            if (user && user._id.toString()!==req.params.userID) {
-                return Promise.reject("E-mail is already exists!");
-            }
-            return true;
-        }),
-        body('gender').trim()
-        .isString().withMessage('Gender must be string!')
-        .isIn(['Male', 'Female','Others']).withMessage('Gender must be either male, female or others'),
-        body('birth_date').isDate().withMessage('birth_date is a valid date')
-    ],
-    login: [
-        body('email').trim().notEmpty().withMessage('Email is required').isEmail().withMessage('E-mail is invalid'),
-        body('password').trim().notEmpty().withMessage('Password is required'),
-    ],
     updateEmployee:[
         body('name').trim()
         .isString().withMessage('Name must be string!')
@@ -161,6 +168,28 @@ const validator = {
         .isString().withMessage('Gender must be string!')
         .isIn(['Male', 'Female','Others']).withMessage('Gender must be either male, female or others'),
         body('birth_date').isDate().withMessage('birth_date is a valid date')
+    ],
+
+    //Auth
+    updateProfile: [
+        body('name').trim()
+        .isString().withMessage('Name must be string!')
+        .isLength({min:3}).withMessage('Name Must be at least 3 characters'),
+        body('email').trim().isEmail().withMessage('E-mail is invalid').custom(async(value,{req}) => {
+            const user = await User.findOne({ email: value }).exec();
+            if (user && user._id.toString()!==req.params.userID) {
+                return Promise.reject("E-mail is already exists!");
+            }
+            return true;
+        }),
+        body('gender').trim()
+        .isString().withMessage('Gender must be string!')
+        .isIn(['Male', 'Female','Others']).withMessage('Gender must be either male, female or others'),
+        body('birth_date').isDate().withMessage('birth_date is a valid date')
+    ],
+    login: [
+        body('email').trim().notEmpty().withMessage('Email is required').isEmail().withMessage('E-mail is invalid'),
+        body('password').trim().notEmpty().withMessage('Password is required'),
     ],
     resetPasswordMail: body('email')
         .trim()
@@ -187,14 +216,8 @@ const validator = {
         .isString().withMessage("Token must be string")
         .isJWT().withMessage("Token must be a JWT")
     ],
-    lesson:[
-        body('title').trim()
-        .isString().withMessage('Title must be string!')
-        .isLength({min:3}).withMessage('Title Must be at least 3 characters'),
-        body('content').trim()
-        .isString().withMessage('details must be string!')
-        .isLength({min:10}).withMessage('details must be at least 10 characters'),
-    ],
+
+    //Trainer
     assessment:[
         body('title').trim()
         .isString().withMessage('Title must be string!')

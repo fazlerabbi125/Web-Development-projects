@@ -17,9 +17,6 @@ const getPagination = require('../utils/pagination');
 
 
 class AdminController {
-/*
-controls Profile and Batch management. 
-*/
 
     async getEmployees(req, res, next){
         try {
@@ -216,13 +213,13 @@ controls Profile and Batch management.
             if (assignedCourses){
                 await Course.updateMany({trainingBatches:batch._id}, {$pull: {trainingBatches: batch._id}}).exec();
                 batch.assignedCourses=assignedCourses;
+                for (let item of assignedCourses) {
+                    const course= await Course.findById(item).exec();
+                    course.trainingBatches.push(batch._id);
+                    await course.save();
+                }
             }
-            await batch.save();
-            for (let item of assignedCourses) {
-                const course= await Course.findById(item).exec();
-                course.trainingBatches.push(batch._id);
-                await course.save();
-            }
+            await batch.save();            
             return res.status(HTTP_STATUS.OK).send(success('Batch has been updated successfully', batch));
         } catch (error) {
             next(error);
