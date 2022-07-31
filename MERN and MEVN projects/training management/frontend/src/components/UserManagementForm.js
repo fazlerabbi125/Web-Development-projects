@@ -13,11 +13,9 @@ export default function UserManagementForm({user,submitForm,mode}) {
         dispatch(fetchCourseList({}));
     },[dispatch]);
 
-    function getAssignedCourses(){
-        return courselist.filter((course)=>{
-            return course.trainer && user && course.trainer._id===user._id
-        }).map(course=>course._id);
-    }
+    const assignedCourses=courselist.filter((course)=>{
+        return course.trainer && user && course.trainer._id===user._id
+    }).map(course=>course._id); // map returns empty array if original array is empty
 
     const { register, handleSubmit,watch,formState: { errors } } = useForm({
         defaultValues:{
@@ -29,7 +27,12 @@ export default function UserManagementForm({user,submitForm,mode}) {
         }
     });
 
-    const onSubmit = data => submitForm(data);
+    const onSubmit = data =>{
+        if (data.courses && user && data.role==="trainer" &&
+        JSON.stringify(data.courses)===JSON.stringify(assignedCourses))data.courses=undefined;
+        submitForm(data);
+    }
+
     return (<>
     {!courselist?<h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>:
     <section className='card authForm'>
@@ -117,7 +120,7 @@ export default function UserManagementForm({user,submitForm,mode}) {
                     <label className="col-form-label">Courses:</label>
                 </div>
                 <div className="col-auto">
-                    <select className="form-select" multiple defaultValue={getAssignedCourses()}{...register("courses",)}>
+                    <select className="form-select" multiple defaultValue={assignedCourses}{...register("courses",)}>
                     <option value="" disabled>Choose courses</option>
                         {courselist && courselist.map(item=>(
                             <option value={item._id} key={item._id}>{item.title}</option>

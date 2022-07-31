@@ -29,3 +29,5 @@ Expiration time is in UNIX time in seconds inside a token. Expiration time (exp)
 2)expiresIn: "20d" // it will be expired after 20 days
 3)expiresIn: 120 // it will be expired after 120ms
 4)expiresIn: "120s" // it will be expired after 120s
+
+To decode jwt and learn more about it, visit: https://jwt.io

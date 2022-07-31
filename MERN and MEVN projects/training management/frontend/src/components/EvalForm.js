@@ -47,12 +47,13 @@ function EvalForm({assessment,submitForm}) {
         control={control}
         name="startTime"
         render={({ field }) => (
-          <DatePicker
+        <DatePicker
             placeholderText="Select date"
             onChange={(date) => field.onChange(date)}
             selected={field.value}
             isClearable
-            showTimeSelect  className={"form-control"}
+            showTimeSelect  
+            className={"form-control"}
             timeFormat="HH:mm"
             timeIntervals={15}
             dateFormat="yyyy-MM-dd HH:mm"
@@ -79,12 +80,13 @@ function EvalForm({assessment,submitForm}) {
         control={control}
         name="endTime"
         render={({ field }) => (
-            <DatePicker
+        <DatePicker
             placeholderText="Select date"
             onChange={(date) => field.onChange(date)}
             selected={field.value}
             isClearable
-            showTimeSelect  className={"form-control"}
+            showTimeSelect
+            className={"form-control"}
             timeFormat="HH:mm"
             timeIntervals={15}
             dateFormat="yyyy-MM-dd HH:mm"

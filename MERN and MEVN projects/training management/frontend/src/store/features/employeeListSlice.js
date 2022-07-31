@@ -4,7 +4,7 @@ import {getTokens} from "../../utils/handleStorage";
 
 
 export const fetchEmployeeList = createAsyncThunk('employeeList/fetchAll', async (query) => {
-    const params=query?`?page=${query.page}&itemsPerPage=${query.itemsPerPage}&type=${query.type}`:"";
+    const params=query?`?page=${query.page||''}&itemsPerPage=${query.itemsPerPage||''}&type=${query.type||''}`:"";
     const {data}= await axInstance.get('/admin/employee-list'+params,{
         headers: {
         'Authorization': `Bearer ${getTokens().accessToken}`

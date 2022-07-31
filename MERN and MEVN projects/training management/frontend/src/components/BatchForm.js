@@ -23,11 +23,15 @@ function BatchForm({batch,submitForm,mode}) {
             assignedCourses: batch.assignedCourses||[]
         }
     });
-    const onSubmit = data =>submitForm(data);
+    const onSubmit = data =>{
+        if (data.trainees && batch && JSON.stringify(data.trainees)===JSON.stringify(batch.trainees)) data.trainees=undefined;
+        if (data.assignedCourses && batch && JSON.stringify(data.assignedCourses)===JSON.stringify(batch.assignedCourses)) data.assignedCourses=undefined;
+        submitForm(data);
+    }
     
     return (<>
     {(!courselist && !traineelist) ?<h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>:
-     (
+    (
     <section className='card authForm'>
         <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
             <div className="mb-3">

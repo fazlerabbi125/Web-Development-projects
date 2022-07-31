@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import {axInstance} from '../hooks/useAxios';
 import MessageContext from "../contexts/MessageContext";
-import { useContext} from "react";
+import { useContext,useRef} from "react";
 import {getTokens} from "../utils/handleStorage";
 
 const DeleteModal = (props) => {
     const navigate = useNavigate();
+
     const {setMessage}=useContext(MessageContext);
-    
+    const selectedModal = useRef();
+
     function handleDelete(event){
         event.preventDefault();
         console.log(props.url);
@@ -17,18 +19,19 @@ const DeleteModal = (props) => {
             }
         })
         .then(() => {
-            setMessage("Your item has been deleted");
+            setMessage(`Your ${props.type||"item"} has been deleted`);
             navigate(props.redirect||0);
         });
     }
     function modalSelf(e){
-        console.log(e.target===document.getElementById(`${props.id}`));
-        if(e.target===document.getElementById(`${props.id}`)){
+        if(e.target===selectedModal.current){ //or document.getElementById(`${props.id}`)
             props.toggleModal(props.id);
         }
     }
     return (
-    <div className="modal-backdrop" onClick={modalSelf} id={props.id} aria-labelledby={props.id+"ModalLabel"} aria-hidden="true">
+    <div className="modal-backdrop" onClick={modalSelf} id={props.id} 
+    ref={selectedModal}
+    aria-labelledby={props.id+"ModalLabel"} aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
             <div className="modal-header justify-content-center">

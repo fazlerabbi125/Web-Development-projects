@@ -40,8 +40,9 @@ app.use([path,] callback [, callback...]):-
 Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path.
 */
 app.use('',express.static('./assets')); /* To allow access to static files such as images and css. Folder name used as arguement in express.static()
-In html/ejs file, just write the stylesheet to be used without it path as path to css file will already 
-be known once declared here*/
+In html/ejs file, just write the remaining path to the static file from the path specified in the second argument to output them in the file.
+If the first argument is a non-empty string, it will be added as the prefix to the path of the static file when fetched on the Internet.
+*/
 app.use(express.urlencoded({extended:true}));/*Middleware for taking all the URL-encoded data passed via requests 
 and parsing it to convert them into a JS object available via request object. Typically used for accepting form data
 
