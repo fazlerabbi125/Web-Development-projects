@@ -103,7 +103,7 @@ function BatchForm({batch,submitForm,mode}) {
                         <select className="form-select" multiple {...register("assignedCourses")}>
                             <option value="" disabled>Choose courses</option>
                             {courselist.map(item=>(
-                                <option value={item._id} key={item._id}>{item.title} - {item._id}</option>
+                                <option value={item._id} key={item._id}>{item.title}</option>
                             ))}
                         </select> 
                     </div>                

@@ -10,8 +10,8 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js';
-  import { Bar } from 'react-chartjs-2';
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -21,14 +21,14 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend
-  );
+);
 
 
 function TrainerCharts(props) {
     
     const {data, error, isLoading}=useAxios(`/trainer/${props.evaluation}/get-assessment`,0);
     const options = {
-        indexAxis: 'y',
+        indexAxis: 'y', //to get horizontal bar chart
         responsive: true,
         maintainAspectRatio:false,
         elements: {
@@ -36,7 +36,7 @@ function TrainerCharts(props) {
             borderWidth: 2,
             },
         },
-        plugins: {
+        plugins: { // plugin package for data labels
             datalabels: {
             display: true,
             color: "black",
@@ -97,7 +97,7 @@ function TrainerCharts(props) {
         <Bar options={options} data={evalInfo} width={400} height={500} />
         )}
     </section>
-  )
+    )
 }
 
 export default TrainerCharts

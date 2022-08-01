@@ -10,8 +10,8 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js';
-  import { Bar } from 'react-chartjs-2';
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -21,7 +21,7 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend
-  );
+);
 
 const options = {
     responsive: true,
