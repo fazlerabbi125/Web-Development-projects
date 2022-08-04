@@ -4,10 +4,13 @@ import Home  from './views/Home';
 import EmployeeDetails from './views/EmployeeDetails/EmployeeDetails';
 import CreateEmployee from './views/CreateEmployee';
 import EditEmployee from './views/EditEmployee';
+import About from './views/About';
+
 function App() {
   return (
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="about" element={<About/>}/>
         <Route path="employee" element={<Outlet/>}>
           <Route path="create" element={<CreateEmployee/>}/>
           <Route path=":id/details" element={<EmployeeDetails/>}/>

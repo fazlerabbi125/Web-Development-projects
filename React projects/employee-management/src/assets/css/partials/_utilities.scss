@@ -125,3 +125,16 @@ $utilities: (
         }
     }
 }
+
+$widths:(
+  "25":25%,
+  "50":50%,
+  "75":75%,
+  "100":100%,
+);
+
+@each $key,$val in $widths{
+  .w-#{$key}{
+    width: $val;
+  }
+}

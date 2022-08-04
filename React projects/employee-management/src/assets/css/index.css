@@ -259,6 +259,22 @@ button, input, span {
   margin-bottom: 2rem !important;
 }
 
+.w-25 {
+  width: 25%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
 .banner {
   text-align: center;
   background-color: rgb(240, 240, 240);
@@ -372,6 +388,12 @@ code {
   border-radius: 0.6rem;
   padding: 5%;
   text-align: center;
+}
+
+.about {
+  width: 50%;
+  padding: 1rem;
+  margin: 1rem auto 2rem;
 }
 
 .btn {
