@@ -1,0 +1,149 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+@import "./partials/colors";
+@import "./partials/flex";
+@import "./partials/breakpoints";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: $bg-body;
+  font-family: "Source Sans Pro";
+}
+
+button, input,span {
+  display: inline-block;
+  text-align: center;
+}
+
+
+#root{
+  position: relative;
+  min-height: 100vh;
+}
+
+@import './partials/utilities';
+
+.banner {
+  text-align: center;
+  background-color: $banner-bg;
+  margin-top: 0;
+  padding: 1rem;
+}
+
+.loading {
+  color: white;
+  text-align: center;
+}
+
+.error {
+  color: $error;
+  text-align: center;
+}
+
+.rounded-circle{
+  border-radius: 50% !important;
+}
+
+.rounded-pill{
+  border-radius: 50rem !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.search-form {
+  margin: 3% auto;
+  background-color: white;
+  border: 0.3rem solid gainsboro;
+  text-align: center;
+  padding: 2rem;
+  width: 65%;
+  > input[type=text]:focus {
+    border: 3px solid $searchForm-focus;
+    outline: none;
+  }
+}
+
+
+.emp-form {
+  text-align: center;
+  margin: 5rem auto;
+  background-color: white;
+  border: 0.3rem solid $component-border;
+  text-align: center;
+  padding: 2rem;
+  width: 50%;
+  line-height: 2.5em;
+  button {
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+  label {
+    font-weight: 500;
+  }
+}
+
+
+.pagination {
+  list-style: none;
+  margin-bottom: 3rem;
+  @include addFlex($jc:center);
+  &__page{
+    padding: 0.5em 1em 0.5em;
+    border-radius: 5px;
+    margin-right: 0.15rem;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    &--disabled{
+      display: none;
+    }
+    &--active{
+      color: white;
+      background-color: black;
+    }
+    &:hover{
+      color: black;
+      background-color: rgb(200, 200, 200);
+    }
+  }
+}
+
+.card{
+  background-color: white;
+  border: 0.3rem solid gainsboro; 
+  margin: 2rem auto;
+}
+
+
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  &__content {
+    width: 40%;
+    background-color: white;
+    margin: 4% auto;
+    border-radius: 0.6rem;
+    padding: 5%;
+    text-align: center;
+  }
+}
+
+
+@import "./partials/buttons";
+
+
+/*# sourceMappingURL=index.css.map */

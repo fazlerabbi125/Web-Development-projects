@@ -13,8 +13,7 @@ body {
 
 #root {
   position: relative;
-  min-height: 100vh;
-  /*used for placing footer at the bottom of the page*/
+  min-height: 100vh; /*used for placing footer at the bottom of the page*/
 }
 
 code {

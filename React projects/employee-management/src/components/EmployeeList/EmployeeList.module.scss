@@ -1,0 +1,41 @@
+@import "../../assets/css/partials/colors";
+@import "../../assets/css/partials/flex";
+@import "../../assets/css/partials/breakpoints";
+
+
+.emp-list {
+    @include addFlex($jc:space-around,$w:wrap);
+    gap: 1.25rem;
+    margin: 2rem auto;
+    max-width: 75%;
+    &__item {
+        display: block;
+        text-decoration:none ;
+        background-color: white;
+        border-radius: 1rem;
+        color:map-get($map: $colors, $key:"dark" );
+        border: 0.3rem solid $component-border;
+        width: 45%;
+        margin-bottom: 1rem;
+        text-align: center;
+        cursor: pointer;
+        word-wrap:break-word;
+        word-break:break-all;
+        &__photo{
+            display: block;
+            margin: 1rem auto;
+            width: 20%;
+            height:6.5rem;
+        }
+        &__heading {
+            color: $empList-item-heading;
+        }
+        &__property{
+            font-weight: bold;
+            color:rgb(150, 150, 150);
+        }
+        &:hover {
+            border: 0.3rem solid $empList-item-borderHover;
+        }
+    }
+}

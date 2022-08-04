@@ -1,0 +1,60 @@
+@import '../../assets/css/partials/colors';
+@import '../../assets/css/partials/flex';
+@import '../../assets/css/partials/breakpoints';
+
+/* CSS Modules let you use the same CSS class name in different files without worrying about naming clashes. */
+
+.emp-detail{
+    width: 80%;
+    &__header{
+        @include addFlex($ai:center);
+        padding-bottom: 0.75rem;
+        &__photo{
+            margin:0.3rem 0.4rem 0;
+            display: block;
+            width:10%;
+            height:7rem;
+        }
+    }
+    &__options{
+        float: right;
+        @include addFlex($jc:center);
+        gap:0.25rem;
+        margin-top:0.25rem;
+        margin-right: 0.25rem;
+        i[class^="fa"]{
+            font-size: 1.5em;
+        }
+    }
+    &__body{
+        padding:1rem;
+        border-top: 1px solid gray;
+        margin-bottom: 1.5rem;
+        @include addFlex($ai:flex-start,$jc:center);
+        gap:2rem;
+        &__info{
+            @include addFlex($direction:column);
+            width:45%;
+
+            &__heading{
+                color:rgb(70, 60, 155);
+            }
+            &__table{
+                margin-bottom: 1rem;
+                border-collapse: collapse;
+                text-align: center;
+                border: 1px solid black;
+                td{
+                    border-right: 1px solid black;
+                    border-top: 1px solid black;
+                    &:first-child{
+                        font-weight:600;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+
+

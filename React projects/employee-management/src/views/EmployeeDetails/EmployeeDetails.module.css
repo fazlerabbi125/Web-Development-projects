@@ -1,0 +1,67 @@
+/* CSS Modules let you use the same CSS class name in different files without worrying about naming clashes. */
+.emp-detail {
+  width: 80%;
+}
+.emp-detail__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding-bottom: 0.75rem;
+}
+.emp-detail__header__photo {
+  margin: 0.3rem 0.4rem 0;
+  display: block;
+  width: 10%;
+  height: 7rem;
+}
+.emp-detail__options {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
+}
+.emp-detail__options i[class^=fa] {
+  font-size: 1.5em;
+}
+.emp-detail__body {
+  padding: 1rem;
+  border-top: 1px solid gray;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 2rem;
+}
+.emp-detail__body__info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 45%;
+}
+.emp-detail__body__info__heading {
+  color: rgb(70, 60, 155);
+}
+.emp-detail__body__info__table {
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid black;
+}
+.emp-detail__body__info__table td {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+.emp-detail__body__info__table td:first-child {
+  font-weight: 600;
+}/*# sourceMappingURL=EmployeeDetails.module.css.map */

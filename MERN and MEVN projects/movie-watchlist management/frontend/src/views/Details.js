@@ -2,7 +2,7 @@ import withHOC from "../components/withHoc";
 import {useAxios} from '../hooks/useAxios';
 import { Link,useParams} from "react-router-dom";
 import { useState } from 'react';
-import Delete from '../components/Delete';
+import Delete from '../components/DeleteModal';
 import poster from "../assets/poster-not-available.jpg"
 import {useSelector} from 'react-redux'
 

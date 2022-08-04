@@ -26,6 +26,7 @@ function AccountUpdate() {
     });
 
     const onSubmit = async (data) =>{
+        // when file is uploaded, array is return where index 0 contains file. But if photo is a string, it will return the character on index 0.
         if (data.photo)data.photo=data.photo[0];
         data.token=localStorage.getItem('refresh');
         try {

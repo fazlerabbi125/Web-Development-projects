@@ -22,7 +22,7 @@ const UserWatchList = () => {
 
     useEffect(() => {
       dispatch(fetchList({page,itemsPerPage}));
-    },[page]);
+    },[page,dispatch]);
 
     const handlePageClick = (page) => {
       setPage(page);
@@ -36,7 +36,7 @@ const UserWatchList = () => {
               btn.push(
                 (<li className="page-item" key={"Previous"}  onClick={() => { handlePageClick(page-1) }}>
                 <span className="page-link text-secondary fw-bold" role="button">
-                 &laquo;</span>
+                  &laquo;</span>
               </li>)
               )
             }

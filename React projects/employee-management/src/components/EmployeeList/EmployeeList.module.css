@@ -1,0 +1,40 @@
+.emp-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1.25rem;
+  margin: 2rem auto;
+  max-width: 75%;
+}
+.emp-list__item {
+  display: block;
+  text-decoration: none;
+  background-color: white;
+  border-radius: 1rem;
+  color: #001828;
+  border: 0.3rem solid gainsboro;
+  width: 45%;
+  margin-bottom: 1rem;
+  text-align: center;
+  cursor: pointer;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.emp-list__item__photo {
+  display: block;
+  margin: 1rem auto;
+  width: 20%;
+  height: 6.5rem;
+}
+.emp-list__item__heading {
+  color: rgb(2, 172, 172);
+}
+.emp-list__item__property {
+  font-weight: bold;
+  color: rgb(150, 150, 150);
+}
+.emp-list__item:hover {
+  border: 0.3rem solid rgb(35, 202, 160);
+}/*# sourceMappingURL=EmployeeList.module.css.map */

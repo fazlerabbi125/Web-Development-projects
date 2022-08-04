@@ -134,17 +134,14 @@ const ItemForm = ({item,submitForm}) => {
             {item.imgUrl && <div className="mb-3 text-center text-break">
                 <a href={item.imgUrl} target="_blank" rel="noreferrer" className="link-info"> Current Movie/Series Poster</a>  
                 &nbsp; <input className="form-check-input" type="checkbox" {...register("photoClear")}/> Remove
-             </div>}
+            </div>}
             <div className="mb-3">
             <div className="row justify-content-center ">
                 <div className="col-auto">
                     <label className="col-form-label">Upload Poster (optional):</label>
                 </div>
                 <div className="col-auto">
-                <input type="file" className="form-control" {...register("poster",{validate: file => 
-                (!file)||(file && ["image/jpeg", "image/png", "image/jpg",undefined].includes(file[0]?.type)) ||
-                    "File input has to be empty or can only have PNG, JPEG and JPG formats"
-    })} />
+                <input type="file" className="form-control" accept=".png, .jpg, .jpeg" {...register("poster")} />
                 </div>                
                 </div>
                 {errors.poster && <div className="text-center text-danger fw-bolder">{errors.poster.message}</div>}    

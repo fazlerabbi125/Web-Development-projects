@@ -1,14 +1,12 @@
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import {logoutUser} from '../store/features/userSlice'
 
 const Navbar = () => {
-  const navigate=useNavigate();
   const dispatch = useDispatch();
   const auth= useSelector((state) => state.authUser.userData);
   const userLogout=()=>{
     dispatch(logoutUser());
-    navigate('/');
   }
     return ( 
 <nav className="navbar navbar-expand-lg navbar-dark  mt-2 mb-5" style={{backgroundColor:"rgb(125, 55, 235)"}}>
