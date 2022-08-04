@@ -35,39 +35,43 @@ const EmployeeDetails = () => {
                 <div className={styles['emp-detail__body__info']}>
                     <h2 className={styles['emp-detail__body__info__heading']}>Personal info</h2>
                     <table className={styles['emp-detail__body__info__table']}>
-                        <tr>
-                            <td>Phone</td>
-                            <td>{employee.phone}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>{employee.email}</td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td>{employee.address}</td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td>{employee.gender}</td>
-                        </tr>
-                        <tr>
-                            <td>Date of Birth</td>
-                            <td>{employee.date_of_birth}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Phone</td>
+                                <td>{employee.phone}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{employee.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{employee.address}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>{employee.gender}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td>{employee.date_of_birth}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className={styles['emp-detail__body__info']}>
                     <h2 className={styles['emp-detail__body__info__heading']}>Professional info</h2>
                     <table className={styles['emp-detail__body__info__table']}>
-                        <tr>
-                            <td>Department</td>
-                            <td>{employee.dept}</td>
-                        </tr>
-                        <tr>
-                            <td>Position</td>
-                            <td>{employee.role}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Department</td>
+                                <td>{employee.dept}</td>
+                            </tr>
+                            <tr>
+                                <td>Position</td>
+                                <td>{employee.role}</td>
+                            </tr>
+                        </tbody>
                     </table>  
                 </div>
             </div>

@@ -41,6 +41,15 @@
   flex-direction: row;
   gap: 2rem;
 }
+@media only screen and (max-width: 767px) {
+  .emp-detail__body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+}
 .emp-detail__body__info {
   display: flex;
   justify-content: flex-start;
@@ -48,6 +57,16 @@
   flex-wrap: nowrap;
   flex-direction: column;
   width: 45%;
+}
+@media only screen and (max-width: 767px) {
+  .emp-detail__body__info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 40%;
+  }
 }
 .emp-detail__body__info__heading {
   color: rgb(70, 60, 155);

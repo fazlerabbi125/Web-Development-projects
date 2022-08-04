@@ -31,11 +31,17 @@
         border-top: 1px solid gray;
         margin-bottom: 1.5rem;
         @include addFlex($ai:flex-start,$jc:center);
+        @include devices(mobile){
+            @include addFlex($direction:column,$ai:center);
+        }
         gap:2rem;
         &__info{
             @include addFlex($direction:column);
             width:45%;
-
+            @include devices(mobile){
+                @include addFlex($direction:column,$ai:center);
+                width:40%;
+            }
             &__heading{
                 color:rgb(70, 60, 155);
             }
