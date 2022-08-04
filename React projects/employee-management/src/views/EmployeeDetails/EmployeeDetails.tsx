@@ -21,7 +21,7 @@ const EmployeeDetails = () => {
         {error && <h2 className="error">{error}</h2>}
         {!error && employee && <div className={`card ${styles['emp-detail']}`}>
             <div className={styles['emp-detail__options']}>
-                <Link to={`edit`} className="btn btn--dark rounded-circle pt-2 pb-2" state={{ employee }}><i className="fa fa-pencil"></i></Link>
+                <Link to={`/employee/${employee.id}/edit`} className="btn btn--dark rounded-circle pt-2 pb-2" state={{ employee }}><i className="fa fa-pencil"></i></Link>
                 <button className="btn btn--danger rounded-circle pt-2 pb-2" onClick={toggleModal}>
                 <i className="fa fa-trash"></i>
                 </button>

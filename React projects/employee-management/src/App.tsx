@@ -1,15 +1,18 @@
 import React from 'react';
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Outlet} from 'react-router-dom'
 import Home  from './views/Home';
 import EmployeeDetails from './views/EmployeeDetails/EmployeeDetails';
 import CreateEmployee from './views/CreateEmployee';
-
+import EditEmployee from './views/EditEmployee';
 function App() {
   return (
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="employee/:id/details" element={<EmployeeDetails/>}/>
-        <Route path="employee/create" element={<CreateEmployee/>}/>
+        <Route path="employee" element={<Outlet/>}>
+          <Route path="create" element={<CreateEmployee/>}/>
+          <Route path=":id/details" element={<EmployeeDetails/>}/>
+          <Route path=":id/edit" element={<EditEmployee/>}/>
+        </Route>
         <Route
           path="*"
           element={
