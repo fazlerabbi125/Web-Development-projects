@@ -135,11 +135,29 @@ code {
   &__content {
     width: 40%;
     background-color: white;
-    margin: 4% auto;
+    margin: 4rem auto;
     border-radius: 0.6rem;
-    padding: 5%;
-    text-align: center;
+    padding: 1.25rem 0;
+    &__body{
+      text-align: center;
+      padding-bottom: 1rem;
+      font-size: 18px;
+      border-bottom: 1px solid black;
+    }
+    &__header{
+      @include addFlex($jc:space-around);
+      font-size: 25px;
+      font-weight: bold;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid black;
+    }
+    &__footer{
+      margin-top: 1rem;
+      @include addFlex($jc:center);
+      gap:1rem;
+    }
   }
+  
 }
 
 .about {

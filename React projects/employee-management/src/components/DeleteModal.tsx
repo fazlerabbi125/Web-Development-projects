@@ -11,7 +11,7 @@ const DeleteModal = (props:any) => {
         event.preventDefault();
         axInstance.delete(`${props.id}`)
         .then(():void => {
-            // setMessage('Employee has been deleted successfully');
+            setMessage('Employee has been deleted successfully');
             navigate("/"); //for re-direct
         })
         .catch(err=>{
@@ -28,10 +28,17 @@ const DeleteModal = (props:any) => {
     return (
     <div className="modal" ref={selectedModal} onClick={modalSelf}>
         <div className="modal__content">
+            <div className="modal__content__header">
+            <span>Confirm Deletion</span>
+            </div>
             <form onSubmit={handleDelete} >
-                <p>Are you sure you want to this profile?</p>
-                <button className="btn btn--dark" onClick={props.toggleModal}>Close</button>
-                <button type="submit" className="btn btn--danger">Delete</button>
+                <div className="modal__content__body">
+                    <p>Are you sure you want to this profile?</p>
+                </div>
+                <div className="modal__content__footer">
+                    <button className="btn btn--dark" onClick={props.toggleModal}>Close</button>
+                    <button type="submit" className="btn btn--danger">Confirm</button>
+                </div>
             </form>
         </div>
     </div>

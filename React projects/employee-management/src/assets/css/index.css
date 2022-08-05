@@ -384,10 +384,35 @@ code {
 .modal__content {
   width: 40%;
   background-color: white;
-  margin: 4% auto;
+  margin: 4rem auto;
   border-radius: 0.6rem;
-  padding: 5%;
+  padding: 1.25rem 0;
+}
+.modal__content__body {
   text-align: center;
+  padding-bottom: 1rem;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+}
+.modal__content__header {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid black;
+}
+.modal__content__footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .about {
