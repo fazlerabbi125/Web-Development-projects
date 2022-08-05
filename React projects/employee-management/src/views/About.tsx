@@ -1,7 +1,5 @@
-import Layout from "../components/Layout"
 function About() {
   return (
-    <Layout>
         <section className="card about">
             <h2>About this site</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -26,7 +24,6 @@ modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam
 totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
 quasi aliquam eligendi, placeat qui corporis!</p>
         </section>
-    </Layout>
   )
 }
 

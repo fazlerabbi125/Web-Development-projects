@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import {axInstance} from '../hooks/useAxios';
 import {useRef,useContext} from 'react'
-import { MessageContext,MessageInterface } from "../contexts/MessageContext";
+import { MessageContext,MessageType } from "../contexts/MessageContext";
 
 const DeleteModal = (props:any) => {
     const navigate = useNavigate();
-    const {setMessage}=useContext(MessageContext) as MessageInterface;
+    const {setMessage}=useContext(MessageContext) as MessageType;
     const selectedModal = useRef<HTMLDivElement|null>(null);
     function handleDelete(event:React.FormEvent){
         event.preventDefault();
         axInstance.delete(`${props.id}`)
         .then(():void => {
-            setMessage('Employee has been deleted successfully');
+            // setMessage('Employee has been deleted successfully');
             navigate("/"); //for re-direct
         })
         .catch(err=>{

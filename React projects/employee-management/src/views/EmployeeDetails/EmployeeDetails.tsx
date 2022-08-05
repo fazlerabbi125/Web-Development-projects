@@ -4,7 +4,6 @@ import {useAxios} from '../../hooks/useAxios';
 import {Link, useParams} from 'react-router-dom';
 import { useState } from 'react';
 import DeleteModal from '../../components/DeleteModal';
-import Layout from '../../components/Layout';
 
 const EmployeeDetails = () => {
     const {id}= useParams();
@@ -16,7 +15,7 @@ const EmployeeDetails = () => {
     }
     
     return (
-        <Layout>
+        <section>
         {isLoading && <h2 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
         {error && <h2 className="error">{error}</h2>}
         {!error && employee && <div className={`card ${styles['emp-detail']}`}>
@@ -77,7 +76,7 @@ const EmployeeDetails = () => {
             </div>
         </div>
 }
-        </Layout>
+        </section>
     );
 }
 

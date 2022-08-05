@@ -11,11 +11,12 @@ interface LayoutProps {
 
 function Layout({children}:LayoutProps) {
     const [message, setMessage]= React.useState<string>('');
-    const [show, setShow] = React.useState<boolean>(false);
+    const [showBar, setShowBar] = React.useState<boolean>(false);
+
     return (
         <MessageContext.Provider value={{message,setMessage}}>
-            <Header show={show} setShow={setShow}/>
-            <Sidebar show={show} toggleSidebar={setShow}/>
+            <Header show={showBar} setShow={setShowBar}/>
+            <Sidebar show={showBar} toggleSidebar={setShowBar}/>
             <main>
             {children}
             </main>

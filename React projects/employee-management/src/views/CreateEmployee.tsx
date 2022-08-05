@@ -1,7 +1,6 @@
 import EmployeeForm from '../components/EmployeeForm';
 import {axInstance} from '../hooks/useAxios';
 import { useNavigate } from "react-router-dom";
-import Layout from '../components/Layout';
 
 const CreateEmployee = () => {
   const navigate = useNavigate(); //hook for re-direct
@@ -15,11 +14,11 @@ const CreateEmployee = () => {
       });
   }
   return (
-    <Layout>
+    <section>
           {/* <h1 className="banner">Add a New Employee</h1> */}
 
-    <EmployeeForm employee={{}} handleSubmit={handleAdd}/>
-    </Layout>
+    <EmployeeForm employee={{}} handleSubmit={handleAdd} mode={'create'}/>
+    </section>
   );
 }
 

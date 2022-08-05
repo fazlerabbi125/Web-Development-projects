@@ -117,7 +117,7 @@ const EmployeeForm = (props:any) => {
           <option value="Female">Female</option>
           <option value="Others">Others</option>
         </select><br/>
-        <button onClick={()=>navigate(-1)}>Go Back</button>
+        {props.mode==="edit" && <button onClick={()=>navigate(`/employee/${props.employee.id}/details`)}>Go Back</button>}
         <button type="submit">Submit</button>
         
       </form>

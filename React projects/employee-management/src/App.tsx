@@ -1,13 +1,14 @@
-import React from 'react';
 import {Routes, Route, Outlet} from 'react-router-dom'
 import Home  from './views/Home';
 import EmployeeDetails from './views/EmployeeDetails/EmployeeDetails';
 import CreateEmployee from './views/CreateEmployee';
 import EditEmployee from './views/EditEmployee';
 import About from './views/About';
-
+import Layout from './components/Layout';
 function App() {
+
   return (
+    <Layout>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="about" element={<About/>}/>
@@ -25,6 +26,7 @@ function App() {
           }
         />
       </Routes>
+      </Layout>
   );
 }
 
