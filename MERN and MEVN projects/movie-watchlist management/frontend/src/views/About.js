@@ -28,7 +28,7 @@ quasi aliquam eligendi, placeat qui corporis!
   </div>
 </div>
 
-     );
+    );
 }
 const EnhancedComponent=withHOC("About this site",About);
 export default EnhancedComponent; 

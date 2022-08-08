@@ -1,15 +1,16 @@
 import React from 'react'
 import {useParams} from "react-router-dom";
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import {useAxios} from '../../hooks/useAxios'
 import TrainerCharts from '../../components/TrainerCharts';
 import BreadCrumb from '../../components/BreadCrumb';
+
 function TrainerAssessmentList() {
     const {batchID,courseID}=useParams();
     const {data:assessmentList, error, isLoading}=useAxios(`/trainer/${batchID}/${courseID}/get-assessmentList`);
     const [evaluation,setEvaluation]=React.useState("");
     return (
-    <>
+    <Layout header={`View Performance`}>
     <BreadCrumb to={`/trainer/${batchID}/${courseID}/assessment-list`} prev='Course Assessments' current='View Performance'/>
     
     {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
@@ -31,8 +32,8 @@ function TrainerAssessmentList() {
         )}
             </>
         )}
-    </>
+    </Layout>
     )
 }
 
-export default withHoc(`View Performance`,TrainerAssessmentList)
+export default TrainerAssessmentList

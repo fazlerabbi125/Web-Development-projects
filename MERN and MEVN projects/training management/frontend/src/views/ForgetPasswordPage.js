@@ -1,8 +1,7 @@
 import React, { useContext,useState } from "react";
 import { Link,useNavigate} from "react-router-dom";
 import MessageContext from "../contexts/MessageContext";
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header';
+import Layout from "../components/Layout";
 
 function ForgetPasswordPage() {
   const [email, setEmail] = useState("");
@@ -34,36 +33,34 @@ function ForgetPasswordPage() {
       });
   };
   return (
-    <>
-    <section className='guest'>
-    <Header/>
-    <div className="guest__form text-center">
-      <h5 className="mt-2">Enter your email address and we will send you a new password</h5>
-      <form onSubmit={forgetPasswordHandler}>
-      <p className="my-4 row justify-content-center">
-              <label className="col-auto col-form-label">Email:</label>
-              <div className="col-auto">
-                  <input className="form-control" type="email"
-                  name="email"
-                  required
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}/>
-              </div>
+    <Layout>
+      <section className='guest'>
+      <div className="guest__form text-center">
+        <h5 className="mt-2">Enter your email address and we will send you a new password</h5>
+        <form onSubmit={forgetPasswordHandler}>
+        <p className="my-4 row justify-content-center">
+                <label className="col-auto col-form-label">Email:</label>
+                <div className="col-auto">
+                    <input className="form-control" type="email"
+                    name="email"
+                    required
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}/>
+                </div>
+            </p>
+          <p>
+            <button className="btn btn-dark" type="submit">
+              Send password reset email
+            </button>
           </p>
-        <p>
-          <button className="btn btn-dark" type="submit">
-            Send password reset email
-          </button>
+        </form>
+        <p> 
+            Already have an account? <Link to="/login" className="link-light">Sign in here</Link>
         </p>
-      </form>
-      <p> 
-          Already have an account? <Link to="/login" className="link-light">Sign in here</Link>
-      </p>
-    </div>
-    </section>
-    <Footer/>
-    </>
+      </div>
+      </section>
+    </Layout>
   );
 }
 export default ForgetPasswordPage;

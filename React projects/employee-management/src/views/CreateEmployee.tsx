@@ -19,8 +19,6 @@ const CreateEmployee = () => {
   }
   return (
     <section>
-          {/* <h1 className="banner">Add a New Employee</h1> */}
-
     <EmployeeForm employee={{}} handleSubmit={handleAdd} mode={'create'}/>
     </section>
   );

@@ -90,12 +90,7 @@ button, a, span, input, label {
 }
 
 .guest {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  gap: 3rem;
+  margin: 3rem auto;
 }
 .guest__header {
   background-color: #174ea1;

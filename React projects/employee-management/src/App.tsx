@@ -9,23 +9,23 @@ function App() {
 
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="about" element={<About/>}/>
-        <Route path="employee" element={<Outlet/>}>
-          <Route path="create" element={<CreateEmployee/>}/>
-          <Route path=":id/details" element={<EmployeeDetails/>}/>
-          <Route path=":id/edit" element={<EditEmployee/>}/>
-        </Route>
-        <Route
-          path="*"
-          element={
-            <main className="error">
-              <h1>404. Page Not Found</h1>
-            </main>
-          }
-        />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="employee" element={<Outlet/>}>
+            <Route path="create" element={<CreateEmployee/>}/>
+            <Route path=":id/details" element={<EmployeeDetails/>}/>
+            <Route path=":id/edit" element={<EditEmployee/>}/>
+          </Route>
+          <Route
+            path="*"
+            element={
+              <main className="error">
+                <h1>404. Page Not Found</h1>
+              </main>
+            }
+          />
+        </Routes>
       </Layout>
   );
 }

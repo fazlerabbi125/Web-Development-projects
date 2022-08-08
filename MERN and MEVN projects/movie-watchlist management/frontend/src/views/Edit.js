@@ -1,4 +1,4 @@
-import ItemForm from "../components/ItemForm";
+import MovieForm from "../components/MovieForm";
 import {useLocation,useNavigate} from 'react-router-dom';
 import {axInstance} from '../hooks/useAxios';
 import withHOC from "../components/withHoc";
@@ -31,11 +31,10 @@ const Edit = () => {
     return (
         <>
           {error && <h2 className="text-center text-danger">{error}</h2>}
-          <ItemForm item={data} submitForm={handleEdit}/>
+          <MovieForm item={data} submitForm={handleEdit}/>
         </>
       );
 }
 
-const EnhancedComponent=withHOC("Edit movie/series",Edit);
 
-export default EnhancedComponent;
+export default withHOC("Edit movie/series",Edit);

@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useParams,useLocation } from "react-router-dom";
@@ -30,11 +30,11 @@ function EditTask() {
         }
     }
     return ( 
-    <>
+    <Layout header={'Edit Evaluation Task'}>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <TaskForm task={task} submitForm={handleEdit} />
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Edit Evaluation Task',EditTask)
+export default EditTask

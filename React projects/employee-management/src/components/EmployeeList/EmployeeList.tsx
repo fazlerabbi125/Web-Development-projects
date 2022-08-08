@@ -3,18 +3,25 @@ import ReactPaginate from "react-paginate";
 import { useState,useEffect} from "react";
 import styles from "./EmployeeList.module.css"
 import profileImg from '../../assets/images/profile.jpg';
+import SearchForm from "../SearchForm/SearchForm"
+import useDebounce from '../../hooks/useDebounce'
 
 interface ELProps{
   employeeList: any[],
-  query: string
 }
 
-const EmployeeList: React.FC<ELProps> = ({employeeList,query}) => {
+const EmployeeList: React.FC<ELProps> = ({employeeList}) => {
+  const [query, setQuery] = useState<string>('');
 
-
-
+  const debouncedQuery= useDebounce(query);
+//   let filteredList=data.filter(employee=>{
+//     if (query.filter==='year' && query.search) return employee['year']===Number(query.search);        
+//     else if (query.filter==='title' && query.search) return employee['title'].toLowerCase().includes(query.search.toLowerCase());
+//     else if (query.filter==='genre' && query.search) return employee['genre'].toLowerCase().includes(query.search.toLowerCase());
+//     return true;
+// });
   let filteredList=employeeList.filter((employee:any)=>{
-    if (query){
+    if (debouncedQuery){
       return employee.name.toLowerCase().includes(query.toLowerCase())||employee.dept.toLowerCase().includes(query.toLowerCase())||
       employee.role.toLowerCase().includes(query.toLowerCase())|| `${employee.id}`.startsWith(query);
     }
@@ -41,6 +48,7 @@ const EmployeeList: React.FC<ELProps> = ({employeeList,query}) => {
 
     return ( 
     <>
+      <SearchForm setQuery={setQuery}/>
       <h2 style={{display: filteredList.length===0? "block": "none",color:"white",textAlign:"center" }}> No employees found</h2>
       {filteredList && (<div className={styles['emp-list']}>
       {displayItems.map(employee => (

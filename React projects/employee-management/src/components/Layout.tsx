@@ -17,9 +17,7 @@ function Layout({children}:LayoutProps) {
         <MessageContext.Provider value={{message,setMessage}}>
             <Header show={showBar} setShow={setShowBar}/>
             <Sidebar show={showBar} toggleSidebar={setShowBar}/>
-            <main>
-            {children}
-            </main>
+            <main>{children}</main>
             <Toast/>
             <Footer/>
         </MessageContext.Provider>

@@ -1,10 +1,10 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useLocation } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
 import EvalForm from '../../components/EvalForm';
+import Layout from '../../components/Layout';
 
 function EditEval() {
     const navigate = useNavigate(); //hook for re-direct
@@ -29,13 +29,13 @@ function EditEval() {
         });
     }
     return ( 
-    <>
+    <Layout header='Edit Assessment'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <EvalForm assessment={assessment} submitForm={handleEdit} />
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Edit Assessment',EditEval)
+export default EditEval
 
 

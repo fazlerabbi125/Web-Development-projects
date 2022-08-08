@@ -2,13 +2,14 @@ import React from 'react'
 import { useSelector} from 'react-redux'
 import {useParams,Link} from 'react-router-dom'
 import {useAxios} from '../hooks/useAxios'
-import withHoc from '../utils/withHoc'
+import Layout from "../components/Layout";
 
 function BatchDetails() {
     const { batchID } = useParams();
     const {data:batch, error, isLoading}= useAxios(`/${batchID}/get-batch-details`);
     const auth= useSelector((state) => state.authUser.userData);
     return (
+        <Layout header='Batch Details'>
         <section className="w-75 mx-auto">
         
             {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
@@ -75,7 +76,8 @@ function BatchDetails() {
                 </>
             )}
         </section>
+        </Layout>
     )
 }
 
-export default withHoc('Batch Details',BatchDetails)
+export default BatchDetails

@@ -1,10 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer/Footer'
-import Header from '../components/Header'
 import { useParams,useLocation} from 'react-router-dom';
 import {useAxios} from '../hooks/useAxios';
 import BreadCrumb from '../components/BreadCrumb';
+import Layout from "../components/Layout";
 
 function CourseLesson() {
   const {courseSlug,lessonID} = useParams();
@@ -12,9 +10,7 @@ function CourseLesson() {
   const {state}= useLocation();
   console.log(lesson);
   return (
-    <>
-    <Header header={state.pageTitle}/>
-    <Navbar/>
+    <Layout header={state.pageTitle}>
     {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
     {error && <h2 className="text-center text-danger">{error}</h2>}
     {lesson && <section>
@@ -28,8 +24,7 @@ function CourseLesson() {
     </section>
     
     }
-    <Footer/>
-    </>
+    </Layout>
   )
 }
 

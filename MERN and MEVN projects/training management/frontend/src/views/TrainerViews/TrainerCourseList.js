@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import paginationButtons from '../../utils/paginationButtons'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
@@ -40,10 +40,12 @@ function TrainerCourseList() {
         });
     },[page,debouncedTitle]);
     return (
+        <Layout header='Your Assigned Courses'>
         <CourseList isLoading={isLoading} error={error} courseList={courseList} title={title} 
         setTitle={setTitle} size={total} pageBtns={pageBtns}/>
+        </Layout>
     )
 }
 
-export default withHoc('Your Assigned Courses',TrainerCourseList);
+export default TrainerCourseList;
 

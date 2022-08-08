@@ -23,7 +23,6 @@ const EditEmployee = () => {
   
     return (
         <section>
-        {/* <h1 className="banner">Edit Employee</h1> */}
         <EmployeeForm employee={employee} handleSubmit={handleEdit} mode={'edit'}/>
         </section>
       );

@@ -1,13 +1,10 @@
 import React from 'react'
 import {useAxios} from '../hooks/useAxios'
-import Navbar from '../components/Navbar';
-import Toast from "../components/Toast/Toast";
-import Footer from "../components/Footer/Footer"
-import Header from '../components/Header';
 import { useSelector} from 'react-redux'
 import { useParams,Link} from 'react-router-dom';
 import DeleteModal from '../components/DeleteModal';
 import BreadCrumb from '../components/BreadCrumb';
+import Layout from "../components/Layout";
 
 const EvaluationTasks = () => {
   const {evalID} = useParams();
@@ -20,10 +17,8 @@ const EvaluationTasks = () => {
         setModal({...modal,[id]:!modal[id]});
   }
   return (
-    <>
-    <Header header={"Assessment Details"}/>
-    <Navbar/>
-
+    <Layout header={"Assessment Details"}>
+      
     <BreadCrumb prev='Course Assessments' current='Assessment Details'/>
 
     {auth.role==="trainer" && 
@@ -78,9 +73,7 @@ const EvaluationTasks = () => {
     </section>)}
 </>
     )}
-    <Toast/>
-    <Footer/>
-    </>
+    </Layout>
   )
 }
 

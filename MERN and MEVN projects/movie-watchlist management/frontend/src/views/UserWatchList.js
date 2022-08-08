@@ -151,5 +151,4 @@ const UserWatchList = () => {
     
         );
 }
-const EnhancedComponent=withHOC("Your Watchlist",UserWatchList);
-export default EnhancedComponent; 
+export default withHOC("Your Watchlist",UserWatchList); 

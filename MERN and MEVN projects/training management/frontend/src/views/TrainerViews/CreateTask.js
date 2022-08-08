@@ -1,10 +1,10 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useParams } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
 import TaskForm from '../../components/TaskForm';
+import Layout from '../../components/Layout';
 
 function CreateTask() {
     const navigate = useNavigate(); //hook for re-direct
@@ -29,11 +29,11 @@ function CreateTask() {
         });
     }
     return ( 
-    <>
+    <Layout header='Create Evaluation Task'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <TaskForm task={{}} submitForm={handleAdd} />
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Create Evaluation Task',CreateTask)
+export default CreateTask

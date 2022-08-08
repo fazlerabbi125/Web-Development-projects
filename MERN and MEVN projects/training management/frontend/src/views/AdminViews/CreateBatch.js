@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate } from "react-router-dom";
@@ -29,11 +29,11 @@ function CreateBatch() {
         });
     }
     return ( 
-    <>
+    <Layout header={'Create Training Batch'}>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <BatchForm batch={{}} submitForm={handleAdd} mode="create"/>
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Create Training Batch',CreateBatch)
+export default CreateBatch

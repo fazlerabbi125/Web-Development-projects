@@ -31,6 +31,14 @@ const isAdmin = (req, res, next) => {
     }
 }
 
+const isNormalUser = (req, res, next) => {
+    if (!req.user.isAdmin) {
+        next();
+    } else {
+        return res.status(HTTP_STATUS.FORBIDDEN).send(failure('You are forbidden for that request'));
+    }
+}
+
 const guest = (req, res, next) => {
     if (!req.get('authorization')) {
         next();
@@ -41,5 +49,6 @@ const guest = (req, res, next) => {
 module.exports = {
     checkAuth,
     isAdmin,
+    isNormalUser,
     guest
 }

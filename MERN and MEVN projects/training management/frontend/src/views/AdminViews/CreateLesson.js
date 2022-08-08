@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useLocation } from "react-router-dom";
@@ -29,11 +29,11 @@ function CreateLesson() {
         });
     }
     return ( 
-    <>
+    <Layout header='Create Course Lesson'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <LessonForm lesson={{}} course={course._id} submitForm={handleAdd} />
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Create Course Lesson',CreateLesson)
+export default CreateLesson

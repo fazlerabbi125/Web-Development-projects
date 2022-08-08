@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams,useNavigate} from 'react-router-dom';
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import {useAxios,axInstance} from '../../hooks/useAxios'
 import {getTokens} from "../../utils/handleStorage";
 import useDebounce from '../../hooks/useDebounce';
@@ -53,7 +53,7 @@ function SetScore() {
         return true;
     });
     return (
-    <>
+    <Layout header='Manage Trainee Scores'>
         <BreadCrumb prev='Course Assessments' current='Manage Trainee Scores'/>
 
         {error && <h2 className="text-center text-danger">{error}</h2>}
@@ -120,8 +120,8 @@ function SetScore() {
         )}
         </>
     )}
-    </>
+    </Layout>
     )
 }
 
-export default withHoc('Manage Trainee Scores',SetScore)
+export default SetScore

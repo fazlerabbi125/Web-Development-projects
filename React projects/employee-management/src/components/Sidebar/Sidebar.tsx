@@ -10,10 +10,10 @@ function Sidebar({show,toggleSidebar}:SidebarPropTypes) {
   return (
     <nav className={show?`${styles.sidebar} ${styles['sidebar--show']}`:styles.sidebar}>
     <div className={styles.sidebar__container}>
-      <h1 className={styles.sidebar__container__heading}>
+      <div className={styles.sidebar__container__heading}>
       <span>EMS</span>
       <button onClick={()=>toggleSidebar(!show)} className="btn--close"></button>
-      </h1>
+      </div>
       <ul className={styles.sidebar__container__links}>
         <li><NavLink to="/" className={({ isActive }) =>(isActive ? `${styles.sidebar__container__links__item} ${styles['sidebar__container__links__item--active']}`: 
         styles.sidebar__container__links__item)}>

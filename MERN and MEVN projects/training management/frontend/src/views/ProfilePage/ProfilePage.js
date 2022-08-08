@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import defaultProfile from '../../assets/images/profile.jpg'
 import {useAxios,axInstance} from '../../hooks/useAxios';
 import {Link,useParams} from 'react-router-dom'
@@ -31,7 +31,7 @@ function ProfilePage() {
     }
 
     return (
-
+        <Layout header='User Profile'>
         <section>
         {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
         {error && <h2 className="text-center text-danger">{error}</h2>}
@@ -54,8 +54,8 @@ function ProfilePage() {
             </div>
         )}
         </section>
+        </Layout>
     )
 }
 
-const EnchancedComponent = withHoc('User Profile',ProfilePage)
-export default EnchancedComponent;
+export default ProfilePage;

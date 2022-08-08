@@ -91,5 +91,4 @@ function LoginPage() {
     )
 }
 
-const EnhancedComponent=withHOC("Sign in to your account",LoginPage);
-export default EnhancedComponent;
+export default withHOC("Sign in to your account",LoginPage);

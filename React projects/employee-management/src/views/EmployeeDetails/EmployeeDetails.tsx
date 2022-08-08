@@ -16,8 +16,8 @@ const EmployeeDetails = () => {
     
     return (
         <section>
-        {isLoading && <h2 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
-        {error && <h2 className="error">{error}</h2>}
+        {isLoading && <h1 className="loading">Loading <i className="fa fa-spinner fa-spin"></i></h1>}
+        {error && <h1 className="error">{error}</h1>}
         {!error && employee && <div className={`card ${styles['emp-detail']}`}>
             <div className={styles['emp-detail__options']}>
                 <Link to={`/employee/${employee.id}/edit`} className="btn btn--dark rounded-circle pt-2 pb-2" state={{ employee }}><i className="fa fa-pencil"></i></Link>

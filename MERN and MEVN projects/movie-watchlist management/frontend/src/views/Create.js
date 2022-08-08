@@ -1,4 +1,4 @@
-import ItemForm from "../components/ItemForm";
+import MovieForm from "../components/MovieForm";
 import withHOC from "../components/withHoc";
 import {axInstance} from '../hooks/useAxios';
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ const Create = () => {
                 'content-type': 'multipart/form-data',
                 'Authorization': `Bearer ${getTokens().accessToken}`
             }
-          })
+        })
             .then(function (response) {
                 if (!response.data.success) throw new Error(response.data.message);
                 setMessage("Your item has been added");
@@ -31,10 +31,9 @@ const Create = () => {
     return ( 
     <>
         {error && <h2 className="text-center text-danger">{error}</h2>}
-        <ItemForm item={{}} submitForm={handleAdd}/>
+        <MovieForm item={{}} submitForm={handleAdd}/>
     </> 
     );
 }
-const EnhancedComponent=withHOC("Add a movie/series to watchlist",Create);
 
-export default EnhancedComponent;
+export default withHOC("Add a movie/series to watchlist",Create);

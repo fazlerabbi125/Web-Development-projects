@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
+import { useForm,Controller } from "react-hook-form";
 import {useLocation,useNavigate} from 'react-router-dom';
 import {genres} from "../utils/constants"
+import Select from 'react-select'
 
 
-const ItemForm = ({item,submitForm}) => {
+const MovieForm = ({item,submitForm}) => {
     const navigate = useNavigate(); //hook for re-direct
     const dV={
         title:item.title||'',
@@ -17,12 +18,13 @@ const ItemForm = ({item,submitForm}) => {
         language:item.language||'',
         photoClear:false
     }
-    const { register, handleSubmit,formState:{errors} } = useForm({
+    const { register, handleSubmit,control,formState:{errors} } = useForm({
     defaultValues:dV
     });
 
 
     const onSubmit = (data) => {
+
         if (data.poster)data.poster=data.poster[0];
         if (data.photoClear){
             data.imgUrl="";
@@ -32,10 +34,10 @@ const ItemForm = ({item,submitForm}) => {
             if (str) return str+"|"+value;
             return str+value;
         },"")
-
         submitForm(data);
     }
     let location = useLocation();
+    const genreOptions = genres.map(value=>({value,label:value}));
     return ( 
         <>
             <form className="data mx-auto w-50 my-5 p-4" onSubmit={handleSubmit(onSubmit)}>
@@ -145,17 +147,36 @@ const ItemForm = ({item,submitForm}) => {
                 </div>                
                 </div>
                 {errors.poster && <div className="text-center text-danger fw-bolder">{errors.poster.message}</div>}    
-            </div>    
+            </div>
             <div className="mb-3">
             <div className="row justify-content-center ">
                 <div className="col-auto">
                     <label className="col-form-label">Genres:</label>
                 </div>
                 <div className="col-auto">
-                    <select className="form-select" multiple {...register("genre", {required: "Genre is required"})}>
-                        <option value="" disabled>Choose your genres</option>
-                        {genres.map(value=><option value={value} key={value}>{value}</option>)}
-                    </select>
+                    <Controller
+                        name="genre"
+                        render={({ field:{onChange,value,...rest} }) => (
+                        <Select
+                            {...rest}
+                            isMulti
+                            styles={{
+                                menu: (provided, state) => ({
+                                ...provided,
+                                color: "grey",
+                                }),
+                            }}
+                            placeholder="Choose your genres"
+                            closeMenuOnSelect={false}
+                            onChange={val=>onChange(val.map((g) => g.value))}
+                            value={genreOptions.filter((c) => value.includes(c.value))}
+                            options={genreOptions}
+                        />
+                        )}
+                        control={control}
+                        rules={{ required: "Genre is required" }}
+                        defaultValue=""
+                    />
                 </div>                
                 </div>
                 {errors.genre && <div className="text-center text-danger fw-bolder">{errors.genre.message}</div>}    
@@ -183,9 +204,7 @@ const ItemForm = ({item,submitForm}) => {
             </div>
             </form>
         </>
-
-
-     );
+    );
 }
- 
-export default ItemForm;
+
+export default MovieForm;

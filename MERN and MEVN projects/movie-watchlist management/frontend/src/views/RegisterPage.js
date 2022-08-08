@@ -101,5 +101,5 @@ function SignUpPage() {
     </div>
   );
 }
-const EnhancedComponent=withHOC("Create your account",SignUpPage);
-export default EnhancedComponent;
+
+export default withHOC("Create your account",SignUpPage);;

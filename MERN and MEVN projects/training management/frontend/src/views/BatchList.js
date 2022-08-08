@@ -1,11 +1,11 @@
 import React from 'react'
-import withHoc from '../utils/withHoc'
 import { axInstance } from '../hooks/useAxios';
 import {getTokens} from "../utils/handleStorage";
 import { useSelector } from 'react-redux'
 import paginationButtons from '../utils/paginationButtons'
 import DeleteModal from '../components/DeleteModal';
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 function BatchList() {
     const auth= useSelector((state) => state.authUser.userData);
@@ -54,7 +54,7 @@ function BatchList() {
         setModal({...modal,[id]:!modal[id]});
     }
     return (
-        <>    
+        <Layout header={'Batch List'}>    
         {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
         {error && <h2 className="text-center text-danger">{error}</h2>}
         {!isLoading && batchList && (
@@ -104,8 +104,8 @@ function BatchList() {
                 </ul>
             </nav>
             )} 
-        </>
+        </Layout>
     )
 }
 
-export default withHoc('Batch List',BatchList) ;
+export default BatchList ;

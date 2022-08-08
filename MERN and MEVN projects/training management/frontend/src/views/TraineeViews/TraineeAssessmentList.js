@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link,useParams } from "react-router-dom";
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import {useAxios} from '../../hooks/useAxios'
 import TraineeChart from '../../components/TraineeChart';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -10,7 +10,7 @@ function TraineeAssessmentList() {
     const {data:assessmentList, error, isLoading}=useAxios(`/trainee/${batchID}/${courseID}/get-assessmentList`);
     
     return (
-    <>
+    <Layout header={`Course Assessments`}>
     
     <BreadCrumb to={`/user/${batchID}/batch-details`} prev='Batch Details' current='Course Assessments'/>
 
@@ -41,9 +41,9 @@ function TraineeAssessmentList() {
         )}
             </>
         )}
-    </>
+    </Layout>
   )
 }
 
-export default withHoc(`Course Assessments`,TraineeAssessmentList)
+export default TraineeAssessmentList
 

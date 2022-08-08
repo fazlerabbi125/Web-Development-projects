@@ -69,8 +69,7 @@ button, a, span, input,label {
 
 
 .guest{
-    @include addFlex($direction:column,$jc:center,$ai:stretch);
-    gap:3rem;
+    margin:3rem auto;
     &__header{
         background-color:map-get($map: $colors, $key:"deep-blue");
         color:#FFFFFF;

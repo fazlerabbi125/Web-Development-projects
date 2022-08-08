@@ -275,13 +275,6 @@ button, input, span {
   width: 100%;
 }
 
-.banner {
-  text-align: center;
-  background-color: rgb(240, 240, 240);
-  margin-top: 0;
-  padding: 1rem;
-}
-
 .loading {
   color: white;
   text-align: center;
@@ -304,33 +297,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.search-form {
-  margin: 3% auto;
-  background-color: white;
-  border: 0.3rem solid gainsboro;
-  text-align: center;
-  padding: 2rem;
-  width: 65%;
-}
-.search-form > input[type=text]:focus {
-  border: 3px solid aqua;
-  outline: none;
-}
-
 .emp-form {
   text-align: center;
-  margin: 5rem auto;
+  margin: 1rem auto 3rem;
   background-color: white;
   border: 0.3rem solid gainsboro;
   text-align: center;
-  padding: 2rem;
+  padding: 0.25rem 2rem 2rem;
   width: 50%;
   line-height: 2.5em;
-}
-.emp-form button {
-  display: inline-block;
-  margin-right: 0.5rem;
-  padding: 0.5rem 0.75rem;
 }
 .emp-form label {
   font-weight: 500;

@@ -1,0 +1,15 @@
+.search-form {
+  margin: 4rem auto;
+  background-color: white;
+  border: 0.3rem solid gainsboro;
+  text-align: center;
+  padding: 0.25rem 2rem 2rem;
+  width: 65%;
+}
+.search-form > input[type=search] {
+  padding: 0.75rem 2rem;
+}
+.search-form > input[type=search]:focus {
+  border: 3px solid rgb(45, 240, 180);
+  outline: none;
+}/*# sourceMappingURL=SearchForm.module.css.map */

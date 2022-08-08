@@ -1,10 +1,11 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import './Home.css'
 // import trainingImage from '../../assets/images/the-value-of-employee-training.jpg'
 
 const Home = () => {
     return (
+    <Layout>
     <section className='home'>
         <div>
             <img src="https://elearningindustry.com/wp-content/uploads/2019/12/the-value-of-employee-training.jpg" alt="training" className='home__img'/>
@@ -14,7 +15,8 @@ const Home = () => {
             <p>JCIT places great emphasis on developing the best available talent. Participate in your assigned batch courses today to develop your skills and professional career.</p>
         </div>
     </section>
+    </Layout>
     )
 }
 
-export default withHoc('JCIT Academy',Home)
+export default Home

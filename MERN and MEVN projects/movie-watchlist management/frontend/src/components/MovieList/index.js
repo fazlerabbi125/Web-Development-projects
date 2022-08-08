@@ -1,36 +1,39 @@
 import { useNavigate,Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useState,useEffect,useContext} from "react";
-import styles from "./List.module.css"
+import styles from "./MovieList.module.css"
 import poster from "../../assets/poster-not-available.jpg"
 import {axInstance}  from "../../hooks/useAxios"
 import { useSelector, useDispatch } from 'react-redux'
 import {fetchList} from '../../store/features/watchlistSlice'
 import MessageContext from "../../contexts/MessageContext";
 import {getTokens} from "../../utils/handleStorage";
+import SearchForm from "../SearchForm";
+import useDebounce from "../../hooks/useDebounce"
 
-const List = ({data,query}) => {
+const MovieList = ({data,query,setQuery}) => {
     const navigate = useNavigate();
     const {setMessage}=useContext(MessageContext);
     const auth= useSelector((state) => state.authUser.userData);
+    const debounceValue= useDebounce(query.search);
+
+    function handleQuery(event){
+      const name = event.target.name;
+      const value = event.target.value;
+      setQuery(values => ({...values, [name]: value}))
+    }
 
     const dispatch = useDispatch();
     const {data:watchlist} = useSelector((state) => state.userWatchlist)
 
     useEffect(() => {
       if (auth)dispatch(fetchList());
-    },[auth])
-    
+    },[auth,dispatch])
+  
   let filteredList=data.filter(employee=>{
-      if (query.filter==='year' && query.search) return employee['year']===Number(query.search);
-      // else if(status.map(i=>i.val).includes(query.filter)){
-      //     return employee['status']===query.filter;
-      // }
-      // <div><span className="item-property">Status:</span> <span 
-      //           style={{color:(status.filter(i=>i.val===item.status))[0].color}}>{item.status}</span></div>
-              
-      else if (query.filter==='title' && query.search) return employee['title'].toLowerCase().includes(query.search.toLowerCase());
-      else if (query.filter==='genre' && query.search) return employee['genre'].toLowerCase().includes(query.search.toLowerCase());
+      if (query.filter==='year' && debounceValue) return employee['year']===Number(debounceValue);        
+      else if (query.filter==='title' && debounceValue) return employee['title'].toLowerCase().includes(debounceValue.toLowerCase());
+      else if (query.filter==='genre' && debounceValue) return employee['genre'].toLowerCase().includes(debounceValue.toLowerCase());
       return true;
   });
 
@@ -73,6 +76,7 @@ const List = ({data,query}) => {
   }
     return ( 
     <>
+    <SearchForm query={query} handleQuery={handleQuery} />
     <h2 style={{display: filteredList.length===0? "block": "none"}} className="text-center mt-4"> No match found</h2>
     {filteredList && filteredList.length>0 && (<div className="card mx-auto w-75 my-5 data">
         <ul className="list-group list-group-flush">
@@ -95,7 +99,7 @@ const List = ({data,query}) => {
                 </div>
               </div>
             </li>
-         ))} 
+        ))} 
         </ul>
     </div>)}
     <div className="mb-5">
@@ -120,12 +124,4 @@ const List = ({data,query}) => {
         );
 }
 
-/* <div onClick={()=>handleClick(item.id)}>
-                <h3>{item.title} </h3>
-                <div><span className="item-property">Genre:</span> {item.genre}</div>
-                <div><span className="item-property">Release year:</span> {item.year}</div>
-                <div><span className="item-property">Status:</span> <span 
-                style={{color:(status.filter(i=>i.val===item.status))[0].color}}>{item.status}</span></div>
-                </div>
-                </li> */
-export default List;
+export default MovieList;

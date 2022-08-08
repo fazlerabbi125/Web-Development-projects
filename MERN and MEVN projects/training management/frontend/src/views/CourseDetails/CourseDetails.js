@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import { useSelector} from 'react-redux'
 import {useParams,Link} from 'react-router-dom'
 import {useAxios} from '../../hooks/useAxios'
@@ -16,7 +16,7 @@ function CourseDetails() {
         setModal({...modal,[id]:!modal[id]});
     }
     return (
-        <>
+        <Layout header={'Course Details'}>
         {auth.role==="trainee" && <BreadCrumb prev='Batch Details' current='Course Details'/>}
 
             {isLoading && <h2 className="text-center">Loading <i className="fa fa-spinner fa-spin"></i></h2>}
@@ -102,8 +102,8 @@ function CourseDetails() {
                     {/* <DeleteModal/> */}
                 </section>
             )}
-        </>
+        </Layout>
     );
 }
 
-export default withHoc('Course Details',CourseDetails)
+export default CourseDetails

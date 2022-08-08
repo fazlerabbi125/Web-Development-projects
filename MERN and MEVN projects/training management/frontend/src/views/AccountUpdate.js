@@ -1,13 +1,14 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import withHoc from '../utils/withHoc'
 import { useLocation,useNavigate,useParams } from "react-router-dom";
 import { axInstance } from '../hooks/useAxios';
 import MessageContext from "../contexts/MessageContext";
 import { useDispatch } from 'react-redux'
 import { updateCredentials } from '../store/features/userSlice';
+import Layout from '../components/Layout';
 
 function AccountUpdate() {
+
     const dispatch=useDispatch();
     const {state} = useLocation();
     const navigate = useNavigate();
@@ -54,6 +55,7 @@ function AccountUpdate() {
     }
     
     return (
+    <Layout header='Update Your Profile'>
     <section className='card authForm'>
         <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
@@ -132,7 +134,7 @@ function AccountUpdate() {
         </div>
         </form>
     </section>
+    </Layout>
     )
 }
-const EnchancedComponent = withHoc('Update Your Profile',AccountUpdate)
-export default EnchancedComponent;
+export default AccountUpdate;

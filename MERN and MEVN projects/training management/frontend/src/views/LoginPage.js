@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import MessageContext from "../contexts/MessageContext";
 import { useDispatch } from 'react-redux'
 import {signinUser} from '../store/features/userSlice'
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
 
 function LoginPage() {
     const [inputs, setInputs] = useState({});
@@ -44,38 +43,36 @@ function LoginPage() {
             });
     }
     return (
-        <>
-            <section className='guest'>
-            <Header/>
-            <form onSubmit={loginHandler} className="guest__form">
-                <h1 className="guest__form__heading">Sign in to your account </h1>
-            {error && <h4 className="text-danger">{error}</h4>}
-                <div className="mb-3 row justify-content-center">
-                    <label className="col-auto col-form-label">Email</label>
-                    <div className="col-auto">
-                        <input className="form-control" type="email"
-                        name="email"
-                        required
-                        onChange={handleChange}/>
-                    </div>
+    <Layout>
+        <section className='guest'>
+        <form onSubmit={loginHandler} className="guest__form">
+            <h1 className="guest__form__heading">Sign in to your account </h1>
+        {error && <h4 className="text-danger">{error}</h4>}
+            <div className="mb-3 row justify-content-center">
+                <label className="col-auto col-form-label">Email</label>
+                <div className="col-auto">
+                    <input className="form-control" type="email"
+                    name="email"
+                    required
+                    onChange={handleChange}/>
                 </div>
-                <div className="mb-3 row justify-content-center">
-                    <label className="col-auto col-form-label">Password</label>
-                    <div className="col-auto">
-                        <input className="form-control" type="password"
-                        name="password"
-                        required
-                        onChange={handleChange}/>
-                    </div>
+            </div>
+            <div className="mb-3 row justify-content-center">
+                <label className="col-auto col-form-label">Password</label>
+                <div className="col-auto">
+                    <input className="form-control" type="password"
+                    name="password"
+                    required
+                    onChange={handleChange}/>
                 </div>
-                <p>
-                    <button className="btn btn-dark" type="submit">Login</button>
-                </p>
-                <div><Link to="/forgot-password" className="link-light">Forgot password?</Link></div>
-            </form>
-            </section>
-        <Footer/>
-        </>
+            </div>
+            <p>
+                <button className="btn btn-dark" type="submit">Login</button>
+            </p>
+            <div><Link to="/forgot-password" className="link-light">Forgot password?</Link></div>
+        </form>
+        </section>
+    </Layout>
     )
 }
 

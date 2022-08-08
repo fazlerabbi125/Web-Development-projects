@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout';
 import { useSelector, useDispatch } from 'react-redux'
 import {fetchCourseList} from '../../store/features/courseListSlice'
 import paginationButtons from '../../utils/paginationButtons'
@@ -22,10 +22,12 @@ function AdminCourseList() {
     const pageBtns=paginationButtons(page,size,itemsPerPage,setPage);
 
     return (
+        <Layout header={'Available Courses'}>
         <CourseList isLoading={isLoading} error={error} courseList={courselist} title={title} 
         setTitle={setTitle} size={size} pageBtns={pageBtns}/>
+        </Layout>
 
     )
 }
 
-export default withHoc('Available Courses',AdminCourseList);
+export default AdminCourseList;

@@ -13,9 +13,9 @@ const validator = {
             .isLength({min:3}).withMessage('Title Must be at least 3 characters')
             .custom(value => {
                 return Movie.findOne({title: value}).then(movie => {
-                  if (movie) return Promise.reject('Title already in use');
+                if (movie) return Promise.reject('Title already in use');
                 });
-              })
+            })
             ,
         body('genre').trim()
             .notEmpty().withMessage('genre is required')

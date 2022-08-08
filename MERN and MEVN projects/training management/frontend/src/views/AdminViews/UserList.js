@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import paginationButtons from '../../utils/paginationButtons'
 import defaultProfile from '../../assets/images/profile.jpg'
 import { useSelector, useDispatch } from 'react-redux'
@@ -29,7 +29,7 @@ function UserList() {
     
     
     return (
-    <>
+    <Layout header='Training Users'>
         <div className="w-25 mx-auto mb-5">
             <select className="form-select" value={type} onChange={(e)=>setType(e.target.value)}>
                 <option value="">All Employees</option>
@@ -89,8 +89,8 @@ function UserList() {
             )}
         </section>
         )}
-    </>
+    </Layout>
     )
 }
-const EnchancedComponent=withHoc('Training Users',UserList);
-export default EnchancedComponent;
+
+export default UserList;

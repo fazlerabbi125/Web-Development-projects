@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useLocation } from "react-router-dom";
@@ -31,11 +31,11 @@ function EditCourse() {
       }
     }
     return ( 
-    <>
+    <Layout header='Edit Training Course'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <CourseForm course={course} submitForm={handleEdit} mode="edit"/>
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Edit Training Course',EditCourse)
+export default EditCourse

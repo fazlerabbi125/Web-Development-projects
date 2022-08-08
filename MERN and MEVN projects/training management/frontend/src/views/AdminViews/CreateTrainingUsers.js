@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate } from "react-router-dom";
@@ -30,12 +30,11 @@ function CreateTrainingUsers() {
         });
     }
     return ( 
-    <>
+    <Layout header='Create Employee Profile'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <UserManagementForm user={{}} submitForm={handleAdd} mode="create"/>
-    </> 
+    </Layout> 
     );
 }
 
-const EnchancedComponent = withHoc('Create Employee Profile',CreateTrainingUsers)
-export default EnchancedComponent;
+export default CreateTrainingUsers;

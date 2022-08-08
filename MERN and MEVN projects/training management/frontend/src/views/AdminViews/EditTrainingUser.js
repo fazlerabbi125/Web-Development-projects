@@ -1,5 +1,5 @@
 import React from 'react'
-import withHoc from '../../utils/withHoc'
+import Layout from '../../components/Layout'
 import { axInstance } from '../../hooks/useAxios';
 import {getTokens} from "../../utils/handleStorage";
 import { useNavigate,useLocation,useParams } from "react-router-dom";
@@ -31,11 +31,11 @@ const EditTrainingUser = () => {
         });
     }
     return ( 
-    <>
+    <Layout header='Edit Employee Profile'>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <UserManagementForm user={state.user} submitForm={handleEdit} mode="edit"/>
-    </> 
+    </Layout> 
     );
 }
 
-export default withHoc('Edit Employee Profile',EditTrainingUser);
+export default EditTrainingUser;
