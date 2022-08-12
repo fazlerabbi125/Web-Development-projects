@@ -55,18 +55,18 @@ function LoginPage() {
             <div className="p-4">
                 {error && <h4 className="text-danger">{error}</h4>}
             <form onSubmit={loginHandler} >
-                <div className="mb-3 row justify-content-center">
-                    <label className="col-sm-3 col-auto col-form-label">Email:</label>
-                    <div className="col-auto">
+                <div className="mb-3 d-flex gap-4 justify-content-center align-items-center">
+                    <label className="form-label">Email:</label>
+                    <div>
                         <input className="form-control" type="email"
                         name="email"
                         required
                         onChange={handleChange}/>
                     </div>
                 </div>
-                <div className="mb-3 row justify-content-center">
-                    <label className="col-sm-3 col-auto col-form-label">Password:</label>
-                    <div className="col-auto">
+                <div className="mb-3 d-flex gap-4 justify-content-center align-items-center">
+                    <label className="form-label">Password:</label>
+                    <div>
                         <input className="form-control" type="password"
                         name="password"
                         required

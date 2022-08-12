@@ -1,17 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Formik,ErrorMessage} from 'formik';
+import { EmployeeFormInterface } from "../utils/interfaces";
 
-// interface employeeInterface {
-//   name: any;
-//   phone: any;
-//   email: any;
-//   address: any;
-//   date_of_birth: any;
-//   role: any;
-//   dept: any;
-//   gender: any;
-// }
-const EmployeeForm = (props:any) => {
+const EmployeeForm = (props:EmployeeFormInterface) => {
   const navigate = useNavigate(); //hook for re-direct
 
     return (

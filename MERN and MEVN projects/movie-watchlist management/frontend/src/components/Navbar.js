@@ -49,7 +49,8 @@ const Navbar = () => {
           </NavLink>
         </li>
         )}
-        {auth  && (
+
+        {auth  && !auth.isAdmin && (
         <li className="nav-item">
         <NavLink
             to="/watchlist"
@@ -106,7 +107,7 @@ const Navbar = () => {
     </div>
   </div>
 </nav>
-     );
+    );
 }
- 
+
 export default Navbar;

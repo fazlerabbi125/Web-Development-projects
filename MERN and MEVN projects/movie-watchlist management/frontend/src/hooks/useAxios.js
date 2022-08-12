@@ -50,7 +50,7 @@ function (error) { //For renewing tokens
 //   return error;
 // });
 
-const useAxios = (url) => {
+const useAxios = (url,timeout=1000) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -58,9 +58,9 @@ const useAxios = (url) => {
     const fetchData = async ()=>{
       try {
         let response= await axInstance.get(url);
-        if (!response.data.success) throw new Error(response.data.message);
+        if (!response?.data.success) throw new Error(response.data.message);
         setData(response.data.results);
-        //console.log(response.data.results);
+
         setIsLoading(false);
         setError(null);
       } catch (err) {
@@ -70,9 +70,9 @@ const useAxios = (url) => {
     }
 
     useEffect(() => {
-      let t=setTimeout(() =>fetchData(),1000)
+      let t=setTimeout(() =>fetchData(),timeout)
       return ()=>clearTimeout(t)
-    }, [url]);
+    }, [url,timeout]);
 
     // custom hook returns value
     return { data, error, isLoading };

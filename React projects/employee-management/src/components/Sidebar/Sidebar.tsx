@@ -1,10 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css'
+import { SidebarPropTypes } from '../../utils/interfaces';
 
-interface SidebarPropTypes {
-    show:boolean,
-    toggleSidebar:(show:boolean)=>void;
-}
 
 function Sidebar({show,toggleSidebar}:SidebarPropTypes) {
   return (

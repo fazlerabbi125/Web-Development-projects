@@ -1,10 +1,7 @@
 import React from 'react'
 import styles from "./Header.module.css";
+import { HeaderProps } from '../../utils/interfaces';
 
-interface HeaderProps{
-    show: boolean;
-    setShow:(show:boolean) => void;
-}
 
 const Header: React.FC<HeaderProps> = (props): JSX.Element => {
     return (

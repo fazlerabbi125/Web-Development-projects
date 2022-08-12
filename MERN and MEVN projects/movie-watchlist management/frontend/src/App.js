@@ -9,6 +9,7 @@ import { useState} from "react";
 import MessageContext from "./contexts/MessageContext";
 import ProtectedRoutes from "./components/custom_routes/ProtectedRoutes";
 import AdminRoutes from "./components/custom_routes/AdminRoutes";
+import NormalUserRoute from "./components/custom_routes/NormalUserRoute";
 import GuestRoutes from "./components/custom_routes/GuestRoutes";
 import ResetPassword from "./views/ResetPassword";
 import ForgetPasswordPage from "./views/ForgetPasswordPage";
@@ -23,13 +24,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/movie-series/:id" element={<Details />} />
+        
         <Route element={<ProtectedRoutes/>}>
-          <Route path="/watchlist" element={<UserWatchList />} />
+          <Route element={<NormalUserRoute/>} >
+            <Route path="/watchlist" element={<UserWatchList />} />
+          </Route>
+          <Route element={<AdminRoutes/>}>
+              <Route path="/movie-series/create" element={<Create />} />
+              <Route path="/movie-series/:id/edit" element={<Edit />} />
+          </Route>
         </Route>
-        <Route element={<AdminRoutes/>}>
-            <Route path="/movie-series/create" element={<Create />} />
-            <Route path="/movie-series/:id/edit" element={<Edit />} />
-        </Route>
+
         <Route element={<GuestRoutes/>}>
           <Route path="/forgot-password" element={<ForgetPasswordPage />} />
           <Route path="/reset-password/:token/:id" element={<ResetPassword />} />

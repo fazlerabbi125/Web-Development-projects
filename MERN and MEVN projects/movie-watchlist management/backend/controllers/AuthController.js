@@ -11,7 +11,6 @@ const sendMail = require('../mail/config');
 const ejs = require('ejs');
 const path = require('path');
 const ejsRenderFile = promisify(ejs.renderFile);
-const Token = require('../models/Token')
 
 class AuthController {
     
@@ -27,8 +26,11 @@ class AuthController {
             const user = new User({name,email,password,isAdmin,emailVerificationToken});
             await user.save();
 
-            const userlist = new WatchList({userId: user._id, movies: []});
-            await userlist.save();
+            if (!isAdmin){
+                const userlist = new WatchList({userId: user._id, movies: []});
+                await userlist.save();
+            }
+            
             
             const userData = {
                 _id: user._id,
@@ -36,11 +38,12 @@ class AuthController {
                 email: user.email,
                 isAdmin: user.isAdmin,
             };
+            
             const access_token = jwt.sign(userData, process.env.JWT_SECRET_KEY, {expiresIn: process.env.JWT_EXPIRATION});
             const refresh_token = jwt.sign(userData, process.env.REFRESH_KEY, {expiresIn: '7d'});
             
-            const jwtRefresh= new Token({ refreshToken: refresh_token });
-            await jwtRefresh.save();
+            user.refreshToken= refresh_token;
+            await user.save();
 
             const resData = {
                 access_token,
@@ -94,8 +97,8 @@ class AuthController {
             const access_token = jwt.sign(userData, process.env.JWT_SECRET_KEY, {expiresIn: process.env.JWT_EXPIRATION});
             const refresh_token = jwt.sign(userData, process.env.REFRESH_KEY, {expiresIn: '7d'});
             
-            const jwtRefresh= new Token({ refreshToken: refresh_token });
-            await jwtRefresh.save();
+            user.refreshToken= refresh_token;
+            await user.save();
 
             const resData = {
                 access_token,
@@ -218,7 +221,7 @@ class AuthController {
             }
             const oldRefreshToken=req.body.token;
             
-            const foundToken= await Token.findOne({refreshToken:oldRefreshToken});
+            const foundToken= await User.findOne({refreshToken:oldRefreshToken});
             if (!foundToken){
                 return res.status(HTTP_STATUS.FORBIDDEN).send(failure('Invalid Token!'));
             }
@@ -259,7 +262,9 @@ class AuthController {
             }
             const token=req.body.token;
             //console.log(token);
-            await Token.findOneAndDelete({refreshToken:token}).exec();
+            const user=await User.findOne({refreshToken:token}).exec();
+            user.refreshToken=undefined;
+            await user.save();
             return res.status(HTTP_STATUS.OK).send(success('Refresh token successfully deleted!'));
         } catch (error) {
             console.log(error);

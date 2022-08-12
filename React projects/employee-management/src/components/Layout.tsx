@@ -4,10 +4,8 @@ import Footer from './Footer/Footer'
 import {MessageContext} from '../contexts/MessageContext'
 import Toast from './Toast/Toast'
 import Sidebar from './Sidebar/Sidebar'
+import { LayoutProps } from '../utils/interfaces'
 
-interface LayoutProps {
-    children: React.ReactNode
-}
 
 function Layout({children}:LayoutProps) {
     const [message, setMessage]= React.useState<string>('');

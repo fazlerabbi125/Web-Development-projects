@@ -10,13 +10,13 @@ router.get('/',MovieController.getAll);
 
 router.get('/movie-details/:id',MovieController.getMovie);//was previously /employee/:id
 
-router.post('/add-to-list',auth.checkAuth,validator.watchList,MovieController.postWatchList);
+router.post('/add-to-list',auth.checkAuth,auth.isNormalUser,validator.watchList,MovieController.postWatchList);
 
-router.delete('/delete-from-list/:listItemID',auth.checkAuth,MovieController.deleteMovieFromWatchList);
+router.delete('/delete-from-list/:listItemID',auth.checkAuth,auth.isNormalUser,MovieController.deleteMovieFromWatchList);
 
-router.get('/get-list',auth.checkAuth,MovieController.getWatchList);
+router.get('/get-list',auth.checkAuth,auth.isNormalUser,MovieController.getWatchList);
 
-router.put('/change-status/:listItemID',auth.checkAuth,validator.status,MovieController.putChangeStatus);
+router.put('/change-status/:listItemID',auth.checkAuth,auth.isNormalUser,validator.status,MovieController.putChangeStatus);
 
 
 module.exports =router;

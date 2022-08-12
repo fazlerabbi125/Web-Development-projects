@@ -6,7 +6,7 @@ const axInstance = axios.create({
 });
 
 const useAxios = (url:string, timeout:number = 1000) => {
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<any|any[]>(null);
     const [error, setError] = useState<string|null>(null);
     const [isLoading, setIsLoading] = useState(true);
     

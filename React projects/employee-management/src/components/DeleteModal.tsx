@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import {axInstance} from '../hooks/useAxios';
 import {useRef,useContext} from 'react'
 import { MessageContext,MessageType } from "../contexts/MessageContext";
+import { DeleteModalInterface } from "../utils/interfaces";
 
-const DeleteModal = (props:any) => {
+const DeleteModal = (props:DeleteModalInterface) => {
     const navigate = useNavigate();
     const {setMessage}=useContext(MessageContext) as MessageType;
     const selectedModal = useRef<HTMLDivElement|null>(null);

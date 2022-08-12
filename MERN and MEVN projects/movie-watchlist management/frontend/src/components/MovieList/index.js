@@ -27,7 +27,7 @@ const MovieList = ({data,query,setQuery}) => {
     const {data:watchlist} = useSelector((state) => state.userWatchlist)
 
     useEffect(() => {
-      if (auth)dispatch(fetchList());
+      if (auth && !auth.isAdmin)dispatch(fetchList());
     },[auth,dispatch])
   
   let filteredList=data.filter(employee=>{
@@ -89,7 +89,7 @@ const MovieList = ({data,query,setQuery}) => {
                   <div><span className="data__property--muted">Genre:</span> {item.genre}</div>
                   <div><span className="data__property--muted">Release year:</span> {item.year}</div>
                   <div className="my-1"><Link to={`/movie-series/${item._id}`} className="btn btn-dark">View Details</Link></div>
-                  {auth && (<div>
+                  {auth && !auth.isAdmin && (<div>
                     {watchlist.find((elem)=>elem.movie._id===item._id)?(
                         <button className="btn btn-warning" onClick={()=>handleList(item._id,true)}>Remove from WatchList
                         </button>):<button className="btn btn-success" onClick={()=>handleList(item._id,false)}>

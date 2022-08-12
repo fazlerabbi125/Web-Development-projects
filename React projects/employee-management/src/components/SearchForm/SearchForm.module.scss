@@ -10,7 +10,8 @@
     padding: 0.25rem 2rem 2rem;
     width: 65%;
     > input[type=search]{
-      padding: 0.75rem 2rem;
+      width: 35%;
+      height: 2.25rem;
       &:focus {
         border: 3px solid rgb(45, 240, 180);
         outline: none;
