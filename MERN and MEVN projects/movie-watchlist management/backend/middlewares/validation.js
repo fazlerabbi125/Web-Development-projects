@@ -4,7 +4,7 @@ const Movie= require('../models/Movie');
 const User= require('../models/User');
 const validate=require('validator');
 
-
+//All body properties are received as strings
 const validator = {
     createMovie: [
         body('title').trim()
