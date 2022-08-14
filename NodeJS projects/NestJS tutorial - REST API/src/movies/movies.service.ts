@@ -3,16 +3,18 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Movie, MovieDocument } from '../schemas/movie.schema';
+import {MovieDocument} from '../schemas/movie.schema';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Express } from 'express';
 
 @Injectable()
 export class MoviesService {
-  constructor(@InjectModel(Movie.name) private movieModel: Model<MovieDocument>) {}
-  
-  async create(body: CreateMovieDto,file: Express.Multer.File):Promise<Movie> {
+  // @InjectModel injects DB model into variable. It takes the string of the model name used in the module as parameter
+  // The string of the model name can be passed directly or by importing the modelSchemaClass and using modelSchemaClass.name
+  constructor(@InjectModel("Movie") private readonly movieModel: Model<MovieDocument>) {}
+
+  async create(body: CreateMovieDto,file: Express.Multer.File):Promise<MovieDocument> {
     const {title,genre,year,rating,description,country,language}=body;
     const imgUrl = file?process.env.BACKEND_URI+'/uploads/'+file.filename:"";
     const movie = new this.movieModel({title,genre,year,imgUrl,rating,description,country,language});
@@ -20,15 +22,15 @@ export class MoviesService {
     return movie;
   }
 
-  async findAll(): Promise<Movie[]> {
+  async findAll(): Promise<MovieDocument[]> {
     return this.movieModel.find().exec();
   }
 
-  async findOne(field:string,value):Promise<Movie> {
+  async findOne(field,value):Promise<MovieDocument> {
     return this.movieModel.findOne({[field]:value}).exec();
   }
 
-  async update(id: string, body: UpdateMovieDto,file:Express.Multer.File):Promise<Movie> {
+  async update(id: string, body: UpdateMovieDto,file:Express.Multer.File):Promise<MovieDocument> {
     
     const {title,genre,year,imgUrl,rating,description,country,language} = body;
     const updatedMovie = await this.movieModel.findById(id).exec();
@@ -59,7 +61,7 @@ export class MoviesService {
     return updatedMovie;
   }
 
-  async remove(id: string):Promise<Movie> {
+  async remove(id: string):Promise<MovieDocument> {
     const movie=await this.movieModel.findByIdAndDelete(id).exec();
     return movie;
   }
