@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,Res, HttpStatus,Next } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Res, HttpStatus,Next,BadRequestException } from '@nestjs/common';
 import { Response,NextFunction } from 'express';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
@@ -48,7 +48,7 @@ export class AuthController {
   @Post('/login')
   async login(@Body() body: LoginDto,@Res() res:Response) {
     const user:any = await this.authService.validateUser(body);
-    if (!user) res.status(HttpStatus.OK).send(failureResponse('User not found',user));
+    if (!user) throw new BadRequestException('User not found');
     const userData = {
         _id: user._id,
         name: user.name,
