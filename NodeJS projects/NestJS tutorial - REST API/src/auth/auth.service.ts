@@ -2,17 +2,19 @@ import { Injectable, LogLevel } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { LoginDto } from './dto/login.dto';
-import { User, UserModel } from 'src/schemas/user.schema'; 
+import { UserDocument,User,UserModel } from 'src/schemas/user.schema'; 
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: UserModel) {}
-  async create(body: CreateAuthDto) {
+  
+  constructor(@InjectModel(User.name) private readonly userModel: UserModel) {}
+
+  async create(body: CreateAuthDto):Promise<UserDocument> {
     const {name,email,isAdmin} = body;
     const password = await bcrypt.hash(body.password, 10);
-    const user = new this.userModel({name,email,password,isAdmin});
+    const user:UserDocument = new this.userModel({name,email,password,isAdmin});
     await user.save();
     return user;
   }
@@ -21,9 +23,9 @@ export class AuthService {
     return `This action returns all auth`;
   }
 
-  async validateUser(body:LoginDto):Promise<User|null>{
+  async validateUser(body:LoginDto):Promise<UserDocument|null|undefined>{
     const {email,password}= body;
-    const user = await this.userModel.login(email,password);
+    const user:UserDocument|null|undefined = await this.userModel.login(email,password);
     // if (user) {
     //     const passMatch = await bcrypt.compare(body.password, user.password);
     //     if (passMatch) return user;
