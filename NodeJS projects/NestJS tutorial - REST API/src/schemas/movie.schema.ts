@@ -33,6 +33,7 @@ export class Movie {
   language: string;
 }
 
+// & joins the _id property provided by Document and the properties provided by Movie 
 export type MovieDocument = Movie & Document;
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
