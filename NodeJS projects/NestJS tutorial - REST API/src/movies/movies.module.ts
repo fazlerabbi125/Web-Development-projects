@@ -9,7 +9,8 @@ import { RequestContextModule } from 'nestjs-request-context';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
+    MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),//registers models to be used.
+    //The name property is a string of the model name which can either be passed directly or by importing the modelSchemaClass and using modelSchemaClass.name
     JwtModule.register({}),
     RequestContextModule
   ],
