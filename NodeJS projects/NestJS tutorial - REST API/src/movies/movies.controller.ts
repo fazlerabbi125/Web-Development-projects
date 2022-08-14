@@ -17,15 +17,15 @@ import {FileInterceptor} from '@nestjs/platform-express'
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { Response,Express,Request} from 'express';
-import { MovieInterface } from 'src/utils/interfaces';
+import { Response,Request,Express } from 'express';
 import { diskStorage } from 'multer'
 import * as path from 'path';
 import {successResponse,failureResponse} from '../utils/helpers'
 import { AuthGuard } from 'src/guards/authentication.guard';
+import {MovieDocument} from '../schemas/movie.schema';
 
 const fileStorage = diskStorage({
-  destination: (req:Request, file:Express.Multer.File, cb: (error: Error, destination: string) => void) => {
+  destination: (req:Request, file:Express.Multer.File, cb:(error:Error,destination:string) => void) => {
       if (file) {
           cb(null, path.join(__dirname,'..', '..','uploads'));
       } 
@@ -65,19 +65,19 @@ export class MoviesController {
   @Post('create')
   @UseInterceptors(FileInterceptor('poster',upload))
   async create(@Body() createMovieDto: CreateMovieDto,@Res() res:Response, @UploadedFile() file: Express.Multer.File|undefined) {
-    const movie:MovieInterface= await this.moviesService.create(createMovieDto,file);
+    const movie:MovieDocument= await this.moviesService.create(createMovieDto,file);
     return res.status(HttpStatus.OK).send(successResponse('Movie added successfully',movie));
   }
 
   @Get()
   async findAll(@Res() res:Response) {
-    const movies:MovieInterface[]= await this.moviesService.findAll();
+    const movies:MovieDocument[]= await this.moviesService.findAll();
     return res.status(HttpStatus.OK).send(successResponse('All movies fetched successfully',movies));
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string,@Res() res:Response) {
-    const movie:MovieInterface|undefined|null= await this.moviesService.findOne('_id',id);
+    const movie:MovieDocument|undefined|null= await this.moviesService.findOne('_id',id);
     if (!movie) res.status(HttpStatus.BAD_REQUEST).send(failureResponse('Movie not found'));
     return res.status(HttpStatus.OK).send(successResponse('Movie fetched successfully',movie));
   }
@@ -86,14 +86,14 @@ export class MoviesController {
   @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('poster',upload))
   async update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto,@Res() res:Response,@UploadedFile() file: Express.Multer.File|undefined) {
-    const movie:MovieInterface|undefined|null= await this.moviesService.update(id, updateMovieDto,file);
+    const movie:MovieDocument|undefined|null= await this.moviesService.update(id, updateMovieDto,file);
     if (!movie) res.status(HttpStatus.BAD_REQUEST).send(failureResponse('Movie not found'));
     return res.status(HttpStatus.OK).send(successResponse('Movie updated successfully',movie));
   }
 
   @Delete(':id/delete')
   async remove(@Param('id') id: string,@Res() res:Response) {
-    const movie:MovieInterface|undefined|null= await this.moviesService.remove(id);
+    const movie:MovieDocument|undefined|null= await this.moviesService.remove(id);
     if (!movie) res.status(HttpStatus.BAD_REQUEST).send(failureResponse('Movie not found'));
     return res.status(HttpStatus.OK).send(successResponse('Movie deleted successfully',movie));
   }
