@@ -53,19 +53,29 @@ The “extended” syntax allows for rich objects and arrays to be encoded into 
 app.use(express.json());/*Middleware for taking JSON data passed via requests
 and parsing it to convert them into a JS object available via the request object. Typically used for REST API*/
 
-//Creating sessions
+//Creating a store for sessions in the database
 const store = new MongoDBStore({
     uri: dbURI,
     collection: 'mySessions'
 });
 
-app.use(session({
-    secret: '8da825aa143b22493ad1914fdeceab4d9e01e3421b22d27cac0366eaa43c8bcf',//key generated using require('crypto').randomBytes(32).toString('hex')
-    resave: false,
-    saveUninitialized: false,
-    store: store
-}))
+//Session ID cookie is by default HTTP-only and session data is not saved in the cookie itself but is stored server-side. Use req.session to store or access session data. 
+//For more info, visit: https://expressjs.com/en/resources/middleware/session.html
 
+app.use(session({ //Create a session middleware with the given options
+    secret: '8da825aa143b22493ad1914fdeceab4d9e01e3421b22d27cac0366eaa43c8bcf',//This is the secret used to sign the session ID cookie. This key has been generated using require('crypto').randomBytes(32).toString('hex')
+    resave: false,/* Forces the session to be saved back to the session store, even if the session was never modified during the request. 
+    Default is true but typically you’ll want false because can also create race conditions where a client makes two parallel 
+    requests to your server and changes made to the session in one request may get overwritten when the other request ends, even 
+    if it made no changes (this behavior also depends on what store you’re using).
+    */
+    saveUninitialized: false, /*Forces a session that is “uninitialized” to be saved to the store. 
+    A session is uninitialized when it is new but not modified. The default value is true, but choosing false is useful for 
+    implementing login sessions, reducing server storage usage, or complying with laws that require permission before setting a 
+    cookie. Choosing false will also help with race conditions where a client makes multiple parallel requests without a session.
+    */
+    store: store //The session store instance
+}))
 
 // all express routes can use mupltiple middlewares after the first argument. 
 //Each middleware in a route can take upto 3 arguments in the following order: req, res, next. 

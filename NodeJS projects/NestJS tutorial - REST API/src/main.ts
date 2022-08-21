@@ -11,6 +11,6 @@ async function bootstrap() {
   }));
   useContainer(app.select(AppModule), { fallbackOnErrors: true });//for custom validator
 
-  await app.listen(parseInt(process.env.APP_PORT, 10));
+  await app.listen(parseInt(process.env.APP_PORT, 10)||8000);
 }
 bootstrap();

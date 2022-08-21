@@ -63,6 +63,7 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Post('create')
+  @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('poster',upload))
   async create(@Body() createMovieDto: CreateMovieDto,@Res() res:Response, @UploadedFile() file: Express.Multer.File|undefined) {
     const movie:MovieDocument= await this.moviesService.create(createMovieDto,file);

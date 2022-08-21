@@ -15,8 +15,7 @@ export class AuthController {
     private jwtService: JwtService) {}
 
   @Post('register')
-  async signup(@Res() res,@Body() body: CreateAuthDto,@Next() next:NextFunction) {
-        try {
+  async signup(@Res() res,@Body() body: CreateAuthDto) {
         const user :UserDocument= await this.authService.create(body);
         
         const userData = {
@@ -33,11 +32,7 @@ export class AuthController {
           secret: process.env.JWT_REFRESH_SECRET,
           expiresIn: process.env.REFRESH_EXPIRATION,
         })
-        return res.status(HttpStatus.OK).send(successResponse('User found',{userData,accessToken,refreshToken}));
-        } catch (error) {
-          next(error.message);
-        }
-        
+        return res.status(HttpStatus.OK).send(successResponse('User found',{userData,accessToken,refreshToken})); 
 }
 
   @Get()
