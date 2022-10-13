@@ -2,10 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import {useContainer} from "class-validator";
+import { CustomExceptionFilter } from './custom-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+  app.useGlobalFilters(new CustomExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
   }));
