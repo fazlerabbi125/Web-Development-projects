@@ -57,7 +57,7 @@ This does not handle multipart bodies, due to their complex and typically large 
 */
 
 app.use(express.json());/*Middleware for taking incoming requests with JSON payloads
-and parsing JSON data to convert them into a JS object available via the body object on the request object. Typically used for REST API.
+and parsing JSON data to a JS object available via the body object on the request object. Typically used for REST API.
 */
 
 //Creating a store for sessions in the database
