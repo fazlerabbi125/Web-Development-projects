@@ -48,6 +48,12 @@ and parsing it to convert them into a JS object available via request object. Ty
 
 The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). 
 The “extended” syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
+
+This does not handle multipart bodies, due to their complex and typically large nature. For multipart bodies, you may be interested in the following modules:
+1)busboy and connect-busboy
+2)multiparty and connect-multiparty
+3)formidable
+4)multer
 */
 
 app.use(express.json());/*Middleware for taking JSON data passed via requests
