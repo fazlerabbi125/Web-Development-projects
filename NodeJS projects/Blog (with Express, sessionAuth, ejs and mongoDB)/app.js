@@ -6,6 +6,7 @@ const app=express();
 MongoDB is a NoSQL database which has a structure where we have collections instead of tables,
 documents instead of rows, and instead of columns, we have properties and their values within a JS object
 */
+const morgan = require("morgan");
 const mongoose=require('mongoose');//Import mongoose module. We create schemas and models with Mongoose
 
 //For session-based authentication
@@ -39,6 +40,7 @@ app.set('views','myviewsFolder')
 app.use([path,] callback [, callback...]):- 
 Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path.
 */
+app.use(morgan("dev"));
 app.use('',express.static(__dirname + '/assets')); /* To allow access to static files such as images and css. Folder name used as arguement in express.static()
 In html/ejs file, just write the remaining path to the static file from the path specified in the second argument to output them in the file.
 If the first argument is a non-empty string, it will be added as the prefix to the path of the static file when fetched on the Internet.
