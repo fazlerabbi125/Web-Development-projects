@@ -43,8 +43,8 @@ app.use('',express.static(__dirname + '/assets')); /* To allow access to static 
 In html/ejs file, just write the remaining path to the static file from the path specified in the second argument to output them in the file.
 If the first argument is a non-empty string, it will be added as the prefix to the path of the static file when fetched on the Internet.
 */
-app.use(express.urlencoded({extended:true}));/*Middleware for taking all the URL-encoded data passed via requests 
-and parsing it to convert them into a JS object available via request object. Typically used for accepting form data
+app.use(express.urlencoded({extended:true}));/*Middleware for taking all the URL-encoded data passed on incoming requests 
+and parsing it to convert them into a JS object available via the body object on the request object. Typically used for accepting form data.
 
 The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). 
 The “extended” syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
@@ -56,8 +56,9 @@ This does not handle multipart bodies, due to their complex and typically large 
 4)multer
 */
 
-app.use(express.json());/*Middleware for taking JSON data passed via requests
-and parsing it to convert them into a JS object available via the request object. Typically used for REST API*/
+app.use(express.json());/*Middleware for taking incoming requests with JSON payloads
+and parsing JSON data to convert them into a JS object available via the body object on the request object. Typically used for REST API.
+*/
 
 //Creating a store for sessions in the database
 const store = new MongoDBStore({
