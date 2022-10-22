@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { DataLoad, API_Error } from "../utils/data-types";
 
 const axInstance = axios.create({
-  baseURL: 'http://localhost:8000/employees',
+  baseURL: "http://localhost:8000/employees",
 });
 
-const useAxios = (url:string, timeout:number = 1000) => {
-    const [data, setData] = useState<any|any[]>(null);
-    const [error, setError] = useState<string|null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    
+const useAxios = (url: string, timeout: number = 1000) => {
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<API_Error>(null);
+  const [isLoading, setIsLoading] = useState<DataLoad>(true);
 
-    useEffect(() => {
-      const fetchData = async ()=>{
-        try {
-          let response= await axInstance.get(url);
-          setData(response.data);
-          setIsLoading(false);
-          setError(null);
-        } catch (err:any) {
-          setError(err.message);
-          setIsLoading(false);
-        }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await axInstance.get(url);
+        setData(response.data);
+        setIsLoading(false);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setIsLoading(false);
       }
-      let t=setTimeout(() =>fetchData(),timeout)
-      return ()=>clearTimeout(t)
-    }, [url,timeout]);
+    };
+    let t = setTimeout(() => fetchData(), timeout);
+    return () => clearTimeout(t);
+  }, [url, timeout]);
 
-    // custom hook returns value
-    return { data, error, isLoading };
+  // custom hook returns value
+  return { data, error, isLoading };
 };
-export {axInstance, useAxios};
+export { axInstance, useAxios };
