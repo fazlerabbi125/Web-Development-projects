@@ -1,7 +1,7 @@
 const express=require('express');
 const path=require('path');
 const cors=require('cors');
-
+const morgan = require("morgan");
 
 const app = express();
 require('dotenv').config();
@@ -9,10 +9,9 @@ require('dotenv').config();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-// cors
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: true, credentials: true })); //cors
 app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
-
+app.use(morgan("dev"));
 
 const authRoutes =require('./routes/authRoutes');
 const courseRoutes =require('./routes/courseRoutes');
