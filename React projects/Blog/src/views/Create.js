@@ -1,33 +1,52 @@
-import ItemForm from "../components/ItemForm";
-import withHOC from "../components/withHoc";
-import {axInstance} from '../hooks/useAxios';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MessageContext from "../contexts/MessageContext";
-import { useContext,useState } from "react";
-
 
 const Create = () => {
-    const navigate = useNavigate(); //hook for re-direct
-    const {setMessage}=useContext(MessageContext);
-    const [error, setError] = useState(null);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [author, setAuthor] = useState("mario");
+  const navigate = useNavigate(); //hook for re-direct
 
-    function handleAdd(inputs){
-        axInstance.post('', inputs)
-            .then(function (response) {
-                setMessage("Your item has been added");
-                navigate('/');
-            })
-            .catch(function (error) {
-                setError(error.message);
-        });
-    }
-    return ( 
-    <>
-        {error && <h2 className="text-center text-danger">{error}</h2>}
-        <ItemForm item={{}} submitForm={handleAdd}/>
-    </> 
-    );
-}
-const EnhancedComponent=withHOC("Add a movie/series to watchlist",Create);
+  const handleSubmit = (e) => {
+    e.preventDefault(); //To prevent default event behavior
+    const blog = { title, body, author };
+    //Insert blog into JSON database via POST request
+    fetch("http://localhost:8000/blogs/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(blog),
+    }).then(() => {
+      navigate("/"); //for re-direct
+    });
+  };
 
-export default EnhancedComponent;
+  return (
+    <div className="create">
+      <h2>Add a New Blog</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Blog title:</label>
+        <input
+          type="text"
+          required
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <label>Blog body:</label>
+        <textarea
+          required
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+        ></textarea>
+        <label>Blog author:</label>
+        <select value={author} onChange={(e) => setAuthor(e.target.value)}>
+          <option value="mario">mario</option>
+          <option value="yoshi">yoshi</option>
+          <option value="luigi">luigi</option>
+        </select>
+        <button>Add Blog</button>
+      </form>
+    </div>
+  );
+};
+
+export default Create;
