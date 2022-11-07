@@ -2,9 +2,7 @@
 import BlogList from "../components/BlogList"; //For props usage and JSX list iteration demo
 import useFetch from "../hooks/useFetch"; //import custom hook
 const Home = () => {
-  const { data: blogs, isPending, error } = useFetch(
-    "http://localhost:8000/blogs"
-  ); //custom hook
+  const { data: blogs, isPending, error } = useFetch("/blogs"); //custom hook
   return (
     <div className="home">
       {error && <div>{error}</div>}

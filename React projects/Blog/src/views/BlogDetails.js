@@ -3,9 +3,7 @@ import useFetch from "../hooks/useFetch";
 
 const BlogDetails = () => {
   const { id } = useParams(); //For using route parameters
-  const { data: blog, error, isPending } = useFetch(
-    "http://localhost:8000/blogs/" + id
-  );
+  const { data: blog, error, isPending } = useFetch("/blogs/" + id);
   const navigate = useNavigate(); //hook for re-direct
   const handleClick = () => {
     //Delete blog from JSON database via DELETE request

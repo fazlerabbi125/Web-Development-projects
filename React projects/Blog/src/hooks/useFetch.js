@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const root="http://localhost:8000";
+
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true); //Used for conditional JSX
@@ -14,7 +16,7 @@ const useFetch = (url) => {
     const abortCont = new AbortController(); //For aborting fetch on useEffect cleanup
     setTimeout(() => {
       //Loads message for some time until data fetch is completed
-      fetch(url, { signal: abortCont.signal }) //optional 2nd argument used for useEffect cleanup
+      fetch(root+url, { signal: abortCont.signal }) //optional 2nd argument used for useEffect cleanup
         .then((res) => {
           if (!res.ok) throw Error(`Data can't be fetched for that resource`); //Throw error if there are errors coming back from server
           return res.json(); //to get data from response object. Converts JSON to JS object
