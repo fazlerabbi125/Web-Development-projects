@@ -1,64 +1,99 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit" class="order-form">
     <h2 class="title">
       <slot>
         Form
-        <!-- fallback content --></slot
-      >
+        <!-- fallback content -->
+      </slot>
     </h2>
-    <p>
+
+    <div class="form-group">
       <label for="title">Title:</label>
       <input
         type="text"
         name="title"
         id="title"
         class="form-input"
-        v-model="title"
+        v-model.trim="formInputs.title"
         required
       />
-    </p>
-    <p>
-      <label for="route">Route:</label>
+    </div>
+
+    <div class="form-group">
+      <label for="receiver_name">Receiver's name:</label>
+      <input
+        type="text"
+        name="receiver_name"
+        id="receiver_name"
+        class="form-input"
+        v-model.trim="formInputs.receiverName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="receiver_phone">Receiver's phone:</label>
+      <input
+        type="tel"
+        name="receiver_phone"
+        id="receiver_phone"
+        class="form-input"
+        v-model.trim="formInputs.receiverPhone"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
       <select
-        name="route"
-        id="route"
+        name="location"
+        id="location"
         class="form-select"
-        v-model="delivery"
+        v-model="formInputs.location"
         required
       >
-        <option disabled value="">Select Route</option>
+        <option disabled value="">Select Location</option>
         <option
-          v-for="(option, i) in options"
+          v-for="(option, i) in locationOptions"
           :key="option.route"
-          :value="options[i]"
+          :value="locationOptions[i]"
         >
           {{ option.route }}
         </option>
       </select>
-    </p>
-    <p>
+    </div>
+
+    <div>
+      <label for="address">Address:</label>
+      <textarea v-model="formInputs.address" rows="3" cols="30"></textarea>
+    </div>
+
+    <div class="form-group">
       <label for="weight">Weight:</label>
       <select
         name="weight"
         id="weight"
         class="form-select"
-        v-model="weight"
+        v-model="formInputs.weight"
         required
       >
         <option disabled value="">Select Parcel Weight</option>
-        <option v-for="(weight, i) in wo" :key="weight.name" :value="wo[i]">
+        <option
+          v-for="(weight, i) in weightOptions"
+          :key="weight.name"
+          :value="weightOptions[i]"
+        >
           {{ weight.name }}
         </option>
       </select>
-    </p>
+    </div>
 
-    <p>
+    <div class="form-group">
       <label for="method">Payment:</label>
       <select
         name="method"
         id="method"
         class="form-select"
-        v-model="method"
+        v-model="formInputs.paymentMethod"
         required
       >
         <option disabled value="">Select Payment Method</option>
@@ -66,33 +101,40 @@
           {{ m }}
         </option>
       </select>
-    </p>
+    </div>
+
     <h5 v-if="cost">Total cost: BDT {{ cost }}</h5>
-    <p>
+
+    <div class="form-group">
       <button @click="$router.push({ name: 'Home' })" class="btn btn-dark">
         Back to Home
       </button>
       <button type="submit" class="btn btn-primary">Submit</button>
-    </p>
+    </div>
   </form>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 
 const emit = defineEmits(["submitForm"]);
 
-const title = ref("");
-const delivery = ref("");
-const options = ref([
+const formInputs = reactive({
+  title: "",
+  location: "",
+  weight: "",
+  paymentMethod: "",
+  address: "",
+  receiverName: "",
+  receiverPhone: "",
+});
+
+const locationOptions = ref([
   { price: 50, route: "Inside Dhaka" },
   { price: 150, route: "Outside Dhaka" },
 ]);
-const weight = ref("");
 const pay = ref(["Cash", "Bkash"]);
-const method = ref("");
-const date = ref(new Date());
-const wo = ref([
+const weightOptions = ref([
   { price: 50, name: "Upto 0.5kg" },
   { price: 100, name: "Upto 1kg" },
   { price: 250, name: "Upto 2.5kg" },
@@ -100,22 +142,20 @@ const wo = ref([
 ]);
 
 const cost = computed(() => {
-  if (weight.value && delivery.value) {
-    return weight.value.price + delivery.value.price;
+  if (formInputs.weight && formInputs.location) {
+    return formInputs.weight.price + formInputs.location.price;
   } else return null;
 });
 
 const handleSubmit = () => {
-  if (title.value.length >= 3) {
-    emit(
-      "submitForm",
-      title.value,
-      delivery.value.route,
-      weight.value.name,
-      cost.value,
-      method.value,
-      date.value.toLocaleString()
-    );
+  if (formInputs.title.length >= 3) {
+    emit("submitForm", {
+      ...formInputs,
+      weight: formInputs.weight.name,
+      location: formInputs.location.route,
+      date: new Date(),
+      cost: cost.value,
+    });
   } else {
     alert("Title should at least have 3 characters");
   }
@@ -123,16 +163,39 @@ const handleSubmit = () => {
 </script>
 
 <style>
-form {
-  text-align: center;
+.order-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
 }
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 label {
   font-weight: bold;
-  display: inline-block;
-  margin-right: 0.25rem;
+  display: block;
 }
+
+textarea {
+  display: block;
+  padding: 0.375rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #212529;
+  background-color: #f8fafc;
+  border: 1px solid #ced4da;
+  margin-top: 0.5rem;
+}
+
 .form-input {
-  width: 35%;
   padding: 0.375rem 0.75rem;
   font-size: 0.9rem;
   font-weight: 400;
@@ -148,7 +211,6 @@ label {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .form-select {
-  width: 35%;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
   font-size: 0.9rem;
@@ -169,7 +231,8 @@ label {
 }
 
 .form-select:focus,
-.form-input:focus {
+.form-input:focus,
+textarea:focus {
   outline: none;
 }
 </style>

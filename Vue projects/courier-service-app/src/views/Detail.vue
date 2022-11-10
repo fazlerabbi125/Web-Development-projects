@@ -5,20 +5,32 @@
     <h2 class="title">Order Details</h2>
     <table>
       <tr>
+        <th>Package ID</th>
+        <td>{{ order.id }}</td>
+      </tr>
+      <tr>
         <th>Package Title</th>
         <td>{{ order.title }}</td>
       </tr>
       <tr>
         <th>Ordered on</th>
-        <td>{{ order.date }}</td>
+        <td>{{ moment(order.date).local().format("DD-MM-YYYY, h:mm a") }}</td>
+      </tr>
+      <tr>
+        <th>Recipient's name</th>
+        <td>{{ order.receiverName }}</td>
+      </tr>
+      <tr>
+        <th>Recipient's phone number</th>
+        <td>{{ order.receiverPhone }}</td>
       </tr>
       <tr>
         <th>Package weight</th>
         <td>{{ order.weight }}</td>
       </tr>
       <tr>
-        <th>Route</th>
-        <td>{{ order.delivery }}</td>
+        <th>Location</th>
+        <td>{{ order.location }}</td>
       </tr>
       <tr>
         <th>Cost</th>
@@ -26,16 +38,15 @@
       </tr>
       <tr>
         <th>Payment method</th>
-        <td>{{ order.method }}</td>
+        <td>{{ order.paymentMethod }}</td>
       </tr>
     </table>
   </div>
 </template>
 <script setup>
-import { useRouter } from "vue-router";
 import useFetch from "../composables/useFetch";
+import moment from "moment";
 
-const router = useRouter();
 const props = defineProps({
   id: {
     required: true,

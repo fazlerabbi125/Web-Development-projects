@@ -2,20 +2,26 @@
   "orders": [
     {
       "title": "Groceries",
-      "delivery": "Inside Dhaka",
-      "weight": "Upto 1kg",
-      "cost": 150,
-      "method": "Cash",
-      "date": "3/21/2022, 9:22:42 PM",
+      "location": "Inside Dhaka",
+      "weight": "Upto 2.5kg",
+      "paymentMethod": "Cash",
+      "address": "Road-12, House-12, Dhanmondi, Dhaka",
+      "receiverName": "Jahan",
+      "receiverPhone": "0189132535859",
+      "date": "2022-11-10T10:12:36.141Z",
+      "cost": 300,
       "id": 1
     },
     {
       "title": "Books",
-      "delivery": "Outside Dhaka",
+      "location": "Outside Dhaka",
       "weight": "Upto 2.5kg",
       "cost": 400,
-      "method": "Bkash",
-      "date": "3/26/2022, 2:52:20 PM",
+      "paymentMethod": "Bkash",
+      "date": "2022-11-10T13:00:36.141Z",
+      "address": "Road-7, House-20, Block-J, Baridhara, Dhaka",
+      "receiverName": "Kamal",
+      "receiverPhone": "0139131830859",
       "id": 2
     }
   ]

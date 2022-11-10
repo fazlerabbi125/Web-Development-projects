@@ -32,21 +32,19 @@
               Cancel Order
             </div>
             <div v-if="showModal['order-' + order.id]">
-              <OrderDelete
-                :id="order.id"
-                @close="toggleModal(order.id)"
-              />
+              <OrderDelete :id="order.id" @close="toggleModal(order.id)" />
             </div>
           </div>
         </div>
-        <h3>{{ order.date }}</h3>
+        <h3>To <em>{{order.receiverName}}</em>, 
+          {{ moment(order.date).local().format("MMM DD, YYYY h:mm a") }}</h3>
         <div class="text-muted">{{ order.title }}</div>
-        <div class="text-muted"><b>Location:</b> {{ order.delivery }}</div>
+        <div class="text-muted"><b>Location:</b> {{ order.location }}</div>
         <div class="text-muted"><b>Price:</b> BDT {{ order.cost }}</div>
       </li>
     </ul>
   </div>
-  <h4 class="title" v-else>No orders placed</h4>
+  <h4 class="title" v-else style="color: #148772">No orders placed</h4>
 </template>
 
 
@@ -55,6 +53,7 @@ import OrderDelete from "./OrderDelete.vue";
 import { ref } from "vue";
 import { onMounted } from "vue";
 import useFetch from "../composables/useFetch";
+import moment from "moment";
 
 const showModal = ref({});
 const showDropdown = ref({});
@@ -81,6 +80,7 @@ function toggleDropdown(id) {
   flex-direction: column;
   justify-content: center;
   list-style-type: none;
+  gap: 1rem;
 }
 
 .flex-item {
@@ -88,7 +88,6 @@ function toggleDropdown(id) {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   max-width: 94.5%;
-  margin-bottom: 2rem;
 }
 
 .flex-item:first-child {

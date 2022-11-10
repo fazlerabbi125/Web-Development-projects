@@ -14,9 +14,8 @@ components:{
 Form
 },
 methods:{
-    handleCreate(title,delivery,weight,cost,method,date){
-        console.log(cost);
-        const order = { title,delivery,weight,cost,method,date};
+    handleCreate(order){
+        console.log(order.cost);
         //Insert task into JSON database via POST request
         fetch('http://localhost:3000/orders', {
         method: 'POST',
