@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../../components/Layout";
 import "./Home.css";
 import { useSelector } from "react-redux";
-import trainingImage from "../../assets/images/the-value-of-employee-training.jpg";
 // trainingImage URL: https://elearningindustry.com/wp-content/uploads/2019/12/the-value-of-employee-training.jpg
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
         <Layout>
             <section className="home">
                 <div>
-                    <img src={trainingImage} alt="training" className="home__img" />
+                    <img src="/images/employee-training.jpg" alt="training" className="home__img" />
                 </div>
                 <div className="home__content">
                     <h3 className="display-5 home__content__heading">
