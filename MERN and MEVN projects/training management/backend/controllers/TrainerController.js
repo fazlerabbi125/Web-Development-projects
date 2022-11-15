@@ -10,19 +10,19 @@ const getPagination = require('../utils/pagination');
 class TrainerController  {
     async getTrainerCourses(req, res, next) {
         try {
-            const page = req.query.page ? Number(req.query.page) : 1;
-            const querytitle = req.query.title ? req.query.title :"";
+            const page = req.query.page ? parseInt(req.query.page) : 1;
+            const querytitle = req.query.title ? decodeURIComponent(req.query.title) :"";
             let total,itemsPerPage,courseList;
             if (querytitle){
                 const regex = new RegExp(querytitle,"i");
                 total = await Course.find({title:regex,trainer:req.user._id}).count().exec();
-                itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : total;
+                itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : total;
                 const { skip, limit } = getPagination(page, itemsPerPage);            
                 courseList= await Course.find({title:regex,trainer:req.user._id}).skip(skip).limit(limit).populate('trainer','_id name email').exec();
             }
             else{
                 total = await Course.find({trainer:req.user._id}).count().exec();
-                itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : total;
+                itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : total;
                 const { skip, limit } = getPagination(page, itemsPerPage);            
                 courseList= await Course.find({trainer:req.user._id}).skip(skip).limit(limit).populate('trainer','_id name email').exec();
             }
@@ -33,7 +33,7 @@ class TrainerController  {
     }
     async getTrainingBatches(req, res, next) {
         try {
-            const page = req.query.page ? Number(req.query.page) : 1;
+            const page = req.query.page ? parseInt(req.query.page) : 1;
             const period = req.query.period ? req.query.period :"";
             let batchlist,total;
             const assignedCourses= await Course.find({trainer:req.user._id}).select('_id').exec();
@@ -44,19 +44,19 @@ class TrainerController  {
             const currentDate = new Date().toISOString().split('T')[0];
             if (period==="prev"){ //using $in to check if an attribute value or an array element of an array field is inside another array
                 total = await Batch.find({assignedCourses: { $in: dbquery },endDate: {$lt:currentDate} }).count().exec();
-                const itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : total;
+                const itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : total;
                 const { skip, limit } = getPagination(page, itemsPerPage);
                 batchlist= await Batch.find({assignedCourses: { $in: dbquery },endDate: {$lt:currentDate} }).skip(skip).limit(limit).exec();
             }
             else if (period==="running"){
                 total = await Batch.find({assignedCourses: { $in: dbquery },endDate:{$gte:currentDate}}).count().exec();
-                const itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : total;
+                const itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : total;
                 const { skip, limit } = getPagination(page, itemsPerPage);
                 batchlist= await Batch.find({assignedCourses: { $in: dbquery },endDate:{$gte:currentDate}}).skip(skip).limit(limit).exec();
             }
             else{
                 total = await Batch.find({assignedCourses: { $in: dbquery }}).count().exec();//$in with array checks if its elements are within dbquery
-                const itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : total;
+                const itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : total;
                 const { skip, limit } = getPagination(page, itemsPerPage);
                 batchlist= await Batch.find({assignedCourses: { $in: dbquery }}).skip(skip).limit(limit).exec();
             }

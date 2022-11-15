@@ -14,19 +14,19 @@ class CourseController {
 
     async getCourseList(req, res, next) {
         try {
-            const page = req.query.page ? Number(req.query.page) : 1;
+            const page = req.query.page ? parseInt(req.query.page) : 1;
             const querytitle = req.query.title ? req.query.title : "";
             let size, itemsPerPage, courseList;
             if (querytitle) {
                 const regex = new RegExp(querytitle, "i");
                 size = await Course.find({ title: regex }).count().exec();
-                itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : size;
+                itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : size;
                 const { skip, limit } = getPagination(page, itemsPerPage);
                 courseList = await Course.find({ title: regex }).skip(skip).limit(limit).populate('trainer', '_id name email').select('-details').exec();
             }
             else {
                 size = await Course.find().count().exec();
-                itemsPerPage = req.query.itemsPerPage ? Number(req.query.itemsPerPage) : size;
+                itemsPerPage = req.query.itemsPerPage ? parseInt(req.query.itemsPerPage) : size;
                 const { skip, limit } = getPagination(page, itemsPerPage);
                 courseList = await Course.find().skip(skip).limit(limit).populate('trainer', '_id name email').select('-details').exec();
             }

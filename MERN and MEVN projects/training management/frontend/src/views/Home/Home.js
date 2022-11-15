@@ -10,7 +10,7 @@ const Home = () => {
         <Layout>
             <section className="home">
                 <div>
-                    <img src="/images/employee-training.jpg" alt="training" className="home__img" />
+                    <img src="/img/employee-training.jpg" alt="training" className="home__img" />
                 </div>
                 <div className="home__content">
                     <h3 className="display-5 home__content__heading">
