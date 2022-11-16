@@ -43,31 +43,29 @@ const useAxios = (url, dataTimeout = 1000) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      let response = await axInstance.get(url, {
-        headers: {
-          Authorization: `Bearer ${getTokens().accessToken}`,
-        },
-      });
-      if (!response.data && !response.data.success)
-        throw new Error(response.response.data.message);
-      setData(response.data.results);
-      //console.log(response.data.results);
-      setIsLoading(false);
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await axInstance.get(url, {
+          headers: {
+            Authorization: `Bearer ${getTokens().accessToken}`,
+          },
+        });
+        if (!response.data && !response.data.success)
+          throw new Error(response.response.data.message);
+        setData(response.data.results);
+        //console.log(response.data.results);
+        setIsLoading(false);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
     let t = setTimeout(() => fetchData(), dataTimeout);
     return () => clearTimeout(t);
   }, [url, dataTimeout]);
 
-  // custom hook returns value
   return { data, error, isLoading };
 };
 export { axInstance, useAxios };
