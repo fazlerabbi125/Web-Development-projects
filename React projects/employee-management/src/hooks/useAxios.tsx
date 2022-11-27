@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { DataLoad, API_Error } from "../utils/data-types";
+import axios, { AxiosResponse } from "axios";
 
 const axInstance = axios.create({
   baseURL: "http://localhost:8000/employees",
@@ -8,13 +7,13 @@ const axInstance = axios.create({
 
 const useAxios = (url: string, timeout: number = 1000) => {
   const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<API_Error>(null);
-  const [isLoading, setIsLoading] = useState<DataLoad>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await axInstance.get(url);
+        const response: AxiosResponse = await axInstance.get(url);
         setData(response.data);
         setIsLoading(false);
         setError(null);

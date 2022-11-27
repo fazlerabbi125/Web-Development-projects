@@ -4,7 +4,9 @@ import { useAxios } from "../../hooks/useAxios";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import DeleteModal from "../../components/DeleteModal";
-import { API_Error, DataLoad, EmployeeType } from "../../utils/data-types";
+import { EmployeeType, CustomAxiosResponse } from "../../utils/data-types";
+
+type EmployeeDetailsResponse = CustomAxiosResponse<EmployeeType>;
 
 const EmployeeDetails = () => {
   const { id } = useParams();
@@ -13,11 +15,7 @@ const EmployeeDetails = () => {
     data: employee,
     error,
     isLoading,
-  }: {
-    data: EmployeeType;
-    error: API_Error;
-    isLoading: DataLoad;
-  } = useAxios(`${id}`);
+  }: EmployeeDetailsResponse = useAxios(`/${id}`);
 
   function toggleModal() {
     setModal(!modal);
@@ -84,7 +82,7 @@ const EmployeeDetails = () => {
                   </tr>
                   <tr>
                     <td>Date of Birth</td>
-                    <td>{employee.date_of_birth as any}</td>
+                    <td>{employee.date_of_birth as string}</td>
                   </tr>
                 </tbody>
               </table>

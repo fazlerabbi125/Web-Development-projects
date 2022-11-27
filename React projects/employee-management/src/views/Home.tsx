@@ -1,18 +1,15 @@
-import React from "react";
 import { useAxios } from "../hooks/useAxios";
 import EmployeeList from "../components/EmployeeList/EmployeeList";
-import { API_Error, DataLoad, EmployeeType } from "../utils/data-types";
+import { EmployeeType, CustomAxiosResponse } from "../utils/data-types";
+
+type EmployeeListResponse = CustomAxiosResponse<EmployeeType[]>;
 
 function Home() {
   const {
     data: employeeList,
     error,
     isLoading,
-  }: {
-    data: EmployeeType[];
-    error: API_Error;
-    isLoading: DataLoad;
-  } = useAxios("");
+  }: EmployeeListResponse = useAxios("");
 
   return (
     <section>
