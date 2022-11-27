@@ -11,7 +11,7 @@ class TrainerController  {
     async getTrainerCourses(req, res, next) {
         try {
             const page = req.query.page ? parseInt(req.query.page) : 1;
-            const querytitle = req.query.title ? decodeURIComponent(req.query.title) :"";
+            const querytitle = req.query.title ? req.query.title : "";
             let total,itemsPerPage,courseList;
             if (querytitle){
                 const regex = new RegExp(querytitle,"i");
