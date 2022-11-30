@@ -1,18 +1,22 @@
-//import {useState,useEffect} from 'react';
 import BlogList from "../components/BlogList"; //For props usage and JSX list iteration demo
 import useFetch from "../hooks/useFetch"; //import custom hook
+
 const Home = () => {
   const { data: blogs, isPending, error } = useFetch("/blogs"); //custom hook
   return (
     <div className="home">
       {error && <div>{error}</div>}
       {isPending && <div>Loading...</div>}
-      {blogs && <BlogList blogs={blogs} title="All Blogs" />}
+      {blogs && <BlogList blogs={blogs} title="All Posts" />}
     </div>
   );
 };
+
 export default Home;
+
 /*
+import {useState,useEffect} from 'react';
+
     let [count,setCount] = useState(1);//useState hook
     function increaseClick(){ //Event object e not mandatory as parameter if it is not used in function
       //For applying useState hook

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import styled from "styled-components";
 
 const BlogDetails = () => {
   const { id } = useParams(); //For using route parameters
@@ -15,7 +16,7 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="blog-details">
+    <BlogDetailsWrapper>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {blog && (
@@ -23,11 +24,26 @@ const BlogDetails = () => {
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
           <div>{blog.body}</div>
-          <button onClick={handleClick}>delete</button>
+          <button className="btn btn--red" onClick={handleClick}>
+            Delete
+          </button>
         </article>
       )}
-    </div>
+    </BlogDetailsWrapper>
   );
 };
+
+const BlogDetailsWrapper = styled.div`
+  h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  div {
+    margin: 20px 0;
+  }
+`;
 
 export default BlogDetails;
