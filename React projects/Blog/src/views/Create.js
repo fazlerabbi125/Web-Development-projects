@@ -23,7 +23,7 @@ const Create = () => {
 
   return (
     <BlogCreateWrapper>
-      <h2>Add a New Blog Post</h2>
+      <h2 className="page-title">Add a New Blog Post</h2>
       <form onSubmit={handleSubmit}>
         <label className="form-label">Blog title:</label>
         <input
@@ -46,9 +46,9 @@ const Create = () => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         >
-          <option value="mario">mario</option>
-          <option value="yoshi">yoshi</option>
-          <option value="luigi">luigi</option>
+          <option value="Mario">Mario</option>
+          <option value="Yoshi">Yoshi</option>
+          <option value="Luigi">Luigi</option>
         </select>
         <button className="btn btn--red">Add Blog</button>
       </form>
@@ -61,8 +61,8 @@ const BlogCreateWrapper = styled.div`
   margin: 0 auto;
   text-align: center;
 
-  h2 {
-    font-size: 20px;
+  .page-title {
+    font-size: 25px;
     color: #f1356d;
     margin-bottom: 30px;
   }

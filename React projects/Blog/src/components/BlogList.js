@@ -27,6 +27,7 @@ const BlogListWrapper = styled.div`
     padding: 10px 16px;
     margin: 20px 0;
     border: 1px solid #e3e1e1;
+    color: #141413;
   }
 
   .blog-list__item:hover {

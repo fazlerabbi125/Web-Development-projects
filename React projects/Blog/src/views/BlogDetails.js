@@ -21,9 +21,9 @@ const BlogDetails = () => {
       {error && <div>{error}</div>}
       {blog && (
         <article>
-          <h2>{blog.title}</h2>
-          <p>Written by {blog.author}</p>
-          <div>{blog.body}</div>
+          <h2 className="details-title">{blog.title}</h2>
+          <div className="details-subtitle">Author: {blog.author}</div>
+          <div className="details-body">{blog.body}</div>
           <button className="btn btn--red" onClick={handleClick}>
             Delete
           </button>
@@ -34,14 +34,19 @@ const BlogDetails = () => {
 };
 
 const BlogDetailsWrapper = styled.div`
-  h2 {
-    font-size: 20px;
+  .details-title {
+    font-size: 25px;
     color: #f1356d;
     margin-bottom: 10px;
     text-align: center;
   }
 
-  div {
+  .details-subtitle {
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .details-body {
     margin: 20px 0;
   }
 `;

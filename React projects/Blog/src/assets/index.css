@@ -61,3 +61,9 @@ body {
   box-sizing: border-box;
   display: block;
 }
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus{
+  outline: none;
+}
