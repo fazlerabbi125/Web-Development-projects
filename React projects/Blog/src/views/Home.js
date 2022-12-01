@@ -4,11 +4,13 @@ import useFetch from "../hooks/useFetch"; //import custom hook
 const Home = () => {
   const { data: blogs, isPending, error } = useFetch("/blogs"); //custom hook
   return (
-    <div className="home">
+    <section className="home">
       {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {blogs && <BlogList blogs={blogs} title="All Posts" />}
-    </div>
+      {isPending && <div style={{textAlign:"center"}}>Loading...</div>}
+      {!isPending && !error && blogs && (
+        <BlogList blogs={blogs} title="All Posts" />
+      )}
+    </section>
   );
 };
 
@@ -79,6 +81,6 @@ import {useState,useEffect} from 'react';
       { isPending && <div>Loading...</div> }
       { blogs && BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
         </div>
-     );
+    );
 }
  */

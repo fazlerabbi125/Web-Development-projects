@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-/* base styles */
 * {
   margin: 0;
   box-sizing: border-box;
@@ -11,8 +10,8 @@ body {
   font-family: "Quicksand";
 }
 
-#root{
-  position: relative ;
+#root {
+  position: relative;
   min-height: 100vh;
 }
 
@@ -34,12 +33,14 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  color: #333;
+  cursor: pointer;
+  background-color: rgb(233, 230, 230);
 }
 
 .btn--red {
   background-color: hsl(342, 87%, 58%);
   color: #fff;
-  cursor: pointer;
 }
 
 .btn--red:hover {
@@ -58,12 +59,11 @@ body {
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
-  box-sizing: border-box;
   display: block;
 }
 
 .form-input:focus,
 .form-textarea:focus,
-.form-select:focus{
+.form-select:focus {
   outline: none;
 }

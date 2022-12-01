@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Create from "./views/Create";
-// import Edit from "./views/Edit";
+import Edit from "./views/Edit";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import MessageContext from "./contexts/MessageContext";
@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="/blogs/:id/edit" element={<Edit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

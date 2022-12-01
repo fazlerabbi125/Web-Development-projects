@@ -13,7 +13,8 @@ function BlogList(props) {
           key={blog.id}
         >
           <h2>{blog.title}</h2>
-          <p>Written by {blog.author}</p>
+          <p>Written by: {blog.author}</p>
+          <p>Created: {(new Date(blog.createdAt)).toLocaleString()}</p>
         </Link>
       ))}
     </BlogListWrapper>
