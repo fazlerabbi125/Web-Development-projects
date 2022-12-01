@@ -21,14 +21,14 @@ function Edit() {
     };
 
     return (
-        <BlogCreateWrapper>
-            <h2 className="page-title">Add a New Blog Post</h2>
+        <BlogEditWrapper>
+            <h2 className="page-title">Edit Blog Post</h2>
             <BlogForm post={blog} handleSubmit={handleEdit} mode="edit" />
-        </BlogCreateWrapper>
+        </BlogEditWrapper>
     );
 }
 
-const BlogCreateWrapper = styled.div`
+const BlogEditWrapper = styled.div`
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
