@@ -39,14 +39,16 @@ function BatchList() {
     setModal({ ...modal, [id]: !modal[id] });
   }
   return (
-    <Layout header={"Batch List"}>
+    <Layout
+      header={auth.role === "admin" ? "Available Batches" : "Your Batches"}
+    >
       {isLoading && (
         <h2 className="text-center">
           Loading <i className="fa fa-spinner fa-spin"></i>
         </h2>
       )}
       {error && <h2 className="text-center text-danger">{error}</h2>}
-      {!isLoading && batchList && (
+      {!isLoading && !error && batchList && (
         <>
           <div className="w-25 mx-auto mb-5">
             <select

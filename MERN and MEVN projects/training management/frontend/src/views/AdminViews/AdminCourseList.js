@@ -10,9 +10,12 @@ function AdminCourseList() {
     const dispatch = useDispatch();
     const itemsPerPage = 3;
     const [page, setPage] = React.useState(1);
-    const { data: courselist, error, isLoading, size } = useSelector(
-        (state) => state.courseList
-    );
+    const {
+        data: courselist,
+        error,
+        isLoading,
+        size,
+    } = useSelector((state) => state.courseList);
 
     const [title, setTitle] = React.useState("");
     const debouncedTitle = useDebounce(title);
