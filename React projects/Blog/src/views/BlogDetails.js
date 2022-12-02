@@ -18,14 +18,18 @@ const BlogDetails = () => {
   return (
     <BlogDetailsWrapper>
       {isPending && <div style={{ textAlign: "center" }}>Loading...</div>}
-      {error && <div>{error}</div>}
-      {blog && (
+      {error && <div className="fetch-error">{error}</div>}
+      {!error && blog && (
         <article>
           <h2 className="details-title">{blog.title}</h2>
           <div className="details-subtitle">Author: {blog.author}</div>
-          <div>Created: {(new Date(blog.createdAt)).toLocaleString()}</div>
+          <div>Created: {new Date(blog.createdAt).toLocaleString()}</div>
           <div className="details-actions">
-            <Link className="btn" state={{ blog }} to={`/blogs/${blog.id}/edit`}>
+            <Link
+              className="btn"
+              state={{ blog }}
+              to={`/blogs/${blog.id}/edit`}
+            >
               Edit
             </Link>
             <button className="btn btn--red" onClick={handleClick}>
@@ -56,7 +60,7 @@ const BlogDetailsWrapper = styled.div`
     margin: 15px 0;
   }
 
-  .details-actions{
+  .details-actions {
     display: flex;
     align-items: center;
     gap: 5px;

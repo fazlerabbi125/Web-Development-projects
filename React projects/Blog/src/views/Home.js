@@ -5,11 +5,9 @@ const Home = () => {
   const { data: blogs, isPending, error } = useFetch("/blogs"); //custom hook
   return (
     <section className="home">
-      {error && <div>{error}</div>}
-      {isPending && <div style={{textAlign:"center"}}>Loading...</div>}
-      {!isPending && !error && blogs && (
-        <BlogList blogs={blogs} title="All Posts" />
-      )}
+      {error && <div className="fetch-error">{error}</div>}
+      {isPending && <div style={{ textAlign: "center" }}>Loading...</div>}
+      {!error && blogs && <BlogList blogs={blogs} title="All Posts" />}
     </section>
   );
 };

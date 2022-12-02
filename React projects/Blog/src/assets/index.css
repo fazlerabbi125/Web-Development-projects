@@ -52,6 +52,12 @@ body {
   display: block;
 }
 
+.fetch-error {
+  font-size: x-large;
+  text-align: center;
+  color: #dc3545;
+}
+
 .form-input,
 .form-textarea,
 .form-select {
