@@ -1,9 +1,20 @@
-import React from 'react'
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
-function NavLink() {
-  return (
-    <div>NavLink</div>
-  )
+interface NavLinkProps {
+  href: string;
+  text: string;
 }
 
-export default NavLink
+function NavLink(props: NavLinkProps) {
+  const router = useRouter();
+  const isActive = router.asPath === props.href;
+  return (
+    <Link href={props.href} className={isActive ? "" : ""}>
+      {props.text}
+    </Link>
+  );
+}
+
+export default NavLink;
