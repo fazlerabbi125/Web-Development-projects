@@ -1,0 +1,18 @@
+$theme-colors: (
+    "success": #19bd6d,
+    "warning": #ffc107,
+    "danger": #f1376f,
+    "dark": #212529,
+    "light": #f8f9fa,
+    "info": #0dcaf0,
+);
+
+@each $key, $value in $theme-colors {
+    .btn-#{$key} {
+        color:white;
+        background-color: $value;
+        &:hover{
+            background-color: lighten($color: $value, $amount: 5%);
+        }
+    }
+}
