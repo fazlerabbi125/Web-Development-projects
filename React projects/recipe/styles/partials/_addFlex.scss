@@ -1,5 +1,5 @@
-@mixin flex_container($jc:flex-start, $ai:stretch, $direction:row, $wr:nowrap){
-    display:flex;
+@mixin flex_container($jc: flex-start, $ai: stretch, $direction: row, $wr: nowrap) {
+    display: flex;
     justify-content: $jc;
     align-items: $ai;
     flex-direction: $direction;
