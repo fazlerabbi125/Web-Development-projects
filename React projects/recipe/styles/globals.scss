@@ -38,31 +38,6 @@ span {
     position: relative;
 }
 
-.rounded-circle {
-    border-radius: 50% !important;
-}
-
-.rounded-pill {
-    border-radius: 50rem !important;
-}
-
-.btn {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    border: none;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #333;
-    cursor: pointer;
-    background-color: rgb(233, 230, 230);
-}
-
 .code {
     background: #fafafa;
     border-radius: 5px;
