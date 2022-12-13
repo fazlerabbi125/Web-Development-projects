@@ -8,7 +8,7 @@ $theme-colors: (
 );
 
 @each $key, $value in $theme-colors {
-    .btn-#{$key} {
+    .btn--#{$key} {
         background-color: $value;
 
         @if $key=="light" or $key=="warning" {

@@ -3,17 +3,17 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 
 interface LayoutProps {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
 }
 
-function Layout(props: LayoutProps) {
+export default function Layout(props: LayoutProps) {
   return (
     <React.Fragment>
       <Navbar />
-      {props.children}
+      <main>
+        {props.children}
+      </main>
       <Footer />
     </React.Fragment>
   )
 }
-
-export default Layout
