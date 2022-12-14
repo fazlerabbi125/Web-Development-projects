@@ -9,6 +9,14 @@ import {
   Nav,
   NavItem,
 } from "reactstrap";
+import { Autocomplete } from "@mantine/core";
+import { useDebouncedValue } from "@mantine/hooks";
+
+const routes = [
+  { link: "/", text: "Home" },
+  { link: "/about", text: "About" },
+  { link: "/tags", text: "Tags" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -21,9 +29,11 @@ export default function Navbar() {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
-          <NavItem className="ml-4">
-            <CustomNavLink href="/">Home</CustomNavLink>
-          </NavItem>
+          {routes.map((route) => (
+            <NavItem className="ml-4" key={route.link}>
+              <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
+            </NavItem>
+          ))}
         </Nav>
       </Collapse>
     </BSNavbar>
