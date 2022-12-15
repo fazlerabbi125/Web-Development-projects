@@ -1,6 +1,6 @@
-@import "../../assets/css/partials/colors";
-@import "../../assets/css/partials/flex";
-@import "../../assets/css/partials/breakpoints";
+@import "../../assets/styles/partials/colors";
+@import "../../assets/styles/partials/flex";
+@import "../../assets/styles/partials/breakpoints";
 
 .emp-list {
     @include addFlex($jc: space-around, $w: wrap);

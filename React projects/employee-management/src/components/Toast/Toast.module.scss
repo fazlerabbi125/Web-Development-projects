@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
-@import '../../assets/css/partials/colors';
-@import '../../assets/css/partials/flex';
-@import '../../assets/css/partials/breakpoints';
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
 
-.custom-toast{
+.custom-toast {
     position: fixed;
-    bottom:0;
-    right:0;
+    bottom: 0;
+    right: 0;
     width: max-content;
-    padding:1.25rem;
+    padding: 1.25rem;
     max-width: 100%;
     z-index: 500;
-    color: map-get($map: $colors, $key:"dark" );
+    color: map-get($map: $colors, $key: "dark");
+
     &__header {
-        @include addFlex($jc:space-between);
+        @include addFlex($jc: space-between);
         gap: 1rem;
         padding: 0.5rem 0.75rem;
         background-clip: padding-box;
@@ -23,10 +24,11 @@
         border-top-right-radius: calc(0.25rem - 1px);
         background-color: rgb(155, 155, 155);
     }
-    &__content{
+
+    &__content {
         background-color: rgba(220, 220, 220, 1);
-        padding:0.75rem 1.5rem;
-        text-align:center;
+        padding: 0.75rem 1.5rem;
+        text-align: center;
         word-wrap: break-word;
     }
 }

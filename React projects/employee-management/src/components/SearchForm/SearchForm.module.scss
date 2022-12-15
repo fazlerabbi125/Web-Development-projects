@@ -1,21 +1,22 @@
-@import "../../assets/css/partials/colors";
-@import "../../assets/css/partials/flex";
-@import "../../assets/css/partials/breakpoints";
+@import "../../assets/styles/partials/colors";
+@import "../../assets/styles/partials/flex";
+@import "../../assets/styles/partials/breakpoints";
 
 .search-form {
-    margin: 4rem auto;
-    background-color: white;
-    border: 0.3rem solid gainsboro;
-    text-align: center;
-    padding: 0.25rem 2rem 2rem;
-    width: 65%;
-    > input[type=search]{
-      width: 35%;
-      height: 2.25rem;
-      &:focus {
-        border: 3px solid rgb(45, 240, 180);
-        outline: none;
-      }
+  margin: 4rem auto;
+  background-color: white;
+  border: 0.3rem solid gainsboro;
+  text-align: center;
+  padding: 0.25rem 2rem 2rem;
+  width: 65%;
+
+  >input[type=search] {
+    width: 35%;
+    height: 2.25rem;
+
+    &:focus {
+      border: 3px solid rgb(45, 240, 180);
+      outline: none;
     }
   }
-  
+}

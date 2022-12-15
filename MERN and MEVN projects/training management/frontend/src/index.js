@@ -5,7 +5,7 @@ import store from './store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "react-datepicker/dist/react-datepicker.css";
-import './assets/css/index.css';
+import './assets/styles/index.css';
 import { BrowserRouter } from "react-router-dom";
 
 const container = document.getElementById('root');

@@ -1,29 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
-@import '../../assets/css/partials/colors';
-@import '../../assets/css/partials/flex';
-@import '../../assets/css/partials/breakpoints';
-@import '../../assets/css/partials/pixelConvert';
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
 
-.profile{
+.profile {
     background-color: map-get($map: $colors, $key: "light-blue");
-    width:30%;
-    @include addFlex($direction:column);
+    width: 30%;
+    @include addFlex($direction: column);
     margin-bottom: 3rem;
-    &__img{
+
+    &__img {
         display: block;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        width:8rem;
-        height:8rem;
+        width: 8rem;
+        height: 8rem;
     }
-    &__details{
-        @include addFlex($direction:column,$jc:flex-start);
+
+    &__details {
+        @include addFlex($direction: column, $jc: flex-start);
         word-wrap: break-word;
         word-break: break-all;
-        gap:0.15rem;
+        gap: 0.15rem;
     }
 }
-
-
-

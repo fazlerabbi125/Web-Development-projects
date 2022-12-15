@@ -1,32 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
-@import '../../assets/css/partials/colors';
-@import '../../assets/css/partials/flex';
-@import '../../assets/css/partials/breakpoints';
-@import '../../assets/css/partials/pixelConvert';
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
 
-.custom-toast{
+.custom-toast {
     position: fixed;
-    bottom:0;
-    right:0;
+    bottom: 0;
+    right: 0;
     width: max-content;
-    padding:1.25rem;
+    padding: 1.25rem;
     max-width: 100%;
     z-index: 500;
+
     &__header {
-        @include addFlex($jc:flex-start);
+        @include addFlex($jc: flex-start);
         padding: 0.5rem 0.75rem;
         background-clip: padding-box;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         border-top-left-radius: calc(0.25rem - 1px);
         border-top-right-radius: calc(0.25rem - 1px);
-        color:white;
+        color: white;
         background-color: rgba(120, 120, 120);
     }
-    &__content{
+
+    &__content {
         background-color: rgba(200, 200, 200, 1);
-        padding:0.75rem 1.5rem;
-        text-align:center;
+        padding: 0.75rem 1.5rem;
+        text-align: center;
         word-wrap: break-word;
     }
 }
