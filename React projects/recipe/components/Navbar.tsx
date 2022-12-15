@@ -26,7 +26,7 @@ export default function Navbar() {
       <NavbarBrand>
         <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
       </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <NavbarToggler onClick={toggle} style={{ border: "none" }} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           {routes.map((route) => (

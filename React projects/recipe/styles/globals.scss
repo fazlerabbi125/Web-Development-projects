@@ -1,5 +1,6 @@
 @use "./partials/addFlex";
 @use "./partials/colors";
+@use "./partials/media";
 
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
 
@@ -49,7 +50,7 @@ span {
 
 .custom-navbar {
     background-color: white;
-    padding: 1rem 1rem 0.75rem 2rem;
+    padding: 0.75rem 1rem 0.5rem 2rem;
     border-bottom: 1px solid #f3f2f2;
     font-weight: 500;
     color: #292524;
@@ -81,13 +82,11 @@ span {
 .sticky-footer {
     position: sticky;
     top: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px 50px;
     color: #fafafa;
     @apply font-sans bg-neutral-800;
 
     &__content {
-        text-align: center;
         font-weight: 700;
         @apply text-lg;
     }

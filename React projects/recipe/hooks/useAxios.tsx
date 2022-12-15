@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import useSWR from "swr";
 
 const axInstance = axios.create({
@@ -8,6 +8,12 @@ const axInstance = axios.create({
     "X-RapidAPI-Host": "tasty.p.rapidapi.com",
   },
 });
+
+export interface CustomAxiosResponse<T = any> {
+  isLoading: boolean;
+  error?: AxiosError;
+  data: AxiosResponse<T>['data'];
+}
 
 const fetchData = async (
   url: string,
