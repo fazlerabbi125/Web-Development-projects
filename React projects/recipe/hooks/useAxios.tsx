@@ -2,11 +2,8 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import useSWR from "swr";
 
 const axInstance = axios.create({
-  baseURL: "https://tasty.p.rapidapi.com",
-  headers: {
-    "X-RapidAPI-Key": "d052de18ccmsh987128f91545609p1a60c6jsn4deaea0deebd",
-    "X-RapidAPI-Host": "tasty.p.rapidapi.com",
-  },
+  baseURL: "http://localhost:3000/api",
+  timeout: 1000,
 });
 
 export interface CustomAxiosResponse<T = any> {
