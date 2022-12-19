@@ -1,16 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import recipes from "../../../data/recipe.json";
 
-export type RecipeDetailsType = Record<string, any>|null;
+export interface RecipeDetailsType {
+    [key:string]: any;
+    id: number;
+    slug: string;
+    description?: string;
+    thumbnail_url?:string;
+    thumbnail_alt_text?:string;
+};
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<RecipeDetailsType>
+    res: NextApiResponse<RecipeDetailsType | null>
 ) {
-    console.log(req.query)
     const result = recipes.results.find((elem: any) => {
         return req.query.recipeSlug === elem.slug;
     })
 
-    res.status(200).json(result||null)
+    res.status(200).json(result || null)
 }

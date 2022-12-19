@@ -10,7 +10,6 @@ import {
 } from "@mantine/core";
 import { RecipeListType } from "../pages/api/recipes";
 import Link from "next/link";
-import { CardFooter } from "reactstrap";
 
 interface RecipeListProps {
     tags?: string;
@@ -62,7 +61,7 @@ const RecipeList = (props: RecipeListProps) => {
                                 shadow="sm"
                                 p="sm"
                                 radius="md"
-                                className="w-3/12"
+                                className="w-3/12 relative"
                                 key={recipe.id}
                             >
                                 <Card.Section>
@@ -77,7 +76,7 @@ const RecipeList = (props: RecipeListProps) => {
                                 <Text size="sm" color="dimmed" className="truncate">
                                     {recipe.description || "No description"}
                                 </Text>
-                                <CardFooter className="mt-4 flex justify-center">
+                                <div className="mt-4 flex justify-center sticky top-full">
                                     <Link
                                         className="btn btn-danger w-8/12"
                                         href={{
@@ -87,7 +86,7 @@ const RecipeList = (props: RecipeListProps) => {
                                     >
                                         View Details
                                     </Link>
-                                </CardFooter>
+                                </div>
                             </Card>
                         ))}
                     </Flex>
