@@ -12,6 +12,12 @@ export default function handler(
     res: NextApiResponse<RecipeListType>
 ) {
     const results = recipes.results.filter((elem: RecipeDetailsType) => {
+        if (req.query.tags && req.query.tags.length > 0) {
+            if (elem.tags.find((tag) => tag.name === req.query.tags)) {
+                return true;
+            }
+            return false;
+        }
         return true;
     }).slice(parseInt(`${req.query.start}`), parseInt(req.query.end as string))
 

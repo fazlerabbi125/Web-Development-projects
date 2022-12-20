@@ -39,9 +39,8 @@ const RecipeList = (props: RecipeListProps) => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center gap-3">
-                <Text className="text-3xl font-semibold mb-1">Loading</Text>
-                <Loader color="dark" size="sm" />
+            <div className="flex justify-center items-center">
+                <Loader color="dark" />
             </div>
         );
     }

@@ -1,13 +1,37 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import recipes from "../../../data/recipe.json";
+import { TagDetailType } from '../tags';
 
 export interface RecipeDetailsType {
-    [key:string]: any;
+    [key: string]: any;
     id: number;
     slug: string;
-    description?: string;
-    thumbnail_url?:string;
-    thumbnail_alt_text?:string;
+    description: string;
+    tags: Array<TagDetailType>;
+    thumbnail_url: string;
+    thumbnail_alt_text: string;
+    created_at: number;
+    user_ratings: {
+        count_positive: number;
+        score: number | null;
+        count_negative: number;
+    };
+    total_time_minutes: number | null;
+    total_time_tier: {
+        tier: string;
+        display_tier: string;
+    };
+    instructions: Array<{
+        start_time: number;
+        appliance: string | null;
+        end_time: number;
+        temperature: number | null;
+        id: number;
+        position: number;
+        display_text: string;
+    }>;
+    language: string;
+    original_video_url: string | null;
 };
 
 export default function handler(
