@@ -3,8 +3,8 @@ import { axInstance } from "../../hooks/useAxios";
 import { Skeleton } from "@mantine/core";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
-import { AxiosError, AxiosResponse } from "axios";
-
+import { AxiosResponse } from "axios";
+import Head from "next/head";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const res: AxiosResponse = await axInstance(`/recipes/${context.params?.recipeSlug}`);
@@ -27,5 +27,12 @@ export default function RecipeDetails({
     recipe,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     // console.log(recipe);
-    return <div>RecipeDetails</div>;
+    return (
+        <React.Fragment>
+            <Head>
+                <title>Recipe Details</title>
+            </Head>
+            <div>RecipeDetails</div>
+        </React.Fragment>
+    );
 }
