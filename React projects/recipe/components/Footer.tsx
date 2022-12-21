@@ -5,6 +5,7 @@ import {
   AiFillInstagram,
   AiFillYoutube,
 } from "react-icons/ai";
+import styles from "../styles/modules/Footer.module.scss"
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -14,34 +15,36 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("xs")]: {
       flexDirection: "column",
       alignItems: "flex-start",
+      justifyContent: "center",
+      gap: theme.spacing.md,
     },
   },
   links: {
     [theme.fn.smallerThan("xs")]: {
-      marginTop: theme.spacing.md,
+      marginLeft: "-5px",
     },
-  },
-  socialIcons: {
-    color: "inherit",
-  },
+    "&>*": {
+      color: "inherit !important",
+    }
+  }
 }));
 
 export default function Footer() {
   const { classes } = useStyles();
   return (
-    <footer className={`sticky-footer ${classes.inner}`}>
-      <div className="sticky-footer__content">
+    <footer className={[styles["sticky-footer"], classes.inner].join(" ")}>
+      <div className={styles["sticky-footer__content"]}>
         Fazle Rabbi Faiyaz. All rights reserved{" "}
         <BiCopyright className="inline-block" />
       </div>
       <Group spacing={10} className={classes.links} position="right" noWrap>
-        <ActionIcon variant="transparent" className={classes.socialIcons}>
+        <ActionIcon variant="transparent">
           <AiFillTwitterCircle size={25} />
         </ActionIcon>
-        <ActionIcon variant="transparent" className={classes.socialIcons}>
+        <ActionIcon variant="transparent">
           <AiFillInstagram size={25} />
         </ActionIcon>
-        <ActionIcon variant="transparent" className={classes.socialIcons}>
+        <ActionIcon variant="transparent">
           <AiFillYoutube size={25} />
         </ActionIcon>
       </Group>

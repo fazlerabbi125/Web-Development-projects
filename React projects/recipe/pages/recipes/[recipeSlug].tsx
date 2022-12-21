@@ -1,10 +1,11 @@
 import React from "react";
 import { axInstance } from "../../hooks/useAxios";
-import { Skeleton } from "@mantine/core";
+import { Card, Text } from "@mantine/core";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { AxiosResponse } from "axios";
 import Head from "next/head";
+import styles from "../../styles/modules/RecipeDetails.module.scss";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const res: AxiosResponse = await axInstance(`/recipes/${context.params?.recipeSlug}`);
@@ -32,7 +33,9 @@ export default function RecipeDetails({
             <Head>
                 <title>Recipe Details</title>
             </Head>
-            <div>RecipeDetails</div>
+            <Card p="md" className={styles.recipe_details__card}>
+                <Text>{recipe.name}</Text>
+            </Card>
         </React.Fragment>
     );
 }

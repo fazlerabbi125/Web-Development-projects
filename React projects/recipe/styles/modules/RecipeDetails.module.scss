@@ -1,0 +1,6 @@
+@use "../partials/addFlex";
+
+.recipe_details__card{
+    width: 85%;
+    @apply mx-auto;
+}

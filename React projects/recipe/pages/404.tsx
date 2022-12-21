@@ -18,17 +18,17 @@ export default function Custom404() {
                     src="/images/cross-cultery.jpg"
                     alt="cross-cultery"
                     className="w-4/12 h-80"
-                    style={{height:"22rem"}}
+                    style={{ height: "22rem" }}
                 />
                 <Text
                     color={"#334155"}
                     weight={700}
-                    className="absolute top-4 font-serif text-4xl break-all	"
+                    className="absolute top-2 text-4xl break-all"
                 >
-                    Oops!
+                    404 Error
                 </Text>
                 <Text weight={700} className="font-sans text-3xl">
-                    404 - Page Not Found
+                    Page Not Found
                 </Text>
             </Flex>
         </>

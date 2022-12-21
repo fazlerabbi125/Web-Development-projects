@@ -9,7 +9,9 @@ import {
     Pagination,
 } from "@mantine/core";
 import { RecipeListType } from "../pages/api/recipes";
+import { RecipeDetailsType } from "../pages/api/recipes/[recipeSlug]";
 import Link from "next/link";
+import styles from "../styles/modules/RecipeList.module.scss";
 
 interface RecipeListProps {
     tags?: string;
@@ -39,28 +41,29 @@ const RecipeList = (props: RecipeListProps) => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center">
+            <div className={styles.recipe_list__loading}>
                 <Loader color="dark" />
             </div>
         );
     }
 
-    if (error)
+    if (error) {
         return (
-            <div className="text-xl font-semibold text-center">{error.message}</div>
+            <div className="response-error">{error.message}</div>
         );
+    }
 
     return (
-        <React.Fragment>
+        <div className="mt-12 mb-10">
             {recipeList && recipeList.results.length > 0 ? (
-                <>
+                <React.Fragment>
                     <Flex className="gap-20" justify="center" direction="row" wrap="wrap">
-                        {recipeList.results.map((recipe: any) => (
+                        {recipeList.results.map((recipe: RecipeDetailsType) => (
                             <Card
                                 shadow="sm"
                                 p="sm"
                                 radius="md"
-                                className="w-3/12 relative"
+                                className={styles.recipe_list__card}
                                 key={recipe.id}
                             >
                                 <Card.Section>
@@ -75,7 +78,7 @@ const RecipeList = (props: RecipeListProps) => {
                                 <Text size="sm" color="dimmed" className="truncate">
                                     {recipe.description || "No description"}
                                 </Text>
-                                <div className="mt-4 flex justify-center sticky top-full">
+                                <div className={styles.recipe_list__card__footer}>
                                     <Link
                                         className="btn btn-danger w-8/12"
                                         href={{
@@ -96,22 +99,17 @@ const RecipeList = (props: RecipeListProps) => {
                         className="mt-5"
                         position="center"
                         withEdges
-                        styles={(theme) => ({
-                            item: {
-                                backgroundColor: "#fff !important",
-                                "&[data-active]": {
-                                    backgroundColor: `#7c3aed !important`,
-                                },
-                            },
-                        })}
+                        classNames={{
+                            item: "pagination_items"
+                        }}
                     />
-                </>
+                </React.Fragment>
             ) : (
                 <Text align="center" weight={600} className="text-3xl">
                     No recipes found
                 </Text>
             )}
-        </React.Fragment>
+        </div>
     );
 };
 

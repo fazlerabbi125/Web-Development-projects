@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/modules/Home.module.scss";
 import RecipeList from "../components/RecipeList";
 
 export default function Home() {
@@ -8,12 +7,10 @@ export default function Home() {
       <Head>
         <title>Faiyaz's Recipes</title>
       </Head>
-      <header className={styles.home_header}>
+      <header className="text-zinc-50	text-center	text-5xl mb-16">
         Welcome to Faiyaz's Recipes
       </header>
-      <div className="mt-12 mb-10">
-        <RecipeList />
-      </div>
+      <RecipeList />
     </section>
   );
 }

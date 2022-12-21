@@ -56,6 +56,7 @@ span {
     color: #292524;
     font-family: "Nunito";
     margin-bottom: 2rem;
+    position: relative;
     @apply text-xl;
 }
 
@@ -79,15 +80,15 @@ span {
     }
 }
 
-.sticky-footer {
-    position: sticky;
-    top: 100%;
-    padding: 15px 50px;
-    color: #fafafa;
-    @apply font-sans bg-neutral-800;
+.pagination_items {
+    background-color: #fafafa;
 
-    &__content {
-        font-weight: 700;
-        @apply text-lg;
+    &[data-active] {
+        background-color: #7c3aed;
     }
+}
+
+.response-error{
+    text-align: center;
+    @text-xl font-semibold;
 }
