@@ -1,17 +1,17 @@
 import React from "react";
-import { useAxios, CustomAxiosResponse } from "../hooks/useAxios";
+import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import {
     Flex,
     Card,
     Image as MImage,
     Loader,
     Text,
-    Pagination,
 } from "@mantine/core";
-import { RecipeListType } from "../pages/api/recipes";
-import { RecipeDetailsType } from "../pages/api/recipes/[recipeSlug]";
+import ListPagination from "../molecules/ListPagination";
+import { RecipeListType } from "../../pages/api/recipes";
+import { RecipeDetailsType } from "../../pages/api/recipes/[recipeSlug]";
 import Link from "next/link";
-import styles from "../styles/modules/RecipeList.module.scss";
+import styles from "../../styles/modules/RecipeList.module.scss";
 
 interface RecipeListProps {
     tags?: string;
@@ -92,16 +92,12 @@ const RecipeList = (props: RecipeListProps) => {
                             </Card>
                         ))}
                     </Flex>
-                    <Pagination
+                    <ListPagination
                         page={page}
-                        onChange={setPage}
-                        total={Math.ceil(total / itemsPerPage)}
+                        onPageChange={setPage}
+                        totalPages={Math.ceil(total / itemsPerPage)}
                         className="mt-5"
-                        position="center"
-                        withEdges
-                        classNames={{
-                            item: "pagination_items"
-                        }}
+                        itemClassName="pagination_items"
                     />
                 </React.Fragment>
             ) : (

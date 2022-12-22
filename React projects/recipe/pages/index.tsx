@@ -1,5 +1,5 @@
 import Head from "next/head";
-import RecipeList from "../components/RecipeList";
+import RecipeList from "../components/organisms/RecipeList";
 
 export default function Home() {
   return (

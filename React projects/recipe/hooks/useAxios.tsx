@@ -3,7 +3,6 @@ import useSWR from "swr";
 
 const axInstance = axios.create({
   baseURL: "http://localhost:3000/api",
-  timeout: 1000,
 });
 
 export interface CustomAxiosResponse<T = any> {
@@ -31,4 +30,4 @@ const useAxios = (
   return { data, error, isLoading };
 };
 
-export { axInstance, useAxios };
+export { axInstance, useAxios, fetchData };

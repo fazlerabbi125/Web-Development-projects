@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react'
-import Footer from './Footer';
-import Navbar from './Navbar';
-import { Container } from '@mantine/core';
+import React, { ReactElement } from "react";
+import Footer from "../organisms/Footer";
+import Navbar from "../organisms/Navbar";
+import { Container } from "@mantine/core";
 
 interface LayoutProps {
   children: ReactElement | ReactElement[];
@@ -16,5 +16,5 @@ export default function Layout(props: LayoutProps) {
       </Container>
       <Footer />
     </React.Fragment>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CustomNavLink from "./CustomNavLink";
+import CustomNavLink from "../atoms/CustomNavLink";
 import Image from "next/image";
 import {
   Navbar as BSNavbar,
@@ -9,8 +9,7 @@ import {
   Nav,
   NavItem,
 } from "reactstrap";
-import { Autocomplete } from "@mantine/core";
-import { useDebouncedValue } from "@mantine/hooks";
+import RecipeAutoComplete from "../molecules/RecipeAutoComplete";
 
 const routes = [
   { link: "/", text: "Home" },
@@ -30,10 +29,15 @@ export default function Navbar() {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           {routes.map((route) => (
-            <NavItem className="ml-4" key={route.link}>
+            <NavItem className="sm:ml-4" key={route.link}>
               <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
             </NavItem>
           ))}
+        </Nav>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <RecipeAutoComplete />
+          </NavItem>
         </Nav>
       </Collapse>
     </BSNavbar>
