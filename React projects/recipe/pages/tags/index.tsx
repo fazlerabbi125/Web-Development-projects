@@ -2,8 +2,9 @@ import Head from "next/head";
 import React from "react";
 import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import { TagListType } from "../api/tags";
-import { Chip, Pagination, TextInput, Loader, Flex } from "@mantine/core";
+import { Chip, TextInput, Loader, Flex } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
+import ListPagination from "../../components/molecules/ListPagination";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
@@ -11,7 +12,7 @@ export default function TagList() {
   const itemsPerPage = 20;
   const [page, setPage] = React.useState<number>(1);
   const [tagName, setTagName] = React.useState("");
-  const [debouncedTagName] = useDebouncedValue(tagName, 200);
+  const [debouncedTagName] = useDebouncedValue(tagName, 500);
 
   const start = (page - 1) * itemsPerPage;
   const end = (page - 1) * itemsPerPage + itemsPerPage;
@@ -62,17 +63,12 @@ export default function TagList() {
                 >
                   <div>Tags</div>
                 </Flex>
-
-                <Pagination
+                <ListPagination
                   page={page}
-                  onChange={setPage}
-                  total={Math.ceil(totalTags / itemsPerPage)}
+                  onPageChange={setPage}
+                  totalPages={Math.ceil(totalTags / itemsPerPage)}
                   className="mt-5"
-                  position="center"
-                  withEdges
-                  classNames={{
-                    item: "pagination_items",
-                  }}
+                  itemClassName="pagination_items"
                 />
               </>
             ) : (

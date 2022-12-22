@@ -6,6 +6,7 @@ export interface RecipeDetailsType {
     [key: string]: any;
     id: number;
     slug: string;
+    name: string;
     description: string;
     tags: Array<TagDetailType>;
     thumbnail_url: string;
