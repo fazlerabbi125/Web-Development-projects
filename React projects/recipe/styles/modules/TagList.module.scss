@@ -1,0 +1,30 @@
+@use "../partials/addFlex";
+@use "../partials/mediaQuery";
+
+.tag-list {
+    @include addFlex.flex-container($jc: center, $ai: center, $wr: wrap);
+    gap: 20px;
+
+    // @include mediaQuery.devices(desktop) {
+    //     @include addFlex.flex-container($jc: center,
+    //         $ai: center,
+    //         $direction: column,
+    //         $wr: wrap);
+    //         max-height: 60vh;
+
+    // }
+
+    // @include mediaQuery.devices(tablet) {
+    //     // max-height: 100vh;
+    //     @include addFlex.flex-container($jc: center, $ai: center, $wr: wrap);
+    // }
+
+    // @include mediaQuery.devices(mobile) {
+    //     @include addFlex.flex-container($jc: center, $ai: center, $wr: wrap);
+    // }
+
+    &__item {
+        border-radius: 50rem;
+        width: 15rem;
+    }
+}

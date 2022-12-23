@@ -1,5 +1,6 @@
 import Head from "next/head";
 import RecipeList from "../components/organisms/RecipeList";
+import Header from "../components/organisms/Header";
 
 export default function Home() {
   return (
@@ -7,9 +8,9 @@ export default function Home() {
       <Head>
         <title>Faiyaz's Recipes</title>
       </Head>
-      <header className="text-zinc-50	text-center	text-5xl mb-16">
+      <Header className="text-5xl mb-16">
         Welcome to Faiyaz's Recipes
-      </header>
+      </Header>
       <RecipeList />
     </section>
   );
