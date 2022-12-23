@@ -2,14 +2,17 @@ import Head from "next/head";
 import React from "react";
 import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import { TagListType } from "../api/tags";
-import { Chip, TextInput, Loader, Flex } from "@mantine/core";
+import { TextInput, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import ListPagination from "../../components/molecules/ListPagination";
+import styles from "../../styles/modules/TagList.module.scss";
+import Link from "next/link";
+import Header from "../../components/organisms/Header";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
 export default function TagList() {
-  const itemsPerPage = 20;
+  const itemsPerPage = 40;
   const [page, setPage] = React.useState<number>(1);
   const [tagName, setTagName] = React.useState("");
   const [debouncedTagName] = useDebouncedValue(tagName, 500);
@@ -24,7 +27,7 @@ export default function TagList() {
   }: TagListResponse = useAxios("/tags", {
     start,
     end,
-    tagName: debouncedTagName
+    tagName: debouncedTagName,
   });
 
   const totalTags = tagList?.count || 0;
@@ -53,26 +56,46 @@ export default function TagList() {
                 setTagName(e.target.value)
               }
             />
-            {tagList.results.length > 0 ? (
+            <Header className="text-center text-4xl mt-10 mb-12">
+              {tagList.results.length > 0 ? "Available Tags" : "No tags found"}
+            </Header>
+            {tagList.results.length > 0 && (
               <>
-                <Flex
-                  justify="center"
-                  direction="column"
-                  align="center"
-                  className="mt-10"
-                >
-                  <div>Tags</div>
-                </Flex>
+                <div className={styles["tag-list"]}>
+                  {tagList.results.map((tag) => {
+                    return (
+                      <Link
+                        href={{
+                          pathname: "/tags/[tagID]/recipes",
+                          query: {
+                            tagID: tag.id,
+                            tagName: encodeURIComponent(
+                              tag.display_name +
+                              " (" +
+                              tag.type.split("_").join(" ") +
+                              ")"
+                            ),
+                          },
+                        }}
+                        className={[
+                          "btn",
+                          "btn-dark",
+                          styles["tag-list__item"],
+                        ].join(" ")}
+                      >
+                        {tag.display_name} ({tag.type.split("_").join(" ")})
+                      </Link>
+                    );
+                  })}
+                </div>
                 <ListPagination
                   page={page}
                   onPageChange={setPage}
                   totalPages={Math.ceil(totalTags / itemsPerPage)}
-                  className="mt-5"
+                  className="my-5"
                   itemClassName="pagination_items"
                 />
               </>
-            ) : (
-              <div className="text-center">No tags found</div>
             )}
           </>
         )}

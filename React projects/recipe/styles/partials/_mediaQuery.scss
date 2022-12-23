@@ -1,5 +1,5 @@
 $breakpoints:(
- "sm":767px,
+ "sm":767.5px,
  "md":768px,
  "lg":992px
 );
@@ -14,7 +14,7 @@ $breakpoints:(
     }
 
     @if $breakpoint == tablet {    
-        @media only screen and (min-width: map-get($breakpoints,"md")) and (max-width: (map-get($breakpoints,"lg")-1)){
+        @media only screen and (min-width: map-get($breakpoints,"md")) and (max-width: (map-get($breakpoints,"lg")-0.5)){
             @content;
         }
     }

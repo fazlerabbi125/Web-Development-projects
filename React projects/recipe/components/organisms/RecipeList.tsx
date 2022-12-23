@@ -14,7 +14,7 @@ import Link from "next/link";
 import styles from "../../styles/modules/RecipeList.module.scss";
 
 interface RecipeListProps {
-    tags?: string;
+    tags?: number;
 }
 
 type RecipeListResponse = CustomAxiosResponse<RecipeListType>;
@@ -96,7 +96,7 @@ const RecipeList = (props: RecipeListProps) => {
                         page={page}
                         onPageChange={setPage}
                         totalPages={Math.ceil(total / itemsPerPage)}
-                        className="mt-5"
+                        className="my-5"
                         itemClassName="pagination_items"
                     />
                 </React.Fragment>
