@@ -7,7 +7,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
     return (
-        <header className={`text-zinc-50 ${props.className||""}`}>
+        <header className={`text-zinc-50 font-bold ${props.className||""}`}>
             {props.children}
         </header>
     )

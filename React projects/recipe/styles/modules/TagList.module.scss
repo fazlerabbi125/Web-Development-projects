@@ -2,8 +2,6 @@
 @use "../partials/mediaQuery";
 
 .tag-list {
-    @apply mx-auto;
-
     @include mediaQuery.devices(desktop) {
         column-count: 4; //for arranging items column-wise in the given column count
         column-gap: 2rem;
@@ -24,14 +22,10 @@
         width: 15rem;
         display: inline-flex;
         justify-content: center;
+        margin-bottom: 1rem;
 
-        @include mediaQuery.devices(desktop) {
-            margin-bottom: 1rem;
+        @include mediaQuery.devices(mobile) {
+            margin-bottom: 0;
         }
-
-        @include mediaQuery.devices(tablet) {
-            margin-bottom: 1rem;
-        }
-
     }
 }
