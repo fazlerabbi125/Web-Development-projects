@@ -8,10 +8,6 @@ import ListPagination from "../../components/molecules/ListPagination";
 import styles from "../../styles/modules/TagList.module.scss";
 import Link from "next/link";
 import Header from "../../components/organisms/Header";
-import RouterStateContext, {
-  RouterStateContextType,
-} from "../../contexts/RouterStateContext";
-RouterStateContext;
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
@@ -20,7 +16,6 @@ export default function TagList() {
   const [page, setPage] = React.useState<number>(1);
   const [tagName, setTagName] = React.useState("");
   const [debouncedTagName] = useDebouncedValue(tagName, 500);
-  const ctx: RouterStateContextType = React.useContext(RouterStateContext);
 
   const start = (page - 1) * itemsPerPage;
   const end = (page - 1) * itemsPerPage + itemsPerPage;
@@ -76,16 +71,17 @@ export default function TagList() {
                             tagID: tag.id,
                           },
                         }}
+                        key={tag.id}
                         className={[
                           "btn",
                           "btn-dark",
                           styles["tag-list__item"],
                         ].join(" ")}
                         onClick={() => {
-                          ctx?.setRouterState({
+                          localStorage.setItem("tagInfo", JSON.stringify({
                             tagName: tag.display_name,
                             tagType: tag.type.split("_").join(" "),
-                          });
+                          }))
                         }}
                       >
                         {tag.display_name} ({tag.type.split("_").join(" ")})
