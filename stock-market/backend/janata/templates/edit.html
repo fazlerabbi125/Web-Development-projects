@@ -1,0 +1,15 @@
+{% extends './base.html'%}
+{% block title %}Edit stock{% endblock %}
+{% block content %}
+
+<div class="card mx-auto shadow-sm w-50 mt-4">
+    <h4 class="fw-bold card-header text-center">
+        Edit your stock
+    </h4>
+    <div class="card-body">
+      <p class="card-text">
+        {% include "./form.html" %}
+    </div>
+  </div>
+
+{% endblock %}

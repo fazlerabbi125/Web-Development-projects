@@ -1,0 +1,82 @@
+<form method="post" class="mt-2">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="text-danger text-center">{{ form.non_field_errors }}</div>
+    {% endif  %}
+
+    <div class="row mb-3">
+        <label for="{{ form.trade_code.id_for_label }}" class="col-md-3 col-form-label text-md-end">Trade Code:</label>
+        <div class="col-md-6">
+            {{ form.trade_code }}
+        </div>
+    </div>
+    {% if form.trade_code.errors %}
+        <div class="text-danger text-center">{{ form.trade_code.errors }}</div>
+    {% endif  %}
+
+    <div class="row mb-3">
+        <label for="{{ form.date.id_for_label }}" class="col-md-3 col-form-label text-md-end">Date:</label>
+        <div class="col-md-6">
+            {{ form.date }}
+        </div>
+    </div>
+    {% if form.date.errors %}
+        <div class="text-danger text-center">{{ form.date.errors }}</div>
+    {% endif  %}
+   
+    <div class="row mb-3">
+        <label for="{{ form.high.id_for_label }}" class="col-md-3 col-form-label text-md-end">High:</label>
+        <div class="col-md-6">
+            {{ form.high }}
+        </div>
+    </div>
+    {% if form.high.errors %}
+        <div class="text-danger text-center">{{ form.high.errors }}</div>
+    {% endif  %}
+
+    <div class="row mb-3">
+        <label for="{{ form.low.id_for_label }}" class="col-md-3 col-form-label text-md-end">Low:</label>
+        <div class="col-md-6">
+            {{ form.low }}
+        </div>
+    </div>
+    {% if form.low %}
+        <div class="text-danger text-center">{{ form.low.errors }}</div>
+    {% endif  %}
+    
+    <div class="row mb-3">
+        <label for="{{ form.open.id_for_label }}" class="col-md-3 col-form-label text-md-end">Opening Price:</label>
+        <div class="col-md-6">
+            {{ form.open }}
+        </div>
+    </div>
+    {% if form.open.errors %}
+        <div class="text-danger text-center">{{ form.open.errors }}</div>
+    {% endif  %}
+
+    <div class="row mb-3">
+        <label for="{{ form.close.id_for_label }}" class="col-md-3 col-form-label text-md-end">Closing Price:</label>
+        <div class="col-md-6">
+            {{ form.close }}
+        </div>
+    </div>
+    {% if form.close.errors %}
+        <div class="text-danger text-center">{{ form.close.errors }}</div>
+    {% endif  %}
+
+    <div class="row mb-3">
+        <label for="{{ form.volume.id_for_label }}" class="col-md-3 col-form-label text-md-end">Trading Volume:</label>
+        <div class="col-md-6">
+            {{ form.volume }}
+        </div>
+    </div>
+    {% if form.volume.errors %}
+        <div class="text-danger text-center">{{ form.volume.errors }}</div>
+    {% endif  %}
+    
+    
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
