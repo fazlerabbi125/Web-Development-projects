@@ -1,0 +1,34 @@
+The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural version of your model name. For example, if you use
+
+const MyModel = mongoose.model('Ticket', mySchema);
+Then MyModel will use the tickets collection, not the ticket collection.
+
+Mongoose has several built-in validators.
+
+All SchemaTypes have the built-in required validator. The required validator uses the SchemaType's checkRequired() function to determine if the value satisfies the required validator.
+Numbers have min and max validators.
+Strings have enum, match, minLength, and maxLength validators.
+
+You can configure the error message for individual validators in your schema. There are two equivalent ways to set the validator error message:
+
+Array syntax: min: [6, 'Must be at least 6, got {VALUE}']
+Object syntax: enum: { values: ['Coffee', 'Tea'], message: '{VALUE} is not supported' }
+
+MongoDB docs: https://www.mongodb.com/docs/manual/crud/
+
+Mongoose docs:
+https://mongoosejs.com/docs/guide.html
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
+
+MongoDB query operators:
+https://www.mongodb.com/docs/manual/reference/operator/query/
+
+Creating and handling relationships:
+https://mongoosejs.com/docs/populate.html
+https://mongoosejs.com/docs/subdocs.html
+
+Your schemas can define default values for certain paths. If you create a new document without that path set, 
+the default will kick in. Mongoose only applies a default if the value of the path is strictly undefined.
+You can also set the default schema option to a function. Mongoose will execute that function and use the return value as 
+the default.
+

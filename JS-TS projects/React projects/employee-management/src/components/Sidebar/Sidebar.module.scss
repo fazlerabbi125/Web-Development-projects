@@ -1,0 +1,74 @@
+@import "../../assets/styles/partials/colors";
+@import "../../assets/styles/partials/flex";
+@import "../../assets/styles/partials/breakpoints";
+
+
+@keyframes sidebar-slide {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    height: 100%;
+    z-index: 10;
+    width: 20%;
+    color: white;
+    display: none;
+
+    &--show {
+        display: block;
+        animation: sidebar-slide 0.5s ease-out forwards;
+    }
+
+    &__container {
+        margin-top: 2.5rem;
+
+        &__heading {
+            @include addFlex($jc: space-between, $ai: center);
+            width: 75%;
+            margin: 0 auto 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid map-get($map: $colors, $key: "bg-grey-3");
+        }
+
+        &__links {
+            list-style: none;
+            padding: 0;
+            width: 75%;
+            margin: 0 auto;
+            font-size: large;
+            line-height: 2.2rem;
+
+            &__item {
+                text-decoration: none;
+                color: inherit;
+
+                &:hover {
+                    color: darken($color: rgb(255, 255, 255), $amount: 8%)
+                }
+
+                &--active {
+                    color: aqua;
+
+                    &:hover {
+                        color: darken($color: aqua, $amount: 5%)
+                    }
+                }
+
+                >i[class^="fa"] {
+                    display: inline-block;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+    }
+}

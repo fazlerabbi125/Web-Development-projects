@@ -1,0 +1,13 @@
+@use 'sass:math';
+
+@function pxTopercentContent($target) {
+    @return math.div($target,13.85)*1%;
+}
+
+@function pxTorem($target, $parent: 16) {
+    @return #{math.div($target,$parent)}rem;
+}
+
+@function pxTovw($target) {
+    @return #{math.div($target,13.66)}vw;
+}

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
+
+.profile {
+    background-color: map-get($map: $colors, $key: "light-blue");
+    width: 30%;
+    @include addFlex($direction: column);
+    margin-bottom: 3rem;
+
+    &__img {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 8rem;
+        height: 8rem;
+    }
+
+    &__details {
+        @include addFlex($direction: column, $jc: flex-start);
+        word-wrap: break-word;
+        word-break: break-all;
+        gap: 0.15rem;
+    }
+}

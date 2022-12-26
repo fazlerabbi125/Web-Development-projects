@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+        <title><%= locals.user.name %></title>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>          
+        <%- include('../partials/nav.ejs') %>  
+      <div class="mt-2 row w-100">
+        <div class="card col-3 me-5">
+            <img src="<%= user.photo %>" alt="Profile Photo"  class="img-fluid card-img-top rounded-circle mt-3 mx-auto" style="width:8rem;height:8rem;">
+            <div class="card-body text-center">
+                <h4 class="card-title mb-3"><%= user.name %></h4>
+                <div class="card-text"><span class="text-muted">Email: </span><%= user.email %></div>
+                <div class="card-text"><span class="text-muted">Gender: </span><%= user.gender %></div>
+                <div class="card-text"><span class="text-muted">Date of birth: </span><%= user.birth_date.toLocaleDateString() %></div>      
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/user/<%= user._id %>/update" class="btn btn-dark">Update account info</a>
+                    <a href="/user/<%= user._id %>/reset-password" class="btn btn-dark">Reset Password</a>
+                    <button  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</button>
+                </div>
+            </div>
+            <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteAccountLabel">Account Deletion</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="accDel" data-doc="<%= user._id %>">
+                        Are you sure you want to delete this account? 
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-danger">Confirm</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-7">
+            <% if (user.posts.length>0) { %> <!-- Control flow with <% %>  -->
+                <h2 class="mb-4">Your posts:</h2>
+                <div class="card">
+                    <div class="list-group list-group-flush">
+                      <% user.posts.forEach( (blog)=>{ %>
+                        <a class="list-group-item" href="/blogs/<%= blog.slug %>">
+                                <h3 class="card-title"><%= blog.title %></h3>
+                                <div class="card-subtitle"><span class="fw-bold text-muted">Created at:</span> <%= blog.createdAt.toUTCString() %></div>
+                                <p class="card-text"><%= blog.body.slice(0,50)+"....." %></p>
+                        </a>
+                            <% }) 
+                        %>
+                    </div>
+                </div>
+            <% }
+            else { %>
+                <h2 class="text-center mt-4">You haven't made any posts yet.</h2>
+            <% } %>
+
+        </div>
+      </div>
+      <script>
+        const deleteForm=document.querySelector('#accDel');
+        
+        deleteForm.addEventListener('submit',(event)=>{
+            event.preventDefault();
+            const url=`/user/${deleteForm.dataset.doc}/delete`;
+            fetch(url,{method:'DELETE'})
+            .then((response)=>response.json())
+            .then((data)=>window.location.href=data.redirect)
+            .catch((err)=>console.log(err));
+        })
+    </script>
+    </body>
+</html>

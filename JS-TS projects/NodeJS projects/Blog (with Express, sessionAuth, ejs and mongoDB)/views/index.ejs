@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Express Tutorial</title>
+        <%- include('./partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+    </head>
+    <body>
+        
+        <%- include('./partials/header.ejs') %>          
+        
+        <%- include('./partials/nav.ejs') %>            
+        
+        <div>
+            <% if (blogs.length>0) { %> <!-- Control flow with <% %>  -->
+                <h2 class="text-center mb-4">All blogs</h2>
+                <div class="card w-50 mx-auto">
+                    <div class="list-group list-group-flush">
+                    <% blogs.forEach( (blog)=>{ %>
+                        <a class="list-group-item" href="/blogs/<%= blog.slug %>">
+                                <h3 class="card-title"><%= blog.title %></h3>
+                                <div class="card-subtitle"><span class="fw-bold text-muted">Author: </span><%= blog.author.name %></div>
+                                <p class="card-text"><%= blog.body.slice(0,50)+"....." %></p>
+                        </a>
+                            <% }) 
+                        %>
+                    </div>
+                </div>
+            <% }
+            else { %>
+                <h2 class="text-center mt-4" >No blogs to display...</h2>
+            <% } %>
+
+        </div>
+    </body>
+</html>

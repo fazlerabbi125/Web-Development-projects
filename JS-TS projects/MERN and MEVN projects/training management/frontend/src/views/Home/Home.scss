@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
+
+.home {
+    @include addFlex($jc: center, $ai: flex-start);
+    gap: 2rem;
+    width: 85%;
+    margin: auto auto 2rem;
+
+    @include devices(mobile) {
+        @include addFlex($direction: column, $jc: center);
+        align-content: center;
+        width: 90%;
+    }
+
+    &__img {
+        max-width: 70%;
+
+        @include devices(mobile) {
+            max-width: 90%;
+        }
+    }
+
+    &__content {
+        width: 50%;
+
+        @include devices(mobile) {
+            width: 90%;
+        }
+
+        &__heading {
+            @include devices(mobile) {
+                text-align: center;
+            }
+        }
+    }
+}

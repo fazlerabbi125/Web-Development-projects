@@ -1,0 +1,12 @@
+Nodemon is a tool that helps to run and develop node.js based applications by automatically restarting the node 
+application when file changes in the directory are detected. To install it, use either one of the commands:
+    npm install -g nodemon //where -g means nodemon will be installed globally to your system path and hence you can use it from anywhere (Recommended)
+    npm install --save-dev nodemon //install nodemon as a development dependency
+After installing nodemon, do this or else it won't work as running scripts is disabled on this system:
+Step 1 : Go to this location --> File C:\Users\"USERNAME"\AppData\Roaming\npm, where "USERNAME" is the username you specified for your computer
+Step 2 : Delete the nodemon powershell (nodemon.ps1) file and you will be good to go.
+
+Nodemon wraps your application, so instead of the usual way of running a node.js file (i.e. node [your node app]), 
+you can pass all the arguments you would normally pass to your app to run your file:
+    nodemon [your node app]
+

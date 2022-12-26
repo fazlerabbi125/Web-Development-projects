@@ -1,0 +1,147 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+@import "./partials/colors";
+@import "./partials/flex";
+@import "./partials/breakpoints";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: $bg-body;
+  font-family: "Source Sans Pro";
+}
+
+button, input,span {
+  display: inline-block;
+  text-align: center;
+}
+
+
+#root{
+  position: relative;
+  min-height: 100vh;
+}
+
+@import './partials/utilities';
+
+.loading {
+  color: white;
+  text-align: center;
+}
+
+.error {
+  color: $error;
+  text-align: center;
+}
+
+.rounded-circle{
+  border-radius: 50% !important;
+}
+
+.rounded-pill{
+  border-radius: 50rem !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+
+.emp-form {
+  text-align: center;
+  margin: 1rem auto 3rem;
+  background-color: white;
+  border: 0.3rem solid $component-border;
+  text-align: center;
+  padding: 0.25rem 2rem 2rem;
+  width: 50%;
+  line-height: 2.5em;
+  label {
+    font-weight: 500;
+  }
+}
+
+
+.pagination {
+  list-style: none;
+  margin-bottom: 3rem;
+  @include addFlex($jc:center);
+  &__page{
+    padding: 0.5em 1em 0.5em;
+    border-radius: 5px;
+    margin-right: 0.15rem;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    &--disabled{
+      display: none;
+    }
+    &--active{
+      color: white;
+      background-color: black;
+    }
+    &:hover{
+      color: black;
+      background-color: rgb(200, 200, 200);
+    }
+  }
+}
+
+.card{
+  background-color: white;
+  border: 0.3rem solid gainsboro; 
+  margin: 2rem auto;
+}
+
+
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  &__content {
+    width: 40%;
+    background-color: white;
+    margin: 4rem auto;
+    border-radius: 0.6rem;
+    padding: 1.25rem 0;
+    &__body{
+      text-align: center;
+      padding-bottom: 1rem;
+      font-size: 18px;
+      border-bottom: 1px solid black;
+    }
+    &__header{
+      @include addFlex($jc:space-around);
+      font-size: 25px;
+      font-weight: bold;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid black;
+    }
+    &__footer{
+      margin-top: 1rem;
+      @include addFlex($jc:center);
+      gap:1rem;
+    }
+  }
+  
+}
+
+.about {
+  width:50%;
+  padding: 0 1rem 1rem;
+  margin: 1rem auto 2rem;
+}
+
+@import "./partials/buttons";
+
+
+/*# sourceMappingURL=index.css.map */

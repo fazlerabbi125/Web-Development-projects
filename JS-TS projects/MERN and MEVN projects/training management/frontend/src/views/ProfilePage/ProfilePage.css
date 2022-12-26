@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans");
+.profile {
+  background-color: rgb(100, 200, 220);
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+.profile__img {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 8rem;
+  height: 8rem;
+}
+.profile__details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  word-wrap: break-word;
+  word-break: break-all;
+  gap: 0.15rem;
+}/*# sourceMappingURL=ProfilePage.css.map */

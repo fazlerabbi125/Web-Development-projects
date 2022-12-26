@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans");
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 2rem;
+  width: 85%;
+  margin: auto auto 2rem;
+}
+@media only screen and (max-width: 767px) {
+  .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    width: 90%;
+  }
+}
+.home__img {
+  max-width: 70%;
+}
+@media only screen and (max-width: 767px) {
+  .home__img {
+    max-width: 90%;
+  }
+}
+.home__content {
+  width: 50%;
+}
+@media only screen and (max-width: 767px) {
+  .home__content {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .home__content__heading {
+    text-align: center;
+  }
+}/*# sourceMappingURL=Home.css.map */

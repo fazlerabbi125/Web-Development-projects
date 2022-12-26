@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
+
+.course-details {
+    display: grid;
+    align-items: flex-start;
+    gap: pxTorem(32) pxTorem(24);
+    margin-bottom: 2rem;
+
+    @include devices(desktop) {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    @include devices(tablet) {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    @include devices(mobile) {
+        width: 83%;
+    }
+
+    &__content {
+        word-wrap: break-word;
+        word-break: break-all;
+        grid-column: 3 / span 5;
+
+        @include devices(mobile) {
+            grid-column: 1 / -1;
+        }
+
+        &__list {
+            list-style-type: none;
+
+            li::before {
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                content: "\f105";
+                margin-right: 0.75rem;
+            }
+        }
+    }
+
+    &__sidemenu {
+        grid-column: 9 / span 3;
+
+        @include devices(mobile) {
+            grid-column: 1 / -1;
+        }
+
+        padding: 2rem;
+        @include addFlex($direction: column);
+        gap:0.8rem;
+        background-color: map-get($map: $colors, $key: "bg-grey-2");
+
+        &__icons {
+            text-align: center;
+            background-color: #FFFFFF;
+            border-radius: 0.25rem;
+            padding: 0.75rem 1rem;
+
+            i[class^="fa"] {
+                font-size: 2rem;
+            }
+        }
+    }
+}

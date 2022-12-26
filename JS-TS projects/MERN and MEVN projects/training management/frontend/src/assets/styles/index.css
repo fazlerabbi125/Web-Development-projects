@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #FFFFFF;
+  padding: 0;
+  font-family: "DM Sans";
+  color: #001828;
+}
+
+#root {
+  position: relative;
+  min-height: 100vh; /*used for placing footer at the bottom of the page*/
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1 {
+  font-family: "Ubuntu";
+}
+
+button, a, span, input, label {
+  display: inline-block;
+}
+
+.btn--bg-grey-1 {
+  background-color: #EEEDF2;
+  border-color: #EEEDF2;
+  color: #001828;
+}
+.btn--bg-grey-1:hover {
+  color: #001828;
+  background-color: #d2cfdd;
+  border-color: #d2cfdd;
+}
+
+.btn--bg-grey-2 {
+  background-color: #F3F3F3;
+  border-color: #F3F3F3;
+  color: #001828;
+}
+.btn--bg-grey-2:hover {
+  color: #001828;
+  background-color: #dadada;
+  border-color: #dadada;
+}
+
+.btn--dark {
+  background-color: #001828;
+  border-color: #001828;
+  color: #fff;
+}
+.btn--dark:hover {
+  color: #fff;
+  background-color: #002742;
+  border-color: #002742;
+}
+
+.btn--deep-blue {
+  background-color: #174ea1;
+  border-color: #174ea1;
+  color: #fff;
+}
+.btn--deep-blue:hover {
+  color: #fff;
+  background-color: #1a59b7;
+  border-color: #1a59b7;
+}
+
+.btn--light-blue {
+  background-color: rgb(100, 200, 220);
+  border-color: rgb(100, 200, 220);
+  color: #001828;
+}
+.btn--light-blue:hover {
+  color: #001828;
+  background-color: #3ab9d3;
+  border-color: #3ab9d3;
+}
+
+.auth__header {
+  text-align: center;
+  padding: 1rem;
+  color: #174ea1;
+}
+
+.guest {
+  margin: 3rem auto;
+}
+.guest__header {
+  background-color: #174ea1;
+  color: #FFFFFF;
+  padding: 1rem;
+  text-align: center;
+}
+.guest__form {
+  background-color: rgb(100, 200, 220);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  border: 0.2rem solid gainsboro;
+}
+.guest__form__heading {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.authForm {
+  background-color: #F3F3F3;
+  width: 40%;
+  margin: 0 auto 3rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+}
+
+.eval-details {
+  width: 60%;
+  margin: 2rem auto;
+}
+.eval-details__header {
+  text-align: center;
+}
+
+.trainee-search {
+  margin: 2rem auto;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .trainee-search {
+    flex-direction: column-reverse;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .trainee-search {
+    flex-direction: column-reverse;
+  }
+}
+.trainee-search__inputs {
+  border-radius: 0;
+}
+
+.lesson-details {
+  width: 60%;
+  margin: 1.75rem auto;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans");
+.sticky-footer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100%;
+  width: 100%;
+  background-color: #EEEDF2;
+  padding: 1.5rem;
+}
+.sticky-footer__content {
+  text-align: center;
+  font-weight: 700;
+}/*# sourceMappingURL=Footer.css.map */

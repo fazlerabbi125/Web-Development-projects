@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans");
+.course-details {
+  display: grid;
+  align-items: flex-start;
+  gap: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+@media only screen and (min-width: 992px) {
+  .course-details {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .course-details {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+@media only screen and (max-width: 767px) {
+  .course-details {
+    width: 83%;
+  }
+}
+.course-details__content {
+  word-wrap: break-word;
+  word-break: break-all;
+  grid-column: 3/span 5;
+}
+@media only screen and (max-width: 767px) {
+  .course-details__content {
+    grid-column: 1/-1;
+  }
+}
+.course-details__content__list {
+  list-style-type: none;
+}
+.course-details__content__list li::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f105";
+  margin-right: 0.75rem;
+}
+.course-details__sidemenu {
+  grid-column: 9/span 3;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: #F3F3F3;
+}
+@media only screen and (max-width: 767px) {
+  .course-details__sidemenu {
+    grid-column: 1/-1;
+  }
+}
+.course-details__sidemenu__icons {
+  text-align: center;
+  background-color: #FFFFFF;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+}
+.course-details__sidemenu__icons i[class^=fa] {
+  font-size: 2rem;
+}/*# sourceMappingURL=CourseDetails.css.map */

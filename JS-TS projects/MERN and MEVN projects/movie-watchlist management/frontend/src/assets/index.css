@@ -1,0 +1,87 @@
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color:rgb(70, 70, 70);
+  color:white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root{
+  min-height: 100vh;/*used for placing footer at the bottom of the page*/
+}
+
+input,select,textarea{
+  outline:none;
+}
+
+.toast-content{
+  background-color: rgba(255, 255, 255, 0.90);
+  padding:0.75rem 2rem;
+  text-align:center;
+}
+
+
+.modal-backdrop{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+
+
+.search-form{
+  background-color: inherit;
+  border: none;
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  width: 50vw;
+}
+
+
+.search-form__input,.search-form__select{
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  width:35%;
+  outline:none;
+}
+
+
+.data,.data li.list-group-item{
+  background-color:rgb(100, 100, 100) ;
+  color:inherit;
+}
+
+.data li.list-group-item:hover{
+  background-color:rgb(85, 85, 85) ;
+  cursor:pointer;
+}
+
+.data__img{
+display: block;
+width: 15rem;
+height: 20rem;
+}
+
+.data__property--muted{
+  color:#D0D3D4;
+}
+
+.banner{
+  color:rgb(255, 245, 155);
+  font-weight: 400;
+}

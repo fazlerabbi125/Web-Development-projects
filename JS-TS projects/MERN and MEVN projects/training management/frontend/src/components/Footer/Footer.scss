@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+@import '../../assets/styles/partials/colors';
+@import '../../assets/styles/partials/flex';
+@import '../../assets/styles/partials/breakpoints';
+@import '../../assets/styles/partials/pixelConvert';
+
+.sticky-footer {
+    position: sticky;
+    top: 100%;
+    width: 100%;
+    background-color: map-get($map: $colors, $key: "bg-grey-1");
+    padding: 1.5rem;
+
+    &__content {
+        text-align: center;
+        font-weight: 700;
+    }
+}

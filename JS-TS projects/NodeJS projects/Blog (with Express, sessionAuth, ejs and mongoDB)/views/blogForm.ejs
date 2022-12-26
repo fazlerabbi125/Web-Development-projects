@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <% if (edit){ %>
+                Edit Your Post
+            <% } else { %>
+                Add Blog Post
+            <% } %>
+            </title>
+        <%- include('./partials/head.ejs') %> <!-- Unescaped raw output with <%- %> -->
+    </head>
+    <body>
+        <!-- -->
+        
+        <%- include('./partials/header.ejs') %>          
+
+        <%- include('./partials/nav.ejs') %>
+        
+        <div class="card w-50 mx-auto">
+            <form class="card-body"
+            method="post"
+            <% if (edit){ %>
+                action="/blogs/<%= blog._id %>/edit"
+            <% }  %>
+            >
+            <div class="mb-3">
+                <div class="row justify-content-center">
+                    <label class="col-auto col-form-label" for="title">Title:</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="title" name="title" class="form-control"
+                        <% if (edit){ %>
+                            value="<%= blog.title %>"
+                        <% }  %>
+                        >
+                    </div>
+                </div>
+                <% if (errors.title){ %> <div class="text-center text-danger"><%= errors.title?.msg %></div>     <% } %>
+            </div>
+                <div class="mb-3">
+                    <div class="w-75 mx-auto">
+                        <label class="form-label">Body</label>
+                        <textarea class="form-control" name="body" id="body" rows="3" placeholder="Type your post body"><% if (edit){ %><%= blog.body %><% }  %></textarea>
+                    </div>
+                    <% if (errors.body){ %> <div class="text-center text-danger"><%= errors.body?.msg %></div>     <% } %>
+                </div>
+                <p class="text-center">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

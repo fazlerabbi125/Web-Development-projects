@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "title": "Pick Up Groceries",
+      "date": "2021-01-12",
+      "category": "Chore",
+      "isComplete": false,
+      "id": 1
+    },
+    {
+      "title": "Meeting with Client",
+      "date": "2021-02-12",
+      "category": "Work",
+      "isComplete": true,
+      "id": 2
+    },
+    {
+      "title": "Watch Attack on Titan",
+      "date": "2022-02-20",
+      "category": "Entertainment",
+      "isComplete": true,
+      "id": 3
+    },
+    {
+      "title": "Go to gym",
+      "date": "2022-02-28",
+      "category": "Fitness",
+      "isComplete": false,
+      "id": 4
+    }
+  ]
+}
