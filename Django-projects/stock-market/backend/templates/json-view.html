@@ -1,0 +1,80 @@
+{% extends './base.html' %}
+{% block title %}JSON View{% endblock %}
+{% block content %}
+{% if page_obj %}
+<h1 class="display-6 text-center text-white mt-4">This table has been created using JSON data</h1>
+<table class="table table-bordered table-light mt-4 mx-auto w-75">
+<thead class="table-info">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Trade Code </th>
+      <th scope="col">High</th>
+      <th scope="col">Low</th>
+      <th scope="col">Opening Price</th>
+      <th scope="col">Closing Price</th>
+      <th scope="col">Trade Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in  page_obj %}
+    <tr>
+        <th scope="row">{{ item.date }}</th>
+        <td> {{ item.trade_code }} </td>
+        <td> {{ item.high }}</td>
+        <td>{{ item.low }}</td>
+        <td>{{ item.open }}</td>
+        <td>{{ item.close }}</td>
+        <td>{{ item.volume }}</td>
+        
+      {% endfor %}
+      </tbody>
+  </table>
+  {% if is_paginated %}
+          <nav aria-label="Page navigation" >   
+            <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link " href="?page=1{% if querystring %}&amp;{{ querystring }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">first page</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link " href="?page={{ page_obj.previous_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}" aria-label="Previous">
+                Previous
+              </a>
+            </li>   
+            {% endif %}
+            {% for n in page_obj.paginator.page_range %}
+              {% if page_obj.number == n %}
+                <li class="page-item active" >
+                  <span class="page-link bg-dark  border-dark">{{ n }}<span class="sr-only">(current)</span></span>
+                </li>
+              {% elif n > page_obj.number|add:'-1' and n < page_obj.number|add:'5' %}
+                <li class="page-item"><a class="page-link " href="?page={{ n }}{% if querystring %}&amp;{{ querystring }}{% endif %}">{{ n }}</a></li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link " href="?page={{ page_obj.next_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}" aria-label="Next">
+                  Next
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link " href="?page={{ page_obj.paginator.num_pages }}{% if querystring %}&amp;{{ querystring }}{% endif %}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">last page</span>
+                </a>
+              </li>
+              {% endif %}  
+                  </ul> 
+                  </nav>
+
+      {% endif %}
+{% else %}
+<p class="text-center text-white display-6 mt-3">No stocks found</p>
+{% endif %}
+{% endblock %}
+
+

@@ -1,0 +1,52 @@
+{% extends './base.html'%}
+{% block title %} {{author.user.first_name}} {{author.user.last_name}} {% endblock %}
+{% block content %}
+{% for message in messages %}
+    {% if message.tags == "success" %}
+    <h4 class="badge bg-{{message.tags}}"> <span>{{message}}</span> </h5>
+    {% else %}
+    <h4 class="badge bg-secondary"> <span>{{message}}</span> </h4>
+    {% endif %}
+{% endfor %}
+<div class="row">
+    <div class="card col-12 col-md-3" >
+        <img src="{{author.photo.url}}" class="card-img-top rounded-circle ms-0 mt-2" width="50%" height="35%" alt="Author image">
+        <div class="card-body">
+                <h5 class="card-title mb-4 text-center">{{author.user.first_name}} {{author.user.last_name}}</h5>
+                <div class="card-text">
+                    <ul class="list-unstyled">
+                        <li><span class="fw-bold">Username:</span> <span>{{author.user.username}}</span> </li>
+                        <li><span class="fw-bold">Email:</span> <span>{{author.user.email}}</span> </li>
+                        <li><span class="fw-bold">Date of birth:</span> <span>{{author.birth_date}}</span> </li>
+                        <li><div class="fw-bold">Bio:</div> <div class="shadow-sm p-3 mb-5 bg-light rounded">{{author.bio}}</div> </li>
+                    </ul>
+                    <div class="d-grid">
+                        <a class="btn btn-secondary" href="{% url 'accounts:update' author.user.username %}" role="button"> Edit your account info</a>
+                    </div>
+                    <div class="d-grid mt-2">
+                        <a href="{% url 'accounts:delete' author.user.username %}" class="btn btn-danger">Delete your account</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="ms-2 col-12 col-md-8">
+    {% if profile_posts %}
+    <p class="ms-2 fs-4">Your posts:</p>
+        {% for article in profile_posts %}
+    <ul class="list-group"></ul>
+        <a href="{% url 'articles:post' article.slug %}" style="text-decoration: none ;"> 
+            <li class="list-group-item">
+            <h2>{{article.title}}</h2>
+            <div><small>Category: {{article.category}}</small></div>
+            <div><small>{{article.author}} | {{article.create_date}}</small></div>
+            <p>{{article.snippet}}</p>
+            </li>
+        </a>
+    </ul>
+        {% endfor %}
+    {% else %}
+    <p class="ms-2 fs-4">No posts created</div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

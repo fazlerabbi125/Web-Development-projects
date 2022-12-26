@@ -1,0 +1,14 @@
+{% extends './base.html'%}
+{% block title %}Update Account{% endblock %}
+{% block content %}
+<div class="card mx-auto" style="width: 60%;">
+    <div class="card-header text-center h3 text-gray-800">
+        Update your account info
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            {% include './partials/user_form.html' %}
+        </div>
+    </div>
+  </div>
+{% endblock %}

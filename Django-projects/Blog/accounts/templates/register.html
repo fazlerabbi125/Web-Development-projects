@@ -1,0 +1,18 @@
+{% extends './base.html'%}
+{% block title %}Sign-Up{% endblock %}
+{% block content %}
+<div class="card mx-auto" style="width: 60%;">
+    <div class="card-header text-center h3 text-gray-800">
+        Create your account
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            {% include './partials/user_form.html' %}
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <span>Already have an account?</span>
+<a href = "{% url 'accounts:login' %}" class="card-link text-decoration-none">Log in here</a>
+    </div>
+  </div>
+{% endblock %}
