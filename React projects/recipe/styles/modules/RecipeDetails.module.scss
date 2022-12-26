@@ -1,6 +1,19 @@
 @use "../partials/addFlex";
 
-.recipe_details__card{
+.recipe_details__card {
     width: 85%;
     @apply mx-auto;
+
+    &__header {
+        color: lighten(#b91c1c, 4%);
+        margin-bottom: 1rem;
+        @apply text-4xl font-semibold;
+    }
+
+    &__tags{
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        @include addFlex.flex-container($ai:center, $wr:wrap);
+        gap: 0.5rem;
+    }
 }
