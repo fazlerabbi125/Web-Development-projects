@@ -1,10 +1,10 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import Footer from "../organisms/Footer";
 import Navbar from "../organisms/Navbar";
 import { Container } from "@mantine/core";
 
 interface LayoutProps {
-  children: ReactElement | ReactElement[];
+  children: React.ReactNode;
 }
 
 export default function Layout(props: LayoutProps) {

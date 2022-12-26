@@ -1,0 +1,27 @@
+$theme-colors: (
+    "success": #19bd6d,
+    "danger": #f1376f,
+    "info": #0dcaf0,
+);
+
+@each $key, $value in $theme-colors {
+    .btn--#{$key} {
+        background-color: $value;
+
+        @if $key=="light" or $key=="warning" {
+            color: #212529;
+        }
+        @else {
+            color: white;
+        }
+
+        &:hover {
+            @if $key=="dark" {
+                background-color: lighten($color: $value, $amount: 5%);
+            }
+            @else {
+                background-color: darken($color: $value, $amount: 5%);
+            }
+        }
+    }
+}

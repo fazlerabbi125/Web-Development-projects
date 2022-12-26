@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import recipes from "../../../data/recipe.json";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { RecipeDetailsType } from "./[recipeSlug]";
 
 export interface RecipeListType {

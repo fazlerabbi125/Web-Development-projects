@@ -2,12 +2,12 @@ import React from 'react'
 
 interface HeaderProps {
     className?: string;
-    children: string | React.ReactElement | React.ReactElement[];
+    children: React.ReactNode;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
     return (
-        <header className={`text-zinc-50 text-center ${props.className||""}`}>
+        <header className={`text-zinc-50 font-bold ${props.className||""}`}>
             {props.children}
         </header>
     )

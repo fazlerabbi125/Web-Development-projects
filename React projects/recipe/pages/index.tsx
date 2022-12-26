@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Faiyaz's Recipes</title>
       </Head>
-      <Header className="text-5xl mb-16">
+      <Header className="text-center text-5xl mb-16">
         Welcome to Faiyaz's Recipes
       </Header>
       <RecipeList />

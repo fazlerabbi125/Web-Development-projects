@@ -12,7 +12,7 @@ import Header from "../../components/organisms/Header";
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
 export default function TagList() {
-  const itemsPerPage = 30;
+  const itemsPerPage = 40;
   const [page, setPage] = React.useState<number>(1);
   const [tagName, setTagName] = React.useState("");
   const [debouncedTagName] = useDebouncedValue(tagName, 500);
@@ -56,32 +56,33 @@ export default function TagList() {
                 setTagName(e.target.value)
               }
             />
-            <Header className="text-4xl mt-10 mb-12">
+            <Header className="text-center text-4xl mt-10 mb-12">
               {tagList.results.length > 0 ? "Available Tags" : "No tags found"}
             </Header>
             {tagList.results.length > 0 && (
               <>
                 <div className={styles["tag-list"]}>
-                  {tagList.results.map((tag, idx) => {
+                  {tagList.results.map((tag) => {
                     return (
                       <Link
                         href={{
                           pathname: "/tags/[tagID]/recipes",
                           query: {
                             tagID: tag.id,
-                            tagName: encodeURIComponent(
-                              tag.display_name +
-                              " (" +
-                              tag.type.split("_").join(" ") +
-                              ")"
-                            ),
                           },
                         }}
+                        key={tag.id}
                         className={[
-                          styles["tag-list__item"],
                           "btn",
                           "btn-dark",
+                          styles["tag-list__item"],
                         ].join(" ")}
+                        onClick={() => {
+                          localStorage.setItem("tagInfo", JSON.stringify({
+                            tagName: tag.display_name,
+                            tagType: tag.type.split("_").join(" "),
+                          }))
+                        }}
                       >
                         {tag.display_name} ({tag.type.split("_").join(" ")})
                       </Link>
