@@ -1,12 +1,12 @@
 import React from "react";
 import { fetchData } from "../../hooks/useAxios";
-import { Card, Text, Chip } from "@mantine/core";
+import { Card, Text, Button as MButton } from "@mantine/core";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import Head from "next/head";
 import styles from "../../styles/modules/RecipeDetails.module.scss";
-import VideoJS from "../../components/molecules/VideoJS";
-import videojs, { VideoJsPlayerOptions, VideoJsPlayer } from "video.js";
+import VideoJS, { VideoJSProps } from "../../components/molecules/VideoJS";
+import videojs, { VideoJsPlayer } from "video.js";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const recipe: RecipeDetailsType = await fetchData(
@@ -32,11 +32,11 @@ export default function RecipeDetails({
     // console.log(recipe);
     const playerRef = React.useRef<null | VideoJsPlayer>(null);
 
-    const videoJsOptions: VideoJsPlayerOptions = {
+    const videoJsOptions: VideoJSProps["options"] = {
         controls: true,
         responsive: true,
         fluid: true,
-        poster: recipe.thumbnail_url,
+        // poster: recipe.thumbnail_url,
         playbackRates: Array.from({ length: 8 }, (elem, idx) => 0.25 * (idx + 1)),
         controlBar: {
             pictureInPictureToggle: false,
@@ -50,7 +50,7 @@ export default function RecipeDetails({
                 src: recipe.original_video_url || "",
                 type: "video/mp4",
             },
-        ],
+        ]
     };
 
     const handlePlayerReady = (player: VideoJsPlayer) => {
@@ -77,10 +77,10 @@ export default function RecipeDetails({
                 </Text>
                 {recipe.tags.length > 0 ? (
                     <>
-                        <Text className="text-2xl" weight={600}>Tags:</Text>
+                        <Text size={22} weight={600}>Tags:</Text>
                         <div className={styles.recipe_details__card__tags}>
                             {recipe.tags.map((tag) => (
-                                <div className="btn btn-dark">
+                                <div className="btn btn-dark rounded-full" key={tag.id}>
                                     {tag.display_name}
                                 </div>
                             ))}
