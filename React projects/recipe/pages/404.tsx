@@ -1,5 +1,6 @@
 import { Text, Flex } from "@mantine/core";
 import Head from "next/head";
+//https://tailwindui.com/components/marketing/feedback/404-pages
 
 export default function Custom404() {
     return (

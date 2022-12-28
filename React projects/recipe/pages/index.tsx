@@ -1,8 +1,9 @@
 import Head from "next/head";
 import RecipeList from "../components/organisms/RecipeList";
 import Header from "../components/organisms/Header";
+import { NextPage } from "next";
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <section>
       <Head>
@@ -15,3 +16,5 @@ export default function Home() {
     </section>
   );
 }
+
+export default Home;
