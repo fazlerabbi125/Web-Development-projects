@@ -1,7 +1,8 @@
-import { Card } from '@mantine/core';
+import { Card } from "@mantine/core";
 import Head from "next/head";
+import { NextPage } from "next";
 
-export default function About() {
+const About: NextPage = () => {
   return (
     <>
       <Head>
@@ -9,5 +10,7 @@ export default function About() {
       </Head>
       <div>About</div>
     </>
-  )
-}
+  );
+};
+
+export default About;

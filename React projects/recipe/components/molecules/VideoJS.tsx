@@ -6,10 +6,10 @@ import {
     VideoJsPlayerPluginOptions,
 } from "video.js";
 
-type VideoJSProps = {
-    options: VideoJsPlayerOptions;
+export type VideoJSProps = {
+    options: VideoJsPlayerOptions & VideoJsPlayerPluginOptions;
     onReady(player: VideoJsPlayer): void;
-} & VideoJsPlayerPluginOptions;
+};
 
 const VideoJS = (props: VideoJSProps) => {
     const videoRef = React.useRef<any>(null);

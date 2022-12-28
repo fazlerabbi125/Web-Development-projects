@@ -4,7 +4,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
 
-// @tailwind base; //Commented out as it may cause some issues with other styles
+// @tailwind base; //Applies base styles to elements. Commented out as it may cause some issues with other styles.
 @tailwind components;
 @tailwind utilities;
 
@@ -19,7 +19,6 @@ body {
     background-color: #f5a48e;
     color: #333;
 }
-
 
 a {
     display: inline-block;
@@ -45,13 +44,13 @@ span {
     border-radius: 5px;
     padding: 0.75rem;
     font-size: 1.1rem;
-    font-family: Menlo, Monaco, "Lucida Console", Liberation Mono, DejaVu Sans Mono,
-        Bitstream Vera Sans Mono, "Courier New", monospace;
+    font-family: Menlo, Monaco, "Lucida Console", Liberation Mono,
+        DejaVu Sans Mono, Bitstream Vera Sans Mono, "Courier New", monospace;
 }
 
 .custom-navbar {
     background-color: white;
-    padding: 0.75rem 1rem 0.5rem 2rem;
+    padding: 0.75rem 0.5rem 0.5rem 2rem;
     border-bottom: 1px solid #f3f2f2;
     font-weight: 500;
     color: #292524;
