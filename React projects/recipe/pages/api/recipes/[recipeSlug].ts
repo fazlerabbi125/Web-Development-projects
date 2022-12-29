@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import recipes from "../../../data/recipe.json";
 import { TagDetailType } from '../tags';
-//https://tailwindui.com/components/application-ui/headings/card-headings
 
 export interface RecipeDetailsType {
     [key: string]: any;

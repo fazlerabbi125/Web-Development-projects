@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Title } from '@mantine/core';
 interface HeaderProps {
     className?: string;
     children: React.ReactNode;
@@ -7,8 +7,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
     return (
-        <header className={`text-zinc-50 font-bold ${props.className||""}`}>
-            {props.children}
+        <header className="text-zinc-50 font-bold">
+            <Title className={props.className}>
+                {props.children}
+            </Title>
         </header>
     )
 }
