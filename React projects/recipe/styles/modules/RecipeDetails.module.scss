@@ -11,10 +11,9 @@
         @apply text-4xl font-semibold;
     }
 
-    &__tags{
+    &__tags {
         margin-top: 1rem;
-        margin-bottom: 2rem;
-        @include addFlex.flex-container($ai:center, $wr:wrap);
+        @include addFlex.flex-container($ai: center, $wr: wrap);
         gap: 0.5rem;
     }
 }
