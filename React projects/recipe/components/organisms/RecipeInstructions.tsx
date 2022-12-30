@@ -1,6 +1,6 @@
 import React from "react";
 import { RecipeInfoSectionProps } from "./RecipeBasicInfo";
-import { Accordion } from "@mantine/core";
+import { Text, Accordion } from "@mantine/core";
 import videojs, { VideoJsPlayer } from "video.js";
 import VideoJS, { VideoJSProps } from "../molecules/VideoJS";
 
@@ -40,6 +40,7 @@ function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
             videojs.log("player will dispose");
         });
     };
+
     return (
         <React.Fragment>
             {recipe.original_video_url && (

@@ -7,7 +7,6 @@
 
     &__header {
         color: lighten(#b91c1c, 7%);
-        margin-bottom: 1rem;
         @apply text-4xl font-semibold;
     }
 
@@ -15,5 +14,20 @@
         margin-top: 1rem;
         @include addFlex.flex-container($ai: center, $wr: wrap);
         gap: 0.5rem;
+    }
+
+    &__ingredients {
+        &__heading {
+            border-bottom: 2px solid gainsboro;
+            max-width: 20rem;
+            font-size: xx-large;
+            margin-bottom: 1rem;
+        }
+
+        &__list {
+            column-count: 2;
+            column-gap: 1rem;
+            margin-bottom: 2rem;
+        }
     }
 }

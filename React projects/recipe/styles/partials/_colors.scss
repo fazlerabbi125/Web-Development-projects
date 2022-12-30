@@ -1,27 +1,40 @@
 $theme-colors: (
     "success": #19bd6d,
-    "danger": #f1376f,
+    "danger": #ef4444,
     "info": #0dcaf0,
+    "dark": #292524,
+    "light": #f9fafb,
+    "warning": #fbbf24,
 );
 
-@each $key, $value in $theme-colors {
+@each $key,
+$value in $theme-colors {
     .btn--#{$key} {
-        background-color: $value;
+        background-color: $value !important;
 
         @if $key=="light" or $key=="warning" {
-            color: #212529;
+            color: #292524 !important;
         }
+
         @else {
-            color: white;
+            color: white !important;
         }
 
         &:hover {
             @if $key=="dark" {
-                background-color: lighten($color: $value, $amount: 5%);
+                background-color: lighten($color: $value, $amount: 5%) !important;
             }
+
             @else {
-                background-color: darken($color: $value, $amount: 5%);
+                background-color: darken($color: $value, $amount: 5%) !important;
             }
         }
+    }
+}
+
+@each $key,
+$value in $theme-colors {
+    .text--#{$key} {
+        color: $value;
     }
 }

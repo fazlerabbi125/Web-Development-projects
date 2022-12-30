@@ -1,15 +1,13 @@
 import React from "react";
 import { RecipeDetailsType } from "../../pages/api/recipes/[recipeSlug]";
 import {
-  Card,
-  Title,
   Text,
-  Button as MButton,
   Image as MImage,
+  List,
 } from "@mantine/core";
-import { Inter } from "@next/font/google";
+import { Ubuntu } from "@next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const ubuntu = Ubuntu({ weight: "500", subsets: ["latin", "greek"] });
 
 export interface RecipeInfoSectionProps {
   styles: {
@@ -19,32 +17,15 @@ export interface RecipeInfoSectionProps {
 }
 
 const RecipeBasicInfo = ({ styles, recipe }: RecipeInfoSectionProps) => {
+  const ingredients = recipe.sections.flatMap((section) => {
+    return section.components.map((component: any) => ({
+      name: component.raw_text,
+      id: component.id,
+    }));
+  });
   return (
     <React.Fragment>
-      <Title className={styles.recipe_details__card__header}>
-        {recipe.name}
-      </Title>
-      <Card.Section p="md" className="border border-solid border-gray-400 mb-8">
-        {recipe.tags.length > 0 ? (
-          <>
-            <Text size={21} weight={600}>
-              Tags:
-            </Text>
-            <div className={styles.recipe_details__card__tags}>
-              {recipe.tags.map((tag) => (
-                <MButton color="dark" radius="xl" key={tag.id}>
-                  {tag.display_name}
-                </MButton>
-              ))}
-            </div>
-          </>
-        ) : (
-          <Text size={21} weight={600}>
-            Tags: N/A
-          </Text>
-        )}
-      </Card.Section>
-      <div>
+      <div className="mb-6">
         <MImage
           src={recipe.thumbnail_url}
           alt={recipe.thumbnail_alt_text}
@@ -54,11 +35,18 @@ const RecipeBasicInfo = ({ styles, recipe }: RecipeInfoSectionProps) => {
             image: "mx-auto",
           }}
         />
-        <Text className={`${inter.className}`}>
-          <span className="font-bold">Description:</span>{" "}
-          {recipe.description || "N/A"}
+        <Text className={ubuntu.className}>
+          <strong>Description:</strong> {recipe.description || "N/A"}
         </Text>
       </div>
+      <Text className={styles.recipe_details__card__ingredients__heading}>
+        Ingredients
+      </Text>
+      <List className={styles.recipe_details__card__ingredients__list}>
+        {ingredients.map((elem) => (
+          <List.Item key={elem.id}>{elem.name}</List.Item>
+        ))}
+      </List>
     </React.Fragment>
   );
 };

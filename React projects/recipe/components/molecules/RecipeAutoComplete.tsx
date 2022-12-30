@@ -1,49 +1,51 @@
 import React from "react";
-import { Autocomplete, AutocompleteItem } from "@mantine/core";
+import { Autocomplete, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import { fetchData } from "../../hooks/useAxios";
 import { withRouter, NextRouter } from "next/router";
-import { AxiosError } from "axios";
-import { RecipeAutoCompleteType } from "../../pages/api/recipes/autocomplete";
-
-interface SearchResult extends AutocompleteItem {
-    slug: string;
-}
+import { RecipeAutoCompleteTypeItem } from "../../pages/api/recipes/autocomplete";
 
 const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
     const [search, setSearch] = React.useState("");
-    const [searchResults, setSearchResults] = React.useState<SearchResult[]>([]);
+    const [suggestions, setSuggestions] = React.useState<
+        RecipeAutoCompleteTypeItem[]
+    >([]);
+    const [loading, setLoading] = React.useState(false);
 
-    const [debouncedSearch] = useDebouncedValue(search, 1000);
+    const [debouncedSearch] = useDebouncedValue(search, 500);
 
-    const redirectToRecipe = (item: SearchResult) => {
+    const redirectToRecipe = (item: RecipeAutoCompleteTypeItem) => {
         router.push(`/recipes/${item.slug}`);
         setSearch("");
     };
 
     React.useEffect(() => {
+        // Make API call and update suggestions
         let isApiSubscribed = true;
-        if (debouncedSearch.length > 0) {
-            fetchData("/recipes/autocomplete", {
-                search: debouncedSearch,
-            })
-                .then((data: RecipeAutoCompleteType) => {
-                    if (isApiSubscribed) {
-                        const results = data.map((elem) => ({
-                            slug: elem.slug,
-                            value: elem.name,
-                        }));
-                        setSearchResults(results);
-                        console.log(results, searchResults);
-                    }
-                })
-                .catch((err: AxiosError) => {
+
+        const fetchSuggestions = async () => {
+            if (isApiSubscribed) {
+                try {
+                    const data = await fetchData("/recipes/autocomplete", {
+                        search: debouncedSearch,
+                    });
+                    setLoading(false);
+                    setSuggestions(data);
+                } catch (err: any) {
                     console.log(err.message);
-                    setSearchResults([]);
-                });
+                    setLoading(false);
+                    setSuggestions([]);
+                }
+            }
+        };
+
+        if (debouncedSearch.length > 0) {
+            setLoading(true);
+            setTimeout(() => fetchSuggestions(), 500)
         } else {
-            setSearchResults([]);
-        }
+            setLoading(false);
+            setSuggestions([])
+        };
 
         return () => {
             // cancel the subscription
@@ -51,17 +53,18 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
         };
     }, [debouncedSearch]);
 
-    console.log(searchResults);
+    // console.log(suggestions);
 
     return (
         <Autocomplete
             placeholder="Search recipes by name or ingredients"
             radius="xs"
-            data={searchResults}
-            nothingFound={debouncedSearch ? "No recipes found" : ""}
+            data={suggestions}
+            nothingFound={(!loading && debouncedSearch) ? "No recipes found" : ""}
             value={search}
-            limit={searchResults.length}
-            onChange={setSearch}
+            limit={suggestions.length}
+            onChange={(value) => setSearch(value)}
+            rightSection={loading ? <Loader size={16} color="gray" /> : null}
             onItemSubmit={redirectToRecipe}
             className="sm:mr-2 min-w-[17rem]"
             classNames={{

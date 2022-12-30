@@ -6,8 +6,10 @@ import {
     Image as MImage,
     Loader,
     Text,
+    Stack,
 } from "@mantine/core";
 import ListPagination from "../molecules/ListPagination";
+import CustomRating from "../atoms/CustomRating";
 import { RecipeListType } from "../../pages/api/recipes";
 import { RecipeDetailsType } from "../../pages/api/recipes/[recipeSlug]";
 import Link from "next/link";
@@ -48,9 +50,7 @@ const RecipeList = (props: RecipeListProps) => {
     }
 
     if (error) {
-        return (
-            <div className="response-error">{error.message}</div>
-        );
+        return <div className="response-error">{error.message}</div>;
     }
 
     return (
@@ -74,15 +74,18 @@ const RecipeList = (props: RecipeListProps) => {
                                         width={"100%"}
                                     />
                                 </Card.Section>
-                                <Text weight={500}>{recipe.name}</Text>
-                                <Text size="sm" color="dimmed" className="truncate">
-                                    {recipe.description || "No description"}
-                                </Text>
+                                <Stack justify="flex-start" spacing={6}>
+                                    <Text weight={500}>{recipe.name}</Text>
+                                    <CustomRating value={recipe.user_ratings.score} />
+                                    <Text size="sm" color="dimmed" className="truncate">
+                                        {recipe.description || "No description"}
+                                    </Text>
+                                </Stack>
                                 <div className={styles.recipe_list__card__footer}>
                                     <Link
-                                        className="btn btn-danger w-8/12"
+                                        className="btn btn--danger w-8/12"
                                         href={{
-                                            pathname: '/recipes/[recipeSlug]',
+                                            pathname: "/recipes/[recipeSlug]",
                                             query: { recipeSlug: recipe.slug },
                                         }}
                                     >
