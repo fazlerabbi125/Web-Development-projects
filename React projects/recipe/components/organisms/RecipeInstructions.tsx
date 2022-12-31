@@ -1,8 +1,11 @@
 import React from "react";
 import { RecipeInfoSectionProps } from "./RecipeBasicInfo";
-import { Text, Accordion } from "@mantine/core";
+import { Text, List } from "@mantine/core";
 import videojs, { VideoJsPlayer } from "video.js";
 import VideoJS, { VideoJSProps } from "../molecules/VideoJS";
+import { Inter } from "@next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
     const playerRef = React.useRef<null | VideoJsPlayer>(null);
@@ -46,6 +49,21 @@ function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
             {recipe.original_video_url && (
                 <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
             )}
+            <List
+                type="ordered"
+                mt="xl"
+                className={styles.recipe_details__card__instructions}
+                classNames={{
+                    item: [
+                        styles.recipe_details__card__instructions__item,
+                        inter.className,
+                    ].join(" "),
+                }}
+            >
+                {recipe.instructions.map((instruction) => (
+                    <List.Item key={instruction.id}>{instruction.display_text}</List.Item>
+                ))}
+            </List>
         </React.Fragment>
     );
 }

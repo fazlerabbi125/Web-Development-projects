@@ -30,11 +30,11 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
                         search: debouncedSearch,
                     });
                     setLoading(false);
-                    setSuggestions(data);
+                    setSuggestions(() => data);
                 } catch (err: any) {
                     console.log(err.message);
                     setLoading(false);
-                    setSuggestions([]);
+                    setSuggestions(() => []);
                 }
             }
         };
@@ -44,7 +44,7 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
             setTimeout(() => fetchSuggestions(), 500)
         } else {
             setLoading(false);
-            setSuggestions([])
+            setSuggestions(() => [])
         };
 
         return () => {

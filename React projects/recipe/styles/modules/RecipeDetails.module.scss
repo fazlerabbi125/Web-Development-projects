@@ -30,4 +30,29 @@
             margin-bottom: 2rem;
         }
     }
+
+    &__instructions {
+        counter-reset: method;
+        list-style: none;
+        @include addFlex.flex-container($direction: column, $jc: flex-start);
+        gap: 1rem;
+
+        &__item {
+            @include addFlex.flex-container($jc: flex-start, $ai: flex-start);
+
+            &::before {
+                counter-increment: method;
+                position: relative;
+                content: counter(method);
+                background-color: #e7e5e4;
+                border-radius: 50%;
+                margin-right: 0.75rem;
+                min-width: 2rem;
+                min-height: 2rem;
+                text-align: center;
+                padding-top: 4px;
+                bottom: 3px;
+            }
+        }
+    }
 }

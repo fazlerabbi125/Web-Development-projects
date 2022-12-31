@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import styles from "../../styles/modules/RecipeDetails.module.scss";
 import { fetchData } from "../../hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
@@ -12,6 +13,7 @@ import {
     Text,
     Tabs,
 } from "@mantine/core";
+import { TagDetailType } from "../api/tags";
 import CustomRating from "../../components/atoms/CustomRating";
 import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "../../components/organisms/RecipeInstructions";
@@ -38,6 +40,18 @@ export default function RecipeDetails({
     recipe,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const [activeTab, setActiveTab] = React.useState<string | null>('info');
+    const router = useRouter();
+
+    const handleTagClick = (tag: TagDetailType) => {
+        localStorage.setItem(
+            "tagInfo",
+            JSON.stringify({
+                tagName: tag.display_name,
+                tagType: tag.type.split("_").join(" "),
+            })
+        );
+        router.push(`/tags/${tag.id}/recipes`);
+    };
 
     return (
         <React.Fragment>
@@ -62,7 +76,7 @@ export default function RecipeDetails({
                             </Text>
                             <div className={styles.recipe_details__card__tags}>
                                 {recipe.tags.map((tag) => (
-                                    <MButton color="dark" radius="xl" key={tag.id}>
+                                    <MButton color="dark" radius="xl" key={tag.id} onClick={() => handleTagClick(tag)}>
                                         {tag.display_name}
                                     </MButton>
                                 ))}

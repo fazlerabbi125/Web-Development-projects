@@ -7,7 +7,7 @@ import {
 } from "@mantine/core";
 import { Ubuntu } from "@next/font/google";
 
-const ubuntu = Ubuntu({ weight: "500", subsets: ["latin", "greek"] });
+const ubuntu = Ubuntu({ weight: "500", subsets: ["latin"] });
 
 export interface RecipeInfoSectionProps {
   styles: {

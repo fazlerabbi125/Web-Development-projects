@@ -14,8 +14,8 @@ import RecipeAutoComplete from "../molecules/RecipeAutoComplete";
 
 const routes = [
   { link: "/", text: "Home" },
-  { link: "/about", text: "About" },
   { link: "/tags", text: "Tags" },
+  { link: "/about", text: "About" },
 ];
 
 export default function Navbar() {
