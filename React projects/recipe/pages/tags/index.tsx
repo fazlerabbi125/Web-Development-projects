@@ -3,17 +3,16 @@ import React from "react";
 import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import { TagListType } from "../api/tags";
 import { TagDetailType } from "../api/tags";
-import { TextInput, Loader, Button as MButton } from "@mantine/core";
+import { TextInput, Loader } from "@mantine/core";
+import NavButton from "../../components/atoms/NavButton";
 import { useDebouncedValue } from "@mantine/hooks";
 import ListPagination from "../../components/molecules/ListPagination";
 import styles from "../../styles/modules/TagList.module.scss";
-import { useRouter } from "next/router";
 import Header from "../../components/organisms/Header";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
 export default function TagList() {
-  const router = useRouter();
   const itemsPerPage = 40;
   const [page, setPage] = React.useState<number>(1);
   const [tagName, setTagName] = React.useState("");
@@ -30,12 +29,6 @@ export default function TagList() {
         tagType: tag.type.split("_").join(" "),
       })
     );
-    router.push({
-      pathname: "/tags/[tagID]/recipes",
-      query: {
-        tagID: tag.id,
-      },
-    });
   };
 
   const {
@@ -82,7 +75,7 @@ export default function TagList() {
                 <div className={styles["tag-list"]}>
                   {tagList.results.map((tag) => {
                     return (
-                      <MButton
+                      <NavButton
                         color="dark"
                         radius="xl"
                         key={tag.id}
@@ -92,10 +85,16 @@ export default function TagList() {
                             whiteSpace: "unset",
                           }
                         }}
-                        onClick={() => handleTagClick(tag)}
+                        url={{
+                          pathname: "/tags/[tagID]/recipes",
+                          query: {
+                            tagID: tag.id,
+                          },
+                        }}
+                        handleClick={() => handleTagClick(tag)}
                       >
                         {tag.display_name} ({tag.type.split("_").join(" ")})
-                      </MButton>
+                      </NavButton>
                     );
                   })}
                 </div>

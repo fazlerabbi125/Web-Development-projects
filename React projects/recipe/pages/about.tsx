@@ -21,7 +21,7 @@ const About: NextPage = () => {
       <Head>
         <title>About</title>
       </Head>
-      <Card>
+      <Card mx={"auto"} mb="3.5rem" className="w-10/12">
         <Card.Section>
           <Text className={classes.heading}>About Faiyaz's Recipes</Text>
         </Card.Section>
