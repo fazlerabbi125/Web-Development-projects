@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import useSWR from "swr";
 
 const axInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000/api",
 });
 
 export interface CustomAxiosResponse<T = any> {
