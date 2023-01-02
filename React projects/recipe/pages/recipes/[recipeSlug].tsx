@@ -4,13 +4,7 @@ import styles from "../../styles/modules/RecipeDetails.module.scss";
 import { fetchData } from "../../hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import {
-    Card,
-    Title,
-    Stack,
-    Text,
-    Tabs,
-} from "@mantine/core";
+import { Card, Title, Stack, Text, Tabs } from "@mantine/core";
 import NavButton from "../../components/atoms/NavButton";
 import { TagDetailType } from "../api/tags";
 import CustomRating from "../../components/atoms/CustomRating";
@@ -39,6 +33,7 @@ export default function RecipeDetails({
     recipe,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const [activeTab, setActiveTab] = React.useState<string | null>("info");
+    const [publishDate, setPublishDate] = React.useState<string>("");
 
     const handleTagClick = (tag: TagDetailType) => {
         localStorage.setItem(
@@ -49,6 +44,11 @@ export default function RecipeDetails({
             })
         );
     };
+
+    React.useEffect(
+        () => setPublishDate(new Date(recipe.created_at).toLocaleDateString()),
+        []
+    ); //For hydration error due to getServerSideProps
 
     return (
         <React.Fragment>
@@ -62,8 +62,7 @@ export default function RecipeDetails({
                     </Title>
                     <CustomRating value={recipe.user_ratings.score} />
                     <Text size="md" color="dimmed">
-                        <strong>Published:</strong>{" "}
-                        {new Date(recipe.created_at).toLocaleDateString()}
+                        <strong>Published:</strong> {publishDate}
                     </Text>
                 </Stack>
                 <Card.Section

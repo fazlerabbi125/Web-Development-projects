@@ -1,6 +1,6 @@
 import React from "react";
 import { RecipeInfoSectionProps } from "./RecipeBasicInfo";
-import { Text, List } from "@mantine/core";
+import { List } from "@mantine/core";
 import videojs, { VideoJsPlayer } from "video.js";
 import VideoJS, { VideoJSProps } from "../molecules/VideoJS";
 import { Inter } from "@next/font/google";
