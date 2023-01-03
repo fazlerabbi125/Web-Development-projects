@@ -60,26 +60,6 @@ span {
     @apply text-xl;
 }
 
-.nav-item__link {
-    color: #333;
-    background-color: inherit;
-    cursor: pointer;
-
-    &:hover {
-        color: #fdba74;
-    }
-
-    &--active {
-        cursor: pointer;
-        color: #ef4444;
-        background-color: inherit;
-
-        &:hover {
-            color: #fdba74;
-        }
-    }
-}
-
 .pagination_items {
     background-color: #fafafa;
 

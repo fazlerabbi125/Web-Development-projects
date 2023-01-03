@@ -4,8 +4,9 @@ import jwt_decode from "jwt-decode";
 import { getTokens } from "../utils/handleStorage";
 
 const axInstance = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: process.env.SERVER_URL || "http://localhost:8000",
 });
+
 axInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -31,7 +32,7 @@ axInstance.interceptors.response.use(
         ] = `Bearer ${data.results.access_token}`;
         return axInstance(prevRequest);
       } catch (err) {
-        return err;
+        console.log(err);
       }
     }
     return error;
