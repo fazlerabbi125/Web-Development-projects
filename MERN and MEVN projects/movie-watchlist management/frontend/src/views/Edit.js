@@ -1,21 +1,21 @@
 import MovieForm from "../components/MovieForm";
-import {useLocation,useNavigate} from 'react-router-dom';
-import {axInstance} from '../hooks/useAxios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { axInstance } from '../hooks/useAxios';
 import withHOC from "../components/withHoc";
 import MessageContext from "../contexts/MessageContext";
-import { useContext,useState } from "react";
-import {getTokens} from "../utils/handleStorage";
+import { useContext, useState } from "react";
+import { getTokens } from "../utils/handleStorage";
 
 
 const Edit = () => {
-  const {setMessage}=useContext(MessageContext);
+  const { setMessage } = useContext(MessageContext);
   const navigate = useNavigate();
-  const {state:{data}} = useLocation();
+  const { state: { data } } = useLocation();
   const [error, setError] = useState(null);
 
-  const handleEdit= async (inputs)=>{
+  const handleEdit = async (inputs) => {
     try {
-      await axInstance.put(`/movie-series/${data._id}/edit`, inputs,{
+      await axInstance.put(`/movie-series/${data._id}/edit`, inputs, {
         headers: {
           'content-type': 'multipart/form-data',
           'Authorization': `Bearer ${getTokens().accessToken}`
@@ -27,14 +27,14 @@ const Edit = () => {
       setError(error.message);
     }
   }
-  
-    return (
-        <>
-          {error && <h2 className="text-center text-danger">{error}</h2>}
-          <MovieForm item={data} submitForm={handleEdit}/>
-        </>
-      );
+
+  return (
+    <>
+      {error && <h2 className="text-center text-danger">{error}</h2>}
+      <MovieForm item={data} submitForm={handleEdit} />
+    </>
+  );
 }
 
 
-export default withHOC("Edit movie/series",Edit);
+export default withHOC(Edit, "Edit movie/series");

@@ -2,16 +2,16 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
 import Toast from "./Toast"
-const withHOC = (header,WrappedComponent) => {
-  return (props)=>{
+const withHOC = (WrappedComponent, header) => {
+  return (props) => {
     return (
-    <>
-    <Header header={header}/>
-    <Navbar/>
-    <WrappedComponent {...props} />
-    <Toast/>
-    <Footer/>
-    </>
+      <>
+        <Navbar />
+        {header && <Header header={header} />}
+        <WrappedComponent {...props} />
+        <Toast />
+        <Footer />
+      </>
     );
   };
 };

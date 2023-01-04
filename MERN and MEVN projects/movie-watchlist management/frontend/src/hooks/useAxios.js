@@ -3,8 +3,10 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { getTokens, selectStorage } from "../utils/handleStorage";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8000";
+
 const axInstance = axios.create({
-  baseURL: process.env.SERVER_URL || "http://localhost:8000",
+  baseURL: SERVER_URL,
 });
 
 axInstance.interceptors.response.use(
@@ -61,21 +63,20 @@ const useAxios = (url, timeout = 1000) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      let response = await axInstance.get(url);
-      if (!response?.data.success) throw new Error(response.data.message);
-      setData(response.data.results);
-
-      setIsLoading(false);
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await axInstance.get(url);
+        if (!response?.data.success) throw new Error(response.data.message);
+        setData(response.data.results);
+
+        setIsLoading(false);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
     let t = setTimeout(() => fetchData(), timeout);
     return () => clearTimeout(t);
   }, [url, timeout]);
@@ -83,4 +84,4 @@ const useAxios = (url, timeout = 1000) => {
   // custom hook returns value
   return { data, error, isLoading };
 };
-export { axInstance, useAxios };
+export { axInstance, useAxios, SERVER_URL };

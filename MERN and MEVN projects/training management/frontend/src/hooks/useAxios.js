@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { getTokens } from "../utils/handleStorage";
 
 const axInstance = axios.create({
-  baseURL: process.env.SERVER_URL || "http://localhost:8000",
+  baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:8000",
 });
 
 axInstance.interceptors.response.use(
