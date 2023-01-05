@@ -1,8 +1,8 @@
 import React from "react";
 import { RecipeInfoSectionProps } from "./RecipeBasicInfo";
 import { List } from "@mantine/core";
-import videojs, { VideoJsPlayer } from "video.js";
-import VideoJS, { VideoJSProps } from "../molecules/VideoJS";
+import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from "video.js";
+import VideoJS from "../molecules/VideoJS";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
     const playerRef = React.useRef<null | VideoJsPlayer>(null);
 
-    const videoJsOptions: VideoJSProps["options"] = {
+    const videoJsOptions: VideoJsPlayerOptions = {
         controls: true,
         responsive: true,
         fluid: true,
@@ -26,7 +26,7 @@ function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
         sources: [
             {
                 src: recipe.original_video_url || "",
-                type: "video/mp4",
+                // type: "video/mp4" for MP4 files, 'application/x-mpegURL' for HLS or m3u8 files
             },
         ],
     };
@@ -38,6 +38,18 @@ function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
         player.on("waiting", () => {
             videojs.log("player is waiting");
         });
+
+        // player.ready(function () {
+        //     this.playbackRate(1.5); //set default playRate
+        // });
+
+        //   const isPause = React.useRef<number>(0);
+        // player.on('timeupdate', function (e) {
+        //     if (isPause.current == 0 && (player.currentTime() >= 10)) {
+        //         player.pause();
+        //         isPause.current = 1;
+        //     }
+        // }); //Pause after 10s of play and then play normally on resume
 
         player.on("dispose", () => {
             videojs.log("player will dispose");

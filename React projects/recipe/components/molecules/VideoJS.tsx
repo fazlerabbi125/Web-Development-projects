@@ -3,13 +3,12 @@ import videojs from "video.js";
 import {
     VideoJsPlayer,
     VideoJsPlayerOptions,
-    VideoJsPlayerPluginOptions,
 } from "video.js";
 
-export type VideoJSProps = {
-    options: VideoJsPlayerOptions & VideoJsPlayerPluginOptions;
+type VideoJSProps = {
+    options: VideoJsPlayerOptions
     onReady(player: VideoJsPlayer): void;
-};
+}
 
 const VideoJS = (props: VideoJSProps) => {
     const videoRef = React.useRef<HTMLDivElement| null>(null);
@@ -37,7 +36,6 @@ const VideoJS = (props: VideoJSProps) => {
 
             player.autoplay(options.autoplay || false);
             player.src(options.sources || "");
-            // player.defaultPlaybackRate(1.5)
         }
     }, [options, videoRef]);
 

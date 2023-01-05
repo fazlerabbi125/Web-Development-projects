@@ -29,7 +29,8 @@
     "react-icons": "^4.6.0",
     "reactstrap": "^9.1.5",
     "swr": "^2.0.0",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "videojs-contrib-hls": "^5.15.0"
   },
   "devDependencies": {
     "@types/video.js": "^7.3.50",
