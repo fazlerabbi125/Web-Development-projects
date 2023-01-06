@@ -5,7 +5,7 @@
 
     /* Modules */
     "module": "commonjs" /* Specify what module code is generated. */,
-    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    // "rootDir": "./src" /* Specify the root folder within your source files. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
 
     /* JavaScript Support */
@@ -25,7 +25,7 @@
     // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
     // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
-    // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
+    "noImplicitThis": false,                           /* Enable error reporting when 'this' is given the type 'any'. */
     // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
 
     /* Completeness */
