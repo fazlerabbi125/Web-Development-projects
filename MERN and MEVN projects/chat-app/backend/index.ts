@@ -17,7 +17,6 @@ dotenv.config();
 
 const port = process.env.PORT || 8000;
 const DB_URI = process.env.MONGO_DB_URI || "";
-const DB_NAME = process.env.DB_NAME || "";
 
 app.use(express.urlencoded({ extended: true })); // Parses urlencoded bodies
 app.use(express.json()); // Parses JSON data
@@ -42,7 +41,7 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-    .connect(DB_URI, { dbName: DB_NAME })
+    .connect(DB_URI, { dbName: "chat" })
     .then(() => {
         console.log("MongoDB database is connected!!");
         server.listen(port, () => {
