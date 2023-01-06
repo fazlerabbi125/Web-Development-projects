@@ -1,3 +1,4 @@
+//https://tailwindui.com/components/application-ui/navigation/navbars
 import { useState } from "react";
 import CustomNavLink from "../atoms/CustomNavLink";
 import Image from "next/image";
@@ -13,8 +14,8 @@ import RecipeAutoComplete from "../molecules/RecipeAutoComplete";
 
 const routes = [
   { link: "/", text: "Home" },
-  { link: "/about", text: "About" },
   { link: "/tags", text: "Tags" },
+  { link: "/about", text: "About" },
 ];
 
 export default function Navbar() {

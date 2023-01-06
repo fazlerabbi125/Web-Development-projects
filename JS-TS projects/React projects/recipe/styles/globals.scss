@@ -4,7 +4,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
 
-@tailwind base;
+// @tailwind base; //Applies base styles to elements. Commented out as it may cause some issues with other styles.
 @tailwind components;
 @tailwind utilities;
 
@@ -17,8 +17,8 @@ body {
     padding: 0;
     font-family: "PT Sans", Helvetica, sans-serif;
     background-color: #f5a48e;
+    color: #333;
 }
-
 
 a {
     display: inline-block;
@@ -31,7 +31,7 @@ button,
 input,
 span {
     display: inline-block;
-    text-align: center;
+    color: inherit;
 }
 
 #__next {
@@ -44,13 +44,13 @@ span {
     border-radius: 5px;
     padding: 0.75rem;
     font-size: 1.1rem;
-    font-family: Menlo, Monaco, "Lucida Console", Liberation Mono, DejaVu Sans Mono,
-        Bitstream Vera Sans Mono, "Courier New", monospace;
+    font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
+        "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace;
 }
 
 .custom-navbar {
     background-color: white;
-    padding: 0.75rem 1rem 0.5rem 2rem;
+    padding: 0.75rem 0.5rem 0.5rem 2rem;
     border-bottom: 1px solid #f3f2f2;
     font-weight: 500;
     color: #292524;
@@ -58,26 +58,6 @@ span {
     margin-bottom: 2rem;
     position: relative;
     @apply text-xl;
-}
-
-.nav-item__link {
-    color: #333;
-    background-color: inherit;
-    cursor: pointer;
-
-    &:hover {
-        color: #fdba74;
-    }
-
-    &--active {
-        cursor: pointer;
-        color: #ef4444;
-        background-color: inherit;
-
-        &:hover {
-            color: #fdba74;
-        }
-    }
 }
 
 .pagination_items {
@@ -88,7 +68,7 @@ span {
     }
 }
 
-.response-error{
+.response-error {
     text-align: center;
     @text-xl font-semibold;
 }

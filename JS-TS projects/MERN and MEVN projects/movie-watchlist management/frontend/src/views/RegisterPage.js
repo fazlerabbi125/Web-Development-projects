@@ -1,21 +1,22 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import withHOC from "../components/withHoc";
 import MessageContext from "../contexts/MessageContext";
-import {signinUser} from '../store/features/userSlice'
+import { signinUser } from '../store/features/userSlice'
 import { useDispatch } from 'react-redux'
 import { useForm } from "react-hook-form";
+import { SERVER_URL } from "../hooks/useAxios";
 
 function SignUpPage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const {setMessage}=useContext(MessageContext);
+  const { setMessage } = useContext(MessageContext);
   const dispatch = useDispatch();
-  const [err,setErr]=useState(null);
+  const [err, setErr] = useState(null);
 
-  const registerHandler = (data) => { 
+  const registerHandler = (data) => {
 
-    fetch("http://localhost:8000/signup", {
+    fetch(SERVER_URL + "/signup", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -23,9 +24,9 @@ function SignUpPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(!data.success) throw new Error(data.message)
-        localStorage.setItem('token',data.results.access_token);
-        localStorage.setItem('refresh',data.results.refresh_token);
+        if (!data.success) throw new Error(data.message)
+        localStorage.setItem('token', data.results.access_token);
+        localStorage.setItem('refresh', data.results.refresh_token);
         dispatch(signinUser());
         setMessage("You are now signed in!");
         navigate('/');
@@ -39,7 +40,7 @@ function SignUpPage() {
     <div className="data text-center mx-auto w-50 mb-5">
       <h2 className="pt-2">Join us today!</h2>
       <form onSubmit={handleSubmit(registerHandler)}>
-        
+
         {err && <h4 className="text-danger">{err}</h4>}
 
         <div className="mb-2">
@@ -47,11 +48,13 @@ function SignUpPage() {
           <br />
           <input
             type="text"
-            {...register("name", { required: "Name is required", 
-                        minLength:{
-                        value:3,
-                        message: "Name must be at least 3 characters long."
-            } })}
+            {...register("name", {
+              required: "Name is required",
+              minLength: {
+                value: 3,
+                message: "Name must be at least 3 characters long."
+              }
+            })}
           />
           {errors.name && <div className="text-danger fw-bolder">{errors.name.message}</div>}
         </div>
@@ -60,11 +63,13 @@ function SignUpPage() {
           <br />
           <input
             type="email"
-            {...register("email", { required: "Email is required",
-              pattern:{
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: "Invalid email address"
-              }})}
+              }
+            })}
           />
           {errors.email && <div className="text-danger fw-bolder">{errors.email.message}</div>}
         </div>
@@ -73,11 +78,13 @@ function SignUpPage() {
           <br />
           <input
             type="password"
-            {...register("password", { required: "Password is required", 
-                        minLength:{
-                        value:6,
-                        message: "Password must be at least 6 characters long."
-            } })}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters long."
+              }
+            })}
           />
           {errors.password && <div className="text-danger fw-bolder">{errors.password.message}</div>}
         </div>
@@ -86,8 +93,9 @@ function SignUpPage() {
           <br />
           <input
             type="password"
-            {...register("confirmPassword", { required: "You need to confirm your password", 
-                validate: value => value === watch("password")||"Your passwords don't match"
+            {...register("confirmPassword", {
+              required: "You need to confirm your password",
+              validate: value => value === watch("password") || "Your passwords don't match"
             })}
           />
           {errors.confirmPassword && <div className="text-danger fw-bolder">{errors.confirmPassword.message}</div>}
@@ -102,4 +110,4 @@ function SignUpPage() {
   );
 }
 
-export default withHOC("Create your account",SignUpPage);;
+export default withHOC(SignUpPage, "Create your account");

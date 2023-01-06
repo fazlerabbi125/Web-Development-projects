@@ -1,12 +1,12 @@
-import React, { useContext,useState } from "react";
-import { Link,useNavigate} from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import withHOC from "../components/withHoc";
 import MessageContext from "../contexts/MessageContext";
 
 function ForgetPasswordPage() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const {setMessage}=useContext(MessageContext);
+  const { setMessage } = useContext(MessageContext);
 
   const forgetPasswordHandler = (event) => {
     event.preventDefault();
@@ -23,7 +23,7 @@ function ForgetPasswordPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.success){
+        if (data.success) {
           setMessage('An email has been sent to your registered email address')
           navigate("/");
         }
@@ -36,17 +36,17 @@ function ForgetPasswordPage() {
     <div className="data text-center mx-auto w-50 mb-4 py-2">
       <h5 className="mt-2">Enter your email address and we will send you a new password</h5>
       <form onSubmit={forgetPasswordHandler}>
-      <p className="my-4 row justify-content-center">
-              <label className="col-sm-1 col-form-label">Email:</label>
-              <div className="col-auto">
-                  <input className="form-control" type="email"
-                  name="email"
-                  required
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}/>
-              </div>
-          </p>
+        <p className="my-4 row justify-content-center">
+          <label className="col-sm-1 col-form-label">Email:</label>
+          <div className="col-auto">
+            <input className="form-control" type="email"
+              name="email"
+              required
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }} />
+          </div>
+        </p>
         <p>
           <button className="btn btn-primary" type="submit">
             Send password reset email
@@ -61,5 +61,5 @@ function ForgetPasswordPage() {
     </div>
   );
 }
-const EnhancedComponent=withHOC("Reset your password",ForgetPasswordPage);
+const EnhancedComponent = withHOC(ForgetPasswordPage, "Reset your password");
 export default EnhancedComponent;

@@ -2,11 +2,12 @@ import Head from "next/head";
 import React from "react";
 import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import { TagListType } from "../api/tags";
+import { TagDetailType } from "../api/tags";
 import { TextInput, Loader } from "@mantine/core";
+import NavButton from "../../components/atoms/NavButton";
 import { useDebouncedValue } from "@mantine/hooks";
 import ListPagination from "../../components/molecules/ListPagination";
 import styles from "../../styles/modules/TagList.module.scss";
-import Link from "next/link";
 import Header from "../../components/organisms/Header";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
@@ -19,6 +20,16 @@ export default function TagList() {
 
   const start = (page - 1) * itemsPerPage;
   const end = (page - 1) * itemsPerPage + itemsPerPage;
+
+  const handleTagClick = (tag: TagDetailType) => {
+    localStorage.setItem(
+      "tagInfo",
+      JSON.stringify({
+        tagName: tag.display_name,
+        tagType: tag.type.split("_").join(" "),
+      })
+    );
+  };
 
   const {
     data: tagList,
@@ -64,28 +75,26 @@ export default function TagList() {
                 <div className={styles["tag-list"]}>
                   {tagList.results.map((tag) => {
                     return (
-                      <Link
-                        href={{
+                      <NavButton
+                        color="dark"
+                        radius="xl"
+                        key={tag.id}
+                        className={styles["tag-list__item"]}
+                        styles={{
+                          label: {
+                            whiteSpace: "unset",
+                          }
+                        }}
+                        url={{
                           pathname: "/tags/[tagID]/recipes",
                           query: {
                             tagID: tag.id,
                           },
                         }}
-                        key={tag.id}
-                        className={[
-                          "btn",
-                          "btn-dark",
-                          styles["tag-list__item"],
-                        ].join(" ")}
-                        onClick={() => {
-                          localStorage.setItem("tagInfo", JSON.stringify({
-                            tagName: tag.display_name,
-                            tagType: tag.type.split("_").join(" "),
-                          }))
-                        }}
+                        handleClick={() => handleTagClick(tag)}
                       >
                         {tag.display_name} ({tag.type.split("_").join(" ")})
-                      </Link>
+                      </NavButton>
                     );
                   })}
                 </div>

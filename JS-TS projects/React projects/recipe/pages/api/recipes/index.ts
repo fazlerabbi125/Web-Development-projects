@@ -1,11 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import recipes from "../../../data/recipe.json";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { RecipeDetailsType } from "./[recipeSlug]";
 
 export interface RecipeListType {
     count: number;
-    results: Array<RecipeDetailsType>;
+    results: typeof recipes["results"];
 }
 
 export default function handler(
@@ -14,7 +13,7 @@ export default function handler(
 ) {
     const start = parseInt(`${req.query.start}`) || 0;
     const end = parseInt(req.query.end as string) || recipes.count;
-    const results = recipes.results.filter((elem: RecipeDetailsType) => {
+    const results = recipes.results.filter((elem) => {
         if (req.query.tags) {
             if (
                 elem.tags.find((tag) => tag.id === parseInt(req.query.tags as string))

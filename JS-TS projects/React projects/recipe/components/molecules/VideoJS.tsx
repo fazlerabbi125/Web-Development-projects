@@ -3,17 +3,16 @@ import videojs from "video.js";
 import {
     VideoJsPlayer,
     VideoJsPlayerOptions,
-    VideoJsPlayerPluginOptions,
 } from "video.js";
 
 type VideoJSProps = {
-    options: VideoJsPlayerOptions;
+    options: VideoJsPlayerOptions
     onReady(player: VideoJsPlayer): void;
-} & VideoJsPlayerPluginOptions;
+}
 
 const VideoJS = (props: VideoJSProps) => {
-    const videoRef = React.useRef<any>(null);
-    const playerRef = React.useRef<null | VideoJsPlayer>(null);
+    const videoRef = React.useRef<HTMLDivElement | null>(null);
+    const playerRef = React.useRef<VideoJsPlayer | null>(null);
     const { options, onReady } = props;
 
     React.useEffect(() => {
@@ -22,8 +21,9 @@ const VideoJS = (props: VideoJSProps) => {
             // The Video.js player needs to be _inside_ the component el for React 18 Strict Mode.
             const videoElement = document.createElement("video-js");
 
+            videoElement.classList.add("vjs-custom-theme");
             videoElement.classList.add("vjs-big-play-centered");
-            videoRef.current.appendChild(videoElement);
+            videoRef.current?.appendChild(videoElement);
 
             const player = (playerRef.current = videojs(videoElement, options, () => {
                 videojs.log("player is ready");
@@ -37,7 +37,6 @@ const VideoJS = (props: VideoJSProps) => {
 
             player.autoplay(options.autoplay || false);
             player.src(options.sources || "");
-            // player.defaultPlaybackRate(1.5)
         }
     }, [options, videoRef]);
 

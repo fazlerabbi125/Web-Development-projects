@@ -1,21 +1,35 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import recipes from "../../../data/recipe.json";
 import { RecipeListType } from ".";
-import { RecipeDetailsType } from "./[recipeSlug]";
+import { AutocompleteItem } from "@mantine/core";
 
-export type RecipeAutoCompleteType = RecipeListType["results"];
+export interface RecipeAutoCompleteTypeItem extends AutocompleteItem {
+    slug: string;
+}
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<RecipeAutoCompleteType>
+    res: NextApiResponse<Array<RecipeAutoCompleteTypeItem>>
 ) {
-    const results = recipes.results.filter((elem: RecipeDetailsType) => {
-        if (req.query.search && req.query.search.length > 0) {
-            const regex = new RegExp(`${req.query.search}`, "gi");
-            return regex.test(elem.name);
-        }
-        return false;
-    });
+    const results = recipes.results
+        .filter((elem) => {
+            if (req.query.search && req.query.search.length > 0) {
+                const regex = new RegExp(`${req.query.search}`, "gi");
+                const ingredients = elem.sections.flatMap((section) => {
+                    return section.components.map(
+                        (component) => component.ingredient.name
+                    );
+                });
+                return (
+                    regex.test(elem.name) ||
+                    ingredients.some((ingredient) => regex.test(ingredient))
+                );
+            }
+            return false;
+        }).map((elem) => ({
+            slug: elem.slug,
+            value: elem.name,
+        }));
 
-    res.status(200).json(results)
+    res.status(200).json(results);
 }
