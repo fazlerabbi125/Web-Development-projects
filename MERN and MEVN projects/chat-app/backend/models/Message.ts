@@ -1,13 +1,6 @@
-import mongoose, { HydratedDocument, Model } from "mongoose";
+import mongoose, { Document, Model, ObjectId, Schema } from "mongoose";
 
-interface MessageProps {
-    sender: mongoose.Schema.Types.ObjectId;
-    chat: mongoose.Schema.Types.ObjectId;
-    content?: string;
-    attachments: string[]
-}
-
-const messageSchema = new mongoose.Schema<MessageProps>({
+const messageSchema: Schema = new mongoose.Schema({
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -17,6 +10,7 @@ const messageSchema = new mongoose.Schema<MessageProps>({
         type: String,
         minLength: 1,
         trim: true,
+        required: true,
     },
     chat: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,8 +25,16 @@ const messageSchema = new mongoose.Schema<MessageProps>({
     ]
 }, { timestamps: true });
 
-export type ChatDocument = HydratedDocument<MessageProps>;
-export type ChatModel = Model<ChatDocument>;
+export interface MessageDocument extends Document {
+    sender: ObjectId;
+    chat: ObjectId;
+    content: string;
+    attachments: string[],
+    createdAt: string;
+    updatedAt: string;
+}
 
-const Message = mongoose.model('Message', messageSchema);
+export type MessageModel = Model<MessageDocument>;
+
+const Message = mongoose.model<MessageDocument>('Message', messageSchema);
 export default Message;
