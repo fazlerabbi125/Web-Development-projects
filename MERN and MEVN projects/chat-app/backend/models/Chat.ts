@@ -1,6 +1,17 @@
-import mongoose, { Document, Model, ObjectId, Schema } from "mongoose";
+import mongoose, { Document, Model, ObjectId } from "mongoose";
 
-const chatSchema: Schema = new mongoose.Schema({
+export interface ChatDocument extends Document {
+    isGroupChat: boolean;
+    groupName?: string | null;
+    members: Array<ObjectId>;
+    messages: Array<ObjectId>;
+    groupAdmin?: ObjectId | null;
+    createdAt: string;
+    updatedAt: string;
+}
+export type ChatModel = Model<ChatDocument>;
+
+const chatSchema = new mongoose.Schema<ChatDocument, ChatModel>({
     isGroupChat: {
         type: Boolean,
         default: false,
@@ -37,16 +48,5 @@ const chatSchema: Schema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-export interface ChatDocument extends Document {
-    isGroupChat: boolean;
-    groupName?: string | null;
-    members: Array<ObjectId>;
-    messages: Array<ObjectId>;
-    groupAdmin?: ObjectId | null;
-    createdAt: string;
-    updatedAt: string;
-}
-export type ChatModel = Model<ChatDocument>;
-
-const Chat = mongoose.model<ChatDocument>('Chat', chatSchema);
+const Chat = mongoose.model<ChatDocument, ChatModel>('Chat', chatSchema);
 export default Chat;

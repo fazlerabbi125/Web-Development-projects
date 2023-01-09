@@ -1,6 +1,17 @@
-import mongoose, { Document, Model, ObjectId, Schema } from "mongoose";
+import mongoose, { Document, Model, ObjectId } from "mongoose";
 
-const messageSchema: Schema = new mongoose.Schema({
+export interface MessageDocument extends Document {
+    sender: ObjectId;
+    chat: ObjectId;
+    content: string;
+    attachments: string[],
+    createdAt: string;
+    updatedAt: string;
+}
+
+export type MessageModel = Model<MessageDocument>;
+
+const messageSchema = new mongoose.Schema<MessageDocument, MessageModel>({
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -25,16 +36,5 @@ const messageSchema: Schema = new mongoose.Schema({
     ]
 }, { timestamps: true });
 
-export interface MessageDocument extends Document {
-    sender: ObjectId;
-    chat: ObjectId;
-    content: string;
-    attachments: string[],
-    createdAt: string;
-    updatedAt: string;
-}
-
-export type MessageModel = Model<MessageDocument>;
-
-const Message = mongoose.model<MessageDocument>('Message', messageSchema);
+const Message = mongoose.model<MessageDocument, MessageModel>('Message', messageSchema);
 export default Message;

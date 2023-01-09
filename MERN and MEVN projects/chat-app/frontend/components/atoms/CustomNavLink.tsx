@@ -1,6 +1,28 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from '@emotion/styled'
+
+import { createStyles } from "@mantine/core";
+
+const useStyles = createStyles(() => ({
+  navItem__link: {
+    color: "#333",
+    backgroundColor: "inherit",
+    cursor: "pointer",
+
+    "&:hover": {
+      color: "#fdba74",
+    },
+  },
+  "active": {
+    color: "#ef4444",
+    backgroundColor: "inherit",
+    cursor: "pointer",
+
+    "&:hover": {
+      color: "#fdba74",
+    }
+  }
+}))
 
 interface CustomNavLinkProps {
   href: string;
@@ -12,21 +34,10 @@ function CustomNavLink(props: CustomNavLinkProps) {
   const isActive = router.asPath === props.href;
 
   return (
-    <Link href={props.href} passHref legacyBehavior>
-      <NavLink isActive>{props.children}</NavLink>
+    <Link href={props.href} className={isActive ? "" : ""}>
+      {props.children}
     </Link>
   );
 }
 
-const NavLink = styled.a<{ isActive: boolean }>`
-  padding: 32px;
-  background-color: hotpink;
-  font-size: 24px;
-  border-radius: 4px;
-  color: black;
-  font-weight: bold;
-  &:hover {
-    color: white;
-  }
-`
 export default CustomNavLink;

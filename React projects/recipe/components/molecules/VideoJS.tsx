@@ -1,6 +1,5 @@
 import React from "react";
-import videojs from "video.js";
-import {
+import videojs, {
     VideoJsPlayer,
     VideoJsPlayerOptions,
 } from "video.js";

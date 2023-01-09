@@ -1,15 +1,10 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import HTTP_STATUS from "../utils/httpStatus";
 import { Response, Request, NextFunction } from "express";
+import HTTP_STATUS from "../utils/httpStatus";
 import { failure } from "../utils/commonResponse";
 import { JWT_keys } from "../controllers/AuthController";
-import { UserDocument } from "../models/User";
 
-export interface CustomRequest extends Request {
-    user?: Pick<UserDocument, "_id" | "name" | "email" | "isAdmin">;
-}
-
-export const checkAuth = (req: CustomRequest, res: Response, next: NextFunction) => {
+export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
     if (req.get('authorization') && req.get('authorization')?.startsWith("Bearer")) {
         const token = req.headers.authorization?.split(' ')[1];//authorization="Bearer "+token
         try {
@@ -32,7 +27,7 @@ export const checkAuth = (req: CustomRequest, res: Response, next: NextFunction)
     }
 }
 
-export const isAdmin = (req: CustomRequest, res: Response, next: NextFunction) => {
+export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     if (req.user?.isAdmin) {
         next();
     } else {
@@ -40,7 +35,7 @@ export const isAdmin = (req: CustomRequest, res: Response, next: NextFunction) =
     }
 }
 
-export const isRegUser = (req: CustomRequest, res: Response, next: NextFunction) => {
+export const isRegUser = (req: Request, res: Response, next: NextFunction) => {
     if (!req.user?.isAdmin) {
         next();
     } else {
@@ -48,7 +43,7 @@ export const isRegUser = (req: CustomRequest, res: Response, next: NextFunction)
     }
 }
 
-export const guest = (req: CustomRequest, res: Response, next: NextFunction) => {
+export const guest = (req: Request, res: Response, next: NextFunction) => {
     if (!req.get('authorization')) {
         next();
     } else {

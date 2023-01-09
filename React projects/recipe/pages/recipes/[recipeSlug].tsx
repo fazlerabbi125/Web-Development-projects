@@ -60,7 +60,7 @@ export default function RecipeDetails({
                     <Title className={styles.recipe_details__card__header}>
                         {recipe.name}
                     </Title>
-                    <CustomRating value={recipe.user_ratings.score} />
+                    <CustomRating value={recipe.user_ratings?.score} />
                     <Text size="md" color="dimmed">
                         <strong>Published:</strong> {publishDate}
                     </Text>

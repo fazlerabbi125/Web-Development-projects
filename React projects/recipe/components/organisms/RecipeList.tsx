@@ -76,7 +76,7 @@ const RecipeList = (props: RecipeListProps) => {
                                 </Card.Section>
                                 <Stack justify="flex-start" spacing={6}>
                                     <Text weight={500}>{recipe.name}</Text>
-                                    <CustomRating value={recipe.user_ratings.score} />
+                                    <CustomRating value={recipe.user_ratings?.score} />
                                     <Text size="sm" color="dimmed" className="truncate">
                                         {recipe.description || "No description"}
                                     </Text>

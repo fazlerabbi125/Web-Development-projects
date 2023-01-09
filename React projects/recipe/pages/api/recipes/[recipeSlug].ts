@@ -15,7 +15,7 @@ export interface RecipeDetailsType {
     created_at: number;
     user_ratings: {
         count_positive: number;
-        score: number | null;
+        score?: number | null;
         count_negative: number;
     };
     total_time_minutes: number | null;
