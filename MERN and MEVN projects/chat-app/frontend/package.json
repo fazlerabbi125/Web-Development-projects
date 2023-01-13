@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.10.0",
+    "@mantine/dates": "^5.10.0",
     "@mantine/dropzone": "^5.10.0",
     "@mantine/form": "^5.10.0",
     "@mantine/hooks": "^5.10.0",
@@ -21,6 +22,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
     "axios": "^1.2.2",
+    "dayjs": "^1.11.7",
     "jwt-decode": "^3.1.2",
     "next": "13.1.1",
     "next-shield": "^2.1.3",

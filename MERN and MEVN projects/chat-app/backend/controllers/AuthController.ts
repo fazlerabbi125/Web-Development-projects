@@ -34,7 +34,6 @@ class AuthController {
 
             }
 
-
             const userData = {
                 _id: user._id,
                 name: user.name,

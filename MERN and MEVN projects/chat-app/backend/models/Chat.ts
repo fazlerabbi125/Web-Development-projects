@@ -28,7 +28,7 @@ const chatSchema = new mongoose.Schema<ChatDocument, ChatModel>({
     members: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            required: "Chat members are required",
+            required: [true, "Chat members are required"],
             ref: "User"
         }
     ],

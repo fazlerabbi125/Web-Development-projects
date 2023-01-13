@@ -6,10 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-assets": "ts-node utils/copyAssets",
-    "watch": "npx tsc --watch",
-    "start": "npx tsc && npm run copy-assets && nodemon dist/index.js",
     "build": "npx tsc && npm run copy-assets",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "start": "npm run build && nodemon dist/index.js",
+    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"" 
   },
   "author": "Fazle Rabbi Faiyaz",
   "license": "ISC",
