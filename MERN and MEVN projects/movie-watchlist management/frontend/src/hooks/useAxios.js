@@ -67,12 +67,12 @@ const useAxios = (url, timeout = 1000) => {
     const fetchData = async () => {
       try {
         let response = await axInstance.get(url);
-        if (!response?.data.success) throw new Error(response.data.message);
+        if (!response?.data?.success) throw new Error(response.data.message);
         setData(response.data.results);
-
-        setIsLoading(false);
         setError(null);
+        setIsLoading(false);
       } catch (err) {
+        setData(null);
         setError(err.message);
         setIsLoading(false);
       }

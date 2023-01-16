@@ -3,3 +3,4 @@
 .env*.local
 /package-lock.json
 /dist
+/yarn.lock

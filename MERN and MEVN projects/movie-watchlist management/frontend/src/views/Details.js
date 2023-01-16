@@ -23,7 +23,7 @@ const Details = () => {
                 </h2>
             )}
             {error && <h2 className="text-center text-danger">{error}</h2>}
-            {data && (
+            {!error && data && (
                 <div className="data card w-75 mx-auto mb-5">
                     <div className="card-header">
                         {auth && auth.isAdmin && (

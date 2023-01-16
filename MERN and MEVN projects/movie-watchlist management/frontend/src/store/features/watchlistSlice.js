@@ -1,26 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {axInstance} from '../../hooks/useAxios'
-import {getTokens} from "../../utils/handleStorage";
+import { axInstance } from '../../hooks/useAxios'
+import { getTokens } from "../../utils/handleStorage";
 
 
 export const fetchList = createAsyncThunk('watchlist/fetchList', async (query) => {
-    const params=query?`?page=${query.page}&itemsPerPage=${query.itemsPerPage}`:"";
-    const {data}= await axInstance.get('/get-list'+params,{
-      headers: {
-        'Authorization': `Bearer ${getTokens().accessToken}`
-      }
-    });
-    
-    return data.results;
-  })
+  const { data } = await axInstance.get('/get-list', {
+    params: query,
+    headers: {
+      'Authorization': `Bearer ${getTokens().accessToken}`
+    }
+  });
+
+  return data.results;
+})
 
 const watchlistSlice = createSlice({
   name: 'watchlist',
   initialState: {
-    data:[],
+    data: [],
     error: null,
-    isLoading:true,
-    count:null,
+    isLoading: true,
+    count: null,
   },
   reducers: {
     // omit existing reducers here
@@ -34,12 +34,12 @@ const watchlistSlice = createSlice({
         try {
           state.isLoading = false;
           // Add any fetched posts to the array
-          state.data = action.payload.userlist.movies||[];
-          state.count= action.payload.count;
+          state.data = action.payload.userlist.movies || [];
+          state.count = action.payload.count;
         } catch (err) {
           console.log(err.message);
         }
-        
+
       })
       .addCase(fetchList.rejected, (state, action) => {
         state.isLoading = false;
