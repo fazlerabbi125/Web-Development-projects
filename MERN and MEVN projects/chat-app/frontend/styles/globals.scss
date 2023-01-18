@@ -58,6 +58,37 @@ span {
   }
 }
 
+.form {
+  &__group {
+    @include addFlex.flex_container($direction: column);
+    gap: 0.5rem;
+  }
+
+  &__input__group {
+    @include addFlex.flex_container($jc: center, $ai: baseline, $wr: wrap);
+    gap: 0.5rem;
+
+    &--column {
+      @include addFlex.flex_container($direction: column);
+      gap: 0.25rem;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    font-weight: 500;
+
+    &>.required {
+      color: rgb(210, 50, 50);
+      font-size: 12px;
+    }
+  }
+}
+
+.error {
+  color: rgb(210, 50, 50);
+  line-height: 1.25rem;
+}
 
 // @media (prefers-color-scheme: dark) {
 //   html {

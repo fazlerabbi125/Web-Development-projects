@@ -1,28 +1,40 @@
 import React from "react";
 import {
     Stack,
+    Text,
+    Group,
     TextInput,
     PasswordInput,
-    FileInput,
+    FileButton,
     Button as MButton,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+
+interface RegisterFormFields {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    photo: File | null;
+}
 
 const Register = () => {
-    const form = useForm({
+    const form = useForm<RegisterFormFields>({
         initialValues: {
             name: "",
             email: "",
             password: "",
             confirmPassword: "",
+            photo: null, //NextJS retrieves file as string instead of File object
         },
-
         validate: {
-            name: (value) => value.length < 2 ? "Name must at least have 2 characters" : null,
+            name: (value) =>
+                value.length < 2 ? "Name must at least have 2 characters" : null,
             email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-            password: (value) => value.length < 6 ? "Password must at least have 6 characters" : null,
-            confirmPassword: (value, values) => value === values.password ? "Password must at least have 6 characters" : null,
+            password: (value) =>
+                value.length < 6 ? "Password must at least have 6 characters" : null,
+            confirmPassword: (value, values) =>
+                value !== values.password ? "Passwords must match" : null,
         },
     });
     return (
@@ -44,6 +56,21 @@ const Register = () => {
                     withAsterisk
                     {...form.getInputProps("confirmPassword")}
                 />
+                <Group spacing="md" align="baseline">
+                    <Text fw={500}>Photo:</Text>
+                    <FileButton
+                        accept="image/png, image/jpeg, image/webp, image/jpg"
+                        onChange={(value) => {
+                            form.setFieldValue("photo", value);
+                        }}
+                    >
+                        {(props) => (
+                            <MButton {...props} color="gray">
+                                Upload photo
+                            </MButton>
+                        )}
+                    </FileButton>
+                </Group>
                 <MButton className="btn--primary" mt="1rem" type="submit">
                     Register
                 </MButton>

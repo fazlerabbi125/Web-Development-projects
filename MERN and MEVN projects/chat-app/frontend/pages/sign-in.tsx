@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Stack, Card } from "@mantine/core";
 import Head from "next/head";
 import Header from "../components/organisms/Header";
-import styles from "../styles/modules/SignIn.module.scss";
+import styles from "../styles/pages/SignIn.module.scss";
 import Login from "../components/organisms/Login";
 import Register from "../components/organisms/Register";
 

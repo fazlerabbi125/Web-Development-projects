@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getStorageData, clearStorage, getTokens } from "../../utils/handleStorage";
 import { axInstance } from "../../utils/customAxios"
 import { JwtPayload } from 'jwt-decode';
 

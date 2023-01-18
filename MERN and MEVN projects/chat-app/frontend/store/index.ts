@@ -1,11 +1,22 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import authSlice from './features/authSlice';
-import { persistStore, persistReducer } from 'redux-persist'
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 const persistConfig = {
     key: 'root',
+    version: 1,
     storage,
+    // blacklist: [pokemonApi.reducerPath],// for RTK query only
 }
 
 export const rootReducer = combineReducers({
@@ -16,6 +27,13 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        })
+    //.concat(apiSlice.middleware),
 });
 export const persistor = persistStore(store)
 
