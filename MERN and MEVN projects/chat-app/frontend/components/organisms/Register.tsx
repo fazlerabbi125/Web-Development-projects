@@ -1,21 +1,19 @@
 import React from "react";
 import {
     Stack,
-    Text,
-    Group,
     TextInput,
     PasswordInput,
-    FileButton,
     Button as MButton,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import FileInput, { SingleFile } from "../molecules/FileInput";
 
 interface RegisterFormFields {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
-    photo: File | null;
+    photo: SingleFile;
 }
 
 const Register = () => {
@@ -56,21 +54,13 @@ const Register = () => {
                     withAsterisk
                     {...form.getInputProps("confirmPassword")}
                 />
-                <Group spacing="md" align="baseline">
-                    <Text fw={500}>Photo:</Text>
-                    <FileButton
-                        accept="image/png, image/jpeg, image/webp, image/jpg"
-                        onChange={(value) => {
-                            form.setFieldValue("photo", value);
-                        }}
-                    >
-                        {(props) => (
-                            <MButton {...props} color="gray">
-                                Upload photo
-                            </MButton>
-                        )}
-                    </FileButton>
-                </Group>
+                <FileInput
+                    inputLabel="Photo:"
+                    buttonLabel="Upload photo"
+                    accept="image/png, image/jpeg, image/webp, image/jpg"
+                    onChange={(value) => form.setFieldValue("photo", value as SingleFile)}
+                    btnColor="gray"
+                />
                 <MButton className="btn--primary" mt="1rem" type="submit">
                     Register
                 </MButton>

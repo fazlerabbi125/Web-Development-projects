@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { axInstance } from "../../utils/customAxios"
 import { JwtPayload } from 'jwt-decode';
+import { RootState } from '..';
 
-const logoutUser = createAsyncThunk('user/logoutUser', async () => {
-    const { accessToken, refreshToken } = getTokens() as any;
-    await axInstance.post('/logout', { token: refreshToken }, {
+const logoutUser = createAsyncThunk('user/logoutUser', async (args, { getState }) => {
+    const state = getState() as RootState;
+    await axInstance.post('/logout', { token: state.auth.refreshToken || "" }, {
         headers: {
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${state.auth.accessToken || ""}`
         }
     })
 });
@@ -20,14 +21,14 @@ export interface DecodedUserData extends JwtPayload {
 
 interface AuthState {
     userData: DecodedUserData | null,
-    accessToken: string;
-    refreshToken: string;
+    accessToken: string | null;
+    refreshToken: string | null;
 }
 
 const initialState: AuthState = {
     userData: null,
-    accessToken: "",
-    refreshToken: "",
+    accessToken: null,
+    refreshToken: null,
 }
 
 const authSlice = createSlice({
@@ -35,7 +36,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         signinUser: (state) => {
-            state.userData = getStorageData() as DecodedUserData;
+            // state.userData = getStorageData() as DecodedUserData;
         },
         updateCredentials: (state, action) => {
             // state.userData.name = action.payload.name;
@@ -47,7 +48,7 @@ const authSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state, action) => {
                 // Add any fetched posts to the array
                 state.userData = null;
-                clearStorage();
+                // clearStorage();
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 console.log(action.error.message);

@@ -1,0 +1,10 @@
+@use "../../../styles/partials/addFlex";
+@use "../../../styles/partials/mediaQuery";
+
+
+.file-input {
+    &__group {
+        @include addFlex.flex_container($ai: baseline, $wr: wrap);
+        gap: 1rem;
+    }
+}

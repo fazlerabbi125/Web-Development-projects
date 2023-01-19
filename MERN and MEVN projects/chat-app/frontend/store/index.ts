@@ -23,7 +23,10 @@ export const rootReducer = combineReducers({
     // [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSlice.reducer,
 });
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// Infer the `RootState` type from the store itself
+// Use for export type RootState = ReturnType<typeof store.getState> for only redux
+export type RootState = ReturnType<typeof rootReducer> //Used as redux-persist used
+const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer)
 
 const store = configureStore({
     reducer: persistedReducer,
@@ -37,9 +40,7 @@ const store = configureStore({
 });
 export const persistor = persistStore(store)
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// Inferred `AppDispatch` types from the store itself
 export type AppDispatch = typeof store.dispatch
 
 export default store;
