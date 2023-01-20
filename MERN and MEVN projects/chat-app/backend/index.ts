@@ -8,6 +8,7 @@ import morgan from "morgan";
 import { failure } from "./utils/commonResponse";
 import HTTP_STATUS from "./utils/httpStatus";
 import { Server } from "socket.io";
+import { MulterError } from "multer";
 
 const app: Express = express();
 const server = http.createServer(app);
@@ -56,7 +57,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(
     (
-        err: Record<string, any>,
+        err: Error | MulterError,
         req: Request,
         res: Response,
         next: NextFunction

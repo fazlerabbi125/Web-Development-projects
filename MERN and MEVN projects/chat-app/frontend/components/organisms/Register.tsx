@@ -13,7 +13,7 @@ interface RegisterFormFields {
     email: string;
     password: string;
     confirmPassword: string;
-    photo: SingleFile;
+    photo: File | "";
 }
 
 const Register = () => {
@@ -23,7 +23,7 @@ const Register = () => {
             email: "",
             password: "",
             confirmPassword: "",
-            photo: null, //NextJS retrieves file as string instead of File object
+            photo: "", //NextJS retrieves file as string instead of File object
         },
         validate: {
             name: (value) =>
@@ -58,7 +58,9 @@ const Register = () => {
                     inputLabel="Photo:"
                     buttonLabel="Upload photo"
                     accept="image/png, image/jpeg, image/webp, image/jpg"
-                    onChange={(value) => form.setFieldValue("photo", value as SingleFile)}
+                    onChange={(value) =>
+                        form.setFieldValue("photo", (value as SingleFile) || "")
+                    }
                     btnColor="gray"
                 />
                 <MButton className="btn--primary" mt="1rem" type="submit">

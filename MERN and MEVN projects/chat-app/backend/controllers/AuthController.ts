@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload } from "jsonwebtoken";
@@ -13,7 +14,6 @@ export const JWT_keys = {
     refresh: process.env.JWT_REFRESH_KEY || 'b13df694aa'
 }
 
-
 class AuthController {
     saltRounds = 10;
 
@@ -21,13 +21,18 @@ class AuthController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
+                if (req.file) {
+                    await fs.promises.unlink(
+                        path.join(__dirname, "..", "uploads", "profiles", req.file.filename)
+                    );
+                }
+                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.mapped()));
             }
             const { name, email, date_of_birth, isAdmin }: UserDocument = req.body;
             const password = await bcrypt.hash(req.body.password, this.saltRounds);
             // const emailVerificationToken = crypto.randomBytes(32).toString('hex');
             //emailVerificationToken
-            const user = new User({ name, email, password, date_of_birth, isAdmin, }) as UserDocument;
+            const user = new User({ name, email, password, date_of_birth, isAdmin, });
             await user.save();
 
             if (!isAdmin) {
@@ -82,7 +87,7 @@ class AuthController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
+                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.mapped()));
             }
             const { email, password } = req.body;
             const user = await User.login(email, password);
@@ -143,7 +148,7 @@ class AuthController {
     //         if (!errors.isEmpty()) {
     //             return res
     //                 .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
-    //                 .send(failure('Invalid Inputs', errors.array()));
+    //                 .send(failure('Invalid Inputs', errors.mapped()));
     //         }
     //         const email = req.body.email;
     //         const user = await User.findOne({ email: email });
@@ -189,7 +194,7 @@ class AuthController {
             if (!errors.isEmpty()) {
                 return res
                     .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
-                    .send(failure('Invalid Inputs', errors.array()));
+                    .send(failure('Invalid Inputs', errors.mapped()));
             }
 
             const { token, userId, password } = req.body;
@@ -219,7 +224,7 @@ class AuthController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
+                return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.mapped()));
             }
             const oldRefreshToken = req.body.token;
 
@@ -260,7 +265,7 @@ class AuthController {
             if (!errors.isEmpty()) {
                 return res
                     .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
-                    .send(failure('Invalid Inputs', errors.array()));
+                    .send(failure('Invalid Inputs', errors.mapped()));
             }
             const token = req.body.token;
             //console.log(token);

@@ -2,7 +2,6 @@ import mongoose, { Document, Model, ObjectId } from "mongoose";
 
 export interface MessageDocument extends Document {
     sender: ObjectId;
-    receivers: Array<ObjectId>;
     chat: ObjectId;
     content: string;
     attachments: string[],
@@ -18,20 +17,15 @@ const messageSchema = new mongoose.Schema<MessageDocument, MessageModel>({
         ref: "User",
         required: true,
     },
-    receivers: [{
+    chat: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    }],
+        ref: "Chat",
+    },
     content: {
         type: String,
         minLength: 1,
         trim: true,
         required: true,
-    },
-    chat: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Chat",
     },
     attachments: [
         {

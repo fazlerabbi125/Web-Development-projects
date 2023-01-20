@@ -7,4 +7,16 @@
         @include addFlex.flex_container($ai: baseline, $wr: wrap);
         gap: 1rem;
     }
+
+    &__upload {
+        @include addFlex.flex_container($ai: center);
+        gap: 1rem;
+
+        &__file {
+            &--single {
+                @include addFlex.flex_container($ai: center);
+                gap: 0.25rem;
+            }
+        }
+    }
 }

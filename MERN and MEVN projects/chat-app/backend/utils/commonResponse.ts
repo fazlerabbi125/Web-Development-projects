@@ -1,18 +1,35 @@
-const success = (message: string, data: any = null) => {
+import { ValidationError } from "express-validator";
+
+interface CommonResponseType {
+    success: boolean;
+    message: string;
+}
+
+export interface SuccessResponseType<T = any> extends CommonResponseType {
+    results: T;
+}
+
+export interface FailureResponseType extends CommonResponseType {
+    err?: string | Record<string, ValidationError> | ValidationError[];
+}
+
+function success(message: string, data: unknown = null): SuccessResponseType {
     return {
         success: true,
-        message: message,
-        results: data
-    }
+        message,
+        results: data,
+    };
 }
 
-
-const failure = (message: string, error: Record<string, any> = {}) => {
+const failure = (
+    message: string,
+    err?: FailureResponseType["err"]
+): FailureResponseType => {
     return {
         success: false,
-        message: message,
-        errors: error
-    }
-}
+        message,
+        err,
+    };
+};
 
-export { success, failure }
+export { success, failure };

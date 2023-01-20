@@ -9,3 +9,27 @@ export const authApiSlice = createApi({
 });
 
 // export { } = authApiSlice;
+//query<returnType, argType>
+// getUsers: builder.query({
+//     // Accepts only single argument
+//     query: (user) => `users/${user}`
+// }),
+// getUsers: builder.query({
+//     query: (args) => {
+//         // Destructuring Object
+//         const { type, userNumber } = args;
+//         return {
+//             // Returns url with multiple args
+//             url: `${type}/${userNumber}`
+//         }
+//     }
+// }),
+// updatePost: build.mutation<Post, Partial<Post>>({
+//     query(data) {
+//       const { id, ...body } = data
+//       return {
+//         url: `post/${id}`,
+//         method: 'PUT',
+//         body,
+//       }
+//     },

@@ -6,6 +6,7 @@ export interface ChatDocument extends Document {
     members: Array<ObjectId>;
     messages: Array<ObjectId>;
     groupAdmin?: ObjectId | null;
+    isConnected?: boolean;
     createdAt: string;
     updatedAt: string;
 }
@@ -23,7 +24,7 @@ const chatSchema = new mongoose.Schema<ChatDocument, ChatModel>({
         default: null,
         required: function () {
             return this.isGroupChat;
-        }
+        },
     },
     members: [
         {
@@ -44,7 +45,14 @@ const chatSchema = new mongoose.Schema<ChatDocument, ChatModel>({
         default: null,
         required: function () {
             return this.isGroupChat;
-        }
+        },
+    },
+    isConnected: {
+        type: Boolean,
+        default: false,
+        required: function () {
+            return !this.isGroupChat;
+        },
     }
 }, { timestamps: true });
 
