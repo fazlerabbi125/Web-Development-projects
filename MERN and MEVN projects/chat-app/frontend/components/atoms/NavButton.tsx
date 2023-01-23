@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 import { Button as MButton, ButtonProps } from "@mantine/core";
 import { useRouter } from "next/router";
 import { UrlObject } from "url";
@@ -6,7 +6,6 @@ import { UrlObject } from "url";
 interface NavButtonProps extends ButtonProps {
     url: string | UrlObject;
     handleClick?: () => void;
-    children?: ReactNode;
 }
 
 export default function NavButton({
@@ -14,7 +13,7 @@ export default function NavButton({
     children,
     handleClick,
     ...rest
-}: NavButtonProps) {
+}: PropsWithChildren<NavButtonProps>) {
     const router = useRouter();
 
     const redirectTo = () => {

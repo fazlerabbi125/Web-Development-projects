@@ -1,22 +1,66 @@
 @use "../../../styles/partials/addFlex";
 @use "../../../styles/partials/mediaQuery";
 
-
 .file-input {
+    @include addFlex.flex_container($direction: column);
+    gap: 1rem;
+
     &__group {
-        @include addFlex.flex_container($ai: baseline, $wr: wrap);
-        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        gap: 0.5rem;
+        align-items: center;
+
+        &--single {
+            & .input__label {
+                grid-column: auto;
+            }
+
+            & .input__btn {
+                grid-column: auto;
+
+                @include mediaQuery.devices(mobile) {
+                    grid-row: 2;
+                }
+            }
+
+            & .input__upload {
+
+                @include mediaQuery.devices(mobile) {
+                    grid-row: 2;
+                }
+            }
+        }
+
+        &--multiple {
+            & .input__label {
+                grid-column: auto;
+            }
+
+            & .input__btn {
+                grid-column: auto;
+
+                @include mediaQuery.devices(mobile) {
+                    grid-row: 2;
+                }
+            }
+
+            & .input__upload {
+                grid-row: 2;
+                grid-column: 1 / -1;
+
+                @include addFlex.flex_container($direction: column);
+                gap: 0.5rem;
+
+                @include mediaQuery.devices(mobile) {
+                    grid-row: 3;
+                }
+            }
+        }
     }
 
     &__upload {
-        @include addFlex.flex_container($ai: center);
-        gap: 1rem;
-
-        &__file {
-            &--single {
-                @include addFlex.flex_container($ai: center);
-                gap: 0.25rem;
-            }
-        }
+        @include addFlex.flex_container($ai: flex-start);
+        gap: 0.25rem;
     }
 }

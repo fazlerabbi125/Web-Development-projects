@@ -35,6 +35,7 @@ const Register = () => {
                 value !== values.password ? "Passwords must match" : null,
         },
     });
+    
     return (
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
             <Stack spacing="lg" w={"80%"} mx={"auto"} mb="xl">
@@ -55,7 +56,7 @@ const Register = () => {
                     {...form.getInputProps("confirmPassword")}
                 />
                 <FileInput
-                    inputLabel="Photo:"
+                    inputLabel="Photo"
                     buttonLabel="Upload photo"
                     accept="image/png, image/jpeg, image/webp, image/jpg"
                     onChange={(value) =>
