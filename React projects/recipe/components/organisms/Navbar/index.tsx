@@ -1,6 +1,6 @@
 //https://tailwindui.com/components/application-ui/navigation/navbars
 import { useState } from "react";
-import CustomNavLink from "../atoms/CustomNavLink";
+import CustomNavLink from "../../atoms/CustomNavLink";
 import Image from "next/image";
 import {
   Navbar as BSNavbar,
@@ -10,7 +10,7 @@ import {
   Nav,
   NavItem,
 } from "reactstrap";
-import RecipeAutoComplete from "../molecules/RecipeAutoComplete";
+import RecipeAutoComplete from "../../molecules/RecipeAutoComplete";
 
 const routes = [
   { link: "/", text: "Home" },

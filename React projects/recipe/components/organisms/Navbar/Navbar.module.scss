@@ -1,0 +1,19 @@
+@use "../../../styles/partials/mediaQuery";
+@use "../../../styles/partials/addFlex";
+
+.navbar {
+    background-color: white;
+    padding: 0.75rem 0.5rem 0.5rem 2rem;
+    font-weight: 500;
+    color: #292524;
+    font-family: "Nunito";
+    margin-bottom: 2rem;
+    position: relative;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    @include addFlex.flex-container($jc: space-between, $ai: center);
+
+    &__nav {
+        @include addFlex.flex-container($ai: center);
+    }
+}

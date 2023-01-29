@@ -1,5 +1,6 @@
 import { Title, Text, Flex } from "@mantine/core";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Custom404() {
     return (
@@ -12,14 +13,17 @@ export default function Custom404() {
                 align="center"
                 justify="center"
                 gap="xl"
+                mt="lg"
                 className="relative mb-12"
             >
-                <img
-                    src="/images/cross-cultery.jpg"
-                    alt="cross-cultery"
-                    className="w-4/12 h-80"
-                    style={{ height: "22rem" }}
-                />
+                <div className="relative w-4/12 h-80">
+                    <Image
+                        src="/images/cross-cultery.jpg"
+                        alt="cross-cultery"
+                        className="object-cover"
+                        fill
+                    />
+                </div>
                 <Text
                     color={"#334155"}
                     weight={700}

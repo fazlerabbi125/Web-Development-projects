@@ -1,13 +1,14 @@
 import React from "react";
-import { RecipeInfoSectionProps } from "./RecipeBasicInfo";
 import { List } from "@mantine/core";
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from "video.js";
-import VideoJS from "../molecules/VideoJS";
 import { Inter } from "@next/font/google";
+import VideoJS from "../../molecules/VideoJS";
+import { RecipeInfoSectionProps } from "../RecipeBasicInfo";
+import styles from "./RecipeInstructions.module.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
-function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
+function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
     const playerRef = React.useRef<null | VideoJsPlayer>(null);
 
     const videoJsOptions: VideoJsPlayerOptions = {
@@ -64,10 +65,10 @@ function RecipeInstructions({ styles, recipe }: RecipeInfoSectionProps) {
             <List
                 type="ordered"
                 mt="xl"
-                className={styles.recipe_details__card__instructions}
+                className={styles["recipe-instructions"]}
                 classNames={{
                     item: [
-                        styles.recipe_details__card__instructions__item,
+                        styles["recipe-instructions__item"],
                         inter.className,
                     ].join(" "),
                 }}

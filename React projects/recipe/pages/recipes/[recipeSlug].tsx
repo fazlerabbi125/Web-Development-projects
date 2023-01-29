@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../../styles/modules/RecipeDetails.module.scss";
 import { fetchData } from "../../hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
@@ -10,6 +9,7 @@ import { TagDetailType } from "../api/tags";
 import CustomRating from "../../components/atoms/CustomRating";
 import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "../../components/organisms/RecipeInstructions";
+import styles from "../../styles/pages/RecipeDetails.module.scss";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const recipe: RecipeDetailsType = await fetchData(
@@ -112,10 +112,10 @@ export default function RecipeDetails({
                             </Tabs.List>
                         </Card.Section>
                         <Tabs.Panel value="info">
-                            <RecipeBasicInfo styles={styles} recipe={recipe} />
+                            <RecipeBasicInfo recipe={recipe} />
                         </Tabs.Panel>
                         <Tabs.Panel value="instructions">
-                            <RecipeInstructions styles={styles} recipe={recipe} />
+                            <RecipeInstructions recipe={recipe} />
                         </Tabs.Panel>
                     </Tabs>
                 </section>

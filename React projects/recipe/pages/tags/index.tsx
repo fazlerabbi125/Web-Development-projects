@@ -1,14 +1,14 @@
 import Head from "next/head";
 import React from "react";
+import { TextInput, Loader } from "@mantine/core";
+import { useDebouncedValue } from "@mantine/hooks";
 import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
 import { TagListType } from "../api/tags";
 import { TagDetailType } from "../api/tags";
-import { TextInput, Loader } from "@mantine/core";
 import NavButton from "../../components/atoms/NavButton";
-import { useDebouncedValue } from "@mantine/hooks";
 import ListPagination from "../../components/molecules/ListPagination";
-import styles from "../../styles/modules/TagList.module.scss";
 import Header from "../../components/organisms/Header";
+import styles from "../../styles/pages/Tags.module.scss";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 

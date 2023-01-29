@@ -1,19 +1,19 @@
 import React from "react";
-import { useAxios, CustomAxiosResponse } from "../../hooks/useAxios";
+import Link from "next/link";
+import Image from "next/image";
 import {
     Flex,
     Card,
-    Image as MImage,
     Loader,
     Text,
     Stack,
 } from "@mantine/core";
-import ListPagination from "../molecules/ListPagination";
-import CustomRating from "../atoms/CustomRating";
-import { RecipeListType } from "../../pages/api/recipes";
-import { RecipeDetailsType } from "../../pages/api/recipes/[recipeSlug]";
-import Link from "next/link";
-import styles from "../../styles/modules/RecipeList.module.scss";
+import ListPagination from "../../molecules/ListPagination";
+import CustomRating from "../../atoms/CustomRating";
+import { RecipeListType } from "../../../pages/api/recipes";
+import { RecipeDetailsType } from "../../../pages/api/recipes/[recipeSlug]";
+import { useAxios, CustomAxiosResponse } from "../../../hooks/useAxios";
+import styles from "./RecipeList.module.scss";
 
 interface RecipeListProps {
     tags?: number;
@@ -66,12 +66,11 @@ const RecipeList = (props: RecipeListProps) => {
                                 className={styles.recipe_list__card}
                                 key={recipe.id}
                             >
-                                <Card.Section>
-                                    <MImage
+                                <Card.Section className={styles.recipe_list__card__photo}>
+                                    <Image
                                         src={recipe.thumbnail_url}
-                                        height={200}
                                         alt={recipe.thumbnail_alt_text}
-                                        width={"100%"}
+                                        fill
                                     />
                                 </Card.Section>
                                 <Stack justify="flex-start" spacing={6}>
