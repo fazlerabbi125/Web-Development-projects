@@ -12,7 +12,7 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
     >([]);
     const [loading, setLoading] = React.useState(false);
 
-    const [debouncedSearch] = useDebouncedValue(search, 500);
+    const [debouncedSearch] = useDebouncedValue(search, 1000);
 
     const redirectToRecipe = (item: RecipeAutoCompleteTypeItem) => {
         router.push(`/recipes/${item.slug}`);
@@ -30,21 +30,21 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
                         search: debouncedSearch,
                     });
                     setLoading(false);
-                    setSuggestions(() => data);
+                    setSuggestions(data);
                 } catch (err: any) {
                     console.log(err.message);
                     setLoading(false);
-                    setSuggestions(() => []);
+                    setSuggestions([]);
                 }
             }
         };
 
         if (debouncedSearch.length > 0) {
             setLoading(true);
-            setTimeout(() => fetchSuggestions(), 500)
+            fetchSuggestions();
         } else {
             setLoading(false);
-            setSuggestions(() => [])
+            setSuggestions([])
         };
 
         return () => {
@@ -53,7 +53,7 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
         };
     }, [debouncedSearch]);
 
-    // console.log(suggestions);
+    console.log(suggestions);
 
     return (
         <Autocomplete

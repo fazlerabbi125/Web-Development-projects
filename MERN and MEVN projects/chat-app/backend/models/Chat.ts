@@ -5,6 +5,7 @@ export interface ChatDocument extends Document {
     groupName?: string | null;
     members: Array<ObjectId>;
     messages: Array<ObjectId>;
+    latestMessage: ObjectId;
     groupAdmin?: ObjectId | null;
     isConnected?: boolean;
     createdAt: string;
@@ -39,6 +40,10 @@ const chatSchema = new mongoose.Schema<ChatDocument, ChatModel>({
             ref: "Message"
         }
     ],
+    latestMessage: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Message"
+    },
     groupAdmin: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

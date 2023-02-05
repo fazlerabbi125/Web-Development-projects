@@ -1,6 +1,7 @@
 import { Title, Text, Flex } from "@mantine/core";
 import Head from "next/head";
 import Image from "next/image";
+import notFoundImg from "../public/images/cross-cultery.jpg";
 
 export default function Custom404() {
     return (
@@ -16,14 +17,11 @@ export default function Custom404() {
                 mt="lg"
                 className="relative mb-12"
             >
-                <div className="relative w-4/12 h-80">
-                    <Image
-                        src="/images/cross-cultery.jpg"
-                        alt="cross-cultery"
-                        className="object-cover"
-                        fill
-                    />
-                </div>
+                <Image
+                    src={notFoundImg}
+                    alt="cross-cultery"
+                    className="md:w-[30%] max-sm:w-8/12"
+                />
                 <Text
                     color={"#334155"}
                     weight={700}
