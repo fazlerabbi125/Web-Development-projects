@@ -14,23 +14,25 @@ const routes = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const toggleNavMenu = () => setIsOpen(!isOpen);
   return (
     <nav className={styles.navbar}>
-      <div>
-        <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
-      </div>
-      <Burger opened={isOpen} onClick={toggle} className="sm:block md:hidden" />
-      <div className={styles.navbar__collapse}>
-        <div className={[styles.navbar__nav, "mr-auto"].join(" ")}>
-          {routes.map((route) => (
-            <div className="sm:ml-4" key={route.link}>
-              <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
-            </div>
-          ))}
+      <div className="container-fluid">
+        <div className="navbar-brand">
+          <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
         </div>
-        <div className={[styles.navbar__nav, "ml-auto"].join(" ")}>
+        <Burger opened={isOpen} onClick={toggleNavMenu} className="navbar-toggler sm:block md:hidden" />
+        <div className={`custom-collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
+            {routes.map((route) => (
+              <li className="nav-item sm:ml-4" key={route.link}>
+                <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
+              </li>
+            ))}
+          </ul>
+          <div className={[].join(" ")}>
             <RecipeAutoComplete />
+          </div>
         </div>
       </div>
     </nav>

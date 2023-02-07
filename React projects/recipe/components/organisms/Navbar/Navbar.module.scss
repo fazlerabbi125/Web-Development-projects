@@ -3,14 +3,11 @@
 
 .navbar {
     background-color: white;
-    padding: 1rem 0.5rem 1rem 2rem;
-    font-weight: 500;
+    padding: 1rem 2rem;
     color: #292524;
-    font-family: "Nunito";
     margin-bottom: 2rem;
     position: relative;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font: 500 20px/30px "Nunito";
     @include addFlex.flex-container($jc: space-between, $ai: center);
 
     &__collapse {
@@ -21,5 +18,91 @@
     &__nav {
         @include addFlex.flex-container($ai: center);
 
+        @include mediaQuery.maxCustomDevice(640px) {
+            @include addFlex.flex-container($direction: column, $ai: center);
+        }
     }
 }
+
+// .navbar {
+//     position: relative;
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 0.5rem 1rem;
+// }
+
+// .navbar-brand {
+//     display: inline-block;
+//     padding-top: 0.3125rem;
+//     padding-bottom: 0.3125rem;
+//     margin-right: 1rem;
+//     font-size: 1.25rem;
+//     line-height: inherit;
+//     white-space: nowrap;
+// }
+
+// .navbar-nav {
+//     display: flex;
+//     flex-direction: row;
+//     padding-left: 0;
+//     margin-bottom: 0;
+//     list-style: none;
+// }
+
+// .nav-link {
+//     display: block;
+//     padding: 0.5rem 1rem;
+// }
+
+// .navbar-toggler {
+//     padding: 0.25rem 0.75rem;
+//     font-size: 1.25rem;
+//     line-height: 1;
+//     background-color: transparent;
+//     border: 1px solid transparent;
+//     border-radius: 0.25rem;
+// }
+
+// .navbar-collapse {
+//     flex-basis: 100%;
+//     flex-grow: 1;
+//     align-items: center;
+// }
+
+// .navbar-collapse.show {
+//     display: flex !important;
+// }
+
+//   .nav-item {
+//     margin: 0 1rem;
+//   }
+// @media (max-width: 767px) {
+//     .navbar-collapse {
+//       display: block;
+//     }
+
+//     .navbar-toggler {
+//       display: block;
+//     }
+
+//     .navbar-nav {
+//       flex-direction: column;
+//       align-items: center;
+//     }
+
+//     .nav-item {
+//       margin: 1rem 0;
+//     }
+//   }
+// @media (max-width: 575.98px) {
+//     .navbar-expand-lg .navbar-nav {
+//       flex-direction: column;
+//     }
+
+//     .navbar-expand-lg .navbar-nav .nav-link {
+//       width: 100%;
+//       text-align: center;
+//     }
+//   }
