@@ -15,5 +15,9 @@
         margin-top: 1rem;
         @include addFlex.flex-container($ai: center, $wr: wrap);
         gap: 0.5rem;
+
+        &__item {
+            flex-basis: auto;
+        }
     }
 }

@@ -82,6 +82,7 @@ export default function RecipeDetails({
                                         color="dark"
                                         radius="xl"
                                         key={tag.id}
+                                        className={styles.recipe_details__card__tags__item}
                                         url={`/tags/${tag.id}/recipes`}
                                         handleClick={() => handleTagClick(tag)}
                                     >
