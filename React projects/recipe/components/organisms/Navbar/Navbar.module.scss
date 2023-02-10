@@ -3,25 +3,81 @@
 
 .navbar {
     background-color: white;
-    padding: 1rem 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     color: #292524;
     margin-bottom: 2rem;
     position: relative;
     font: 500 20px/30px "Nunito";
-    @include addFlex.flex-container($jc: space-between, $ai: center);
+    @include addFlex.flex-container($ai: center);
 
-    &__collapse {
-        width: 100%;
-        @include addFlex.flex-container($ai: center);
+    @include mediaQuery.maxCustomDevice(640px) {
+        justify-content: space-between;
     }
 
-    &__nav {
+    &__container {
+        width: 100%;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        @include addFlex.flex-container($jc: space-between, $ai: center);
+
+    }
+
+    &__toggler {
+        display: none;
+
+        @include mediaQuery.maxCustomDevice(640px) {
+            display: block;
+        }
+    }
+
+    &__brand {
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    &__collapse {
+        .navbar-collapse {
+            flex-basis: 100%;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        @include mediaQuery.maxCustomDevice(640px) {
+            display: none;
+        }
+
+        &--show {
+            display: block;
+        }
+    }
+
+    &__nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         @include addFlex.flex-container($ai: center);
 
         @include mediaQuery.maxCustomDevice(640px) {
             @include addFlex.flex-container($direction: column, $ai: center);
         }
+
+        &--left {
+            margin-right: auto;
+
+        }
+
+        &--right {
+            margin-left: auto;
+        }
     }
+
+
+
 }
 
 // .navbar {
@@ -106,3 +162,10 @@
 //       text-align: center;
 //     }
 //   }
+// .navbar-nav {
+//     display: flex;
+//     flex-direction: column;
+//     padding-left: 0;
+//     margin-bottom: 0;
+//     list-style: none;
+// }
