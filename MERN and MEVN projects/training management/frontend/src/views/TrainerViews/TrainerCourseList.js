@@ -28,7 +28,7 @@ function TrainerCourseList() {
     const pageBtns = paginationButtons(page, total, itemsPerPage, setPage);
 
     return (
-        <Layout header="Your Assigned Courses">
+        <Layout>
             <CourseList
                 isLoading={isLoading}
                 error={error}

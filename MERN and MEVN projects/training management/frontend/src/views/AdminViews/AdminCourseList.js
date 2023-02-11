@@ -27,7 +27,7 @@ function AdminCourseList() {
     const pageBtns = paginationButtons(page, size, itemsPerPage, setPage);
 
     return (
-        <Layout header={"Available Courses"}>
+        <Layout>
             <CourseList
                 isLoading={isLoading}
                 error={error}

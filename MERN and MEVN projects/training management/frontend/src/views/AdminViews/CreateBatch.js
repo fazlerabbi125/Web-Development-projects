@@ -29,7 +29,7 @@ function CreateBatch() {
         });
     }
     return ( 
-    <Layout header={'Create Training Batch'}>
+    <Layout>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <BatchForm batch={{}} submitForm={handleAdd} mode="create"/>
     </Layout> 

@@ -30,7 +30,7 @@ function CreateCourse() {
         });
     }
     return ( 
-    <Layout header={'Create Training Course'}>
+    <Layout>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <CourseForm course={{}} submitForm={handleAdd} mode="create"/>
     </Layout> 

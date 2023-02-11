@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userSlice from './features/userSlice';
-import courseListSlice from './features/courseListSlice';
-import employeeListSlice from './features/employeeListSlice';
-const store= configureStore({
+import userReducer from './features/userSlice';
+import courseListReducer from './features/courseListSlice';
+import employeeListReducer from './features/employeeListSlice';
+
+const store = configureStore({
   reducer: {
-    authUser:userSlice,
-    courseList:courseListSlice,
-    employeeList:employeeListSlice
+    authUser: userReducer,
+    courseList: courseListReducer,
+    employeeList: employeeListReducer
   },
 })
 

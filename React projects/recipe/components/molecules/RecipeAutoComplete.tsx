@@ -44,8 +44,8 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
             fetchSuggestions();
         } else {
             setLoading(false);
-            setSuggestions([])
-        };
+            setSuggestions([]);
+        }
 
         return () => {
             // cancel the subscription
@@ -60,13 +60,13 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
             placeholder="Search recipes by name or ingredients"
             radius="xs"
             data={suggestions}
-            nothingFound={(!loading && debouncedSearch) ? "No recipes found" : ""}
+            nothingFound={!loading && debouncedSearch ? "No recipes found" : ""}
             value={search}
             limit={suggestions.length}
             onChange={(value) => setSearch(value)}
             rightSection={loading ? <Loader size={16} color="gray" /> : null}
             onItemSubmit={redirectToRecipe}
-            className="sm:mr-2 min-w-[17rem]"
+            className="sm:mr-2 sm:min-w-[17rem]"
             classNames={{
                 dropdown: "max-h-60 overflow-y-auto",
             }}

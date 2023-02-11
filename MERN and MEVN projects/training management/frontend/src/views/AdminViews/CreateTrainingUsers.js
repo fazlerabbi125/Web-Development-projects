@@ -1,24 +1,24 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import { axInstance } from '../../hooks/useAxios';
-import {getTokens} from "../../utils/handleStorage";
+import { getTokens } from "../../utils/handleStorage";
 import { useNavigate } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
 import UserManagementForm from '../../components/UserManagementForm';
 
 function CreateTrainingUsers() {
     const navigate = useNavigate(); //hook for re-direct
-    const {setMessage}=React.useContext(MessageContext);
+    const { setMessage } = React.useContext(MessageContext);
     const [error, setError] = React.useState(null);
 
-    function handleAdd(inputs){
-        axInstance.post('/admin/create-employee', inputs,{
+    function handleAdd(inputs) {
+        axInstance.post('/admin/create-employee', inputs, {
             headers: {
                 'Authorization': `Bearer ${getTokens().accessToken}`
             }
         })
             .then(function (response) {
-                if (!response.data || !response.data.success){
+                if (!response.data || !response.data.success) {
                     console.log(response.response.data.errors);
                     throw new Error(response.response.data.message);
                 }
@@ -27,13 +27,13 @@ function CreateTrainingUsers() {
             })
             .catch(function (error) {
                 setError(error.message);
-        });
+            });
     }
-    return ( 
-    <Layout header='Create Employee Profile'>
-        {error && <h2 className="text-center text-danger">{error}</h2>}
-        <UserManagementForm user={{}} submitForm={handleAdd} mode="create"/>
-    </Layout> 
+    return (
+        <Layout>
+            {error && <h2 className="text-center text-danger">{error}</h2>}
+            <UserManagementForm user={{}} submitForm={handleAdd} mode="create" />
+        </Layout>
     );
 }
 

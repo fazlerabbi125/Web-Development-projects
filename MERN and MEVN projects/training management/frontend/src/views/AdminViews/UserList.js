@@ -33,7 +33,7 @@ function UserList() {
   }, [total]);
 
   return (
-    <Layout header="Training Users">
+    <Layout>
       <div className="w-25 mx-auto mb-5">
         <select
           className="form-select"

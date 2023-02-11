@@ -3,8 +3,10 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { getTokens } from "../utils/handleStorage";
 
+const server_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8000";
+
 const axInstance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:8000",
+  baseURL: server_URL,
 });
 
 axInstance.interceptors.response.use(
@@ -42,9 +44,10 @@ axInstance.interceptors.response.use(
 const useAxios = (url, dataTimeout = 1000) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         let response = await axInstance.get(url, {
@@ -69,4 +72,4 @@ const useAxios = (url, dataTimeout = 1000) => {
 
   return { data, error, isLoading };
 };
-export { axInstance, useAxios };
+export { axInstance, useAxios, server_URL };

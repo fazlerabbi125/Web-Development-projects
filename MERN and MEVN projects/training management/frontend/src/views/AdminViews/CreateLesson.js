@@ -29,7 +29,7 @@ function CreateLesson() {
         });
     }
     return ( 
-    <Layout header='Create Course Lesson'>
+    <Layout>
         {error && <h2 className="text-center text-danger">{error}</h2>}
         <LessonForm lesson={{}} course={course._id} submitForm={handleAdd} />
     </Layout> 

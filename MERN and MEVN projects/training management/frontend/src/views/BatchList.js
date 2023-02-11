@@ -39,9 +39,7 @@ function BatchList() {
     setModal({ ...modal, [id]: !modal[id] });
   }
   return (
-    <Layout
-      header={auth.role === "admin" ? "Available Batches" : "Your Batches"}
-    >
+    <Layout>
       {isLoading && (
         <h2 className="text-center">
           Loading <i className="fa fa-spinner fa-spin"></i>
@@ -122,14 +120,14 @@ function BatchList() {
               </table>
             </section>
           )}
+          {total > 0 && (
+            <nav className="mb-5">
+              <ul className="pagination justify-content-center">
+                {paginationButtons(page, total, itemsPerPage, setPage)}
+              </ul>
+            </nav>
+          )}
         </>
-      )}
-      {total > 0 && (
-        <nav className="mb-5">
-          <ul className="pagination justify-content-center">
-            {paginationButtons(page, total, itemsPerPage, setPage)}
-          </ul>
-        </nav>
       )}
     </Layout>
   );

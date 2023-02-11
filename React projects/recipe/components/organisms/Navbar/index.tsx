@@ -15,30 +15,40 @@ const routes = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleNavMenu = () => setIsOpen(!isOpen);
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar__container}>
         <div className={styles.navbar__brand}>
           <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
         </div>
-        <Burger opened={isOpen} onClick={toggleNavMenu} className={styles.navbar__toggler} />
-        <div className={`${styles.navbar__collapse} ${isOpen ? styles["navbar__collapse--show"] : ''}`}>
-          <ul className={[styles["navbar__nav-list"], styles["navbar__nav-list--left"]].join(" ")}>
+        <Burger
+          opened={isOpen}
+          onClick={toggleNavMenu}
+          className={styles.navbar__toggler}
+        />
+        <div
+          className={`${styles.navbar__collapse} ${
+            isOpen ? styles["navbar__collapse--show"] : ""
+          }`}
+        >
+          <ul className={styles["navbar__nav-list"]}>
             {routes.map((route) => (
-              <li className="nav-item sm:ml-4" key={route.link}>
+              <li className={styles["navbar__nav-list__item"]} key={route.link}>
                 <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
               </li>
             ))}
           </ul>
-          <div className={styles["navbar__nav-list"]}>
+          <ul className={styles["navbar__nav-list"]}>
             <RecipeAutoComplete />
-          </div>
+          </ul>
         </div>
       </div>
-    </nav >
+    </nav>
   );
 }
-{/* 
+{
+  /* 
 import {
   Navbar as BSNavbar,
   NavbarBrand,
@@ -66,4 +76,5 @@ import {
           </NavItem>
         </Nav>
       </Collapse>
-    </BSNavbar> */}
+    </BSNavbar> */
+}

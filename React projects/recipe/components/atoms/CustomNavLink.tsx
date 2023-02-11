@@ -7,21 +7,19 @@ const useStyles = createStyles(() => ({
     color: "#333",
     backgroundColor: "inherit",
     cursor: "pointer",
-
+    flex: "1 100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
     "&:hover": {
       color: "#fdba74",
     },
   },
   "navItem__link--active": {
-    color: "#ef4444",
-    backgroundColor: "inherit",
-    cursor: "pointer",
-
-    "&:hover": {
-      color: "#fdba74",
-    }
-  }
-}))
+    color: "#ef4444 !important",
+  },
+}));
 
 interface CustomNavLinkProps {
   href: string;
@@ -36,7 +34,10 @@ function CustomNavLink(props: CustomNavLinkProps) {
   return (
     <Link
       href={props.href}
-      className={isActive ? classes["navItem__link--active"] : classes.navItem__link}
+      className={[
+        classes.navItem__link,
+        isActive ? classes["navItem__link--active"] : "",
+      ].join(" ")}
     >
       {props.children}
     </Link>
