@@ -1,10 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { axInstance } from "../hooks/useAxios";
 import MessageContext from "../contexts/MessageContext";
 import { useDispatch } from "react-redux";
-import { updateCredentials } from "../store/features/userSlice";
+import { updateUserCredentials } from "../store/features/userSlice";
 import Layout from "../components/Layout";
 
 function AccountUpdate() {
@@ -34,28 +33,7 @@ function AccountUpdate() {
         if (data.photo) data.photo = data.photo[0];
         data.token = localStorage.getItem("refresh");
         try {
-            const res = await axInstance.patch(
-                `/${state.user._id}/update-profile`,
-                data,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                }
-            );
-            if (!res.data || !res.data.success) {
-                console.log(res.response.data.errors);
-                throw new Error(res.response.data.message);
-            }
-            localStorage.setItem("token", res.data.results.access_token);
-            localStorage.setItem("refresh", res.data.results.refresh_token);
-            dispatch(
-                updateCredentials({
-                    name: res.data.results.name,
-                    email: res.data.results.email,
-                })
-            );
+            dispatch(updateUserCredentials({ userID: state.user._id, data }))
             setMessage("Your profile info has been updated");
             navigate("/user/" + userID);
         } catch (error) {

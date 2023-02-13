@@ -29,7 +29,7 @@ const employeeListSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchEmployeeList.pending, (state, action) => {
+      .addCase(fetchEmployeeList.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchEmployeeList.fulfilled, (state, action) => {

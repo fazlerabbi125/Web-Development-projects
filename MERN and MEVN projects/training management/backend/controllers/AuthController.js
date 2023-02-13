@@ -95,9 +95,7 @@ class AuthController {
 
             const resData = {
                 access_token,
-                refresh_token,
-                name: user.name,
-                email: user.email,
+                refresh_token
             };
             return res
                 .status(HTTP_STATUS.OK)
