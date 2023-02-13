@@ -58,7 +58,7 @@ class CourseController {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
             const { title, details, timing } = req.body;
-            const image = req.file ? process.env.BACKEND_URI + '/uploads/courses/' + req.file.filename : "";
+            const image = req.file ? '/uploads/courses/' + req.file.filename : "";
             const course = new Course({ title, image, details, timing, trainer: undefined, lessons: [] });
 
             await course.save();
@@ -88,7 +88,7 @@ class CourseController {
                     const filepath = path.join(__dirname, '..', updatedCourse.image.split(process.env.BACKEND_URI + '/')[1]);
                     if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
                 }
-                updatedCourse.image = req.file ? process.env.BACKEND_URI + '/uploads/courses/' + req.file.filename : '';
+                updatedCourse.image = req.file ? '/uploads/courses/' + req.file.filename : '';
             }
 
             if (title) updatedCourse.title = title;

@@ -5,6 +5,7 @@ import MessageContext from "../contexts/MessageContext";
 import { useDispatch } from "react-redux";
 import { updateUserCredentials } from "../store/features/userSlice";
 import Layout from "../components/Layout";
+import { server_URL } from "../hooks/useAxios";
 
 function AccountUpdate() {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function AccountUpdate() {
             name: state.user.name,
             email: state.user.email,
             gender: state.user.gender,
-            photo: state.user.photo,
+            photo: server_URL + state.user.photo,
             birth_date: state.user.birth_date.split("T")[0],
             imgClear: "",
         },
@@ -33,7 +34,7 @@ function AccountUpdate() {
         if (data.photo) data.photo = data.photo[0];
         data.token = localStorage.getItem("refresh");
         try {
-            dispatch(updateUserCredentials({ userID: state.user._id, data }))
+            dispatch(updateUserCredentials({ userID: state.user._id, data }));
             setMessage("Your profile info has been updated");
             navigate("/user/" + userID);
         } catch (error) {
@@ -136,24 +137,25 @@ function AccountUpdate() {
                             </div>
                         )}
                     </div>
-                    <div className="mb-3 text-center">
-                        <a
-                            href={state.user.photo}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="link-info"
-                        >
-                            {" "}
-                            Current Photo
-                        </a>
-                        <input
-                            className="form-check-input ms-2 me-1"
-                            type="checkbox"
-                            {...register("imgClear")}
-                        />{" "}
-                        Remove
-                    </div>
-
+                    {state.user.photo && (
+                        <div className="mb-3 text-center">
+                            <a
+                                href={server_URL + state.user.photo}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="link-info"
+                            >
+                                {" "}
+                                Current Photo
+                            </a>
+                            <input
+                                className="form-check-input ms-2 me-1"
+                                type="checkbox"
+                                {...register("imgClear")}
+                            />{" "}
+                            Remove
+                        </div>
+                    )}
                     <div className="mb-3">
                         <div className="text-center">
                             <label className="col-form-label">Upload Photo (optional):</label>

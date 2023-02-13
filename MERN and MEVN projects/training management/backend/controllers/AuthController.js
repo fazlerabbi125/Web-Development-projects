@@ -66,7 +66,7 @@ class AuthController {
                     if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
                 }
                 user.photo = req.file
-                    ? process.env.BACKEND_URI + "/uploads/profiles/" + req.file.filename
+                    ? "/uploads/profiles/" + req.file.filename
                     : "";
             }
 
