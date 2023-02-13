@@ -6,6 +6,7 @@ import defaultProfile from "../../assets/images/profile.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchEmployeeList } from "../../store/features/employeeListSlice";
 import DeleteModal from "../../components/DeleteModal";
+import { server_URL } from "../../hooks/useAxios";
 
 function UserList() {
   const dispatch = useDispatch();
@@ -112,7 +113,11 @@ function UserList() {
 
                         <div className="row">
                           <img
-                            src={item.photo || defaultProfile}
+                            src={
+                              item.photo
+                                ? server_URL + item.photo
+                                : defaultProfile
+                            }
                             alt="Profile"
                             className="mb-2 col-3"
                             style={{ width: "12.5rem", height: "12rem" }}
@@ -133,7 +138,7 @@ function UserList() {
                             </div>
                             <div>
                               <span className="text-muted">Date of birth:</span>{" "}
-                              {(new Date(item.birth_date)).toLocaleDateString()}
+                              {new Date(item.birth_date).toLocaleDateString()}
                             </div>
                             <div>
                               <span className="text-muted">Role:</span>{" "}

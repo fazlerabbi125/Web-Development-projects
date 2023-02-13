@@ -1,11 +1,7 @@
-import { createApi } from "@reduxjs/toolkit/query";
-import { baseQueryWithReauth } from "../store/RTKApiConfig";
+import apiSlice from "../store/RTKApiConfig";
 
-export const messageApiSlice = createApi({
-    reducerPath: "messageApi",
-    baseQuery: baseQueryWithReauth,
-    endpoints: (builder) => ({
-    })
+export const messageApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({}),
 });
 
 // export { } = messageApiSlice;

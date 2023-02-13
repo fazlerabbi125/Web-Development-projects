@@ -1,6 +1,7 @@
 import React from "react";
 import defaultcourse from "../assets/images/defaultcourse.jpg";
 import { Link } from "react-router-dom";
+import { server_URL } from "../hooks/useAxios";
 
 const CourseList = ({
   isLoading,
@@ -41,7 +42,11 @@ const CourseList = ({
                       <li className="list-group-item" key={item._id}>
                         <div className="row">
                           <img
-                            src={item.image || defaultcourse}
+                            src={
+                              item.image
+                                ? server_URL + item.image
+                                : defaultcourse
+                            }
                             alt="Course"
                             className="mb-2 img-fluid col-3"
                             style={{ width: "15rem", height: "12rem" }}
