@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import RecipeList from "../../../components/organisms/RecipeList";
 import { useRouter } from "next/router";
 import Header from "../../../components/organisms/Header";
@@ -8,21 +7,7 @@ import { NextPage } from "next";
 
 const TagRecipes: NextPage = () => {
     const router = useRouter();
-    const [tagInfo, setTagInfo] = useState<Record<string, string>>({});
-    useEffect(() => {
-        /*  Next.js performs a server render before the client render and so both sessionStorage and localStorage 
-            is not defined on the window object.Therefore, you'll not be able to access sessionStorage and localStorage 
-            until the page has loaded on the client and the window object has been defined.
-            To fix this issue, you'll need to wait until the page has been mounted on the client prior to 
-            accessing sessionStorage/localStorage. Here's another way of doing this:
-
-                if (typeof window !== 'undefined') {
-                // Perform localStorage action
-                const item = localStorage.getItem('key')
-                }
-        */
-        setTagInfo(JSON.parse(localStorage.getItem("tagInfo") || "{}"));
-    }, []); //useEffect will only run on the client side, so you can safely access sessionStorage/localStorage here.
+    const tagInfo: Record<string, string> = JSON.parse(localStorage.getItem("tagInfo") || '') || {};
 
     return (
         <>
