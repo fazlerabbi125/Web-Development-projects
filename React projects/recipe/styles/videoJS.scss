@@ -1,7 +1,4 @@
 @charset "UTF-8";
-// @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 .vjs-custom-theme {
     display: block;
@@ -9,7 +6,9 @@
     color: #fff;
     background-color: #000;
     position: relative;
-    @apply mx-auto;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .video-js.vjs-custom-theme.vjs-fluid,
@@ -21,35 +20,30 @@
 }
 
 .vjs-custom-theme .vjs-big-play-button {
-    font-size: 3em;
+    font-size: 40px;
     line-height: 1.5em;
-    height: 1.63332em;
-    width: 3em;
-    display: block;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 0;
     cursor: pointer;
     opacity: 1;
-    border: 0.06666em solid darken(#dc2626, 2%);
+    border: transparent;
     background-color: #dc2626;
-    border-radius: 0.3em;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     transition: all 0.4s;
 }
 
 .vjs-custom-theme.vjs-big-play-centered .vjs-big-play-button {
     top: 50%;
-    margin-top: -0.81666em;
     left: 0;
     right: 0;
-    @apply mx-auto;
+    margin-left: auto;
+    margin-right: auto;
     vertical-align: center;
 }
 
 .vjs-custom-theme:hover .vjs-big-play-button,
 .vjs-custom-theme .vjs-big-play-button:focus {
-    border-color: darken(#dc2626, 2%);
+    border-color: transparent;
     background-color: #dc2626;
     transition: all 0s;
 }

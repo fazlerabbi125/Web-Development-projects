@@ -9,7 +9,7 @@
   width: 85%;
   margin: auto auto 2rem;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .home {
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
 .home__img {
   max-width: 70%;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .home__img {
     max-width: 90%;
   }
@@ -31,12 +31,15 @@
 .home__content {
   width: 50%;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .home__content {
     width: 90%;
   }
 }
-@media only screen and (max-width: 767px) {
+.home__content__heading {
+  word-break: keep-all;
+}
+@media only screen and (max-width: 767.5px) {
   .home__content__heading {
     text-align: center;
   }

@@ -33,6 +33,7 @@
         }
 
         &__heading {
+            word-break: keep-all; //To keep all characters of each word together
             @include devices(mobile) {
                 text-align: center;
             }

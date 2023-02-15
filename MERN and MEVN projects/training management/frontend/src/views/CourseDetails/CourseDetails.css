@@ -10,12 +10,12 @@
     grid-template-columns: repeat(12, 1fr);
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991.5px) {
   .course-details {
     grid-template-columns: repeat(12, 1fr);
   }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .course-details {
     width: 83%;
   }
@@ -25,7 +25,7 @@
   word-break: break-all;
   grid-column: 3/span 5;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .course-details__content {
     grid-column: 1/-1;
   }
@@ -50,7 +50,7 @@
   gap: 0.8rem;
   background-color: #F3F3F3;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
   .course-details__sidemenu {
     grid-column: 1/-1;
   }
