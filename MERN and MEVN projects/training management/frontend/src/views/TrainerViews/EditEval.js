@@ -3,7 +3,7 @@ import { axInstance } from '../../hooks/useAxios';
 import { getTokens } from "../../utils/handleStorage";
 import { useNavigate, useLocation } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
-import EvalForm from '../../components/EvalForm';
+import EvalForm from '../../components/forms/EvalForm';
 import Layout from '../../components/Layout';
 
 function EditEval() {

@@ -147,8 +147,8 @@ class AdminController {
             const id = req.params.id;
             const user = await User.findByIdAndDelete(id).exec();
             if (!user) return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Employee not found for deletion'));
-            if (user.photo.startsWith(process.env.BACKEND_URI)) {
-                const filepath = path.join(__dirname, '..', user.photo.split(process.env.BACKEND_URI + '/')[1]);
+            if (user.photo.startsWith("/uploads/profiles/")) {
+                const filepath = path.join(__dirname, '..', user.photo);
                 if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
             }
 

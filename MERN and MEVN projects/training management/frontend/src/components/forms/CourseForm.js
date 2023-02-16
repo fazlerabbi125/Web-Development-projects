@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { server_URL } from "../hooks/useAxios";
+import { server_URL } from "../../hooks/useAxios";
 
 const CourseForm = ({ course, submitForm, mode }) => {
     const navigate = useNavigate();

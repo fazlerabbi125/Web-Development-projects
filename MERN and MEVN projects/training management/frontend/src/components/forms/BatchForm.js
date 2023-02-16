@@ -2,8 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchCourseList } from "../store/features/courseListSlice";
-import { fetchEmployeeList } from "../store/features/employeeListSlice";
+import { fetchCourseList } from "../../store/features/courseListSlice";
+import { fetchEmployeeList } from "../../store/features/employeeListSlice";
 
 function BatchForm({
   batch,

@@ -3,7 +3,7 @@ import { axInstance } from '../../hooks/useAxios';
 import { getTokens } from "../../utils/handleStorage";
 import { useNavigate, useParams } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
-import TaskForm from '../../components/TaskForm';
+import TaskForm from '../../components/forms/TaskForm';
 import Layout from '../../components/Layout';
 
 function CreateTask() {

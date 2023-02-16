@@ -4,7 +4,7 @@ import { axInstance } from '../../hooks/useAxios';
 import { getTokens } from "../../utils/handleStorage";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
-import LessonForm from '../../components/LessonForm';
+import LessonForm from '../../components/forms/LessonForm';
 
 function EditLesson() {
     const navigate = useNavigate(); //hook for re-direct

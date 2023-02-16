@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
-import MessageContext from "./contexts/MessageContext";
+import MessageContext from "contexts/MessageContext";
 import ProtectedRoutes from "./components/custom-routes/ProtectedRoutes";
 import AdminRoutes from "./components/custom-routes/AdminRoutes";
 import GuestRoutes from "./components/custom-routes/GuestRoutes";

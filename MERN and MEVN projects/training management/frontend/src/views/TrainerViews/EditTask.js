@@ -4,7 +4,7 @@ import { axInstance } from '../../hooks/useAxios';
 import { getTokens } from "../../utils/handleStorage";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
-import TaskForm from '../../components/TaskForm';
+import TaskForm from '../../components/forms/TaskForm';
 
 function EditTask() {
     const navigate = useNavigate(); //hook for re-direct
