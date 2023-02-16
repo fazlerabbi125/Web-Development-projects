@@ -2,8 +2,8 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Layout from "../components/templates/Layout";
 import "../styles/globals.scss";
-import "video.js/dist/video-js.css";
-import "../styles/videoJS.scss"; //styles from "video.js/dist/video-js.css"
+import 'video.js/dist/video-js.css';
+import "../styles/videoJS.scss"; //custom styles to alter default from "video.js/dist/video-js.css"
 
 export default function App({ Component, pageProps }: AppProps) {
   const [showPages, setShowPages] = useState<boolean>(false);

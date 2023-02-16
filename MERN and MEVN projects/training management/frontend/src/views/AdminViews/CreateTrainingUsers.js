@@ -4,7 +4,7 @@ import { axInstance } from '../../hooks/useAxios';
 import { getTokens } from "../../utils/handleStorage";
 import { useNavigate } from "react-router-dom";
 import MessageContext from "../../contexts/MessageContext";
-import UserManagementForm from '../../components/UserManagementForm';
+import UserManagementForm from '../../components/forms/UserManagementForm';
 
 function CreateTrainingUsers() {
     const navigate = useNavigate(); //hook for re-direct

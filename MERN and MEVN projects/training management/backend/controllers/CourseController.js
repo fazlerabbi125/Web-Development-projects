@@ -10,8 +10,9 @@ const path = require('path');
 const fs = require('fs');
 const getPagination = require('../utils/pagination');
 
-class CourseController {
+const courseImagePath = '/uploads/courses/';
 
+class CourseController {    
     async getCourseList(req, res, next) {
         try {
             const page = req.query.page ? parseInt(req.query.page) : 1;
@@ -58,7 +59,7 @@ class CourseController {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
             const { title, details, timing } = req.body;
-            const image = req.file ? '/uploads/courses/' + req.file.filename : "";
+            const image = req.file ? courseImagePath + req.file.filename : "";
             const course = new Course({ title, image, details, timing, trainer: undefined, lessons: [] });
 
             await course.save();
@@ -84,11 +85,11 @@ class CourseController {
             const updatedCourse = await Course.findOne({ slug }).exec();
             if (!updatedCourse) return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Course not found'));
             if (req.file || imgClear) {
-                if (updatedCourse.image.startsWith(process.env.BACKEND_URI)) {
-                    const filepath = path.join(__dirname, '..', updatedCourse.image.split(process.env.BACKEND_URI + '/')[1]);
+                if (updatedCourse.image.startsWith(courseImagePath)) {
+                    const filepath = path.join(__dirname, '..', updatedCourse.image);
                     if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
                 }
-                updatedCourse.image = req.file ? '/uploads/courses/' + req.file.filename : '';
+                updatedCourse.image = req.file ? courseImagePath + req.file.filename : '';
             }
 
             if (title) updatedCourse.title = title;
@@ -108,8 +109,8 @@ class CourseController {
             const slug = req.params.slug;
             const deletedCourse = await Course.findOneAndDelete({ slug }).exec();
             if (!deletedCourse) return res.status(HTTP_STATUS.BAD_REQUEST).send(failure('Course not found'));
-            if (deletedCourse.image.startsWith(process.env.BACKEND_URI)) {
-                const filepath = path.join(__dirname, '..', deletedCourse.image.split(process.env.BACKEND_URI + '/')[1]);
+            if (deletedCourse.image.startsWith(courseImagePath)) {
+                const filepath = path.join(__dirname, '..', deletedCourse.image);
                 if (fs.existsSync(filepath)) await fs.promises.unlink(filepath);
             }
             //$pull operator for removing element from array on match

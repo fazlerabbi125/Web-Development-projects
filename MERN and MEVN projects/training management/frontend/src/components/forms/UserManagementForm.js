@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchCourseList } from "../store/features/courseListSlice";
+import { fetchCourseList } from "../../store/features/courseListSlice";
 
 function UserManagementForm({
   user,
