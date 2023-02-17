@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { getTokens, selectStorage } from "../utils/handleStorage";
+import { getTokens, setStorage } from "../utils/handleStorage";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8000";
 
@@ -26,13 +26,7 @@ axInstance.interceptors.response.use(
       return axInstance
         .post("/refresh-token", { token: refreshToken })
         .then((res) => {
-          if (selectStorage) {
-            localStorage.setItem("refresh", res.data.results.refresh_token);
-            localStorage.setItem("token", res.data.results.access_token);
-          } else {
-            sessionStorage.setItem("refresh", res.data.results.refresh_token);
-            sessionStorage.setItem("token", res.data.results.access_token);
-          }
+          setStorage(res.data.results.access_token, res.data.results.refresh_token);
           prevRequest.headers[
             "Authorization"
           ] = `Bearer ${res.data.results.access_token}`;

@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=DM+Sans');
-
-@import '../../assets/styles/partials/colors';
-@import '../../assets/styles/partials/flex';
-@import '../../assets/styles/partials/breakpoints';
-@import '../../assets/styles/partials/pixelConvert';
+@use '../../assets/styles/partials/colors';
+@use '../../assets/styles/partials/addFlex';
+@use '../../assets/styles/partials/breakpoints';
+@use '../../assets/styles/partials/pixelConvert';
 
 .course-details {
     display: grid;
@@ -11,15 +9,15 @@
     gap: pxTorem(32) pxTorem(24);
     margin-bottom: 2rem;
 
-    @include devices(desktop) {
+    @include breakpoints.devices(desktop) {
         grid-template-columns: repeat(12, 1fr);
     }
 
-    @include devices(tablet) {
+    @include breakpoints.devices(tablet) {
         grid-template-columns: repeat(12, 1fr);
     }
 
-    @include devices(mobile) {
+    @include breakpoints.devices(mobile) {
         width: 83%;
     }
 
@@ -28,7 +26,7 @@
         word-break: break-all;
         grid-column: 3 / span 5;
 
-        @include devices(mobile) {
+        @include breakpoints.devices(mobile) {
             grid-column: 1 / -1;
         }
 
@@ -47,14 +45,14 @@
     &__sidemenu {
         grid-column: 9 / span 3;
 
-        @include devices(mobile) {
+        @include breakpoints.devices(mobile) {
             grid-column: 1 / -1;
         }
 
         padding: 2rem;
-        @include addFlex($direction: column);
+        @include addFlex.flex_container($direction: column, $jc: space-around, $ai: center);
         gap:0.8rem;
-        background-color: map-get($map: $colors, $key: "bg-grey-2");
+        background-color: map-get($map: colors.$colors, $key: "bg-grey-2");
 
         &__icons {
             text-align: center;

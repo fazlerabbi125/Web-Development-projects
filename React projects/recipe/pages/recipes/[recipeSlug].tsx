@@ -11,7 +11,7 @@ import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "../../components/organisms/RecipeInstructions";
 import styles from "../../styles/pages/RecipeDetails.module.scss";
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
     const recipe: RecipeDetailsType = await fetchData(
         `/recipes/${context.params?.recipeSlug}`
     );

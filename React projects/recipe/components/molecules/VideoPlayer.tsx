@@ -4,13 +4,14 @@ import videojs, {
     VideoJsPlayerOptions,
 } from "video.js";
 
-type VideoJSProps = {
-    options: VideoJsPlayerOptions
+type VideoPlayerProps = {
+    options: VideoJsPlayerOptions;
     onReady?(player: VideoJsPlayer): void;
+    onChange?(player: VideoJsPlayer): void;
     width?: string;
-}
+};
 
-const VideoJS = ({ options, onReady, width }: VideoJSProps) => {
+export default function VideoPlayer({ options, onReady, width, onChange }: VideoPlayerProps) {
     const videoRef = React.useRef<HTMLDivElement | null>(null);
     const playerRef = React.useRef<VideoJsPlayer | null>(null);
 
@@ -36,8 +37,9 @@ const VideoJS = ({ options, onReady, width }: VideoJSProps) => {
 
             player.autoplay(options.autoplay || false);
             player.src(options.sources || '');
+            onChange && onChange(player);
         }
-    }, [width, onReady, options, videoRef]);
+    }, [width, onReady, options, videoRef, onChange]);
 
     // Dispose the Video.js player when the functional component unmounts
     React.useEffect(() => {
@@ -53,9 +55,7 @@ const VideoJS = ({ options, onReady, width }: VideoJSProps) => {
 
     return (
         <div data-vjs-player>
-            <div ref={videoRef} />
+            <div ref={videoRef} ></div>
         </div>
     );
 };
-
-export default VideoJS;

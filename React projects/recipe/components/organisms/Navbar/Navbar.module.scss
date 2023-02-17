@@ -5,7 +5,8 @@
     0% {
         height: 0;
     }
-    100%{
+
+    100% {
         height: max-content;
     }
 }
@@ -60,14 +61,16 @@
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
             height: 0;
-            transition: height 2s 0.5s;
+            opacity: 0;
+            transition: display 0.5s, height 0.2s, opacity 0.2s;
         }
 
         &--show {
             @include mediaQuery.maxCustomDevice(640px) {
                 @include addFlex.flex-container($direction: column);
-                height: max-content;
-                transition: height 2s 0.5s;
+                height: auto;
+                opacity: 1;
+                transition: display 0.5s, height 0.2s, opacity 0.2s;
             }
         }
     }

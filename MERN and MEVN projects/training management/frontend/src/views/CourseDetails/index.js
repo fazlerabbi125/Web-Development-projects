@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
 import DeleteModal from '../../components/DeleteModal'
 import BreadCrumb from '../../components/BreadCrumb'
-import "./CourseDetails.css"
+import "./CourseDetails.scss"
 
 function CourseDetails() {
     const { courseSlug } = useParams();

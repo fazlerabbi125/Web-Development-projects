@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { server_URL } from "../../hooks/useAxios";
+import Input from "./fields/Input";
 
 const CourseForm = ({ course, submitForm, mode }) => {
     const navigate = useNavigate();
@@ -31,6 +32,21 @@ const CourseForm = ({ course, submitForm, mode }) => {
     return (
         <section className="card authForm">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                {/* <Input
+                    name="title"
+                    label="Title"
+                    type="text"
+                    required
+                    register={register}
+                    validationSchema={{
+                        required: "Title is required",
+                        minLength: {
+                            value: 3,
+                            message: "Title must be at least 3 characters long.",
+                        },
+                    }}
+                    formError={errors.title || null}
+                /> */}
                 <div className="mb-3">
                     <div className="row justify-content-center ">
                         <div className="col-auto">

@@ -18,11 +18,32 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5) !important;
-    height: 100%;
-    z-index: 10;
+    height: 100vh;
+    z-index: 100;
     width: 20%;
     color: white;
     display: none;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        scroll-behavior: smooth;
+        width: 8px;
+
+        &-track {
+            background: white;
+        }
+
+        &-thumb {
+            background: #c7c7cc 0% 0% no-repeat padding-box;
+            border-radius: 30px;
+            transition: background-color 0.3s ease-in-out;
+
+            &:hover {
+                background: darken(#c7c7cc, 5%) 0% 0% no-repeat padding-box;
+                transition: background-color 0.3s ease-in-out;
+            }
+        }
+    }
 
     &--show {
         display: block;

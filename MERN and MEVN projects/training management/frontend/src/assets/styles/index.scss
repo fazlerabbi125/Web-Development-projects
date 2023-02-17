@@ -1,88 +1,103 @@
-@import url('https://fonts.googleapis.com/css?family=DM+Sans');
-
 @use './partials/colors';
-@use './partials/flex';
+@use './partials/addFlex';
 @use './partials/breakpoints';
+@import url('https://fonts.googleapis.com/css?family=DM+Sans'); // All .scss files will get this
 
-*{
+* {
     box-sizing: border-box;
 }
 
 body {
-    margin:0;
+    margin: 0;
     background: #FFFFFF;
-    padding:0;
+    padding: 0;
     font-family: 'DM Sans';
-    color:map-get($map: $colors, $key: "dark");
+    color: map-get($map: colors.$colors, $key: "dark");
 }
 
-#root{
+#root {
     position: relative;
-    min-height: 100vh;/*used for placing footer at the bottom of the page*/
+    min-height: 100vh;
+    /*used for placing footer at the bottom of the page*/
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-h1{
+h1 {
     font-family: 'Ubuntu';
 }
 
-button, a, span, input,label {
+button,
+a,
+span,
+input,
+label {
     display: inline-block;
 }
 
 //creating custom button colors using loop and conditions
-@each $key, $value in $colors {
+@each $key,
+$value in colors.$colors {
     .btn--#{$key} {
         background-color: $value;
-        border-color: $value;
+        border: transparent;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-        @if ($key=="deep-blue" or $key=="dark") { 
+        @if ($key=="deep-blue" or $key=="dark") {
             color: #fff;
-        } @else {
+        }
+
+        @else {
             color: #001828;
         }
 
-        &:hover{
-            @if ($key=="deep-blue" or $key=="dark") { 
-                    color: #fff;
-                    background-color: lighten($value,5%);
-                    border-color: lighten($value,5%);
-            } @else {
-                    color: #001828;
-                    background-color: darken($value,10%);
-                    border-color: darken($value,10%);
+        &:hover {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+            @if ($key=="deep-blue" or $key=="dark") {
+                color: #fff;
+                background-color: lighten($value, 5%);
+            }
+
+            @else {
+                color: #001828;
+                background-color: darken($value, 10%);
             }
         }
     }
 }
 
-.auth__header{
+.auth__header {
     text-align: center;
-    padding:1rem;
-    color:map-get($map: $colors, $key:"deep-blue" )
+    padding: 1rem;
+    color: map-get($map: colors.$colors, $key: "deep-blue")
 }
 
 
-.guest{
-    margin:3rem auto;
-    &__header{
-        background-color:map-get($map: $colors, $key:"deep-blue");
-        color:#FFFFFF;
-        padding:1rem;
+.guest {
+    margin: 3rem auto;
+
+    &__header {
+        background-color: map-get($map: colors.$colors, $key: "deep-blue");
+        color: #FFFFFF;
+        padding: 1rem;
         text-align: center;
     }
-    &__form{
-        background-color: map-get($map: $colors, $key: "light-blue");
-        @include addFlex($direction:column,$jc:space-evenly);
-        width:40%;
-        margin:auto;
+
+    &__form {
+        background-color: map-get($map: colors.$colors, $key: "light-blue"); //bg-grey-2
+        @include addFlex.flex_container($direction: column, $jc: space-evenly, $ai: center);
+        width: 35%;
+        margin: auto;
         padding: 2rem;
+        min-height: 25rem;
         border-radius: 0.25rem;
         border: 0.2rem solid gainsboro;
-        &__heading{
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+        &__heading {
             font-weight: bold;
             margin-bottom: 1.5rem;
         }
@@ -92,48 +107,52 @@ button, a, span, input,label {
 
 
 
-.authForm{
-    background-color:map-get($map: $colors, $key:"bg-grey-2" );
-    width:40%;
-    margin:0 auto 3rem;
+.authForm {
+    background-color: map-get($map: colors.$colors, $key: "bg-grey-2");
+    width: 40%;
+    margin: 0 auto 3rem;
 }
 
 
-.modal-backdrop{
+.modal-backdrop {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5) !important;
     width: 100%;
-    height:100%;
-    top:0;
-    left:0;
+    height: 100%;
+    top: 0;
+    left: 0;
     z-index: 1055;
 }
 
 
-.eval-details{
+.eval-details {
     width: 60%;
     margin: 2rem auto;
-    &__header{
-        text-align:center
+
+    &__header {
+        text-align: center
     }
 }
 
-.trainee-search{
-    margin:2rem auto;
-    width:45%;
-    @include addFlex($jc:center);
-    @include devices(tablet){
+.trainee-search {
+    margin: 2rem auto;
+    width: 45%;
+    @include addFlex.flex_container($jc: center, $ai: center);
+
+    @include breakpoints.devices(tablet) {
         flex-direction: column-reverse;
     }
-    @include devices(mobile){
+
+    @include breakpoints.devices(mobile) {
         flex-direction: column-reverse;
     }
-    &__inputs{
+
+    &__inputs {
         border-radius: 0;
     }
 }
 
-.lesson-details{
-    width:60%;
+.lesson-details {
+    width: 60%;
     margin: 1.75rem auto;
 }

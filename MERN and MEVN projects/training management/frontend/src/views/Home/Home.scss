@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=DM+Sans');
-
-@import '../../assets/styles/partials/colors';
-@import '../../assets/styles/partials/flex';
-@import '../../assets/styles/partials/breakpoints';
-@import '../../assets/styles/partials/pixelConvert';
+@use '../../assets/styles/partials/colors';
+@use '../../assets/styles/partials/addFlex';
+@use '../../assets/styles/partials/breakpoints';
+@use '../../assets/styles/partials/pixelConvert';
 
 .home {
-    @include addFlex($jc: center, $ai: flex-start);
+    @include addFlex.flex_container($jc: center, $ai: flex-start);
     gap: 2rem;
     width: 85%;
     margin: auto auto 2rem;
 
-    @include devices(mobile) {
-        @include addFlex($direction: column, $jc: center);
+    @include breakpoints.devices(mobile) {
+        @include addFlex.flex_container($direction: column, $jc: center, $ai: center);
         align-content: center;
         width: 90%;
     }
@@ -20,7 +18,7 @@
     &__img {
         max-width: 70%;
 
-        @include devices(mobile) {
+        @include breakpoints.devices(mobile) {
             max-width: 90%;
         }
     }
@@ -28,13 +26,14 @@
     &__content {
         width: 50%;
 
-        @include devices(mobile) {
+        @include breakpoints.devices(mobile) {
             width: 90%;
         }
 
         &__heading {
             word-break: keep-all; //To keep all characters of each word together
-            @include devices(mobile) {
+
+            @include breakpoints.devices(mobile) {
                 text-align: center;
             }
         }

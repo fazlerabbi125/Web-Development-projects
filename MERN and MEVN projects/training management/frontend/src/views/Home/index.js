@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { useSelector } from "react-redux";
 import employeeTraining from "../../assets/images/employee-training.jpg"
-import "./Home.css";
+import "./Home.scss";
 // trainingImage URL: https://elearningindustry.com/wp-content/uploads/2019/12/the-value-of-employee-training.jpg
 
 const Home = () => {

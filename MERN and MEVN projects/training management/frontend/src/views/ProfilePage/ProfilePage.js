@@ -3,9 +3,9 @@ import Layout from "../../components/Layout";
 import defaultProfile from "../../assets/images/profile.jpg";
 import { useAxios, axInstance, server_URL } from "../../hooks/useAxios";
 import { Link, useParams } from "react-router-dom";
-import "./ProfilePage.css";
 import MessageContext from "../../contexts/MessageContext";
 import { useNavigate } from "react-router-dom";
+import "./ProfilePage.scss";
 
 function ProfilePage() {
     const navigate = useNavigate();

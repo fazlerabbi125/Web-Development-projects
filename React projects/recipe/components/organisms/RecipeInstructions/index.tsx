@@ -2,7 +2,7 @@ import React from "react";
 import { List } from "@mantine/core";
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from "video.js";
 import { Inter } from "@next/font/google";
-import VideoJS from "../../molecules/VideoJS";
+import VideoPlayer from "../../molecules/VideoPlayer";
 import { RecipeInfoSectionProps } from "../RecipeBasicInfo";
 import styles from "./RecipeInstructions.module.scss";
 
@@ -60,7 +60,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
     return (
         <React.Fragment>
             {recipe.original_video_url && (
-                <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+                <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
             )}
             <List
                 type="ordered"
