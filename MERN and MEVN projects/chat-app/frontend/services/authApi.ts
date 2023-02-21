@@ -1,4 +1,4 @@
-import apiSlice from "../store/RTKApiConfig";
+import apiSlice from "../store/ApiConfig";
 
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({})

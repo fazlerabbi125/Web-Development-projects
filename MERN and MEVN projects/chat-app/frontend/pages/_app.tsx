@@ -2,11 +2,12 @@ import type { AppProps } from 'next/app'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux';
 import { useEffect, useState } from "react";
-import store, { persistor } from '../store';
+import { persistor, nextJSReduxwrapper } from '../store';
 import '../styles/globals.scss'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [showPages, setShowPages] = useState<boolean>(false);
+  const {store, props} = nextJSReduxwrapper.useWrappedStore(pageProps);
 
   useEffect(() => {
     /*  Next.js performs a server render before the client render and so sessionStorage, localStorage and other properties
@@ -32,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Component {...pageProps} />
+        <Component {...props.pageProps} />
       </PersistGate>
     </Provider>
   )

@@ -1,4 +1,4 @@
-import apiSlice from "../store/RTKApiConfig";
+import apiSlice from "../store/ApiConfig";
 
 export const chatApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({}),

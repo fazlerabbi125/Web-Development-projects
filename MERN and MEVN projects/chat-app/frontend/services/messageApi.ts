@@ -1,4 +1,4 @@
-import apiSlice from "../store/RTKApiConfig";
+import apiSlice from "../store/ApiConfig";
 
 export const messageApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({}),
