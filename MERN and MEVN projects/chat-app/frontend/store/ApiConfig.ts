@@ -4,12 +4,25 @@ import type {
     FetchArgs,
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
-import { logoutUser } from "./features/authSlice";
-import { RootState } from ".";
 import { Mutex } from "async-mutex";
+import axios from "axios";
+import { HYDRATE } from 'next-redux-wrapper'
+import { logoutUser } from "./features/authSlice";
+import store, { RootState } from ".";
 
 export const SERVER_URL: string =
     process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:8000";
+
+
+// const state = store.getState();
+
+export const axInstance = axios.create({
+    baseURL: SERVER_URL,
+    // headers: {
+    //     Authentication: `Bearer ${state.auth.accessToken}`,
+    // },
+});
+
 
 /*Create a new mutex. Using async-mutex to prevent multiple calls 
 to '/refreshToken' when multiple calls fail with 403 Forbidden errors.
@@ -71,6 +84,11 @@ export const baseQueryWithReauth: BaseQueryFn<
 const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: baseQueryWithReauth,
+    extractRehydrationInfo(action, { reducerPath }) {
+        if (action.type === HYDRATE) {
+            return action.payload[reducerPath]
+        }
+    },
     tagTypes: [],
     endpoints: (builder) => ({
         /*

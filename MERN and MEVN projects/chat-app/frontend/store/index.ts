@@ -10,6 +10,7 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist'
+import { createWrapper, Context } from 'next-redux-wrapper';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 const persistConfig = {
@@ -39,6 +40,8 @@ const store = configureStore({
     //.concat(apiSlice.middleware),
 });
 export const persistor = persistStore(store)
+const makeStore = (context: Context) => store;
+export const nextJSReduxwrapper = createWrapper<typeof store>(makeStore, { debug: false });
 
 // Inferred `AppDispatch` types from the store itself
 export type AppDispatch = typeof store.dispatch
