@@ -1,6 +1,6 @@
 @use '../../assets/styles/partials/colors';
 @use '../../assets/styles/partials/addFlex';
-@use '../../assets/styles/partials/breakpoints';
+@use '../../assets/styles/partials/mediaQuery';
 @use '../../assets/styles/partials/pixelConvert';
 
 .custom-toast {
@@ -13,7 +13,7 @@
     z-index: 500;
 
     &__header {
-        @include addFlex.flex_container($ai: center);
+        @include addFlex.flex-container($ai: center);
         padding: 0.5rem 0.75rem;
         background-clip: padding-box;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);

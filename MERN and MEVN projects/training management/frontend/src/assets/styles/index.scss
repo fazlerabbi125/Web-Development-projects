@@ -1,6 +1,6 @@
 @use './partials/colors';
 @use './partials/addFlex';
-@use './partials/breakpoints';
+@use './partials/mediaQuery';
 @import url('https://fonts.googleapis.com/css?family=DM+Sans'); // All .scss files will get this
 
 * {
@@ -75,6 +75,10 @@ $value in colors.$colors {
     color: map-get($map: colors.$colors, $key: "deep-blue")
 }
 
+.form-container {
+    @include addFlex.flex-container($direction: column, $ai: center);
+    gap: 1rem;
+}
 
 .guest {
     margin: 3rem auto;
@@ -88,7 +92,7 @@ $value in colors.$colors {
 
     &__form {
         background-color: map-get($map: colors.$colors, $key: "light-blue"); //bg-grey-2
-        @include addFlex.flex_container($direction: column, $jc: space-evenly, $ai: center);
+        @include addFlex.flex-container($direction: column, $jc: space-evenly, $ai: center);
         width: 35%;
         margin: auto;
         padding: 2rem;
@@ -103,8 +107,6 @@ $value in colors.$colors {
         }
     }
 }
-
-
 
 
 .authForm {
@@ -137,13 +139,13 @@ $value in colors.$colors {
 .trainee-search {
     margin: 2rem auto;
     width: 45%;
-    @include addFlex.flex_container($jc: center, $ai: center);
+    @include addFlex.flex-container($jc: center, $ai: center);
 
-    @include breakpoints.devices(tablet) {
+    @include mediaQuery.devices(tablet) {
         flex-direction: column-reverse;
     }
 
-    @include breakpoints.devices(mobile) {
+    @include mediaQuery.devices(mobile) {
         flex-direction: column-reverse;
     }
 

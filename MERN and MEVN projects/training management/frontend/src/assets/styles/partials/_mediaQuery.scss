@@ -1,5 +1,5 @@
 $breakpoints: (
-    "sm":767.5px,
+    "sm":767.95px,
     "md":768px,
     "lg":992px
 );
@@ -14,7 +14,7 @@ $breakpoints: (
     }
 
     @if $breakpoint ==tablet {
-        @media only screen and (min-width: map-get($breakpoints, "md")) and (max-width: (map-get($breakpoints, "lg")-0.5)) {
+        @media only screen and (min-width: map-get($breakpoints, "md")) and (max-width: (map-get($breakpoints, "lg")-0.05)) {
             @content;
         }
     }
@@ -43,5 +43,19 @@ $breakpoints: (
 @mixin minmaxCustomDevice($minBreakpoint, $maxBreakpoint) {
     @media only screen and (min-width: $minBreakpoint) and (max-width: $maxBreakpoint) {
         @content;
+    }
+}
+
+@mixin screen-type($orientation) {
+    @if $orientation ==portrait {
+        @media only screen and (orientation: portrait) {
+            @content;
+        }
+    }
+
+    @if $orientation ==landscape {
+        @media only screen and (orientation: landscape) {
+            @content;
+        }
     }
 }

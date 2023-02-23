@@ -1,12 +1,12 @@
 @use '../../assets/styles/partials/colors';
 @use '../../assets/styles/partials/addFlex';
-@use '../../assets/styles/partials/breakpoints';
+@use '../../assets/styles/partials/mediaQuery';
 @use '../../assets/styles/partials/pixelConvert';
 
 .profile {
     background-color: map-get($map: colors.$colors, $key: "light-blue");
     width: 30%;
-    @include addFlex.flex_container($direction: column, $jc: space-around, $ai: center);
+    @include addFlex.flex-container($direction: column, $jc: space-around, $ai: center);
     margin-bottom: 3rem;
 
     &__img {
@@ -18,7 +18,7 @@
     }
 
     &__details {
-        @include addFlex.flex_container($direction: column, $ai: center);
+        @include addFlex.flex-container($direction: column, $ai: center);
         word-wrap: break-word;
         word-break: break-all;
         gap: 0.15rem;
