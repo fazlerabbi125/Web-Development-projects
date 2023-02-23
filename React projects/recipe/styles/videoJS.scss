@@ -1,0 +1,799 @@
+@charset "UTF-8";
+
+.vjs-custom-theme {
+    display: block;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #000;
+    position: relative;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-js.vjs-custom-theme.vjs-fluid,
+.video-js.vjs-custom-theme.vjs-16-9,
+.video-js.vjs-custom-theme.vjs-4-3,
+.video-js.vjs-custom-theme.vjs-9-16,
+.video-js.vjs-custom-theme.vjs-1-1 {
+    width: 80%;
+}
+
+.vjs-custom-theme .vjs-big-play-button {
+    font-size: 40px;
+    line-height: 1.5em;
+    cursor: pointer;
+    opacity: 1;
+    border: transparent;
+    background-color: #dc2626;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    transition: all 0.4s;
+}
+
+.vjs-custom-theme.vjs-big-play-centered .vjs-big-play-button {
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: center;
+}
+
+.vjs-custom-theme:hover .vjs-big-play-button,
+.vjs-custom-theme .vjs-big-play-button:focus {
+    border-color: transparent;
+    background-color: #dc2626;
+    transition: all 0s;
+}
+
+.vjs-custom-theme .vjs-current-time,
+.vjs-custom-theme .vjs-no-flex .vjs-current-time {
+    display: inline-block;
+}
+
+.vjs-custom-theme .vjs-duration,
+.vjs-custom-theme .vjs-no-flex .vjs-duration {
+    display: inline-block;
+}
+
+.vjs-custom-theme .vjs-time-divider {
+    display: inline-block;
+    line-height: 3em;
+}
+
+
+// styles from "video.js/dist/video-js.css"
+// .vjs-controls-disabled .vjs-big-play-button,
+// .vjs-has-started .vjs-big-play-button,
+// .vjs-using-native-controls .vjs-big-play-button,
+// .vjs-error .vjs-big-play-button {
+//     display: none;
+// }
+
+// .vjs-has-started.vjs-paused.vjs-show-big-play-button-on-pause .vjs-big-play-button {
+//     display: block;
+// }
+
+// .vjs-menu-button {
+//     cursor: pointer;
+// }
+
+// .vjs-menu-button.vjs-disabled {
+//     cursor: default;
+// }
+
+// .vjs-workinghover .vjs-menu-button.vjs-disabled:hover .vjs-menu {
+//     display: none;
+// }
+
+// .vjs-menu .vjs-menu-content {
+//     display: block;
+//     padding: 0;
+//     margin: 0;
+//     font-family: Arial, Helvetica, sans-serif;
+//     overflow: auto;
+// }
+
+// .vjs-menu .vjs-menu-content>* {
+//     box-sizing: border-box;
+// }
+
+// .vjs-scrubbing .vjs-control.vjs-menu-button:hover .vjs-menu {
+//     display: none;
+// }
+
+// .vjs-menu li {
+//     list-style: none;
+//     margin: 0;
+//     padding: 0.2em 0;
+//     line-height: 1.4em;
+//     font-size: 1.2em;
+//     text-align: center;
+//     text-transform: lowercase;
+// }
+
+// .vjs-menu li.vjs-menu-item:focus,
+// .vjs-menu li.vjs-menu-item:hover,
+// .js-focus-visible .vjs-menu li.vjs-menu-item:hover {
+//     background-color: #73859f;
+//     background-color: rgba(115, 133, 159, 0.5);
+// }
+
+// .vjs-menu li.vjs-selected,
+// .vjs-menu li.vjs-selected:focus,
+// .vjs-menu li.vjs-selected:hover,
+// .js-focus-visible .vjs-menu li.vjs-selected:hover {
+//     background-color: #fff;
+//     color: #2b333f;
+// }
+
+// .video-js .vjs-menu *:not(.vjs-selected):focus:not(:focus-visible),
+// .js-focus-visible .vjs-menu *:not(.vjs-selected):focus:not(.focus-visible) {
+//     background: none;
+// }
+
+// .vjs-menu li.vjs-menu-title {
+//     text-align: center;
+//     text-transform: uppercase;
+//     font-size: 1em;
+//     line-height: 2em;
+//     padding: 0;
+//     margin: 0 0 0.3em 0;
+//     font-weight: bold;
+//     cursor: default;
+// }
+
+// .vjs-menu-button-popup .vjs-menu {
+//     display: none;
+//     position: absolute;
+//     bottom: 0;
+//     width: 10em;
+//     left: -3em;
+//     height: 0em;
+//     margin-bottom: 1.5em;
+//     border-top-color: rgba(43, 51, 63, 0.7);
+// }
+
+// .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+//     background-color: #2b333f;
+//     background-color: rgba(43, 51, 63, 0.7);
+//     position: absolute;
+//     width: 100%;
+//     bottom: 1.5em;
+//     max-height: 15em;
+// }
+
+// .vjs-menu-button-inline .vjs-menu {
+//     opacity: 0;
+//     height: 100%;
+//     width: auto;
+//     position: absolute;
+//     left: 4em;
+//     top: 0;
+//     padding: 0;
+//     margin: 0;
+//     transition: all 0.4s;
+// }
+
+// .vjs-menu-button-inline:hover .vjs-menu,
+// .vjs-menu-button-inline:focus .vjs-menu,
+// .vjs-menu-button-inline.vjs-slider-active .vjs-menu {
+//     display: block;
+//     opacity: 1;
+// }
+
+// .vjs-no-flex .vjs-menu-button-inline .vjs-menu {
+//     display: block;
+//     opacity: 1;
+//     position: relative;
+//     width: auto;
+// }
+
+// .vjs-no-flex .vjs-menu-button-inline:hover .vjs-menu,
+// .vjs-no-flex .vjs-menu-button-inline:focus .vjs-menu,
+// .vjs-no-flex .vjs-menu-button-inline.vjs-slider-active .vjs-menu {
+//     width: auto;
+// }
+
+// .vjs-menu-button-inline .vjs-menu-content {
+//     width: auto;
+//     height: 100%;
+//     margin: 0;
+//     overflow: hidden;
+// }
+
+// .video-js .vjs-control-bar {
+//     display: none;
+//     width: 100%;
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     height: 3em;
+//     background-color: #2b333f;
+//     background-color: rgba(43, 51, 63, 0.7);
+// }
+
+// .vjs-has-started .vjs-control-bar,
+// .vjs-audio-only-mode .vjs-control-bar {
+//     display: flex;
+//     visibility: visible;
+//     opacity: 1;
+//     transition: visibility 0.1s, opacity 0.1s;
+// }
+
+// .vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+//     visibility: visible;
+//     opacity: 0;
+//     pointer-events: none;
+//     transition: visibility 1s, opacity 1s;
+// }
+
+// .vjs-controls-disabled .vjs-control-bar,
+// .vjs-using-native-controls .vjs-control-bar,
+// .vjs-error .vjs-control-bar {
+//     display: none !important;
+// }
+
+
+// .vjs-has-started.vjs-no-flex .vjs-control-bar {
+//     display: table;
+// }
+
+// .video-js .vjs-control {
+//     position: relative;
+//     text-align: center;
+//     margin: 0;
+//     padding: 0;
+//     height: 100%;
+//     width: 4em;
+//     flex: none;
+// }
+
+// .video-js .vjs-control.vjs-visible-text {
+//     width: auto;
+//     padding-left: 1em;
+//     padding-right: 1em;
+// }
+
+// .vjs-button>.vjs-icon-placeholder:before {
+//     font-size: 1.8em;
+//     line-height: 1.67;
+// }
+
+// .vjs-button>.vjs-icon-placeholder {
+//     display: block;
+// }
+
+// .video-js .vjs-control:focus:before,
+// .video-js .vjs-control:hover:before,
+// .video-js .vjs-control:focus {
+//     text-shadow: 0em 0em 1em white;
+// }
+
+// .video-js *:not(.vjs-visible-text)>.vjs-control-text {
+//     border: 0;
+//     clip: rect(0 0 0 0);
+//     height: 1px;
+//     overflow: hidden;
+//     padding: 0;
+//     position: absolute;
+//     width: 1px;
+// }
+
+// .vjs-no-flex .vjs-control {
+//     display: table-cell;
+//     vertical-align: middle;
+// }
+
+// .video-js .vjs-custom-control-spacer {
+//     display: none;
+// }
+
+// .video-js .vjs-progress-control {
+//     cursor: pointer;
+//     flex: auto;
+//     display: flex;
+//     align-items: center;
+//     min-width: 4em;
+//     touch-action: none;
+// }
+
+// .video-js .vjs-progress-control.disabled {
+//     cursor: default;
+// }
+
+// .video-js .vjs-progress-holder {
+//     flex: auto;
+//     transition: all 0.2s;
+//     height: 0.3em;
+// }
+
+// .video-js .vjs-progress-control .vjs-progress-holder {
+//     margin: 0 10px;
+// }
+
+// .video-js .vjs-progress-control:hover .vjs-progress-holder {
+//     font-size: 1.6666666667em;
+// }
+
+// .video-js .vjs-progress-control:hover .vjs-progress-holder.disabled {
+//     font-size: 1em;
+// }
+
+// .video-js .vjs-progress-holder .vjs-play-progress,
+// .video-js .vjs-progress-holder .vjs-load-progress,
+// .video-js .vjs-progress-holder .vjs-load-progress div {
+//     position: absolute;
+//     display: block;
+//     height: 100%;
+//     margin: 0;
+//     padding: 0;
+//     width: 0;
+// }
+
+// .video-js .vjs-play-progress {
+//     background-color: #fff;
+// }
+
+// .video-js .vjs-play-progress:before {
+//     font-size: 0.9em;
+//     position: absolute;
+//     right: -0.5em;
+//     top: -0.3333333333em;
+//     z-index: 1;
+// }
+
+// .video-js .vjs-load-progress {
+//     background: rgba(115, 133, 159, 0.5);
+// }
+
+// .video-js .vjs-load-progress div {
+//     background: rgba(115, 133, 159, 0.75);
+// }
+
+// .video-js .vjs-time-tooltip {
+//     background-color: #fff;
+//     background-color: rgba(255, 255, 255, 0.8);
+//     border-radius: 0.3em;
+//     color: #000;
+//     float: right;
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-size: 1em;
+//     padding: 6px 8px 8px 8px;
+//     pointer-events: none;
+//     position: absolute;
+//     top: -3.4em;
+//     visibility: hidden;
+//     z-index: 1;
+// }
+
+// .video-js .vjs-progress-holder:focus .vjs-time-tooltip {
+//     display: none;
+// }
+
+// .video-js .vjs-progress-control:hover .vjs-time-tooltip,
+// .video-js .vjs-progress-control:hover .vjs-progress-holder:focus .vjs-time-tooltip {
+//     display: block;
+//     font-size: 0.6em;
+//     visibility: visible;
+// }
+
+// .video-js .vjs-progress-control.disabled:hover .vjs-time-tooltip {
+//     font-size: 1em;
+// }
+
+// .video-js .vjs-progress-control .vjs-mouse-display {
+//     display: none;
+//     position: absolute;
+//     width: 1px;
+//     height: 100%;
+//     background-color: #000;
+//     z-index: 1;
+// }
+
+// .vjs-no-flex .vjs-progress-control .vjs-mouse-display {
+//     z-index: 0;
+// }
+
+// .video-js .vjs-progress-control:hover .vjs-mouse-display {
+//     display: block;
+// }
+
+// .video-js.vjs-user-inactive .vjs-progress-control .vjs-mouse-display {
+//     visibility: hidden;
+//     opacity: 0;
+//     transition: visibility 1s, opacity 1s;
+// }
+
+// .video-js.vjs-user-inactive.vjs-no-flex .vjs-progress-control .vjs-mouse-display {
+//     display: none;
+// }
+
+// .vjs-mouse-display .vjs-time-tooltip {
+//     color: #fff;
+//     background-color: #000;
+//     background-color: rgba(0, 0, 0, 0.8);
+// }
+
+// .video-js .vjs-slider {
+//     position: relative;
+//     cursor: pointer;
+//     padding: 0;
+//     margin: 0 0.45em 0 0.45em;
+//     /* iOS Safari */
+//     -webkit-touch-callout: none;
+//     /* Safari */
+//     -webkit-user-select: none;
+//     /* Konqueror HTML */
+//     /* Firefox */
+//     -moz-user-select: none;
+//     /* Internet Explorer/Edge */
+//     -ms-user-select: none;
+//     /* Non-prefixed version, currently supported by Chrome and Opera */
+//     user-select: none;
+//     background-color: #73859f;
+//     background-color: rgba(115, 133, 159, 0.5);
+// }
+
+// .video-js .vjs-slider.disabled {
+//     cursor: default;
+// }
+
+// .video-js .vjs-slider:focus {
+//     text-shadow: 0em 0em 1em white;
+//     box-shadow: 0 0 1em #fff;
+// }
+
+// .video-js .vjs-mute-control {
+//     cursor: pointer;
+//     flex: none;
+// }
+
+// .video-js .vjs-volume-control {
+//     cursor: pointer;
+//     margin-right: 1em;
+//     display: flex;
+// }
+
+// .video-js .vjs-volume-control.vjs-volume-horizontal {
+//     width: 5em;
+// }
+
+// .video-js .vjs-volume-panel .vjs-volume-control {
+//     visibility: visible;
+//     opacity: 0;
+//     width: 1px;
+//     height: 1px;
+//     margin-left: -1px;
+// }
+
+// .video-js .vjs-volume-panel {
+//     transition: width 1s;
+// }
+
+// .video-js .vjs-volume-panel.vjs-hover .vjs-volume-control,
+// .video-js .vjs-volume-panel:active .vjs-volume-control,
+// .video-js .vjs-volume-panel:focus .vjs-volume-control,
+// .video-js .vjs-volume-panel .vjs-volume-control:active,
+// .video-js .vjs-volume-panel.vjs-hover .vjs-mute-control~.vjs-volume-control,
+// .video-js .vjs-volume-panel .vjs-volume-control.vjs-slider-active {
+//     visibility: visible;
+//     opacity: 1;
+//     position: relative;
+//     transition: visibility 0.1s, opacity 0.1s, height 0.1s, width 0.1s, left 0s,
+//         top 0s;
+// }
+
+// .video-js .vjs-volume-panel.vjs-hover .vjs-volume-control.vjs-volume-horizontal,
+// .video-js .vjs-volume-panel:active .vjs-volume-control.vjs-volume-horizontal,
+// .video-js .vjs-volume-panel:focus .vjs-volume-control.vjs-volume-horizontal,
+// .video-js .vjs-volume-panel .vjs-volume-control:active.vjs-volume-horizontal,
+// .video-js .vjs-volume-panel.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-horizontal,
+// .video-js .vjs-volume-panel .vjs-volume-control.vjs-slider-active.vjs-volume-horizontal {
+//     width: 5em;
+//     height: 3em;
+//     margin-right: 0;
+// }
+
+// .video-js .vjs-volume-panel.vjs-hover .vjs-volume-control.vjs-volume-vertical,
+// .video-js .vjs-volume-panel:active .vjs-volume-control.vjs-volume-vertical,
+// .video-js .vjs-volume-panel:focus .vjs-volume-control.vjs-volume-vertical,
+// .video-js .vjs-volume-panel .vjs-volume-control:active.vjs-volume-vertical,
+// .video-js .vjs-volume-panel.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-vertical,
+// .video-js .vjs-volume-panel .vjs-volume-control.vjs-slider-active.vjs-volume-vertical {
+//     left: -3.5em;
+//     transition: left 0s;
+// }
+
+// .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-hover,
+// .video-js .vjs-volume-panel.vjs-volume-panel-horizontal:active,
+// .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-slider-active {
+//     width: 10em;
+//     transition: width 0.1s;
+// }
+
+// .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-mute-toggle-only {
+//     width: 4em;
+// }
+
+// .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-vertical {
+//     height: 8em;
+//     width: 3em;
+//     left: -3000em;
+//     transition: visibility 1s, opacity 1s, height 1s 1s, width 1s 1s, left 1s 1s,
+//         top 1s 1s;
+// }
+
+// .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal {
+//     transition: visibility 1s, opacity 1s, height 1s 1s, width 1s, left 1s 1s,
+//         top 1s 1s;
+// }
+
+// .video-js.vjs-no-flex .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal {
+//     width: 5em;
+//     height: 3em;
+//     visibility: visible;
+//     opacity: 1;
+//     position: relative;
+//     transition: none;
+// }
+
+// .video-js.vjs-no-flex .vjs-volume-control.vjs-volume-vertical,
+// .video-js.vjs-no-flex .vjs-volume-panel .vjs-volume-control.vjs-volume-vertical {
+//     position: absolute;
+//     bottom: 3em;
+//     left: 0.5em;
+// }
+
+// .video-js .vjs-volume-panel {
+//     display: flex;
+// }
+
+// .video-js .vjs-volume-bar {
+//     margin: 1.35em 0.45em;
+// }
+
+// .vjs-volume-bar.vjs-slider-horizontal {
+//     width: 5em;
+//     height: 0.3em;
+// }
+
+// .vjs-volume-bar.vjs-slider-vertical {
+//     width: 0.3em;
+//     height: 5em;
+//     margin: 1.35em auto;
+// }
+
+// .video-js .vjs-volume-level {
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     background-color: #fff;
+// }
+
+// .video-js .vjs-volume-level:before {
+//     position: absolute;
+//     font-size: 0.9em;
+//     z-index: 1;
+// }
+
+// .vjs-slider-vertical .vjs-volume-level {
+//     width: 0.3em;
+// }
+
+// .vjs-slider-vertical .vjs-volume-level:before {
+//     top: -0.5em;
+//     left: -0.3em;
+//     z-index: 1;
+// }
+
+// .vjs-slider-horizontal .vjs-volume-level {
+//     height: 0.3em;
+// }
+
+// .vjs-slider-horizontal .vjs-volume-level:before {
+//     top: -0.3em;
+//     right: -0.5em;
+// }
+
+// .video-js .vjs-volume-panel.vjs-volume-panel-vertical {
+//     width: 4em;
+// }
+
+// .vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
+//     height: 100%;
+// }
+
+// .vjs-volume-bar.vjs-slider-horizontal .vjs-volume-level {
+//     width: 100%;
+// }
+
+// .video-js .vjs-volume-vertical {
+//     width: 3em;
+//     height: 8em;
+//     bottom: 8em;
+//     background-color: #2b333f;
+//     background-color: rgba(43, 51, 63, 0.7);
+// }
+
+// .video-js .vjs-volume-horizontal .vjs-menu {
+//     left: -2em;
+// }
+
+// .video-js .vjs-volume-tooltip {
+//     background-color: #fff;
+//     background-color: rgba(255, 255, 255, 0.8);
+//     border-radius: 0.3em;
+//     color: #000;
+//     float: right;
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-size: 1em;
+//     padding: 6px 8px 8px 8px;
+//     pointer-events: none;
+//     position: absolute;
+//     top: -3.4em;
+//     visibility: hidden;
+//     z-index: 1;
+// }
+
+// .video-js .vjs-volume-control:hover .vjs-volume-tooltip,
+// .video-js .vjs-volume-control:hover .vjs-progress-holder:focus .vjs-volume-tooltip {
+//     display: block;
+//     font-size: 1em;
+//     visibility: visible;
+// }
+
+// .video-js .vjs-volume-vertical:hover .vjs-volume-tooltip,
+// .video-js .vjs-volume-vertical:hover .vjs-progress-holder:focus .vjs-volume-tooltip {
+//     left: 1em;
+//     top: -12px;
+// }
+
+// .video-js .vjs-volume-control.disabled:hover .vjs-volume-tooltip {
+//     font-size: 1em;
+// }
+
+// .video-js .vjs-volume-control .vjs-mouse-display {
+//     display: none;
+//     position: absolute;
+//     width: 100%;
+//     height: 1px;
+//     background-color: #000;
+//     z-index: 1;
+// }
+
+// .video-js .vjs-volume-horizontal .vjs-mouse-display {
+//     width: 1px;
+//     height: 100%;
+// }
+
+// .vjs-no-flex .vjs-volume-control .vjs-mouse-display {
+//     z-index: 0;
+// }
+
+// .video-js .vjs-volume-control:hover .vjs-mouse-display {
+//     display: block;
+// }
+
+// .video-js.vjs-user-inactive .vjs-volume-control .vjs-mouse-display {
+//     visibility: hidden;
+//     opacity: 0;
+//     transition: visibility 1s, opacity 1s;
+// }
+
+// .video-js.vjs-user-inactive.vjs-no-flex .vjs-volume-control .vjs-mouse-display {
+//     display: none;
+// }
+
+// .vjs-mouse-display .vjs-volume-tooltip {
+//     color: #fff;
+//     background-color: #000;
+//     background-color: rgba(0, 0, 0, 0.8);
+// }
+
+// .vjs-poster {
+//     display: inline-block;
+//     vertical-align: middle;
+//     background-repeat: no-repeat;
+//     background-position: 50% 50%;
+//     background-size: contain;
+//     background-color: #000000;
+//     cursor: pointer;
+//     margin: 0;
+//     padding: 0;
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     height: 100%;
+// }
+
+// .vjs-has-started .vjs-poster,
+// .vjs-using-native-controls .vjs-poster {
+//     display: none;
+// }
+
+// .vjs-playback-rate>.vjs-menu-button,
+// .vjs-playback-rate .vjs-playback-rate-value {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+// }
+
+// .vjs-playback-rate .vjs-playback-rate-value {
+//     pointer-events: none;
+//     font-size: 1.5em;
+//     line-height: 2;
+//     text-align: center;
+// }
+
+// .vjs-playback-rate .vjs-menu {
+//     width: 4em;
+//     left: 0em;
+// }
+
+// .vjs-error .vjs-error-display .vjs-modal-dialog-content {
+//     font-size: 1.4em;
+//     text-align: center;
+// }
+
+// .vjs-error .vjs-error-display:before {
+//     color: #fff;
+//     content: "X";
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-size: 4em;
+//     left: 0;
+//     line-height: 1;
+//     margin-top: -0.5em;
+//     position: absolute;
+//     text-shadow: 0.05em 0.05em 0.1em #000;
+//     text-align: center;
+//     top: 50%;
+//     vertical-align: middle;
+//     width: 100%;
+// }
+
+// .vjs-loading-spinner {
+//     display: none;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     margin: -25px 0 0 -25px;
+//     opacity: 0.85;
+//     text-align: left;
+//     border: 6px solid rgba(43, 51, 63, 0.7);
+//     box-sizing: border-box;
+//     background-clip: padding-box;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 25px;
+//     visibility: hidden;
+// }
+
+// .vjs-seeking .vjs-loading-spinner,
+// .vjs-waiting .vjs-loading-spinner {
+//     display: block;
+//     -webkit-animation: vjs-spinner-show 0s linear 0.3s forwards;
+//     animation: vjs-spinner-show 0s linear 0.3s forwards;
+// }
+
+// .vjs-loading-spinner:before,
+// .vjs-loading-spinner:after {
+//     content: "";
+//     position: absolute;
+//     margin: -6px;
+//     box-sizing: inherit;
+//     width: inherit;
+//     height: inherit;
+//     border-radius: inherit;
+//     opacity: 1;
+//     border: inherit;
+//     border-color: transparent;
+//     border-top-color: white;
+// }

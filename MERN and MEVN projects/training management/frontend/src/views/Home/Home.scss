@@ -1,0 +1,41 @@
+@use '../../assets/styles/partials/colors';
+@use '../../assets/styles/partials/addFlex';
+@use '../../assets/styles/partials/mediaQuery';
+@use '../../assets/styles/partials/pixelConvert';
+
+.home {
+    @include addFlex.flex-container($jc: center, $ai: flex-start);
+    gap: 2rem;
+    width: 85%;
+    margin: auto auto 2rem;
+
+    @include mediaQuery.devices(mobile) {
+        @include addFlex.flex-container($direction: column, $jc: center, $ai: center);
+        align-content: center;
+        width: 90%;
+    }
+
+    &__img {
+        max-width: 70%;
+
+        @include mediaQuery.devices(mobile) {
+            max-width: 90%;
+        }
+    }
+
+    &__content {
+        width: 50%;
+
+        @include mediaQuery.devices(mobile) {
+            width: 90%;
+        }
+
+        &__heading {
+            word-break: keep-all; //To keep all characters of each word together
+
+            @include mediaQuery.devices(mobile) {
+                text-align: center;
+            }
+        }
+    }
+}

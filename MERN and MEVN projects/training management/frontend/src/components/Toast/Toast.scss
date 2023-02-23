@@ -1,0 +1,32 @@
+@use '../../assets/styles/partials/colors';
+@use '../../assets/styles/partials/addFlex';
+@use '../../assets/styles/partials/mediaQuery';
+@use '../../assets/styles/partials/pixelConvert';
+
+.custom-toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: max-content;
+    padding: 1.25rem;
+    max-width: 100%;
+    z-index: 500;
+
+    &__header {
+        @include addFlex.flex-container($ai: center);
+        padding: 0.5rem 0.75rem;
+        background-clip: padding-box;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-top-left-radius: calc(0.25rem - 1px);
+        border-top-right-radius: calc(0.25rem - 1px);
+        color: white;
+        background-color: rgba(120, 120, 120);
+    }
+
+    &__content {
+        background-color: rgba(200, 200, 200, 1);
+        padding: 0.75rem 1.5rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+}

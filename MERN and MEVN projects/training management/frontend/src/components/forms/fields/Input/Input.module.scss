@@ -1,0 +1,80 @@
+@use '../../../../assets/styles/partials/addFlex';
+@use '../../../../assets/styles/partials/colors';
+
+.input-field {
+    display: grid;
+    gap: 8px;
+
+    &--horizontal {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "label input"
+            ". desc"
+            "err err";
+    }
+
+    &--vertical {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "label"
+            "input"
+            "desc"
+            "err";
+    }
+
+    &__label {
+        grid-area: label;
+        font: normal normal normal 16px / 24px;
+        word-break: break-all;
+        color: map-get(colors.$colors, $key: "dark");
+
+        &--required {
+            color: map-get(colors.$colors, $key: "negative");
+        }
+
+        .input-field--horizontal>& {
+            text-align: end;
+            align-self: center;
+        }
+    }
+
+    &__form-field {
+        grid-area: input;
+        border-radius: 4px;
+        border: 1px solid gainsboro;
+        padding: 8px 12px;
+        font: normal normal 400 16px / 24px;
+        color: map-get(colors.$colors, $key: "dark");
+        transition: border-color 0.2s ease-in-out;
+
+        &--error {
+            border-color: map-get(colors.$colors, $key: "negative");
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: darken($color: gainsboro, $amount: 20%);
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        &::placeholder {
+            color: #aeaeb2;
+        }
+    }
+
+    &__description {
+        grid-area: desc;
+        font: normal normal normal 16px / 24px;
+        word-break: break-all;
+        color: #636366;
+    }
+
+    &__err {
+        grid-area: err;
+        font: normal normal bold 16px / 24px;
+        word-break: break-all;
+        text-align: center;
+        color: map-get(colors.$colors, $key: "negative");
+    }
+}

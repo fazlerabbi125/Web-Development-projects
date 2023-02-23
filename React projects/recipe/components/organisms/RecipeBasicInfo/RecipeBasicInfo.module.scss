@@ -1,0 +1,31 @@
+@use "../../../styles/partials/addFlex";
+
+.recipe_basic-info {
+    &__photo {
+
+        width: 80% !important;
+        height: auto !important;
+        object-fit: cover;
+        // >.img {
+        //     object-fit: fill;
+        // }
+    }
+
+    &__ingredients {
+        padding: 1rem 0.75rem;
+        margin-bottom: 1rem;
+        @include addFlex.flex-container($direction: column);
+        gap: 1rem;
+
+        &__heading {
+            border-bottom: 2px solid gainsboro;
+            max-width: 20rem;
+            font-size: xx-large;
+        }
+
+        &__list {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+    }
+}
