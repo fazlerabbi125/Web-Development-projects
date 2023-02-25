@@ -45,7 +45,7 @@ $value in colors.$colors {
         border: transparent;
         transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-        @if ($key=="deep-blue" or $key=="dark") {
+        @if ($key=="sapphire-blue" or $key=="dark") {
             color: #fff;
         }
 
@@ -56,7 +56,7 @@ $value in colors.$colors {
         &:hover {
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-            @if ($key=="deep-blue" or $key=="dark") {
+            @if ($key=="sapphire-blue" or $key=="dark") {
                 color: #fff;
                 background-color: lighten($value, 5%);
             }
@@ -69,11 +69,20 @@ $value in colors.$colors {
     }
 }
 
-.auth__header {
-    text-align: center;
-    padding: 1rem;
-    color: map-get($map: colors.$colors, $key: "deep-blue")
+.auth {
+    &__header {
+        text-align: center;
+        padding: 1rem;
+        color: map-get($map: colors.$colors, $key: "sapphire-blue")
+    }
+
+    &__form {
+        background-color: map-get($map: colors.$colors, $key: "light-grey");
+        width: 40%;
+        margin: 0 auto 3rem;
+    }
 }
+
 
 .form-container {
     @include addFlex.flex-container($direction: column, $ai: center);
@@ -84,14 +93,14 @@ $value in colors.$colors {
     margin: 3rem auto;
 
     &__header {
-        background-color: map-get($map: colors.$colors, $key: "deep-blue");
+        background-color: map-get($map: colors.$colors, $key: "sapphire-blue");
         color: #FFFFFF;
         padding: 1rem;
         text-align: center;
     }
 
     &__form {
-        background-color: map-get($map: colors.$colors, $key: "light-blue"); //bg-grey-2
+        background-color: map-get($map: colors.$colors, $key: "light-blue"); //light-grey
         @include addFlex.flex-container($direction: column, $jc: space-evenly, $ai: center);
         width: 35%;
         margin: auto;
@@ -107,14 +116,6 @@ $value in colors.$colors {
         }
     }
 }
-
-
-.authForm {
-    background-color: map-get($map: colors.$colors, $key: "bg-grey-2");
-    width: 40%;
-    margin: 0 auto 3rem;
-}
-
 
 .modal-backdrop {
     position: fixed;

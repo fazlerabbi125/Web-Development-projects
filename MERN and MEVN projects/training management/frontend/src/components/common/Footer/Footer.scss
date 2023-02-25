@@ -1,0 +1,17 @@
+@use 'assets/styles/partials/colors';
+@use 'assets/styles/partials/addFlex';
+@use 'assets/styles/partials/mediaQuery';
+@use 'assets/styles/partials/pixelConvert';
+
+.sticky-footer {
+    position: sticky;
+    top: 100%;
+    width: 100%;
+    background-color: map-get($map: colors.$colors, $key: "lavender-mist");
+    padding: 1.5rem;
+
+    &__content {
+        text-align: center;
+        font-weight: 700;
+    }
+}

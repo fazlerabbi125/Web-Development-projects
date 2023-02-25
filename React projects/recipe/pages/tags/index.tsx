@@ -8,7 +8,7 @@ import { TagDetailType } from "../api/tags";
 import NavButton from "../../components/atoms/NavButton";
 import ListPagination from "../../components/molecules/ListPagination";
 import Header from "../../components/organisms/Header";
-import styles from "../../styles/pages/Tags.module.scss";
+import styles from "./Tags.module.scss";
 
 type TagListResponse = CustomAxiosResponse<TagListType>;
 
