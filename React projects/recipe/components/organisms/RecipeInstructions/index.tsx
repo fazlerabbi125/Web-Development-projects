@@ -1,7 +1,7 @@
 import React from "react";
 import { List } from "@mantine/core";
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from "video.js";
-import { Inter } from "@next/font/google";
+import { Inter } from "next/font/google";
 import VideoPlayer from "../../molecules/VideoPlayer";
 import { RecipeInfoSectionProps } from "../RecipeBasicInfo";
 import styles from "./RecipeInstructions.module.scss";

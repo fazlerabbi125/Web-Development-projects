@@ -8,11 +8,10 @@ type VideoPlayerProps = {
     options: VideoJsPlayerOptions;
     onReady?(player: VideoJsPlayer): void;
     onChange?(player: VideoJsPlayer): void;
-    width?: string;
     videoPlayerClassName?: string;
 };
 
-export default function VideoPlayer({ options, onReady, width, onChange, videoPlayerClassName }: VideoPlayerProps) {
+export default function VideoPlayer({ options, onReady, onChange, videoPlayerClassName }: VideoPlayerProps) {
     const videoRef = React.useRef<HTMLDivElement | null>(null);
     const playerRef = React.useRef<VideoJsPlayer | null>(null);
 
@@ -23,7 +22,6 @@ export default function VideoPlayer({ options, onReady, width, onChange, videoPl
             const videoElement = document.createElement('video-js'); //added with video-js class
             videoElement.classList.add('vjs-custom-theme');
             videoElement.classList.add('vjs-big-play-centered');
-            videoElement.style.width = width || '';
             videoPlayerClassName && videoElement.classList.add(videoPlayerClassName);
             videoRef.current?.appendChild(videoElement);
 
@@ -41,7 +39,7 @@ export default function VideoPlayer({ options, onReady, width, onChange, videoPl
             player.src(options.sources || '');
             onChange && onChange(player);
         }
-    }, [width, onReady, options, videoRef, onChange, videoPlayerClassName]);
+    }, [onReady, options, videoRef, onChange, videoPlayerClassName]);
 
     // Dispose the Video.js player when the functional component unmounts
     React.useEffect(() => {

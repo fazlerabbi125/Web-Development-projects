@@ -52,7 +52,7 @@
         padding: 2rem;
         @include addFlex.flex-container($direction: column, $jc: space-around, $ai: center);
         gap:0.8rem;
-        background-color: map-get($map: colors.$colors, $key: "bg-grey-2");
+        background-color: map-get($map: colors.$colors, $key: "light-grey");
 
         &__icons {
             text-align: center;

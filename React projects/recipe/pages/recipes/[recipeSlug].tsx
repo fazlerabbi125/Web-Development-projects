@@ -9,7 +9,7 @@ import { TagDetailType } from "../api/tags";
 import CustomRating from "../../components/atoms/CustomRating";
 import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "../../components/organisms/RecipeInstructions";
-import styles from "../../styles/pages/RecipeDetails.module.scss";
+import styles from "./RecipeDetails.module.scss";
 
 export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
     const recipe: RecipeDetailsType = await fetchData(
