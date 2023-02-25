@@ -1,5 +1,5 @@
 import React from "react";
-import { Ubuntu } from "@next/font/google";
+import { Ubuntu } from "next/font/google";
 import {
   Text,
   List,
@@ -16,7 +16,7 @@ export interface RecipeInfoSectionProps {
 }
 
 const RecipeBasicInfo = ({ recipe }: RecipeInfoSectionProps) => {
-  const ingredients = recipe.sections.flatMap((section) => {
+  const ingredients = recipe.sections?.flatMap((section) => {
     return section.components.map((component: any) => ({
       name: component.raw_text,
       id: component.id,
@@ -51,7 +51,7 @@ const RecipeBasicInfo = ({ recipe }: RecipeInfoSectionProps) => {
           Ingredients
         </Text>
         <List className={styles["recipe_basic-info__ingredients__list"]}>
-          {ingredients.map((elem) => (
+          {ingredients?.map((elem) => (
             <List.Item key={elem.id}>{elem.name}</List.Item>
           ))}
         </List>

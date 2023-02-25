@@ -9,7 +9,7 @@ export interface RecipeDetailsType {
     name: string;
     description: string;
     tags: Array<TagDetailType>;
-    sections: Array<Record<string, any>>
+    sections?: Array<Record<string, any>>
     thumbnail_url: string;
     thumbnail_alt_text: string;
     created_at: number;
