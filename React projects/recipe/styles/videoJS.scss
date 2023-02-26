@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@use "./partials/addFlex";
 
 .vjs-custom-theme {
     display: block;
@@ -9,6 +10,32 @@
     border-radius: 4px;
     margin-left: auto;
     margin-right: auto;
+
+    & .vjs-big-play-button {
+        font-size: 40px;
+        line-height: 1.5em;
+        cursor: pointer;
+        opacity: 1;
+        border: transparent;
+        background-color: #dc2626;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        transition: all 0.4s;
+    }
+
+    &.vjs-big-play-centered .vjs-big-play-button {
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+    }
+
+    & .vjs-big-play-button .vjs-icon-placeholder:before {
+        @include addFlex.flex_container($jc: center, $ai: center);
+    }
 }
 
 .video-js.vjs-custom-theme.vjs-fluid,
@@ -17,28 +44,6 @@
 .video-js.vjs-custom-theme.vjs-9-16,
 .video-js.vjs-custom-theme.vjs-1-1 {
     width: 80%;
-}
-
-.vjs-custom-theme .vjs-big-play-button {
-    font-size: 40px;
-    line-height: 1.5em;
-    cursor: pointer;
-    opacity: 1;
-    border: transparent;
-    background-color: #dc2626;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    transition: all 0.4s;
-}
-
-.vjs-custom-theme.vjs-big-play-centered .vjs-big-play-button {
-    top: 50%;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    vertical-align: center;
 }
 
 .vjs-custom-theme:hover .vjs-big-play-button,

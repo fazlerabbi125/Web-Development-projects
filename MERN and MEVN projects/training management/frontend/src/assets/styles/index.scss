@@ -1,32 +1,33 @@
-@use './partials/colors';
-@use './partials/addFlex';
-@use './partials/mediaQuery';
-@import url('https://fonts.googleapis.com/css?family=DM+Sans'); // All .scss files will get this
+@use "./partials/colors";
+@use "./partials/addFlex";
+@use "./partials/mediaQuery";
+@import url("https://fonts.googleapis.com/css?family=DM+Sans"); // All .scss files will get this
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: #FFFFFF;
-    padding: 0;
-    font-family: 'DM Sans';
-    color: map-get($map: colors.$colors, $key: "dark");
+  margin: 0;
+  background: #ffffff;
+  padding: 0;
+  font-family: "DM Sans";
+  color: map-get($map: colors.$colors, $key: "dark");
 }
 
 #root {
-    position: relative;
-    min-height: 100vh;
-    /*used for placing footer at the bottom of the page*/
+  position: relative;
+  min-height: 100vh;
+  /*used for placing footer at the bottom of the page*/
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 h1 {
-    font-family: 'Ubuntu';
+  font-family: "Ubuntu";
 }
 
 button,
@@ -34,128 +35,134 @@ a,
 span,
 input,
 label {
-    display: inline-block;
+  display: inline-block;
+}
+
+:root {
+  @each $key, $value in colors.$colors {
+    --#{$key}: $value;
+  }
 }
 
 //creating custom button colors using loop and conditions
-@each $key,
-$value in colors.$colors {
-    .btn--#{$key} {
-        background-color: $value;
-        border: transparent;
-        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+@each $key, $value in colors.$colors {
+  .btn--#{$key} {
+    background-color: $value;
+    border: transparent;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-        @if ($key=="sapphire-blue" or $key=="dark") {
-            color: #fff;
-        }
-
-        @else {
-            color: #001828;
-        }
-
-        &:hover {
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-
-            @if ($key=="sapphire-blue" or $key=="dark") {
-                color: #fff;
-                background-color: lighten($value, 5%);
-            }
-
-            @else {
-                color: #001828;
-                background-color: darken($value, 10%);
-            }
-        }
+    @if ($key== "sapphire-blue" or $key== "dark") {
+      color: #fff;
+    } @else {
+      color: #001828;
     }
+
+    &:hover {
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+      @if ($key== "sapphire-blue" or $key== "dark") {
+        color: #fff;
+        background-color: lighten($value, 5%);
+      } @else {
+        color: #001828;
+        background-color: darken($value, 10%);
+      }
+    }
+  }
 }
 
 .auth {
-    &__header {
-        text-align: center;
-        padding: 1rem;
-        color: map-get($map: colors.$colors, $key: "sapphire-blue")
-    }
+  &__header {
+    text-align: center;
+    padding: 1rem;
+    color: map-get($map: colors.$colors, $key: "sapphire-blue");
+  }
 
-    &__form {
-        background-color: map-get($map: colors.$colors, $key: "light-grey");
-        width: 40%;
-        margin: 0 auto 3rem;
-    }
+  &__form {
+    background-color: map-get($map: colors.$colors, $key: "light-grey");
+    width: 40%;
+    margin: 0 auto 3rem;
+  }
 }
 
-
 .form-container {
-    @include addFlex.flex-container($direction: column, $ai: center);
-    gap: 1rem;
+  @include addFlex.flex-container($direction: column, $ai: center);
+  gap: 1rem;
 }
 
 .guest {
-    margin: 3rem auto;
+  margin: 3rem auto;
 
-    &__header {
-        background-color: map-get($map: colors.$colors, $key: "sapphire-blue");
-        color: #FFFFFF;
-        padding: 1rem;
-        text-align: center;
+  &__header {
+    background-color: map-get($map: colors.$colors, $key: "sapphire-blue");
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &__form {
+    background-color: map-get(
+      $map: colors.$colors,
+      $key: "light-blue"
+    ); //light-grey
+    @include addFlex.flex-container(
+      $direction: column,
+      $jc: space-evenly,
+      $ai: center
+    );
+    width: 35%;
+    margin: auto;
+    padding: 2rem;
+    min-height: 25rem;
+    border-radius: 0.25rem;
+    border: 0.2rem solid gainsboro;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+    &__heading {
+      font-weight: bold;
+      margin-bottom: 1.5rem;
     }
-
-    &__form {
-        background-color: map-get($map: colors.$colors, $key: "light-blue"); //light-grey
-        @include addFlex.flex-container($direction: column, $jc: space-evenly, $ai: center);
-        width: 35%;
-        margin: auto;
-        padding: 2rem;
-        min-height: 25rem;
-        border-radius: 0.25rem;
-        border: 0.2rem solid gainsboro;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-
-        &__heading {
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-        }
-    }
+  }
 }
 
 .modal-backdrop {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1055;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1055;
 }
 
-
 .eval-details {
-    width: 60%;
-    margin: 2rem auto;
+  width: 60%;
+  margin: 2rem auto;
 
-    &__header {
-        text-align: center
-    }
+  &__header {
+    text-align: center;
+  }
 }
 
 .trainee-search {
-    margin: 2rem auto;
-    width: 45%;
-    @include addFlex.flex-container($jc: center, $ai: center);
+  margin: 2rem auto;
+  width: 45%;
+  @include addFlex.flex-container($jc: center, $ai: center);
 
-    @include mediaQuery.devices(tablet) {
-        flex-direction: column-reverse;
-    }
+  @include mediaQuery.devices(tablet) {
+    flex-direction: column-reverse;
+  }
 
-    @include mediaQuery.devices(mobile) {
-        flex-direction: column-reverse;
-    }
+  @include mediaQuery.devices(mobile) {
+    flex-direction: column-reverse;
+  }
 
-    &__inputs {
-        border-radius: 0;
-    }
+  &__inputs {
+    border-radius: 0;
+  }
 }
 
 .lesson-details {
-    width: 60%;
-    margin: 1.75rem auto;
+  width: 60%;
+  margin: 1.75rem auto;
 }

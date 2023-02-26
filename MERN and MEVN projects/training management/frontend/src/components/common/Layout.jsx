@@ -1,7 +1,7 @@
 import Header from "./Header"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
-import Toast from "./Toast/Toast"
+import Toast from "../Toast"
 import { useSelector } from "react-redux"
 
 const Layout = ({ children }) => { //HOC

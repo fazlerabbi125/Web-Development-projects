@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import MessageContext from "../../../contexts/MessageContext";
+import MessageContext from "../../contexts/MessageContext";
 import "./Toast.scss"
 
 const Toast = () => {
