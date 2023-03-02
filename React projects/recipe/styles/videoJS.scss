@@ -36,6 +36,10 @@
     & .vjs-big-play-button .vjs-icon-placeholder:before {
         @include addFlex.flex_container($jc: center, $ai: center);
     }
+
+    & .vjs-poster {
+        background-size: cover;
+    }
 }
 
 .video-js.vjs-custom-theme.vjs-fluid,

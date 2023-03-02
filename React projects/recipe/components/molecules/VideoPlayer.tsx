@@ -3,6 +3,7 @@ import videojs, {
     VideoJsPlayer,
     VideoJsPlayerOptions,
 } from "video.js";
+import 'videojs-contrib-hls';
 
 type VideoPlayerProps = {
     options: VideoJsPlayerOptions;
