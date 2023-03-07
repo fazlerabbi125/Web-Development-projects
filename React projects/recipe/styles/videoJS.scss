@@ -36,18 +36,6 @@
     & .vjs-big-play-button .vjs-icon-placeholder:before {
         @include addFlex.flex_container($jc: center, $ai: center);
     }
-
-    & .vjs-poster {
-        background-size: cover;
-    }
-}
-
-.video-js.vjs-custom-theme.vjs-fluid,
-.video-js.vjs-custom-theme.vjs-16-9,
-.video-js.vjs-custom-theme.vjs-4-3,
-.video-js.vjs-custom-theme.vjs-9-16,
-.video-js.vjs-custom-theme.vjs-1-1 {
-    width: 80%;
 }
 
 .vjs-custom-theme:hover .vjs-big-play-button,

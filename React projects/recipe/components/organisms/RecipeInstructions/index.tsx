@@ -14,7 +14,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
     const videoJsOptions: VideoJsPlayerOptions = {
         controls: true,
         responsive: true,
-        fluid: true,
+        // fluid: true,
         // poster: recipe.thumbnail_url,
         playbackRates: Array.from({ length: 8 }, (elem, idx) => 0.25 * (idx + 1)),
         controlBar: {
@@ -60,7 +60,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
     return (
         <React.Fragment>
             {recipe.original_video_url && (
-                <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+                <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} videoPlayerClassName={styles["recipe-instructions__vid-player"]} />
             )}
             <List
                 type="ordered"

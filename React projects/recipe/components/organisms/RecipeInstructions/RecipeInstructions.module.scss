@@ -6,6 +6,15 @@
     @include addFlex.flex-container($direction: column, $jc: flex-start);
     gap: 1rem;
 
+    &__vid-player {
+        width: 80%;
+        height: 500px;
+
+        & .vjs-poster {
+            background-size: cover;
+        }
+    }
+
     &__item {
         @include addFlex.flex-container($jc: flex-start, $ai: flex-start);
 
