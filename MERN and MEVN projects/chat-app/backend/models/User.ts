@@ -10,7 +10,7 @@ export interface UserDocument extends Document {
     date_of_birth: string | Date;
     isAdmin?: boolean;
     photo?: string;
-    emailVerified?: boolean;
+    emailVerified: boolean;
     emailVerificationToken?: string;
     refreshToken?: string;
     resetPasswordToken?: string;
@@ -83,7 +83,7 @@ export type RegUserModel = Model<RegUserDocument> & UserModel["login"];
 
 export const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
 
-export const Admin = User.discriminator('Admin', new mongoose.Schema({}, schemaOptions));
+export const Admin = User.discriminator('Admin', new mongoose.Schema<UserDocument, UserModel>({}, schemaOptions));
 
 export const RegUser = User.discriminator('RegUser', new mongoose.Schema<RegUserDocument, RegUserModel>({
     connectedMembers: [

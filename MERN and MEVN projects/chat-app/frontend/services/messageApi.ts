@@ -1,4 +1,4 @@
-import apiSlice from "../store/ApiConfig";
+import apiSlice from "../redux/ApiConfig";
 
 export const messageApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({}),

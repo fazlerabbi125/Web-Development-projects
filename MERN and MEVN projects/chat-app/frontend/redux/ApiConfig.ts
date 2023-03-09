@@ -8,7 +8,7 @@ import { Mutex } from "async-mutex";
 import axios from "axios";
 import { HYDRATE } from 'next-redux-wrapper'
 import { logoutUser } from "./features/authSlice";
-import store, { RootState } from ".";
+import store, { RootState } from "./store";
 
 export const SERVER_URL: string =
     process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:8000";
@@ -89,6 +89,7 @@ const apiSlice = createApi({
             return action.payload[reducerPath]
         }
     },
+    // refetchOnMountOrArgChange: true,
     tagTypes: [],
     endpoints: (builder) => ({
         /*

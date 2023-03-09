@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { axInstance } from "../../utils/customAxios"
 import { JwtPayload } from 'jwt-decode';
-import { RootState } from '..';
+import { RootState } from '../store';
 
 const logoutUser = createAsyncThunk('user/logoutUser', async (args, { getState }) => {
     const state = getState() as RootState;

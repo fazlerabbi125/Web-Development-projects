@@ -17,7 +17,7 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    // blacklist: [pokemonApi.reducerPath],// for RTK query only
+    // blacklist: [pokemonApi.reducerPath],// for RTK query only as data caching may cause issues if persisted
 }
 
 export const rootReducer = combineReducers({
