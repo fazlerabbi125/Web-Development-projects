@@ -14,9 +14,8 @@ export const JWT_keys = {
     refresh: process.env.JWT_REFRESH_KEY || 'b13df694aa'
 }
 
+const saltRounds = 10;
 class AuthController {
-    saltRounds = 10;
-
     async signup(req: Request, res: Response, next: NextFunction) {
         try {
             const errors = validationResult(req);
@@ -29,7 +28,7 @@ class AuthController {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.mapped()));
             }
             const { name, email, date_of_birth, isAdmin }: UserDocument = req.body;
-            const password = await bcrypt.hash(req.body.password, this.saltRounds);
+            const password = await bcrypt.hash(req.body.password, saltRounds);
             // const emailVerificationToken = crypto.randomBytes(32).toString('hex');
             //emailVerificationToken
             const user = new User({ name, email, password, date_of_birth, isAdmin, });
@@ -205,7 +204,7 @@ class AuthController {
                 return res.status(HTTP_STATUS.FORBIDDEN).send(failure('Invalid Token!'));
             }
 
-            user.password = await bcrypt.hash(password, this.saltRounds);
+            user.password = await bcrypt.hash(password, saltRounds);
             user.resetPasswordToken = undefined;
             user.resetPasswordExpire = undefined;
             await user.save();

@@ -14,6 +14,10 @@
         @include mediaQuery.devices($breakpoint: mobile) {
             height: 250px;
         }
+
+        & :global(.vjs-poster) { //referring to global css inside css module
+            background-size: cover;
+        }
     }
 
     &__item {
