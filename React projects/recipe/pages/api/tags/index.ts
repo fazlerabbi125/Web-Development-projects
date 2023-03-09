@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import tags from "../../../data/tags.json";
+import tags from "@/data/tags.json";
 
 export interface TagDetailType {
     name: string;

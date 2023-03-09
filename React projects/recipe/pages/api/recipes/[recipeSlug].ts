@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import recipes from "../../../data/recipe.json";
+import recipes from "@/data/recipe.json";
 import { TagDetailType } from '../tags';
 
 export interface RecipeDetailsType {

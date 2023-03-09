@@ -15,7 +15,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
         controls: true,
         responsive: true,
         // fluid: true,
-        // poster: recipe.thumbnail_url,
+        poster: recipe.thumbnail_url,
         playbackRates: Array.from({ length: 8 }, (elem, idx) => 0.25 * (idx + 1)),
         controlBar: {
             pictureInPictureToggle: false,

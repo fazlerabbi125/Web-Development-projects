@@ -1,6 +1,6 @@
-import RecipeList from "../../../components/organisms/RecipeList";
+import RecipeList from "@/components/organisms/RecipeList";
 import { useRouter } from "next/router";
-import Header from "../../../components/organisms/Header";
+import Header from "@/components/organisms/Header";
 import Head from "next/head";
 import { Text } from "@mantine/core";
 import { NextPage } from "next";

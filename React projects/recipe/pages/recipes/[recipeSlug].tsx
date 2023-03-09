@@ -1,14 +1,14 @@
 import React from "react";
 import Head from "next/head";
-import { fetchData } from "../../hooks/useAxios";
+import { fetchData } from "@/hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Card, Title, Stack, Text, Tabs } from "@mantine/core";
-import NavButton from "../../components/atoms/NavButton";
+import NavButton from "@/components/atoms/NavButton";
 import { TagDetailType } from "../api/tags";
-import CustomRating from "../../components/atoms/CustomRating";
-import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
-import RecipeInstructions from "../../components/organisms/RecipeInstructions";
+import CustomRating from "@/components/atoms/CustomRating";
+import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
+import RecipeInstructions from "@/components/organisms/RecipeInstructions";
 import styles from "./RecipeDetails.module.scss";
 
 export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
