@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { axInstance } from "../../utils/customAxios"
+import { axInstance } from '../ApiConfig';
 import { JwtPayload } from 'jwt-decode';
 import { RootState } from '../store';
+import { HYDRATE } from 'next-redux-wrapper';
 
 const logoutUser = createAsyncThunk('user/logoutUser', async (args, { getState }) => {
     const state = getState() as RootState;
@@ -44,6 +45,9 @@ const authSlice = createSlice({
         }
     },
     extraReducers(builder) {
+        builder.addCase(HYDRATE, (state, action: any) => {
+            state = action.payload.auth
+        });
         builder
             .addCase(logoutUser.fulfilled, (state, action) => {
                 // Add any fetched posts to the array
