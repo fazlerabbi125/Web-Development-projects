@@ -7,8 +7,8 @@ import 'videojs-contrib-hls';
 
 type VideoPlayerProps = {
     options: VideoJsPlayerOptions;
-    onReady?(player: VideoJsPlayer): void;
-    onChange?(player: VideoJsPlayer): void;
+    onReady?(player: VideoJsPlayer): void;// function should be in useCallback if some operation is implemented
+    onChange?(player: VideoJsPlayer): void;// function should be in useCallback if some operation is implemented
     videoPlayerClassName?: string;
 };
 
@@ -35,16 +35,15 @@ export default function VideoPlayer({ options, onReady, onChange, videoPlayerCla
             // on prop change, for example:
         } else {
             const player = playerRef.current;
-
             player.autoplay(options.autoplay || false);
             player.src(options.sources || '');
-            onChange && onChange(player);
         }
-    }, [onReady, options, videoRef, onChange, videoPlayerClassName]);
+    }, [onReady, options, videoRef, videoPlayerClassName]);
 
     // Dispose the Video.js player when the functional component unmounts
     React.useEffect(() => {
         const player = playerRef.current;
+        player && onChange && onChange(player);
 
         return () => {
             if (player && !player.isDisposed()) {
@@ -52,7 +51,7 @@ export default function VideoPlayer({ options, onReady, onChange, videoPlayerCla
                 playerRef.current = null;
             }
         };
-    }, [playerRef]);
+    }, [playerRef, onChange]);
 
     return (
         <div data-vjs-player>
