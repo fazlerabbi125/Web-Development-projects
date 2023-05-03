@@ -9,11 +9,8 @@
 
     &__vid-player {
         width: 80%;
-        height: 500px;
-
-        @include mediaQuery.devices($breakpoint: mobile) {
-            height: 250px;
-        }
+        height: 100%;
+        aspect-ratio: 16/9;
 
         & :global(.vjs-poster) { //referring to global css inside css module
             background-size: cover;

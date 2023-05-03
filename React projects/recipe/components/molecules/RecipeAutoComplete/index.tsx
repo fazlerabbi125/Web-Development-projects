@@ -1,9 +1,10 @@
 import React from "react";
 import { Autocomplete, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import { fetchData } from "../../hooks/useAxios";
+import { fetchData } from "../../../hooks/useAxios";
 import { withRouter, NextRouter } from "next/router";
-import { RecipeAutoCompleteTypeItem } from "../../pages/api/recipes/autocomplete";
+import { RecipeAutoCompleteTypeItem } from "../../../pages/api/recipes/autocomplete";
+import styles from "./RecipeAutoComplete.module.scss";
 
 const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
     const [search, setSearch] = React.useState("");

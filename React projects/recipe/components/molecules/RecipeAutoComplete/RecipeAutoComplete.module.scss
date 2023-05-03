@@ -1,0 +1,6 @@
+@use "@/styles/partials/mediaQuery";
+@use "@/styles/partials/addFlex";
+
+.recipe-autocomplete {
+    @include addFlex.flex-container($direction: column);
+}
