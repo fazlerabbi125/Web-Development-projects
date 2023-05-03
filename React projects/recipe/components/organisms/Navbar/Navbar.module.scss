@@ -1,17 +1,8 @@
 @use "../../../styles/partials/mediaQuery";
 @use "../../../styles/partials/addFlex";
 
-@keyframes menu-open {
-    0% {
-        height: 0;
-    }
-
-    100% {
-        height: max-content;
-    }
-}
-
 .navbar {
+    $root: &;
     background-color: white;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -58,19 +49,17 @@
 
         @include mediaQuery.maxCustomDevice(640px) {
             display: none;
+            flex-direction: column;
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
-            height: 0;
-            opacity: 0;
-            transition: display 0.5s, height 0.2s, opacity 0.2s;
+            max-height: 0;
+            transition: max-height 0.5s ease;
         }
 
-        &--show {
+        &.show {
             @include mediaQuery.maxCustomDevice(640px) {
                 @include addFlex.flex-container($direction: column);
-                height: auto;
-                opacity: 1;
-                transition: display 0.5s, height 0.2s, opacity 0.2s;
+                max-height: 100%;
             }
         }
     }
@@ -83,6 +72,12 @@
 
         @include mediaQuery.maxCustomDevice(640px) {
             @include addFlex.flex-container($direction: column);
+            opacity: 0;
+            transition: opacity 2s;
+
+            #{$root}__collapse.show & {
+                opacity: 1;
+            }
         }
 
         &__item {

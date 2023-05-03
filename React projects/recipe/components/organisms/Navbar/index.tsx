@@ -28,9 +28,8 @@ export default function Navbar() {
           className={styles.navbar__toggler}
         />
         <div
-          className={`${styles.navbar__collapse} ${
-            isOpen ? styles["navbar__collapse--show"] : ""
-          }`}
+          className={`${styles.navbar__collapse} ${isOpen ? styles.show : ""
+            }`}
         >
           <ul className={styles["navbar__nav-list"]}>
             {routes.map((route) => (

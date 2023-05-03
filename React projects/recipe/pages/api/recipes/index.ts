@@ -1,5 +1,5 @@
 import recipes from "@/data/recipe.json";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export interface RecipeListType {
     count: number;

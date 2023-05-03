@@ -1,14 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-
-const schemaOptions = { discriminatorKey: "role" };
-
-const userRoles = {
-    ADMIN: "admin",
-    TRAINER: "trainer",
-    TRAINEE: "trainee",
-};
+const { userRoles } = require("../utils/constants");
 
 const userSchema = new mongoose.Schema(
     {
@@ -56,42 +49,7 @@ const userSchema = new mongoose.Schema(
         resetPasswordExpire: Date,
         emailVerificationToken: String,
         emailVerificationExpire: Date,
-
-        /*
-        assignedCourses: {
-            type: [
-                {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Course",
-                },
-            ],
-            validate: {
-                validator: function (value) {
-                    // Access the 'title' field using the 'this' keyword
-                    return this.role === userRoles.TRAINER;
-                },
-                message: 'Only assignable when role is trainer'
-            }
-        },
-        assignedBatches: {
-            type: [
-                {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Batch",
-                },
-            ],
-            validate: {
-                validator: function (value) {
-                    // Access the 'title' field using the 'this' keyword
-                    return this.role === userRoles.TRAINEE;
-                },
-                message: 'Only assignable when role is trainee'
-            }
-        },
-        */
-    },
-    schemaOptions
-);
+    }, schemaOptions);
 
 userSchema.statics.login = async function (email, password) {
     const user = await this.findOne({ email }).exec();
@@ -105,6 +63,7 @@ userSchema.statics.login = async function (email, password) {
 const User = mongoose.model("User", userSchema);
 
 // Discriminator uses same collection and returns a model whose schema is the union of the base schema and the discriminator schema
+// discriminator is separate and different from a schema property. https://mongoosejs.com/docs/discriminators.html#updating-the-discriminator-key
 
 const Trainer = User.discriminator(
     userRoles.TRAINER,
@@ -140,5 +99,47 @@ const Trainee = User.discriminator(
         schemaOptions
     )
 );
+
+// const Trainer = new mongoose.Schema(
+//     {
+//         user: {
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "User",
+//             unique: true
+//         },
+//         assignedCourses: [
+//             {
+//                 type: mongoose.Schema.Types.ObjectId,
+//                 ref: "Course",
+//             },
+//         ],
+//     }
+// );
+
+// const Admin = new mongoose.Schema(
+//     {
+//         user: {
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "User",
+//             unique: true
+//         }
+//     }
+// );
+
+// const Trainee = new mongoose.Schema(
+//     {
+//         user: {
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "User",
+//             unique: true
+//         },
+//         assignedBatches: [
+//             {
+//                 type: mongoose.Schema.Types.ObjectId,
+//                 ref: "Batch",
+//             },
+//         ],
+//     }
+// );
 
 module.exports = User;
