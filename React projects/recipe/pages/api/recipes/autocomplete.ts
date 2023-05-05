@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import recipes from "@/data/recipe.json";
-import { RecipeListType } from ".";
 import { AutocompleteItem } from "@mantine/core";
 
 export interface RecipeAutoCompleteTypeItem extends AutocompleteItem {

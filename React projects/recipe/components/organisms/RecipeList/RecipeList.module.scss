@@ -7,7 +7,7 @@
 
   &__card {
     position: relative;
-    @apply w-3/12;
+    flex-basis: 325px;
 
     &__photo {
       position: relative;
@@ -23,7 +23,7 @@
       position: sticky;
       top: 100%;
       @include addFlex.flex-container($jc: center);
-      @apply mt-4;
+      margin-top: 1rem;
     }
   }
 }
