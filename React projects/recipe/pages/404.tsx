@@ -1,7 +1,7 @@
 import { Title, Text, Flex } from "@mantine/core";
 import Head from "next/head";
 import Image from "next/image";
-import notFoundImg from "../public/images/cross-cultery.jpg";
+import notFoundImg from "@/public/assets/images/cross-cultery.jpg";
 
 export default function Custom404() {
     return (

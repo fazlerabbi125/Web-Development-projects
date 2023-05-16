@@ -53,7 +53,7 @@ export default function RecipeDetails({
     return (
         <React.Fragment>
             <Head>
-                <title>Recipe Details</title>
+                <title>{recipe.name}</title>
             </Head>
             <Card p="md" mb={"5em"} className={styles.recipe_details__card}>
                 <Stack justify="flex-start" spacing={6} mb="sm">

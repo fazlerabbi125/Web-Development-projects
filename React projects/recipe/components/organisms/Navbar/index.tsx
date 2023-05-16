@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.navbar__container}>
         <div className={styles.navbar__brand}>
-          <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
+          <Image alt="logo" src="/assets/images/cutlery.svg" width={40} height={40} />
         </div>
         <Burger
           opened={isOpen}
@@ -46,35 +46,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
-{
-  /* 
-import {
-  Navbar as BSNavbar,
-  NavbarBrand,
-  Collapse,
-  NavbarToggler,
-  Nav,
-  NavItem,
-} from "reactstrap";
-<BSNavbar className="custom-navbar" expand="sm">
-      <NavbarBrand>
-        <Image alt="logo" src="/images/cutlery.svg" width={40} height={40} />
-      </NavbarBrand>
-      <NavbarToggler onClick={toggle} style={{ border: "none" }} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar>
-          {routes.map((route) => (
-            <NavItem className="sm:ml-4" key={route.link}>
-              <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
-            </NavItem>
-          ))}
-        </Nav>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <RecipeAutoComplete />
-          </NavItem>
-        </Nav>
-      </Collapse>
-    </BSNavbar> */
 }

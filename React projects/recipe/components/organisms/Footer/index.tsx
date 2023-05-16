@@ -2,7 +2,7 @@ import { BiCopyright } from "react-icons/bi";
 import { createStyles, Group, ActionIcon } from "@mantine/core";
 import {
   AiFillTwitterCircle,
-  AiFillInstagram,
+  AiFillFacebook,
   AiFillYoutube,
 } from "react-icons/ai";
 import styles from "./Footer.module.scss"
@@ -37,12 +37,12 @@ export default function Footer() {
         Fazle Rabbi Faiyaz. All rights reserved{" "}
         <BiCopyright className="inline-block" />
       </div>
-      <Group spacing={10} className={classes.links} position="right" noWrap>
+      <Group spacing={10} className={classes.links} position="right" noWrap align="center">
         <ActionIcon variant="transparent">
-          <AiFillTwitterCircle size={25} />
+          <AiFillFacebook size={25} />
         </ActionIcon>
         <ActionIcon variant="transparent">
-          <AiFillInstagram size={25} />
+          <AiFillTwitterCircle size={25} />
         </ActionIcon>
         <ActionIcon variant="transparent">
           <AiFillYoutube size={25} />
